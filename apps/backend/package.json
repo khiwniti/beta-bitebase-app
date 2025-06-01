@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node minimal-server.js",
     "dev": "node minimal-server.js",
-    "deploy": "wrangler deploy",
-    "deploy:production": "wrangler deploy --env production",
+    "build": "echo 'Build completed'",
+    "deploy": "vercel --prod",
+    "deploy:preview": "vercel",
     "test": "vitest",
     "db:create": "wrangler d1 create bitebase-production",
     "db:migrate": "wrangler d1 execute bitebase-production --file=../../database/schema.sql"

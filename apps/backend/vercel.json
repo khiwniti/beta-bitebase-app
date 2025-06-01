@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "name": "bitebase-backend",
+  "builds": [
+    {
+      "src": "minimal-server.js",
+      "use": "@vercel/node",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/minimal-server.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "PORT": "3000",
+    "HOST": "0.0.0.0",
+    "JWT_SECRET": "@jwt-secret",
+    "GOOGLE_CLIENT_ID": "@google-client-id",
+    "STRIPE_SECRET_KEY": "@stripe-secret-key",
+    "DATABASE_URL": "@database-url",
+    "REDIS_URL": "@redis-url"
+  },
+  "functions": {
+    "minimal-server.js": {
+      "maxDuration": 30
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "bitebase-frontend",
+  "name": "bitebase-monorepo",
   "builds": [
     {
       "src": "apps/frontend/package.json",
@@ -17,21 +17,24 @@
     }
   ],
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://bitebase-backend-api.onrender.com",
-    "NEXT_PUBLIC_STRAPI_URL": "https://bitebase-strapi-cms.onrender.com",
-    "NEXT_PUBLIC_AGENT_API_URL": "https://bitebase-ai-gateway.onrender.com",
-    "NEXT_PUBLIC_SITE_URL": "https://beta.bitebase.app"
+    "NEXT_PUBLIC_API_URL": "@next-public-api-url",
+    "NEXT_PUBLIC_STRAPI_URL": "@next-public-strapi-url",
+    "NEXT_PUBLIC_AGENT_API_URL": "@next-public-agent-api-url",
+    "NEXT_PUBLIC_SITE_URL": "@next-public-site-url"
   },
   "build": {
     "env": {
-      "NEXT_PUBLIC_API_URL": "https://bitebase-backend-api.onrender.com",
-      "NEXT_PUBLIC_STRAPI_URL": "https://bitebase-strapi-cms.onrender.com",
-      "NEXT_PUBLIC_AGENT_API_URL": "https://bitebase-ai-gateway.onrender.com",
-      "NEXT_PUBLIC_SITE_URL": "https://beta.bitebase.app"
+      "NEXT_PUBLIC_API_URL": "@next-public-api-url",
+      "NEXT_PUBLIC_STRAPI_URL": "@next-public-strapi-url",
+      "NEXT_PUBLIC_AGENT_API_URL": "@next-public-agent-api-url",
+      "NEXT_PUBLIC_SITE_URL": "@next-public-site-url"
     }
   },
   "functions": {
     "apps/frontend/pages/api/**/*.js": {
+      "maxDuration": 30
+    },
+    "apps/frontend/pages/api/**/*.ts": {
       "maxDuration": 30
     }
   },
@@ -50,14 +53,18 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "origin-when-cross-origin"
         }
       ]
     }
   ],
   "redirects": [
     {
-      "source": "/admin",
-      "destination": "https://bitebase-strapi-cms.onrender.com/admin",
+      "source": "/api/backend/(.*)",
+      "destination": "https://bitebase-backend.vercel.app/api/$1",
       "permanent": false
     }
   ]
