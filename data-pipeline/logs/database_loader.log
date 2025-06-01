@@ -1,0 +1,23 @@
+2025-06-01 06:51:29 | INFO | utils.datalake:save_raw_data:130 | Saved raw data to raw/test/pipeline_test/2025/06/01/test_pipeline_test_20250601_065129.json
+2025-06-01 06:51:29 | ERROR | etl.database_loader:create_tables:130 | Error creating tables: (psycopg2.OperationalError) connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (::1), port 5432 failed: Cannot assign requested address
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-01 06:51:29 | INFO | etl.data_processor:_clean_restaurant_data:81 | Cleaning restaurant data
+2025-06-01 06:51:29 | INFO | etl.data_processor:_clean_restaurant_data:88 | Removed 0 duplicate restaurants
+2025-06-01 06:51:29 | INFO | etl.data_processor:_clean_restaurant_data:149 | Cleaned 2 restaurant records
+2025-06-01 06:51:29 | INFO | etl.data_processor:_enrich_restaurant_data:154 | Enriching restaurant data
+2025-06-01 06:51:50 | INFO | utils.datalake:save_raw_data:130 | Saved raw data to raw/test/pipeline_test/2025/06/01/test_pipeline_test_20250601_065150.json
+2025-06-01 06:51:50 | ERROR | etl.database_loader:create_tables:130 | Error creating tables: (psycopg2.OperationalError) connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (::1), port 5432 failed: Cannot assign requested address
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-01 06:51:50 | INFO | etl.data_processor:_clean_restaurant_data:81 | Cleaning restaurant data
+2025-06-01 06:51:50 | INFO | etl.data_processor:_clean_restaurant_data:88 | Removed 0 duplicate restaurants
+2025-06-01 06:51:50 | INFO | etl.data_processor:_clean_restaurant_data:149 | Cleaned 2 restaurant records
+2025-06-01 06:51:50 | INFO | etl.data_processor:_enrich_restaurant_data:154 | Enriching restaurant data
+2025-06-01 06:51:50 | INFO | etl.data_processor:_enrich_restaurant_data:185 | Enriched 2 restaurant records
