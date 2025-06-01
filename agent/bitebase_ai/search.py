@@ -52,7 +52,7 @@ def search_for_places(
         
         results = []
         # Search for each query
-    for query in queries:
+        for query in queries:
             # Use Nearby Search API
             nearby_url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat},{lng}&radius=5000&keyword={query}&key={GOOGLE_MAPS_API_KEY}"
             
