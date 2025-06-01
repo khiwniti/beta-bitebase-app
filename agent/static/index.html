@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍽️ BiteBase Backend Integration Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 10px; }
+        h2 { color: #34495e; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .status { padding: 10px; border-radius: 6px; margin: 10px 0; font-weight: bold; }
+        .online { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .offline { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .section { margin: 20px 0; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        button:hover { background: #2980b9; }
+        .result {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .success { border-left: 4px solid #28a745; background: #d4edda; }
+        .error { border-left: 4px solid #dc3545; background: #f8d7da; }
+        .loading { opacity: 0.6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍽️ BiteBase Backend Integration Test</h1>
+        <p style="text-align: center; color: #666;">
+            Testing connection to backend services with real restaurant data integration
+        </p>
+
+        <!-- Service Health Status -->
+        <div class="section">
+            <h2>🏥 Service Health Status</h2>
+            <p>Restaurant Data API: <span id="restaurant-api-status" class="status offline">Checking...</span></p>
+            <p>AI Agent: <span id="ai-agent-status" class="status offline">Checking...</span></p>
+            <button onclick="checkHealth()">Check Health</button>
+        </div>
+
+        <!-- Restaurant Data API Tests -->
+        <div class="section">
+            <h2>🍴 Restaurant Data API Tests</h2>
+            <button onclick="testAllRestaurants()">Get All Restaurants</button>
+            <button onclick="testWongnaiSearch()">Test Wongnai Search</button>
+            <button onclick="testFetchRealData()">Fetch Real Restaurant Data</button>
+            <div id="restaurant-results" class="result"></div>
+        </div>
+
+        <!-- AI Agent Tests -->
+        <div class="section">
+            <h2>🤖 AI Agent Tests</h2>
+            <button onclick="testMarketAnalysis()">Test Market Analysis</button>
+            <div id="ai-results" class="result"></div>
+        </div>
+
+        <!-- Real Data Integration Summary -->
+        <div class="section">
+            <h2>📊 Real Data Integration Summary</h2>
+            <div id="integration-summary" class="result">
+                🔍 Backend Integration Status:
+
+📊 Restaurant Data API: ❌ Not tested yet
+🤖 AI Agent: ❌ Not tested yet
+
+⚠️ Click "Check Health" to verify service status.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API endpoints
+        const RESTAURANT_API_BASE = 'https://work-2-iedxpnjtcfddboej.prod-runtime.all-hands.dev/api';
+        const AI_AGENT_BASE = 'https://work-1-iedxpnjtcfddboej.prod-runtime.all-hands.dev/api';
+
+        // Service status tracking
+        let serviceStatus = {
+            restaurantApi: false,
+            aiAgent: false
+        };
+
+        async function checkHealth() {
+            // Check Restaurant Data API
+            try {
+                const response = await fetch(`${RESTAURANT_API_BASE}/../health`);
+                const data = await response.json();
+                document.getElementById('restaurant-api-status').textContent = `Online (${data.version})`;
+                document.getElementById('restaurant-api-status').className = 'status online';
+                serviceStatus.restaurantApi = true;
+            } catch (error) {
+                document.getElementById('restaurant-api-status').textContent = 'Offline (Connection failed)';
+                document.getElementById('restaurant-api-status').className = 'status offline';
+                serviceStatus.restaurantApi = false;
+            }
+
+            // Check AI Agent
+            try {
+                const response = await fetch(`${AI_AGENT_BASE}/status`);
+                const data = await response.json();
+                document.getElementById('ai-agent-status').textContent = `Online (${data.version})`;
+                document.getElementById('ai-agent-status').className = 'status online';
+                serviceStatus.aiAgent = true;
+            } catch (error) {
+                document.getElementById('ai-agent-status').textContent = 'Offline (Connection failed)';
+                document.getElementById('ai-agent-status').className = 'status offline';
+                serviceStatus.aiAgent = false;
+            }
+
+            updateIntegrationSummary();
+        }
+
+        async function testAllRestaurants() {
+            const resultDiv = document.getElementById('restaurant-results');
+            resultDiv.textContent = 'Loading restaurants...';
+            resultDiv.className = 'result loading';
+
+            try {
+                const response = await fetch(`${RESTAURANT_API_BASE}/restaurants`);
+                const data = await response.json();
+                
+                resultDiv.textContent = `✅ All Restaurants (${Array.isArray(data) ? data.length : 'N/A'} found):\n\n${JSON.stringify(data, null, 2)}`;
+                resultDiv.className = 'result success';
+            } catch (error) {
+                resultDiv.textContent = `❌ All Restaurants Error: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        async function testWongnaiSearch() {
+            const resultDiv = document.getElementById('restaurant-results');
+            resultDiv.textContent = 'Searching Wongnai for pizza restaurants...';
+            resultDiv.className = 'result loading';
+
+            try {
+                const response = await fetch(`${RESTAURANT_API_BASE}/wongnai/search`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        latitude: 13.7563,
+                        longitude: 100.5018,
+                        radius: 5,
+                        query: 'pizza'
+                    })
+                });
+                const data = await response.json();
+                
+                resultDiv.textContent = `✅ Wongnai Search Results:\n\n${JSON.stringify(data, null, 2)}`;
+                resultDiv.className = 'result success';
+            } catch (error) {
+                resultDiv.textContent = `❌ Wongnai Search Error: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        async function testFetchRealData() {
+            const resultDiv = document.getElementById('restaurant-results');
+            resultDiv.textContent = 'Fetching real restaurant data from multiple platforms...';
+            resultDiv.className = 'result loading';
+
+            try {
+                const response = await fetch(`${RESTAURANT_API_BASE}/restaurants/fetch-real-data`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        latitude: 13.7563,
+                        longitude: 100.5018,
+                        radius: 5,
+                        platforms: ['wongnai', 'google']
+                    })
+                });
+                const data = await response.json();
+                
+                let resultText;
+                if (Array.isArray(data)) {
+                    resultText = `✅ Fetch Real Data Results (${data.length} restaurants):\n\n${JSON.stringify(data, null, 2)}`;
+                } else {
+                    resultText = `✅ Fetch Real Data Results:\n\n${JSON.stringify(data, null, 2)}`;
+                }
+                
+                resultDiv.textContent = resultText;
+                resultDiv.className = 'result success';
+            } catch (error) {
+                resultDiv.textContent = `❌ Fetch Real Data Error: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        async function testMarketAnalysis() {
+            const resultDiv = document.getElementById('ai-results');
+            resultDiv.textContent = 'Running market analysis...';
+            resultDiv.className = 'result loading';
+
+            try {
+                const response = await fetch(`${AI_AGENT_BASE}/market/analyze`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        location: "Bangkok, Thailand",
+                        cuisine_type: "Italian",
+                        radius_km: 5
+                    })
+                });
+                
+                const data = await response.json();
+                resultDiv.textContent = `✅ Market Analysis Results:\n\n${JSON.stringify(data, null, 2)}`;
+                resultDiv.className = 'result success';
+            } catch (error) {
+                resultDiv.textContent = `❌ Market Analysis Error: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        function updateIntegrationSummary() {
+            const summaryDiv = document.getElementById('integration-summary');
+            const restaurantStatus = serviceStatus.restaurantApi ? '✅ Connected' : '❌ Disconnected';
+            const aiStatus = serviceStatus.aiAgent ? '✅ Connected' : '❌ Disconnected';
+            
+            let statusMessage = '';
+            if (serviceStatus.restaurantApi && serviceStatus.aiAgent) {
+                statusMessage = '🎉 All services are online and ready for integration!';
+            } else if (serviceStatus.restaurantApi || serviceStatus.aiAgent) {
+                statusMessage = '⚠️ Some services are offline. Check the logs for details.';
+            } else {
+                statusMessage = '❌ All services are offline. Please check your configuration.';
+            }
+
+            summaryDiv.textContent = `🔍 Backend Integration Status:
+
+📊 Restaurant Data API: ${restaurantStatus}
+🤖 AI Agent: ${aiStatus}
+
+${statusMessage}`;
+        }
+
+        // Auto-check health on page load
+        window.addEventListener('load', checkHealth);
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+# Cloudflare Workers Configuration for BiteBase Backend API
+
+name = "bitebase-backend-api"
+main = "apps/backend/cloudflare-worker.js"
+compatibility_date = "2024-05-25"
+compatibility_flags = ["nodejs_compat"]
+
+# Environment Variables
+[env.production.vars]
+NODE_ENV = "production"
+DATABASE_URL = "postgresql://bitebasedb_staging_owner:npg_vzp02ERAaXoQ@ep-damp-tooth-a4orgq86-pooler.us-east-1.aws.neon.tech/bitebasedb_staging?sslmode=require"
+CORS_ORIGIN = "https://beta.bitebase.app"
+JWT_SECRET = "your_jwt_secret"
+ADMIN_JWT_SECRET = "your_admin_jwt_secret"
+
+# KV Namespaces for caching
+[[env.production.kv_namespaces]]
+binding = "CACHE_KV"
+id = "5268de1763e54a938cba7fcd0cae927e"
+
+# D1 Database binding
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "bitebase-production"
+database_id = "84de1e17-1e58-43dc-94ff-db7a9b755fe8"
+
+# AI Agents Worker (commented out for initial deployment)
+# [[env.production.services]]
+# binding = "AI_AGENTS"
+# service = "bitebase-ai-agents"
+
+# Routes - commented out until domain is added to Cloudflare
+# [[env.production.routes]]
+# pattern = "api.bitebase.app/*"
+# zone_name = "bitebase.app"
+
+# Development environment
+[env.development]
+name = "bitebase-backend-api-dev"
+
+[env.development.vars]
+NODE_ENV = "development"
+DATABASE_URL = "postgresql://bitebasedb_staging_owner:npg_vzp02ERAaXoQ@ep-damp-tooth-a4orgq86-pooler.us-east-1.aws.neon.tech/bitebasedb_staging?sslmode=require"
+CORS_ORIGIN = "http://localhost:3000"
+
+[[env.development.d1_databases]]
+binding = "DB"
+database_name = "bitebase-development"
+database_id = "84de1e17-1e58-43dc-94ff-db7a9b755fe8"

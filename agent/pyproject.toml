@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "bitebase-intelligence"
+version = "0.1.0"
+description = ""
+authors = ["Khiw N. <khiwniti@getintheq.space>"]
+readme = "README.md"
+packages = [
+    { include = "bitebase_ai" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+langchain-openai = "^0.2.1"
+langchain-anthropic = "^0.2.1"
+langchain = "^0.3.1"
+openai = "^1.51.0"
+langchain-community = "^0.3.1"
+copilotkit = "0.1.41"
+uvicorn = {extras = ["standard"], version = ">=0.32.0,<0.33.0"}
+python-dotenv = "^1.0.1"
+tavily-python = "^0.5.0"
+html2text = "^2024.2.26"
+googlemaps = "^4.10.0"
+langgraph-cli = {extras = ["inmem"], version = "^0.1.64"}
+langchain-core = "^0.3.25"
+aiqtoolkit = "^1.1.0"
+langgraph = "^0.2.0"
+pandas = "^2.2.3"
+numpy = ">=1.26,<2.0"
+scikit-learn = "^1.6.1"
+fuzzywuzzy = "^0.18.0"
+python-levenshtein = "^0.27.1"
+geopy = "^2.4.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+bitebase = "bitebase_ai.bitebase:main"
+profile = "examples.profile_agent:profile_agent"
+test-aiq = "examples.run_aiq_tests:main"
+test-aiq-agent = "examples.test_aiq_integration:main"
+test-aiq-api = "examples.test_api_aiq_integration:main"
+aiq-analyze = "examples.aiq_analyze_restaurants:main"

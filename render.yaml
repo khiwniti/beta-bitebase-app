@@ -1,0 +1,119 @@
+services:
+  # BiteBase Backend API (Express.js)
+  - type: web
+    name: bitebase-backend-api
+    env: node
+    plan: starter
+    buildCommand: cd apps/backend && npm ci && npm run build
+    startCommand: cd apps/backend && npm run express:start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        value: postgresql://bitebasedb_staging_owner:npg_vzp02ERAaXoQ@ep-damp-tooth-a4orgq86-pooler.us-east-1.aws.neon.tech/bitebasedb_staging?sslmode=require
+      - key: DATABASE_CLIENT
+        value: postgres
+      - key: DATABASE_HOST
+        value: ep-damp-tooth-a4orgq86-pooler.us-east-1.aws.neon.tech
+      - key: DATABASE_PORT
+        value: 5432
+      - key: DATABASE_NAME
+        value: bitebasedb_staging
+      - key: DATABASE_USERNAME
+        value: bitebasedb_staging_owner
+      - key: DATABASE_PASSWORD
+        value: npg_vzp02ERAaXoQ
+      - key: DATABASE_SSL
+        value: true
+      - key: DATABASE_SSL_REJECT_UNAUTHORIZED
+        value: false
+      - key: CORS_ORIGIN
+        value: https://beta.bitebase.app,https://bitebase.app,http://localhost:3000
+      - key: AGENT_FASTAPI_URL
+        value: https://bitebase-ai-agents.onrender.com
+      - key: AGENT_GATEWAY_URL
+        value: https://bitebase-ai-gateway.onrender.com
+
+  # BiteBase Strapi CMS (Optional Admin Interface)
+  - type: web
+    name: bitebase-strapi-cms
+    env: node
+    plan: starter
+    buildCommand: cd apps/backend && npm ci && npm run build
+    startCommand: cd apps/backend && npm run start
+    healthCheckPath: /admin
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        value: postgresql://bitebasedb_staging_owner:npg_vzp02ERAaXoQ@ep-damp-tooth-a4orgq86-pooler.us-east-1.aws.neon.tech/bitebasedb_staging?sslmode=require
+      - key: DATABASE_CLIENT
+        value: postgres
+      - key: DATABASE_HOST
+        value: ep-damp-tooth-a4orgq86-pooler.us-east-1.aws.neon.tech
+      - key: DATABASE_PORT
+        value: 5432
+      - key: DATABASE_NAME
+        value: bitebasedb_staging
+      - key: DATABASE_USERNAME
+        value: bitebasedb_staging_owner
+      - key: DATABASE_PASSWORD
+        value: npg_vzp02ERAaXoQ
+      - key: DATABASE_SSL
+        value: true
+      - key: DATABASE_SSL_REJECT_UNAUTHORIZED
+        value: false
+      - key: APP_KEYS
+        value: 2ebuMok3H/O96/o1n/nOyg==,mLN9bGnz5IIzz0tR81ng8g==,vxFi1WuR/zifZJpZkZWVEw==,zr61pBkrMFUG80JQv6L1CA==
+      - key: API_TOKEN_SALT
+        value: 0tzHD0jdayW/8WIYX0vIyA==
+      - key: ADMIN_JWT_SECRET
+        value: pwnD8hb/0xTrUxY8KCHOTw==
+      - key: TRANSFER_TOKEN_SALT
+        value: CppdRmSl7U299fT06yUgNg==
+      - key: JWT_SECRET
+        value: 4RnZ3V+sClxdkd2xjgYj/Q==
+      - key: CORS_ORIGIN
+        value: https://beta.bitebase.app,https://bitebase.app,http://localhost:3000
+      - key: STRAPI_ADMIN_MAPBOX_ACCESS_TOKEN
+        value: pk.eyJ1Ijoia2hpd25pdGkiLCJhIjoiY203cm1oaWtyMWI4ejJpcHVuN2U2bHB6MiJ9.w9KWAvFEvF7bCdX-8Povkg
+
+  # BiteBase AI Agents (Python FastAPI)
+  - type: web
+    name: bitebase-ai-agents
+    env: python
+    plan: starter
+    buildCommand: cd agent && pip install -r requirements.txt
+    startCommand: cd agent && python run_server.py
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: RELOAD
+        value: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: GOOGLE_MAPS_API_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        value: postgresql://bitebasedb_staging_owner:npg_vzp02ERAaXoQ@ep-damp-tooth-a4orgq86-pooler.us-east-1.aws.neon.tech/bitebasedb_staging?sslmode=require
+
+  # BiteBase AI Gateway (Node.js)
+  - type: web
+    name: bitebase-ai-gateway
+    env: node
+    plan: starter
+    buildCommand: cd agent && npm ci
+    startCommand: cd agent && node server.js
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production

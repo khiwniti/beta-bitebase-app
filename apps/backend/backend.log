@@ -1,0 +1,67 @@
+🚀 BiteBase Minimal Backend running on http://0.0.0.0:12001
+📊 Available endpoints:
+   GET  /health - Health check
+   GET  /api/restaurants - List restaurants
+   GET  /api/restaurants/:id - Get restaurant details
+   GET  /api/market-analyses - List market analyses
+   POST /api/market-analyses - Create market analysis
+   GET  /api/market-analyses/:id - Get market analysis
+🌐 CORS enabled for runtime domains
+✅ Server ready for frontend connection!
+[2025-05-31T17:06:35.765Z] GET /health - IP: 127.0.0.1
+[2025-05-31T17:06:36.602Z] GET /health - IP: 127.0.0.1
+[2025-05-31T17:06:42.141Z] POST /api/chat - IP: 127.0.0.1
+[2025-05-31T17:06:45.811Z] POST /api/chat - IP: 127.0.0.1
+[2025-05-31T17:06:52.070Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:06:52.075Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:06:52.119Z] GET /api/restaurants - IP: 127.0.0.1
+[2025-05-31T17:06:53.161Z] GET /api/chat/history/1 - IP: 127.0.0.1
+[2025-05-31T17:07:08.855Z] POST /api/chat - IP: 127.0.0.1
+[2025-05-31T17:07:36.653Z] POST /api/chat - IP: 127.0.0.1
+[2025-05-31T17:10:18.788Z] GET / - IP: 10.2.74.140
+[2025-05-31T17:11:19.599Z] GET / - IP: 10.2.74.140
+[2025-05-31T17:18:02.069Z] GET /api/health - IP: 127.0.0.1
+[2025-05-31T17:18:05.444Z] GET /api/health - IP: 127.0.0.1
+[2025-05-31T17:18:14.347Z] GET /health - IP: 127.0.0.1
+[2025-05-31T17:18:17.262Z] GET /health - IP: 127.0.0.1
+[2025-05-31T17:18:21.174Z] POST /api/chat - IP: 127.0.0.1
+[2025-05-31T17:18:24.215Z] POST /api/chat - IP: 127.0.0.1
+[2025-05-31T17:18:33.300Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:18:33.302Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:18:33.345Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:18:33.348Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:18:33.373Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:22:55.181Z] GET / - IP: 10.2.69.17
+[2025-05-31T17:24:14.907Z] GET / - IP: 10.2.69.17
+[2025-05-31T17:24:15.928Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:24:15.987Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:24:29.090Z] GET /api/restaurants - IP: 127.0.0.1
+[2025-05-31T17:24:30.119Z] GET /api/chat/history/1 - IP: 127.0.0.1
+[2025-05-31T17:24:38.479Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:24:38.483Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:25:00.492Z] POST /api/auth/login - IP: 127.0.0.1
+[2025-05-31T17:25:00.708Z] GET /api/restaurants - IP: 127.0.0.1
+[2025-05-31T17:25:01.734Z] GET /api/chat/history/1 - IP: 127.0.0.1
+[2025-05-31T17:25:13.553Z] GET / - IP: 10.2.69.17
+[2025-05-31T17:25:24.909Z] POST /api/chat - IP: 127.0.0.1
+[2025-05-31T17:26:34.460Z] GET / - IP: 10.2.69.17
+[2025-05-31T17:26:51.895Z] GET / - IP: 10.2.69.17
+[2025-05-31T17:27:03.550Z] GET / - IP: 10.2.69.17
+[2025-05-31T17:27:59.423Z] GET / - IP: 10.2.69.17
+[2025-05-31T17:28:19.788Z] GET / - IP: 10.2.69.17
+[2025-05-31T17:28:22.604Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:28:22.617Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:28:32.974Z] GET /api/restaurants - IP: 127.0.0.1
+[2025-05-31T17:28:34.008Z] GET /api/chat/history/1 - IP: 127.0.0.1
+[2025-05-31T17:28:47.253Z] GET / - IP: 10.2.69.17
+[2025-05-31T17:28:56.280Z] GET / - IP: 10.2.69.17
+[2025-05-31T17:29:00.186Z] GET / - IP: 10.2.69.17
+[2025-05-31T17:29:00.722Z] GET / - IP: 10.2.69.17
+[2025-05-31T17:29:11.434Z] POST /api/chat - IP: 127.0.0.1
+[2025-05-31T17:31:32.241Z] GET / - IP: 10.2.69.17
+[2025-05-31T17:32:50.841Z] GET / - IP: 10.2.69.17
+[2025-05-31T17:33:12.795Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:33:12.799Z] GET /api/auth/profile - IP: 127.0.0.1
+[2025-05-31T17:33:12.861Z] GET /api/restaurants - IP: 127.0.0.1
+[2025-05-31T17:33:13.893Z] GET /api/chat/history/1 - IP: 127.0.0.1
+[2025-05-31T17:35:37.250Z] GET / - IP: 10.2.69.17

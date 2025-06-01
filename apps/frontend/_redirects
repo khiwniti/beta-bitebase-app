@@ -1,0 +1,15 @@
+# Cloudflare Pages Redirects Configuration
+
+# API redirects to Cloudflare Workers
+/api/* https://api.bitebase.app/:splat 200
+/ai/* https://ai.bitebase.app/:splat 200
+
+# Admin redirects
+/admin/* https://admin.bitebase.app/:splat 200
+
+# Legacy redirects
+/demo /subscription 301
+/pricing /subscription 301
+
+# SPA fallback
+/* /index.html 200

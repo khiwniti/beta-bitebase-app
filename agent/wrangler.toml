@@ -1,0 +1,27 @@
+# Cloudflare Workers Configuration for BiteBase AI Agents
+
+name = "bitebase-ai-agents"
+main = "cloudflare-worker.js"
+compatibility_date = "2024-05-25"
+compatibility_flags = ["nodejs_compat"]
+
+# Environment Variables
+[env.production.vars]
+OPENROUTER_API_KEY = "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"
+MAPBOX_API_KEY = "your_mapbox_api_key"
+TAVILY_API_KEY = "your_tavily_api_key"
+NODE_ENV = "production"
+
+# Routes - commented out until domain is added to Cloudflare
+# [[env.production.routes]]
+# pattern = "ai.bitebase.app/*"
+# zone_name = "bitebase.app"
+
+# Development environment
+[env.development]
+name = "bitebase-ai-agents-dev"
+
+[env.development.vars]
+NODE_ENV = "development"
+OPENAI_API_KEY = "your_dev_openai_api_key"
+MAPBOX_API_KEY = "your_dev_mapbox_api_key"

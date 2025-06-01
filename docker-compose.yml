@@ -1,0 +1,256 @@
+version: '3.8'
+
+services:
+  # Frontend Services
+  user-frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NEXT_PUBLIC_COPILOTKIT_URL=http://localhost:8001
+      - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+    depends_on:
+      - user-backend
+      - copilotkit-service
+
+  staff-frontend:
+    build:
+      context: ./apps/staff-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - NEXT_PUBLIC_STAFF_API_URL=http://localhost:8005
+      - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+    depends_on:
+      - staff-backend
+
+  tools-frontend:
+    build:
+      context: ./apps/tools-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    environment:
+      - NEXT_PUBLIC_MCP_GATEWAY_URL=http://localhost:8002
+      - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+    depends_on:
+      - mcp-gateway
+
+  workflows-frontend:
+    build:
+      context: ./apps/workflows-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    environment:
+      - NEXT_PUBLIC_LANGGRAPH_URL=http://localhost:8003
+      - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+    depends_on:
+      - langgraph-agent
+
+  backend-tasks-frontend:
+    build:
+      context: ./apps/backend-tasks-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3004:3004"
+    environment:
+      - NEXT_PUBLIC_STAFF_API_URL=http://localhost:8005
+      - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+    depends_on:
+      - staff-backend
+
+  # Backend Services
+  user-backend:
+    build:
+      context: ./apps/user-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/bitebase
+      - REDIS_URL=redis://redis:6379/0
+      - COPILOTKIT_URL=http://copilotkit-service:8001
+      - MCP_GATEWAY_URL=http://mcp-gateway:8002
+      - LANGGRAPH_URL=http://langgraph-agent:8003
+      - CLERK_SECRET_KEY=${CLERK_SECRET_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on:
+      - postgres
+      - redis
+      - copilotkit-service
+      - mcp-gateway
+
+  staff-backend:
+    build:
+      context: ./apps/staff-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8005:8005"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/bitebase
+      - REDIS_URL=redis://redis:6379/1
+      - CLERK_SECRET_KEY=${CLERK_SECRET_KEY}
+      - PROMETHEUS_URL=http://prometheus:9090
+    depends_on:
+      - postgres
+      - redis
+
+  copilotkit-service:
+    build:
+      context: ./apps/copilotkit-service
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      - REDIS_URL=redis://redis:6379/2
+      - OLLAMA_URL=http://ollama:11434
+      - MCP_GATEWAY_URL=http://mcp-gateway:8002
+      - USER_BACKEND_URL=http://user-backend:8000
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on:
+      - redis
+      - ollama
+      - mcp-gateway
+
+  mcp-gateway:
+    build:
+      context: ./apps/mcp-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    environment:
+      - AUTH0_DOMAIN=${AUTH0_DOMAIN}
+      - AUTH0_CLIENT_ID=${AUTH0_CLIENT_ID}
+      - AUTH0_CLIENT_SECRET=${AUTH0_CLIENT_SECRET}
+      - MCP_SERVERS_BASE_URL=http://mcp-servers:8010
+    depends_on:
+      - mcp-servers
+
+  langgraph-agent:
+    build:
+      context: ./apps/langgraph-agent
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8003"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/bitebase
+      - REDIS_URL=redis://redis:6379/3
+      - MCP_GATEWAY_URL=http://mcp-gateway:8002
+      - OLLAMA_URL=http://ollama:11434
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on:
+      - postgres
+      - redis
+      - mcp-gateway
+      - ollama
+
+  a2a-server:
+    build:
+      context: ./apps/a2a-server
+      dockerfile: Dockerfile
+    ports:
+      - "8004:8004"
+    environment:
+      - REDIS_URL=redis://redis:6379/4
+      - LANGGRAPH_URL=http://langgraph-agent:8003
+    depends_on:
+      - redis
+      - langgraph-agent
+
+  # MCP Servers (consolidated)
+  mcp-servers:
+    build:
+      context: ./apps/mcp-servers
+      dockerfile: Dockerfile
+    ports:
+      - "8010:8010"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/bitebase
+      - REDIS_URL=redis://redis:6379/5
+      - GOOGLE_MAPS_API_KEY=${GOOGLE_MAPS_API_KEY}
+      - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on:
+      - postgres
+      - redis
+
+  # Infrastructure Services
+  postgres:
+    image: postgis/postgis:15-3.3
+    environment:
+      - POSTGRES_DB=bitebase
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+
+  # Monitoring Stack
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3005:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+
+  # Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - user-frontend
+      - staff-frontend
+      - tools-frontend
+      - workflows-frontend
+      - backend-tasks-frontend
+
+volumes:
+  postgres_data:
+  redis_data:
+  ollama_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  default:
+    name: bitebase-network

@@ -1,0 +1,53 @@
+{
+  "name": "bitebase-backend-cloudflare",
+  "version": "1.0.0",
+  "description": "BiteBase Backend API for Cloudflare Workers",
+  "main": "cloudflare-worker.js",
+  "scripts": {
+    "start": "node minimal-server.js",
+    "dev": "node minimal-server.js",
+    "deploy": "wrangler deploy",
+    "deploy:production": "wrangler deploy --env production",
+    "test": "vitest",
+    "db:create": "wrangler d1 create bitebase-production",
+    "db:migrate": "wrangler d1 execute bitebase-production --file=../../database/schema.sql"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "bcrypt": "^6.0.0",
+    "compression": "^1.8.0",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.2.0",
+    "dotenv": "^16.5.0",
+    "encodeurl": "^2.0.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "express-validator": "^7.2.1",
+    "fetch-blob": "^3.2.0",
+    "formdata-polyfill": "^4.0.10",
+    "google-auth-library": "^9.15.1",
+    "googleapis": "^149.0.0",
+    "helmet": "^8.1.0",
+    "hono": "^3.12.0",
+    "jsonwebtoken": "^9.0.2",
+    "node-fetch": "^3.3.2",
+    "pg": "^8.16.0",
+    "socket.io": "^4.8.1",
+    "sqlite3": "^5.1.7",
+    "stripe": "^18.2.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240512.0",
+    "vitest": "^1.6.0",
+    "wrangler": "^3.57.0"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "api",
+    "restaurant",
+    "bitebase"
+  ],
+  "author": "BiteBase Team",
+  "license": "MIT"
+}

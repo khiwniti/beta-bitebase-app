@@ -1,0 +1,214 @@
+/* BiteBase Theme Consistency - Unified Color System */
+
+/* Import the main theme */
+@import './bitebase-theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Override Tailwind colors to use consistent theme */
+:root {
+  /* Ensure all green variants use our primary color */
+  --tw-color-green-50: var(--primary-50);
+  --tw-color-green-100: var(--primary-100);
+  --tw-color-green-200: var(--primary-200);
+  --tw-color-green-300: var(--primary-300);
+  --tw-color-green-400: var(--primary-400);
+  --tw-color-green-500: var(--primary-500);
+  --tw-color-green-600: var(--primary-600);
+  --tw-color-green-700: var(--primary-700);
+  --tw-color-green-800: var(--primary-800);
+  --tw-color-green-900: var(--primary-900);
+}
+
+@layer components {
+  /* Consistent component styling */
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-600 transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-200;
+  }
+
+  .input-primary {
+    @apply border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary;
+  }
+
+  .checkbox-primary {
+    @apply rounded border-gray-300 text-primary focus:ring-primary;
+  }
+
+  .text-primary-theme {
+    color: var(--primary-color);
+  }
+
+  .bg-primary-theme {
+    background-color: var(--primary-color);
+  }
+
+  .bg-primary-light-theme {
+    background-color: var(--primary-light);
+  }
+
+  .border-primary-theme {
+    border-color: var(--primary-color);
+  }
+
+  /* Chat message styling */
+  .chat-message-user {
+    @apply bg-primary text-white;
+  }
+
+  .chat-message-bot {
+    @apply bg-gray-100 text-gray-900;
+  }
+
+  /* Map control styling */
+  .map-control-panel {
+    @apply bg-white rounded-lg shadow-lg p-3;
+  }
+
+  .map-control-checkbox {
+    @apply rounded border-gray-300 text-primary focus:ring-primary flex-shrink-0;
+  }
+
+  /* Button variants */
+  .btn-tool-active {
+    @apply bg-primary-100 text-primary-700 border border-primary;
+  }
+
+  .btn-tool-inactive {
+    @apply bg-gray-100 text-gray-700 border border-gray-300 hover:bg-gray-200;
+  }
+
+  /* Status indicators */
+  .status-active {
+    @apply bg-primary rounded-full animate-pulse;
+  }
+
+  .status-secondary {
+    @apply bg-blue-500 rounded-full animate-pulse;
+  }
+
+  /* Progress bars */
+  .progress-bar-primary {
+    @apply bg-primary h-2 rounded-full transition-all duration-500;
+  }
+
+  /* Hover effects */
+  .hover-primary {
+    @apply hover:text-primary transition-colors;
+  }
+
+  .hover-bg-primary {
+    @apply hover:bg-primary-100 transition-colors;
+  }
+
+  /* Form elements */
+  .form-input-theme {
+    @apply px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm;
+  }
+
+  .form-button-primary {
+    @apply px-3 py-2 bg-primary text-white rounded-lg hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex-shrink-0;
+  }
+
+  /* Navigation elements */
+  .nav-link-active {
+    @apply text-primary border-b-2 border-primary;
+  }
+
+  .nav-link-inactive {
+    @apply text-gray-600 hover:text-primary transition-colors;
+  }
+
+  /* Panel styling */
+  .panel-header {
+    @apply p-4 border-b border-gray-200 flex items-center justify-between flex-shrink-0;
+  }
+
+  .panel-content {
+    @apply flex-1 overflow-y-auto p-4 space-y-4 min-h-0;
+  }
+
+  /* Icon styling */
+  .icon-primary {
+    @apply text-primary;
+  }
+
+  .icon-secondary {
+    @apply text-gray-400;
+  }
+
+  .icon-interactive {
+    @apply text-gray-400 hover:text-primary transition-colors;
+  }
+
+  /* Badge styling */
+  .badge-primary {
+    @apply bg-primary-100 text-primary-700 px-2 py-0.5 rounded-full text-xs;
+  }
+
+  .badge-secondary {
+    @apply bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs;
+  }
+
+  /* Loading states */
+  .loading-spinner {
+    @apply animate-spin text-primary;
+  }
+
+  .loading-dots .dot {
+    @apply w-2 h-2 bg-gray-400 rounded-full animate-bounce;
+  }
+
+  .loading-dots .dot:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .loading-dots .dot:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+
+  /* Accessibility improvements */
+  .focus-visible:focus-visible {
+    @apply ring-2 ring-primary ring-offset-2;
+  }
+
+  /* Animation consistency */
+  .transition-theme {
+    @apply transition-colors duration-200;
+  }
+
+  .transition-transform-theme {
+    @apply transition-transform duration-200;
+  }
+
+  /* Shadow consistency */
+  .shadow-theme {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .shadow-theme-sm {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .shadow-theme-xl {
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .mobile-hidden {
+    display: none;
+  }
+}
+
+@media (min-width: 641px) {
+  .mobile-only {
+    display: none;
+  }
+}

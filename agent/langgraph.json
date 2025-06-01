@@ -1,0 +1,9 @@
+{
+    "python_version": "3.12",
+    "dockerfile_lines": [],
+    "dependencies": ["."],
+    "graphs": {
+      "restaurant_research": "./bitebase_ai/restaurant_research.py:graph"
+    },
+    "env": ".env"
+}

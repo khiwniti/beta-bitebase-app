@@ -1,0 +1,238 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "search": "Search",
+    "close": "Close",
+    "edit": "Edit",
+    "delete": "Delete",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "marketAnalysis": "Market Analysis",
+    "competition": "Competition",
+    "demographics": "Demographics",
+    "reports": "Reports",
+    "settings": "Settings",
+    "logout": "Logout",
+    "profile": "Profile"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "createAccount": "Create Account",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "fullName": "Full Name",
+    "forgotPassword": "Forgot Password?",
+    "rememberMe": "Remember me",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "signInWithGoogle": "Sign in with Google",
+    "signUpWithGoogle": "Sign up with Google",
+    "accountType": "Account Type",
+    "restaurantOwner": "Restaurant Owner",
+    "restaurantOwnerDesc": "Single restaurant or planning to open one",
+    "franchiseBusiness": "Franchise Business",
+    "franchiseBusinessDesc": "Multiple locations or franchise operations"
+  },
+  "landing": {
+    "hero": {
+      "title": "AI-Powered Restaurant Intelligence",
+      "subtitle": "Harness the power of AI to analyze markets, optimize locations, and outperform competitors with BiteBase Intelligence.",
+      "cta": "Start Free Analysis",
+      "watchDemo": "Watch Demo"
+    },
+    "features": {
+      "title": "Powerful Features for Restaurant Success",
+      "subtitle": "Everything you need to make data-driven decisions for your restaurant business",
+      "marketAnalysis": {
+        "title": "Market Analysis",
+        "description": "Deep dive into local market conditions, customer demographics, and spending patterns"
+      },
+      "locationIntelligence": {
+        "title": "Location Intelligence",
+        "description": "Find the perfect location with AI-powered foot traffic analysis and competition mapping"
+      },
+      "competitorTracking": {
+        "title": "Competitor Tracking",
+        "description": "Monitor competitor performance, pricing strategies, and market positioning in real-time"
+      }
+    },
+    "pricing": {
+      "title": "Choose Your Plan",
+      "subtitle": "Start free, scale as you grow",
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "save": "Save 20%",
+      "starter": {
+        "name": "Starter",
+        "price": "Free",
+        "description": "Perfect for new restaurant owners",
+        "features": [
+          "Basic market analysis",
+          "Location scoring",
+          "Competitor overview",
+          "Email support"
+        ]
+      },
+      "professional": {
+        "name": "Professional",
+        "price": "$49",
+        "description": "For growing restaurant businesses",
+        "features": [
+          "Advanced market analysis",
+          "Real-time competitor tracking",
+          "Custom reports",
+          "Priority support",
+          "API access"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "$199",
+        "description": "For restaurant chains and franchises",
+        "features": [
+          "Multi-location analysis",
+          "Advanced AI insights",
+          "Custom integrations",
+          "Dedicated support",
+          "White-label options"
+        ]
+      }
+    }
+  },
+  "dashboard": {
+    "title": "Market Intelligence Dashboard",
+    "welcome": "Welcome back, {name}! Here's your market overview.",
+    "marketOpportunityScore": "Market Opportunity Score",
+    "competitionLevel": "Competition Level",
+    "footTrafficScore": "Foot Traffic Score",
+    "revenuePotential": "Revenue Potential",
+    "aiAssistant": "AI Market Assistant",
+    "aiAssistantDesc": "Ask me anything about market research, demographics, or competitor analysis",
+    "marketInsights": "Market Insights",
+    "aiRecommendations": "AI Recommendations"
+  },
+  "restaurantSetup": {
+    "title": "AI-Powered Restaurant Location Analysis",
+    "subtitle": "Chat with our AI consultant to find the perfect location for your restaurant. Get real-time market analysis, demographic insights, and competition data.",
+    "steps": {
+      "chat": "AI Consultation",
+      "chatDesc": "Chat with our AI consultant",
+      "location": "Location Analysis",
+      "locationDesc": "Find the perfect location",
+      "summary": "Setup Complete",
+      "summaryDesc": "Review and finalize"
+    },
+    "skipToDashboard": "Skip to Dashboard",
+    "aiConsultant": "AI Restaurant Consultant",
+    "restaurantProfile": "Restaurant Profile",
+    "restaurantProfileDesc": "Your restaurant concept is taking shape",
+    "profileComplete": "Profile Complete!",
+    "profileCompleteDesc": "Great! You're ready to explore locations. Click below to continue.",
+    "findPerfectLocation": "Find Perfect Location",
+    "startChatting": "Start Chatting",
+    "startChattingDesc": "Chat with our AI to build your restaurant profile",
+    "interactiveMap": "Interactive Location Map",
+    "interactiveMapDesc": "Click anywhere on the map to get AI-powered location analysis",
+    "selectedLocation": "Selected Location",
+    "aiInsights": "AI Insights",
+    "completeSetup": "Complete Setup",
+    "setupComplete": "Setup Complete!",
+    "setupCompleteDesc": "Your restaurant profile is ready. Review and finalize your setup.",
+    "restaurantDetails": "Restaurant Details",
+    "backToEdit": "Back to Edit",
+    "goToDashboard": "Go to Dashboard"
+  },
+  "aiChat": {
+    "initialPrompt": "👋 Hello! I'm your AI restaurant consultant. I'll help you create a comprehensive restaurant profile and provide market analysis. Let's start with the basics - what's your restaurant concept or what type of cuisine are you planning to serve?",
+    "chatNaturally": "Chat naturally with our AI to define your restaurant concept and get comprehensive market analysis",
+    "complete": "Complete",
+    "readyForResearch": "Ready for market research!",
+    "readyForResearchDesc": "All essential information collected. Continue chatting for additional insights or proceed to location analysis.",
+    "marketAnalysisComplete": "MARKET ANALYSIS COMPLETE",
+    "marketOpportunity": "Market Opportunity Score",
+    "competitionLevel": "Competition Level",
+    "successProbability": "Success Probability",
+    "keyRecommendations": "Key Recommendations",
+    "riskFactors": "Risk Factors to Consider",
+    "suggestions": {
+      "cuisineType": [
+        "Thai restaurant in Bangkok",
+        "Italian bistro",
+        "Japanese sushi bar",
+        "Mexican fusion"
+      ],
+      "budget": [
+        "Budget: $300K",
+        "Budget: $500K",
+        "Budget: $1M"
+      ],
+      "targetAudience": [
+        "Young professionals",
+        "Families with kids",
+        "Tourists and expats"
+      ],
+      "location": [
+        "Sukhumvit area",
+        "Silom district",
+        "Siam shopping area"
+      ],
+      "diningStyle": [
+        "Fine dining",
+        "Fast casual",
+        "Cafe style"
+      ],
+      "additional": [
+        "Tell me about delivery options",
+        "What about marketing strategy?",
+        "Help me find locations"
+      ]
+    }
+  },
+  "marketAnalysis": {
+    "title": "Market Analysis",
+    "subtitle": "Comprehensive geospatial analysis for restaurant market research",
+    "saveAnalysis": "Save Analysis",
+    "generateReport": "Generate Report",
+    "analysisConfiguration": "Analysis Configuration",
+    "analysisConfigurationDesc": "Configure your market analysis parameters",
+    "targetLocation": "Target Location",
+    "locationPlaceholder": "e.g., Sukhumvit, Bangkok or 13.7563, 100.5018",
+    "analysisType": "Analysis Type",
+    "layers": "Layers",
+    "demographics": "Demographics",
+    "heatmap": "Heatmap",
+    "density": "Density",
+    "competition": "Competition",
+    "interactiveMarketMap": "Interactive Market Map",
+    "interactiveMarketMapDesc": "Geospatial visualization of market opportunities and competition",
+    "keyMetrics": "Key Metrics",
+    "marketOpportunity": "Market Opportunity",
+    "competitionDensity": "Competition Density",
+    "footTraffic": "Foot Traffic",
+    "aiInsights": "AI Insights",
+    "optimalLocationIdentified": "Optimal Location Identified",
+    "sukhumvitHighestPotential": "Sukhumvit Soi 11 shows highest potential",
+    "cuisineGapAnalysis": "Cuisine Gap Analysis",
+    "mexicanUnderrepresented": "Authentic Mexican cuisine underrepresented",
+    "peakHours": "Peak Hours",
+    "peakHoursTime": "Lunch: 12-2pm, Dinner: 7-10pm, Late night: 10pm-1am",
+    "generateDetailedReport": "Generate Detailed Report",
+    "exportAnalysisData": "Export Analysis Data"
+  }
+}

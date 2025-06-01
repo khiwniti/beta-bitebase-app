@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  agent-adapter:
+    build: .
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=production
+      - PORT=3002
+      - AGENT_FASTAPI_URL=http://agent-fastapi:8001
+      - AGENT_GATEWAY_URL=http://agent-gateway:5000
+    restart: unless-stopped
+    networks:
+      - bitebase-network
+
+  # The following services are commented out but can be enabled
+  # if you have the agent services available locally
+  
+  # agent-fastapi:
+  #   image: bitebase/agent-fastapi:latest
+  #   ports:
+  #     - "8001:8001"
+  #   environment:
+  #     - PORT=8001
+  #   restart: unless-stopped
+  #   networks:
+  #     - bitebase-network
+  
+  # agent-gateway:
+  #   image: bitebase/agent-gateway:latest
+  #   ports:
+  #     - "5000:5000"
+  #   environment:
+  #     - PORT=5000
+  #     - AGENT_FASTAPI_URL=http://agent-fastapi:8001
+  #   restart: unless-stopped
+  #   networks:
+  #     - bitebase-network
+
+networks:
+  bitebase-network:
+    driver: bridge 

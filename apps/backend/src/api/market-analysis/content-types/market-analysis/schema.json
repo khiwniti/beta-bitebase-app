@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "market_analyses",
+  "info": {
+    "singularName": "market-analysis",
+    "pluralName": "market-analyses",
+    "displayName": "Market Analysis",
+    "description": "Geospatial market analysis results"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "targetLocation": {
+      "type": "string",
+      "required": true
+    },
+    "latitude": {
+      "type": "decimal",
+      "required": true
+    },
+    "longitude": {
+      "type": "decimal",
+      "required": true
+    },
+    "radius": {
+      "type": "decimal",
+      "default": 5
+    },
+    "analysisType": {
+      "type": "enumeration",
+      "enum": ["market-opportunity", "competition", "demographics", "comprehensive"],
+      "required": true
+    },
+    "targetCuisine": {
+      "type": "string"
+    },
+    "results": {
+      "type": "json"
+    },
+    "opportunityScore": {
+      "type": "decimal",
+      "min": 0,
+      "max": 10
+    },
+    "competitionLevel": {
+      "type": "enumeration",
+      "enum": ["low", "medium", "high"]
+    },
+    "estimatedRevenue": {
+      "type": "biginteger"
+    },
+    "recommendations": {
+      "type": "json"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "in-progress", "completed", "failed"],
+      "default": "pending"
+    },
+    "completedAt": {
+      "type": "datetime"
+    },
+    "createdBy": {
+      "type": "string"
+    }
+  }
+}

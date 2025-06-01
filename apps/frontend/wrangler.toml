@@ -1,0 +1,23 @@
+# Cloudflare Pages Configuration for BiteBase Frontend
+
+name = "bitebase-frontend"
+pages_build_output_dir = "out"
+compatibility_date = "2024-05-25"
+
+[env.production]
+name = "bitebase-frontend"
+
+# Environment variables for production
+[env.production.vars]
+NEXT_PUBLIC_API_URL = "https://api.bitebase.app"
+NEXT_PUBLIC_AGENT_API_URL = "https://ai.bitebase.app"
+NEXT_PUBLIC_SITE_URL = "https://beta.bitebase.app"
+
+# Development environment
+[env.preview]
+name = "bitebase-frontend-preview"
+
+[env.preview.vars]
+NEXT_PUBLIC_API_URL = "https://api.bitebase.app"
+NEXT_PUBLIC_AGENT_API_URL = "https://ai.bitebase.app"
+NEXT_PUBLIC_SITE_URL = "https://preview.bitebase.app"

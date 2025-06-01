@@ -1,0 +1,12 @@
+{
+  "name": "@bitebase/typescript-config",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared TypeScript configuration for BiteBase Geospatial SaaS Platform",
+  "main": "index.js",
+  "files": [
+    "base.json",
+    "nextjs.json",
+    "react-library.json"
+  ]
+}

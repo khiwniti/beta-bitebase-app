@@ -1,0 +1,79 @@
+{
+  "kind": "collectionType",
+  "collectionName": "restaurants",
+  "info": {
+    "singularName": "restaurant",
+    "pluralName": "restaurants",
+    "displayName": "Restaurant",
+    "description": "Restaurant data for geospatial analysis"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "cuisine": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "latitude": {
+      "type": "decimal",
+      "required": true
+    },
+    "longitude": {
+      "type": "decimal",
+      "required": true
+    },
+    "rating": {
+      "type": "decimal",
+      "min": 0,
+      "max": 5
+    },
+    "priceRange": {
+      "type": "enumeration",
+      "enum": ["budget", "moderate", "upscale", "luxury"]
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "openingHours": {
+      "type": "json"
+    },
+    "capacity": {
+      "type": "integer"
+    },
+    "yearEstablished": {
+      "type": "integer"
+    },
+    "features": {
+      "type": "json"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "verified": {
+      "type": "boolean",
+      "default": false
+    },
+    "lastUpdated": {
+      "type": "datetime"
+    }
+  }
+}

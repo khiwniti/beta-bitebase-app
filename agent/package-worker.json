@@ -1,0 +1,19 @@
+{
+  "name": "bitebase-ai-agents",
+  "version": "1.0.0",
+  "description": "BiteBase AI Agents for Cloudflare Workers",
+  "main": "cloudflare-worker.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:production": "wrangler deploy --env production"
+  },
+  "dependencies": {
+    "hono": "^3.12.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240512.0",
+    "wrangler": "^3.57.0"
+  }
+}

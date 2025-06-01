@@ -1,0 +1,26 @@
+{
+  "name": "bitebase-agent-adapter",
+  "version": "1.0.0",
+  "description": "BiteBase Agent Adapter for the BiteBase system",
+  "main": "agent-adapter.js",
+  "scripts": {
+    "start": "node agent-adapter.js",
+    "test": "node test-adapter.js",
+    "dev": "nodemon agent-adapter.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1",
+    "winston": "^3.11.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "author": "BiteBase Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  }
+} 
