@@ -100,13 +100,13 @@ def create_agent(memory_saver=None, config: Optional[Dict[str, Any]] = None):
 
     # Define the edges of the graph
     workflow.add_edge(START, "chat_node")
-    workflow.add_edge("chat_node", route)
-    workflow.add_edge("market_analysis_node", route)
-    workflow.add_edge("competitor_analysis_node", route)
-    workflow.add_edge("location_analysis_node", route)
-    workflow.add_edge("search_node", route)
+    workflow.add_conditional_edges("chat_node", route)
+    workflow.add_conditional_edges("market_analysis_node", route)
+    workflow.add_conditional_edges("competitor_analysis_node", route)
+    workflow.add_conditional_edges("location_analysis_node", route)
+    workflow.add_conditional_edges("search_node", route)
     
-    # Compile the graph with callbacks for AIQ profiling
-    graph = workflow.compile(checkpointer=memory, callbacks=callbacks)
+    # Compile the graph
+    graph = workflow.compile(checkpointer=memory)
     
     return graph

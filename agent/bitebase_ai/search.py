@@ -1,3 +1,4 @@
+import time
 """
 Search functionality for restaurant market research agent.
 """
@@ -292,7 +293,7 @@ async def search_node(state: AgentState, config: RunnableConfig):
         # Update search progress in the state
         search_progress = state.get("search_progress", [])
         search_progress.append({
-            "timestamp": import time; time.time(),
+            "timestamp": time.time(),
             "query": tool_args.get("queries", []) if tool_name == "search_for_places" else tool_args.get("place_id", ""),
             "result_count": len(result) if isinstance(result, list) else 1
         })
