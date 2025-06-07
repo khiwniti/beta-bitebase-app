@@ -25,8 +25,8 @@ export default function AppContent({
   }, [])
 
   // Determine restaurant name from user data or use default
-  const restaurantName = (user as any)?.restaurantName || user?.displayName || "Bella Vista Bistro"
-  const userName = user?.displayName || user?.email?.split('@')[0] || "Maria Rodriguez"
+  const restaurantName = (user as any)?.restaurantName || (user as any)?.displayName || "Bella Vista Bistro"
+  const userName = (user as any)?.displayName || user?.email?.split('@')[0] || "Maria Rodriguez"
 
   // Page title based on path
   const getPageInfo = () => {

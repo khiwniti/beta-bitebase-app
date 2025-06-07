@@ -42,7 +42,7 @@ export default function BiteBaseLogo({
       case "dark":
         return "text-gray-900";
       case "gradient":
-        return "bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent";
+        return "bg-gradient-to-r from-primary-600 to-accent-red-600 bg-clip-text text-transparent";
       default:
         return "text-gray-900";
     }
@@ -55,7 +55,7 @@ export default function BiteBaseLogo({
       case "dark":
         return "text-gray-600";
       case "gradient":
-        return "bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent";
+        return "bg-gradient-to-r from-primary-500 to-accent-saffron-500 bg-clip-text text-transparent";
       default:
         return "text-gray-500";
     }
@@ -79,7 +79,7 @@ export default function BiteBaseLogo({
         ) : (
           // Fallback SVG logo if image fails to load
           <div
-            className={`flex items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-blue-600 text-white font-bold ${animated ? "transition-transform duration-300 hover:rotate-12" : ""}`}
+            className={`flex items-center justify-center rounded-lg bg-gradient-to-br from-primary-500 to-accent-red-600 text-white font-bold ${animated ? "transition-transform duration-300 hover:rotate-12" : ""}`}
             style={{
               width: `${iconSize}px`,
               height: `${iconSize}px`,
@@ -152,7 +152,7 @@ export function BiteBaseIcon({
       ) : (
         // Fallback SVG icon
         <div
-          className={`flex items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-blue-600 text-white font-bold ${animated ? "transition-transform duration-300 hover:scale-110 hover:rotate-12" : ""}`}
+          className={`flex items-center justify-center rounded-lg bg-gradient-to-br from-primary-500 to-accent-red-600 text-white font-bold ${animated ? "transition-transform duration-300 hover:scale-110 hover:rotate-12" : ""}`}
           style={{
             width: `${iconSize}px`,
             height: `${iconSize}px`,
@@ -181,7 +181,7 @@ export function BiteBaseLogoLoading({
   return (
     <div className={`flex items-center ${className}`}>
       <div
-        className="flex items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-blue-600 text-white font-bold animate-pulse"
+        className="flex items-center justify-center rounded-lg bg-gradient-to-br from-primary-500 to-accent-red-600 text-white font-bold animate-pulse"
         style={{
           width: `${iconSize}px`,
           height: `${iconSize}px`,

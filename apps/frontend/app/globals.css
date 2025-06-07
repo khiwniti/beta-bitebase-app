@@ -4,13 +4,34 @@
 @tailwind utilities;
 
 :root {
-  /* BiteBase Primary Colors (Green Theme from Landing Page) */
-  --primary-color: #10b981;
-  --primary-dark: #059669;
-  --primary-light: #d1fae5;
-  --accent-color: #10b981;
+  /* BiteBase Brand Colors - Following Brand Guidelines V1 2024 */
+  /* Primary Color: Mantis (90% usage) */
+  --primary-color: #74C365;
+  --primary-dark: #5fa854;
+  --primary-light: #e8f5e5;
+  --primary-50: #f0f9ee;
+  --primary-100: #e8f5e5;
+  --primary-200: #c8e6c0;
+  --primary-300: #a8d79b;
+  --primary-400: #8ed080;
+  --primary-500: #74C365;
+  --primary-600: #5fa854;
+  --primary-700: #4a8d43;
+  --primary-800: #357232;
+  --primary-900: #205721;
+  
+  /* Accent Colors (5% each) */
+  --accent-red: #E23D28;
+  --accent-red-dark: #c73520;
+  --accent-red-light: #f8e6e3;
+  --accent-saffron: #F4C431;
+  --accent-saffron-dark: #e0b02a;
+  --accent-saffron-light: #fef7e0;
+  
+  /* Legacy compatibility */
+  --accent-color: #74C365;
   --blue-500: #3b82f6;
-  --green-500: #10b981;
+  --green-500: #74C365;
   --text-dark: #1f2937;
   --text-light: #6b7280;
   --bg-primary: #f9fafb;
@@ -139,7 +160,7 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* Button Styles - BiteBase Green Theme */
+/* Button Styles - BiteBase Brand Theme */
 .btn-primary {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
@@ -149,12 +170,47 @@
   font-weight: 600;
   transition: all 0.3s ease;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.1);
+  box-shadow: 0 4px 6px rgba(116, 195, 101, 0.1);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 15px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 8px 15px rgba(116, 195, 101, 0.3);
+}
+
+/* Accent Button Styles */
+.btn-accent-red {
+  background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-dark) 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(226, 61, 40, 0.1);
+}
+
+.btn-accent-red:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(226, 61, 40, 0.3);
+}
+
+.btn-accent-saffron {
+  background: linear-gradient(135deg, var(--accent-saffron) 0%, var(--accent-saffron-dark) 100%);
+  color: #1f2937;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(244, 196, 49, 0.1);
+}
+
+.btn-accent-saffron:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(244, 196, 49, 0.3);
 }
 
 .btn-secondary {
@@ -215,19 +271,19 @@ html {
     --card-foreground: 215 25% 27%;
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 27%;
-    --primary: 158 64% 52%; /* BiteBase Green #10B981 */
+    --primary: 113 42% 59%; /* BiteBase Mantis #74C365 */
     --primary-foreground: 0 0% 100%;
     --secondary: 210 40% 96%;
     --secondary-foreground: 215 25% 27%;
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%; /* BiteBase text-light */
-    --accent: 158 64% 52%; /* BiteBase Green */
+    --accent: 113 42% 59%; /* BiteBase Mantis */
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
+    --destructive: 9 76% 53%; /* BiteBase Chilli Red #E23D28 */
     --destructive-foreground: 210 40% 98%;
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 158 64% 52%; /* BiteBase Green */
+    --ring: 113 42% 59%; /* BiteBase Mantis */
     --radius: 0.75rem;
   }
 
@@ -396,7 +452,7 @@ html {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #10b981;
+  background-color: #74C365;
   transition: width 0.3s ease;
 }
 
@@ -422,7 +478,7 @@ html {
 }
 
 .glow-hover:hover {
-  box-shadow: 0 0 25px rgba(16, 185, 129, 0.6);
+  box-shadow: 0 0 25px rgba(116, 195, 101, 0.6);
 }
 
 /* Stats Card Effects */
@@ -481,7 +537,7 @@ html {
   position: absolute;
   top: -8px;
   right: -8px;
-  background: #10b981;
+  background: #E23D28;
   color: white;
   font-size: 0.75rem;
   padding: 0.25rem 0.5rem;

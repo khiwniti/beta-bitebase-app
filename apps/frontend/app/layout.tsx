@@ -8,7 +8,7 @@ import { Providers } from "./providers";
 import AppContent from "./AppContent"; // Import the new component
 import "./globals.css";
 import { useEffect } from "react";
-import { TempoDevtools } from "tempo-devtools";
+// import { TempoDevtools } from "tempo-devtools";
 import ErrorBoundary from "../components/ErrorBoundary";
 
 export default function RootLayout({
@@ -17,9 +17,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   useEffect(() => {
-    if (process.env.NEXT_PUBLIC_TEMPO) {
-      TempoDevtools.init();
-    }
+    // if (process.env.NEXT_PUBLIC_TEMPO) {
+    //   TempoDevtools.init();
+    // }
   }, []);
   // const pathname = usePathname()
   // const { user, loading } = useAuth()
