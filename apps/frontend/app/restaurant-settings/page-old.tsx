@@ -296,7 +296,7 @@ export default function RestaurantSetupPage() {
               onClick={() => setActiveTab('new')}
               className={`py-4 px-1 border-b-2 font-medium text-sm ${
                 activeTab === 'new'
-                  ? 'border-green-500 text-green-600'
+                  ? 'border-primary-500 text-primary-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
@@ -306,7 +306,7 @@ export default function RestaurantSetupPage() {
               onClick={() => setActiveTab('existing')}
               className={`py-4 px-1 border-b-2 font-medium text-sm ${
                 activeTab === 'existing'
-                  ? 'border-green-500 text-green-600'
+                  ? 'border-primary-500 text-primary-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
@@ -337,7 +337,7 @@ export default function RestaurantSetupPage() {
                       required
                       value={newRestaurant.name}
                       onChange={(e) => setNewRestaurant(prev => ({ ...prev, name: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       placeholder="Enter restaurant name"
                     />
                   </div>
@@ -347,7 +347,7 @@ export default function RestaurantSetupPage() {
                       required
                       value={newRestaurant.cuisine}
                       onChange={(e) => setNewRestaurant(prev => ({ ...prev, cuisine: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     >
                       <option value="">Select cuisine type</option>
                       {cuisineOptions.map(cuisine => (
@@ -362,7 +362,7 @@ export default function RestaurantSetupPage() {
                       required
                       value={newRestaurant.phone}
                       onChange={(e) => setNewRestaurant(prev => ({ ...prev, phone: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       placeholder="+66 XX XXX XXXX"
                     />
                   </div>
@@ -373,7 +373,7 @@ export default function RestaurantSetupPage() {
                       required
                       value={newRestaurant.email}
                       onChange={(e) => setNewRestaurant(prev => ({ ...prev, email: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       placeholder="restaurant@example.com"
                     />
                   </div>
@@ -383,7 +383,7 @@ export default function RestaurantSetupPage() {
                       type="url"
                       value={newRestaurant.website}
                       onChange={(e) => setNewRestaurant(prev => ({ ...prev, website: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       placeholder="https://www.restaurant.com"
                     />
                   </div>
@@ -393,7 +393,7 @@ export default function RestaurantSetupPage() {
                       required
                       value={newRestaurant.price_range}
                       onChange={(e) => setNewRestaurant(prev => ({ ...prev, price_range: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     >
                       <option value="budget">Budget (฿ - Under ฿200)</option>
                       <option value="moderate">Moderate (฿฿ - ฿200-500)</option>
@@ -408,7 +408,7 @@ export default function RestaurantSetupPage() {
                     value={newRestaurant.description}
                     onChange={(e) => setNewRestaurant(prev => ({ ...prev, description: e.target.value }))}
                     rows={3}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     placeholder="Describe your restaurant concept, atmosphere, and unique features..."
                   />
                 </div>
@@ -427,7 +427,7 @@ export default function RestaurantSetupPage() {
                       value={newRestaurant.address}
                       onChange={(e) => setNewRestaurant(prev => ({ ...prev, address: e.target.value }))}
                       rows={2}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       placeholder="Enter complete address including street, district, city, and postal code"
                     />
                   </div>
@@ -453,7 +453,7 @@ export default function RestaurantSetupPage() {
                         min="1"
                         value={newRestaurant.seating_capacity}
                         onChange={(e) => setNewRestaurant(prev => ({ ...prev, seating_capacity: parseInt(e.target.value) || 0 }))}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         placeholder="Number of seats"
                       />
                     </div>
@@ -464,7 +464,7 @@ export default function RestaurantSetupPage() {
                         min="0"
                         value={newRestaurant.marketing_budget}
                         onChange={(e) => setNewRestaurant(prev => ({ ...prev, marketing_budget: parseInt(e.target.value) || 0 }))}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         placeholder="Monthly marketing budget"
                       />
                     </div>
@@ -496,14 +496,14 @@ export default function RestaurantSetupPage() {
                             type="time"
                             value={hours.open}
                             onChange={(e) => handleHoursChange(day, 'open', e.target.value)}
-                            className="px-3 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                            className="px-3 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                           />
                           <span className="text-gray-500">to</span>
                           <input
                             type="time"
                             value={hours.close}
                             onChange={(e) => handleHoursChange(day, 'close', e.target.value)}
-                            className="px-3 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                            className="px-3 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                           />
                         </>
                       )}
@@ -524,7 +524,7 @@ export default function RestaurantSetupPage() {
                         type="checkbox"
                         checked={newRestaurant.features.includes(feature)}
                         onChange={() => handleFeatureToggle(feature)}
-                        className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                        className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                       />
                       <span className="text-sm text-gray-700">{feature}</span>
                     </label>
@@ -544,7 +544,7 @@ export default function RestaurantSetupPage() {
                         type="checkbox"
                         checked={newRestaurant.target_demographics.includes(demographic)}
                         onChange={() => handleDemographicToggle(demographic)}
-                        className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                        className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                       />
                       <span className="text-sm text-gray-700">{demographic}</span>
                     </label>
@@ -567,7 +567,7 @@ export default function RestaurantSetupPage() {
                         ...prev,
                         social_media: { ...prev.social_media, facebook: e.target.value }
                       }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       placeholder="https://facebook.com/restaurant"
                     />
                   </div>
@@ -580,7 +580,7 @@ export default function RestaurantSetupPage() {
                         ...prev,
                         social_media: { ...prev.social_media, instagram: e.target.value }
                       }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       placeholder="https://instagram.com/restaurant"
                     />
                   </div>
@@ -593,7 +593,7 @@ export default function RestaurantSetupPage() {
                         ...prev,
                         social_media: { ...prev.social_media, twitter: e.target.value }
                       }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       placeholder="https://twitter.com/restaurant"
                     />
                   </div>
@@ -606,7 +606,7 @@ export default function RestaurantSetupPage() {
                         ...prev,
                         social_media: { ...prev.social_media, tiktok: e.target.value }
                       }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       placeholder="https://tiktok.com/@restaurant"
                     />
                   </div>
@@ -625,7 +625,7 @@ export default function RestaurantSetupPage() {
                         type="checkbox"
                         checked={newRestaurant.delivery_platforms.includes(platform)}
                         onChange={() => handleDeliveryToggle(platform)}
-                        className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                        className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                       />
                       <span className="text-sm text-gray-700">{platform}</span>
                     </label>
@@ -645,7 +645,7 @@ export default function RestaurantSetupPage() {
                         type="checkbox"
                         checked={newRestaurant.payment_methods.includes(method)}
                         onChange={() => handlePaymentToggle(method)}
-                        className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                        className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                       />
                       <span className="text-sm text-gray-700">{method}</span>
                     </label>
@@ -665,7 +665,7 @@ export default function RestaurantSetupPage() {
                         type="checkbox"
                         checked={newRestaurant.special_dietary.includes(option)}
                         onChange={() => handleDietaryToggle(option)}
-                        className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                        className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                       />
                       <span className="text-sm text-gray-700">{option}</span>
                     </label>
@@ -728,7 +728,7 @@ export default function RestaurantSetupPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                  className="px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
                 >
                   {loading ? (
                     <>
@@ -764,11 +764,11 @@ export default function RestaurantSetupPage() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 />
                 <button
                   onClick={searchRestaurants}
-                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                  className="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
                 >
                   Search
                 </button>
@@ -799,7 +799,7 @@ export default function RestaurantSetupPage() {
 
                 {loading ? (
                   <div className="flex items-center justify-center py-12">
-                    <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+                    <div className="w-8 h-8 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
                     <span className="ml-3 text-gray-600">Loading restaurants...</span>
                   </div>
                 ) : restaurants.length === 0 ? (
@@ -814,7 +814,7 @@ export default function RestaurantSetupPage() {
                       <div key={restaurant.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
                         <div className="flex justify-between items-start mb-3">
                           <h4 className="font-semibold text-lg">{restaurant.name}</h4>
-                          <button className="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition-colors">
+                          <button className="px-3 py-1 bg-primary-600 text-white text-sm rounded hover:bg-primary-700 transition-colors">
                             Connect
                           </button>
                         </div>
@@ -836,7 +836,7 @@ export default function RestaurantSetupPage() {
                           {restaurant.website && (
                             <p><span className="font-medium">Website:</span> 
                               <a href={restaurant.website} target="_blank" rel="noopener noreferrer" 
-                                 className="text-green-600 hover:text-green-800 ml-1">
+                                 className="text-primary-600 hover:text-primary-800 ml-1">
                                 Visit
                               </a>
                             </p>

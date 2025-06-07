@@ -50,7 +50,7 @@ export function RestaurantMarker({ restaurant, onClick }: RestaurantMarkerProps)
                 <span className="ml-1 text-gray-700">{restaurant.rating}</span>
               </div>
               {restaurant.priceRange && (
-                <span className="text-green-600 font-medium">
+                <span className="text-primary-600 font-medium">
                   {restaurant.priceRange}
                 </span>
               )}

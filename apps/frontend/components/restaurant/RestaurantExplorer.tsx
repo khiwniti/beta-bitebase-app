@@ -119,7 +119,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                   placeholder="Search restaurants..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                 />
               </div>
@@ -135,7 +135,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
             <button
               onClick={handleSearch}
               disabled={loading}
-              className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50"
+              className="flex items-center gap-2 px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50"
             >
               {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
               Search
@@ -152,7 +152,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                   <select
                     value={selectedCuisine}
                     onChange={(e) => setSelectedCuisine(e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500"
                   >
                     <option value="">All Cuisines</option>
                     {cuisines.map(cuisine => (
@@ -169,7 +169,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                     step="0.0001"
                     value={location.latitude}
                     onChange={(e) => setLocation(prev => ({ ...prev, latitude: parseFloat(e.target.value) }))}
-                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500"
                   />
                 </div>
                 <div>
@@ -181,7 +181,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                     step="0.0001"
                     value={location.longitude}
                     onChange={(e) => setLocation(prev => ({ ...prev, longitude: parseFloat(e.target.value) }))}
-                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500"
                   />
                 </div>
               </div>
@@ -233,10 +233,10 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                     </div>
                     
                     <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
+                      <span className="bg-primary-100 text-primary-800 px-2 py-1 rounded-full text-xs">
                         {restaurant.cuisine}
                       </span>
-                      <span className="text-green-600 font-medium">
+                      <span className="text-primary-600 font-medium">
                         {getPriceDisplay(restaurant.price_range)}
                       </span>
                     </div>
@@ -273,7 +273,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                     <Star className="w-5 h-5 text-yellow-400 fill-current" />
                     <span className="font-medium">{selectedRestaurant.rating.toFixed(1)}</span>
                     <span className="text-gray-500">• {selectedRestaurant.cuisine}</span>
-                    <span className="text-green-600 font-medium">
+                    <span className="text-primary-600 font-medium">
                       {getPriceDisplay(selectedRestaurant.price_range)}
                     </span>
                   </div>
@@ -297,7 +297,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                         href={selectedRestaurant.website} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-green-600 hover:underline"
+                        className="text-primary-600 hover:underline"
                       >
                         View on Wongnai
                       </a>
@@ -331,9 +331,9 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                     ) : menu ? (
                       <div className="space-y-4">
                         {menu.delivery_info && (
-                          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                            <h4 className="font-medium text-green-800 mb-2">Delivery Information</h4>
-                            <div className="text-sm text-green-700 space-y-1">
+                          <div className="bg-primary-50 border border-primary-200 rounded-lg p-4">
+                            <h4 className="font-medium text-primary-800 mb-2">Delivery Information</h4>
+                            <div className="text-sm text-primary-700 space-y-1">
                               <p>Available: {menu.delivery_info.isAvailable ? 'Yes' : 'No'}</p>
                               <p>Minimum Order: ฿{menu.delivery_info.minimumOrder}</p>
                               <p>Delivery Fee: ฿{menu.delivery_info.deliveryFee}</p>
@@ -353,7 +353,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                                       <p className="font-medium text-sm">{item.name}</p>
                                       <p className="text-xs text-gray-500 truncate">{item.description}</p>
                                     </div>
-                                    <span className="text-sm font-medium text-green-600 ml-2">
+                                    <span className="text-sm font-medium text-primary-600 ml-2">
                                       ฿{item.price}
                                     </span>
                                   </div>

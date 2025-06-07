@@ -426,7 +426,7 @@ export function Sidebar({
                     <div className="h-10 w-10 rounded-full bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center text-primary-700 dark:text-primary-300 font-medium">
                       {userName.charAt(0).toUpperCase()}
                     </div>
-                    <span className="absolute bottom-0 right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-white dark:border-gray-900"></span>
+                    <span className="absolute bottom-0 right-0 h-3 w-3 bg-primary-500 rounded-full border-2 border-white dark:border-gray-900"></span>
                   </div>
                   <div className="flex-1 text-left">
                     <p className="font-medium text-sm text-gray-900 dark:text-white truncate">{userName}</p>
@@ -477,7 +477,7 @@ export function Sidebar({
                   <div className="h-8 w-8 rounded-full bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center text-primary-700 dark:text-primary-300 font-medium text-sm">
                     {userName.charAt(0).toUpperCase()}
                   </div>
-                  <span className="absolute bottom-0 right-0 h-2.5 w-2.5 bg-green-500 rounded-full border-2 border-white dark:border-gray-900"></span>
+                  <span className="absolute bottom-0 right-0 h-2.5 w-2.5 bg-primary-500 rounded-full border-2 border-white dark:border-gray-900"></span>
                 </div>
                 
                 {showUserMenu && (

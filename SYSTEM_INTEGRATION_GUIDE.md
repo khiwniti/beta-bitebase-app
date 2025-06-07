@@ -298,7 +298,7 @@ echo "Frontend: Check http://localhost:3000"
 tail -f apps/backend/backend.log
 
 # Agent logs (if configured)
-tail -f agent/agent.log
+tail -f apps/backend/agent/agent.log
 
 # Frontend logs (in browser console)
 ```

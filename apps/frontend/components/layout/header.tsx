@@ -43,8 +43,8 @@ export function Header({ onOpenSidebar, userName = 'Maria Rodriguez', restaurant
           
           <div className="hidden md:flex items-center gap-3">
             <div>
-              <h2 className="text-sm font-semibold text-gray-900 dark:text-white">{restaurantName}</h2>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Culinary Intelligence Platform</p>
+              <h2 className="text-sm font-semibold text-primary-700 dark:text-white">{restaurantName}</h2>
+              <p className="text-xs text-accent-saffron-600 dark:text-gray-400">Culinary Intelligence Platform</p>
             </div>
           </div>
         </div>

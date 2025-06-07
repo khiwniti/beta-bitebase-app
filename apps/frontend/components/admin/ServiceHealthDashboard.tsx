@@ -25,7 +25,7 @@ export default function ServiceHealthDashboard() {
     switch (status) {
       case 'healthy':
       case 'ok':
-        return <CheckCircle className="w-5 h-5 text-green-500" />;
+        return <CheckCircle className="w-5 h-5 text-primary-500" />;
       case 'unhealthy':
       case 'error':
         return <XCircle className="w-5 h-5 text-red-500" />;
@@ -38,7 +38,7 @@ export default function ServiceHealthDashboard() {
     switch (status) {
       case 'healthy':
       case 'ok':
-        return 'bg-green-50 border-green-200';
+        return 'bg-primary-50 border-primary-200';
       case 'unhealthy':
       case 'error':
         return 'bg-red-50 border-red-200';
@@ -100,19 +100,19 @@ export default function ServiceHealthDashboard() {
             <h4 className="font-medium text-gray-900 mb-2">Available Endpoints:</h4>
             <div className="grid grid-cols-1 gap-1 text-xs">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <div className="w-2 h-2 bg-primary-400 rounded-full"></div>
                 <span>/api/restaurants</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <div className="w-2 h-2 bg-primary-400 rounded-full"></div>
                 <span>/api/wongnai/search</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <div className="w-2 h-2 bg-primary-400 rounded-full"></div>
                 <span>/api/restaurants/:id/menu</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <div className="w-2 h-2 bg-primary-400 rounded-full"></div>
                 <span>/api/restaurants/fetch-real-data</span>
               </div>
             </div>

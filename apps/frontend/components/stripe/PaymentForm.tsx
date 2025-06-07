@@ -152,7 +152,7 @@ export default function PaymentForm({
                 <ul className="text-sm space-y-1">
                   {planFeatures.map((feature, index) => (
                     <li key={index} className="flex items-center">
-                      <span className="text-green-500 mr-2">✓</span>
+                      <span className="text-primary-500 mr-2">✓</span>
                       {feature}
                     </li>
                   ))}

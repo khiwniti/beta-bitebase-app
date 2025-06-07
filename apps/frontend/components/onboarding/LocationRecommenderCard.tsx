@@ -33,7 +33,7 @@ export default function LocationRecommenderCard({
   className,
 }: LocationRecommenderCardProps) {
   const scoreColor = 
-    recommendation.score >= 80 ? 'text-green-600' :
+    recommendation.score >= 80 ? 'text-primary-600' :
     recommendation.score >= 60 ? 'text-blue-600' :
     recommendation.score >= 40 ? 'text-amber-600' : 'text-red-600';
   
@@ -46,12 +46,12 @@ export default function LocationRecommenderCard({
       onClick={() => onSelect && onSelect(recommendation)}
       className={cn(
         'relative border rounded-xl p-4 cursor-pointer transition-all duration-200',
-        isSelected ? 'border-green-500 shadow-md bg-green-50' : 'border-gray-200 hover:shadow-md',
+        isSelected ? 'border-primary-500 shadow-md bg-primary-50' : 'border-gray-200 hover:shadow-md',
         className
       )}
     >
       {isSelected && (
-        <span className="absolute -top-2 -right-2 flex items-center justify-center w-6 h-6 rounded-full bg-green-500 text-white text-sm">
+        <span className="absolute -top-2 -right-2 flex items-center justify-center w-6 h-6 rounded-full bg-primary-500 text-white text-sm">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M20 6 9 17l-5-5" />
           </svg>
@@ -79,7 +79,7 @@ export default function LocationRecommenderCard({
           const FactorIcon = factor.icon;
           const factorColor = 
             factor.color ?? (
-              factor.score >= 80 ? 'text-green-600' :
+              factor.score >= 80 ? 'text-primary-600' :
               factor.score >= 60 ? 'text-blue-600' :
               factor.score >= 40 ? 'text-amber-600' : 'text-red-600'
             );
@@ -94,7 +94,7 @@ export default function LocationRecommenderCard({
                 <div className="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden">
                   <div 
                     className={cn('h-full rounded-full', 
-                      factor.score >= 80 ? 'bg-green-500' :
+                      factor.score >= 80 ? 'bg-primary-500' :
                       factor.score >= 60 ? 'bg-blue-500' :
                       factor.score >= 40 ? 'bg-amber-500' : 'bg-red-500'
                     )}
@@ -117,7 +117,7 @@ export default function LocationRecommenderCard({
           <ul className="space-y-1">
             {recommendation.insights.slice(0, 3).map((insight, index) => (
               <li key={index} className="text-xs text-gray-600 flex items-start gap-1.5">
-                <span className="text-green-500 mt-0.5">•</span>
+                <span className="text-primary-500 mt-0.5">•</span>
                 <span>{insight}</span>
               </li>
             ))}
@@ -135,7 +135,7 @@ export default function LocationRecommenderCard({
           className={cn(
             "text-xs font-medium py-1.5 px-3 rounded-md transition-colors",
             isSelected 
-              ? "bg-green-600 text-white hover:bg-green-700" 
+              ? "bg-primary-600 text-white hover:bg-primary-700" 
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           )}
         >

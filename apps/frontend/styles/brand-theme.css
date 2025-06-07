@@ -180,3 +180,53 @@
   background-color: var(--brand-saffron);
   color: #1f2937;
 }
+
+/* Enhanced brand gradients */
+.gradient-brand-primary {
+  background: linear-gradient(135deg, #74C365 0%, #5fa854 100%);
+}
+
+.gradient-brand-accent {
+  background: linear-gradient(135deg, #74C365 0%, #E23D28 50%, #F4C431 100%);
+}
+
+.gradient-brand-warm {
+  background: linear-gradient(135deg, #F4C431 0%, #E23D28 100%);
+}
+
+/* Brand text styles */
+.text-brand-gradient {
+  background: linear-gradient(135deg, #74C365 0%, #E23D28 50%, #F4C431 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Brand hover effects */
+.hover-brand-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-brand-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(116, 195, 101, 0.15);
+}
+
+.hover-brand-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-brand-glow:hover {
+  box-shadow: 0 0 20px rgba(116, 195, 101, 0.3);
+}
+
+/* Brand typography */
+.font-brand-display {
+  font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+}
+
+.font-brand-body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 400;
+}

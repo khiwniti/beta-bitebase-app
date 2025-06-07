@@ -7,6 +7,8 @@ import { Providers } from "./providers";
 // import PageWrapper from '../components/layout/PageWrapper'
 import AppContent from "./AppContent"; // Import the new component
 import "./globals.css";
+import "../styles/bitebase-theme.css";
+import "../styles/brand-theme.css";
 import { useEffect } from "react";
 // import { TempoDevtools } from "tempo-devtools";
 import ErrorBoundary from "../components/ErrorBoundary";
@@ -107,11 +109,11 @@ export default function RootLayout({
           crossOrigin=""
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-body antialiased">
         <Providers>
           <ErrorBoundary>
             <AppContent>{children}</AppContent>

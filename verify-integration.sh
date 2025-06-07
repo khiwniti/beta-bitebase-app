@@ -144,7 +144,7 @@ else
     print_warning "Backend environment file missing (using defaults)"
 fi
 
-if [ -f "agent/.env" ]; then
+if [ -f "apps/backend/agent/.env" ]; then
     print_success "Agent environment file exists"
 else
     print_warning "Agent environment file missing (using defaults)"

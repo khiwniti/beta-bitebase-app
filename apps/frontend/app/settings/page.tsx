@@ -233,7 +233,7 @@ export default function SettingsPage() {
                 {Object.entries(integrations).map(([key, integration]) => (
                   <div key={key} className="flex items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center gap-3">
-                      <div className={`w-3 h-3 rounded-full ${integration.connected ? 'bg-green-500' : 'bg-red-500'}`} />
+                      <div className={`w-3 h-3 rounded-full ${integration.connected ? 'bg-primary-500' : 'bg-red-500'}`} />
                       <div>
                         <h3 className="font-medium">{integration.provider}</h3>
                         <p className="text-sm text-gray-500">

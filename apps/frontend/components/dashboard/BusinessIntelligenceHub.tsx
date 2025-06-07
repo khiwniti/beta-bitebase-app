@@ -251,7 +251,7 @@ export default function BusinessIntelligenceHub({
                 <CardContent className="pb-2">
                   <div className="text-2xl font-bold">{metric.value}</div>
                   {metric.change !== undefined && (
-                    <div className={`text-xs font-medium flex items-center ${metric.change > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    <div className={`text-xs font-medium flex items-center ${metric.change > 0 ? 'text-primary-600' : 'text-red-600'}`}>
                       {metric.change > 0 ? '↑' : '↓'} {Math.abs(metric.change)}%
                       <span className="text-gray-500 ml-1">from previous {timeRange}</span>
                     </div>
@@ -280,7 +280,7 @@ export default function BusinessIntelligenceHub({
                 <CardHeader>
                   <div className="flex justify-between items-center">
                     <CardTitle className="text-lg">Top Insights</CardTitle>
-                    <span className="text-xs font-medium px-2 py-1 rounded-full bg-green-100 text-green-800">
+                    <span className="text-xs font-medium px-2 py-1 rounded-full bg-primary-100 text-primary-800">
                       {insights.length} New
                     </span>
                   </div>
@@ -303,7 +303,7 @@ export default function BusinessIntelligenceHub({
                   )}
                 </CardContent>
                 <CardFooter className="border-t pt-4">
-                  <button className="text-green-600 hover:text-green-700 text-sm font-medium">
+                  <button className="text-primary-600 hover:text-primary-700 text-sm font-medium">
                     View All Insights →
                   </button>
                 </CardFooter>
@@ -376,7 +376,7 @@ export default function BusinessIntelligenceHub({
                 </CardHeader>
                 <CardContent>
                   <div className="text-xl font-bold">$27.50</div>
-                  <div className="text-xs text-green-600 font-medium">↑ 3.2% from last month</div>
+                  <div className="text-xs text-primary-600 font-medium">↑ 3.2% from last month</div>
                 </CardContent>
               </Card>
 
@@ -391,7 +391,7 @@ export default function BusinessIntelligenceHub({
                 </CardHeader>
                 <CardContent>
                   <div className="text-xl font-bold">42%</div>
-                  <div className="text-xs text-green-600 font-medium">↑ 5.7% from last month</div>
+                  <div className="text-xs text-primary-600 font-medium">↑ 5.7% from last month</div>
                 </CardContent>
               </Card>
             </div>

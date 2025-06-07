@@ -23,7 +23,7 @@ export function MapContainer({ center, zoom, height, className = "", children }:
           <svg width="100%" height="100%">
             <defs>
               <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#10b981" strokeWidth="1"/>
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#74C365" strokeWidth="1"/>
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
@@ -50,7 +50,7 @@ export function MapContainer({ center, zoom, height, className = "", children }:
         {/* Interactive map message */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-8">
           <div className="bg-white bg-opacity-95 px-4 py-3 rounded-lg shadow-lg text-center max-w-sm">
-            <div className="text-green-600 mb-2">🗺️</div>
+            <div className="text-primary-600 mb-2">🗺️</div>
             <p className="text-sm text-gray-700 font-medium">Interactive Map</p>
             <p className="text-xs text-gray-500 mt-1">
               Click anywhere to analyze restaurant opportunities

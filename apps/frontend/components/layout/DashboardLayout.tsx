@@ -467,7 +467,7 @@ export function DashboardLayout({
                         <Zap className="h-4 w-4 text-primary-600 dark:text-primary-400" />
                         <span className="text-sm font-semibold text-primary-700 dark:text-primary-400">BiteBase Pro</span>
                       </div>
-                      <span className="text-xs bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 px-2 py-0.5 rounded-full">-20%</span>
+                      <span className="text-xs bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400 px-2 py-0.5 rounded-full">-20%</span>
                     </div>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Unlock premium features for deeper market analysis and competitor insights</p>
                     <Button size="sm" className="w-full text-xs">

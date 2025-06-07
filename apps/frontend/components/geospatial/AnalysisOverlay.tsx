@@ -19,7 +19,7 @@ export function AnalysisOverlay({ type, visible }: AnalysisOverlayProps) {
             <div className="absolute top-1/4 left-1/3 w-32 h-32 bg-red-500 opacity-30 rounded-full blur-xl"></div>
             <div className="absolute top-1/2 right-1/4 w-24 h-24 bg-orange-500 opacity-25 rounded-full blur-lg"></div>
             <div className="absolute bottom-1/3 left-1/2 w-28 h-28 bg-yellow-500 opacity-20 rounded-full blur-lg"></div>
-            <div className="absolute top-3/4 right-1/3 w-20 h-20 bg-green-500 opacity-15 rounded-full blur-md"></div>
+            <div className="absolute top-3/4 right-1/3 w-20 h-20 bg-primary-500 opacity-15 rounded-full blur-md"></div>
           </div>
         )
       case "density":
@@ -52,8 +52,8 @@ export function AnalysisOverlay({ type, visible }: AnalysisOverlayProps) {
                 Medium Competition
               </div>
             </div>
-            <div className="absolute top-1/2 right-1/2 w-24 h-24 border-2 border-green-500 border-dashed rounded-lg opacity-60">
-              <div className="absolute -top-6 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
+            <div className="absolute top-1/2 right-1/2 w-24 h-24 border-2 border-primary-500 border-dashed rounded-lg opacity-60">
+              <div className="absolute -top-6 left-2 bg-primary-500 text-white text-xs px-2 py-1 rounded">
                 Low Competition
               </div>
             </div>
@@ -73,8 +73,8 @@ export function AnalysisOverlay({ type, visible }: AnalysisOverlayProps) {
                 Families
               </div>
             </div>
-            <div className="absolute top-1/2 left-1/2 w-28 h-20 bg-green-500 opacity-20 rounded-lg">
-              <div className="absolute -top-6 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
+            <div className="absolute top-1/2 left-1/2 w-28 h-20 bg-primary-500 opacity-20 rounded-lg">
+              <div className="absolute -top-6 left-2 bg-primary-500 text-white text-xs px-2 py-1 rounded">
                 Students
               </div>
             </div>
@@ -105,7 +105,7 @@ export function AnalysisOverlay({ type, visible }: AnalysisOverlayProps) {
                 <span className="text-xs text-gray-600">Medium Activity</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-primary-500 rounded-full"></div>
                 <span className="text-xs text-gray-600">Low Activity</span>
               </div>
             </>
@@ -127,7 +127,7 @@ export function AnalysisOverlay({ type, visible }: AnalysisOverlayProps) {
                 <span className="text-xs text-gray-600">Medium Competition</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 border-2 border-green-500 border-dashed"></div>
+                <div className="w-3 h-3 border-2 border-primary-500 border-dashed"></div>
                 <span className="text-xs text-gray-600">Low Competition</span>
               </div>
             </>
@@ -143,7 +143,7 @@ export function AnalysisOverlay({ type, visible }: AnalysisOverlayProps) {
                 <span className="text-xs text-gray-600">Families</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-green-500 rounded"></div>
+                <div className="w-3 h-3 bg-primary-500 rounded"></div>
                 <span className="text-xs text-gray-600">Students</span>
               </div>
             </>

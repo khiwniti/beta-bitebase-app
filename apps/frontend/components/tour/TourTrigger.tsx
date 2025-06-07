@@ -27,7 +27,7 @@ export function TourTrigger({ onStartTour }: TourTriggerProps) {
       
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuItem onClick={onStartTour} className="cursor-pointer">
-          <Play className="w-4 h-4 mr-2 text-green-600" />
+          <Play className="w-4 h-4 mr-2 text-primary-600" />
           <div>
             <div className="font-medium">Take a Tour</div>
             <div className="text-xs text-gray-500">Learn how to use BiteBase</div>
@@ -87,11 +87,11 @@ export function WelcomeBanner({ onStartTour }: { onStartTour: () => void }) {
   if (!isVisible) return null
   
   return (
-    <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-lg p-4 mb-6">
+    <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-primary-200 rounded-lg p-4 mb-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <div className="p-2 bg-green-100 rounded-lg">
-            <Play className="w-5 h-5 text-green-600" />
+          <div className="p-2 bg-primary-100 rounded-lg">
+            <Play className="w-5 h-5 text-primary-600" />
           </div>
           <div>
             <h3 className="font-semibold text-gray-900">Welcome to BiteBase Intelligence! 🎉</h3>
@@ -116,7 +116,7 @@ export function WelcomeBanner({ onStartTour }: { onStartTour: () => void }) {
               dismissBanner()
             }}
             size="sm"
-            className="bg-green-600 hover:bg-green-700"
+            className="bg-primary-600 hover:bg-primary-700"
           >
             Start Tour
           </Button>
@@ -156,7 +156,7 @@ export function FeatureSpotlight() {
       {features.map((feature, index) => (
         <div
           key={index}
-          className="p-4 bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all duration-200"
+          className="p-4 bg-white rounded-lg border border-gray-200 hover:border-primary-300 hover:shadow-md transition-all duration-200"
         >
           <div className="text-2xl mb-2">{feature.icon}</div>
           <h4 className="font-semibold text-gray-900 mb-1">{feature.title}</h4>
@@ -206,7 +206,7 @@ export function QuickStartGuide({ onStartTour }: { onStartTour: () => void }) {
       <div className="space-y-4">
         {steps.map((step) => (
           <div key={step.number} className="flex items-center space-x-4">
-            <div className="flex-shrink-0 w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-semibold">
+            <div className="flex-shrink-0 w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-semibold">
               {step.number}
             </div>
             <div className="flex-1">
@@ -217,7 +217,7 @@ export function QuickStartGuide({ onStartTour }: { onStartTour: () => void }) {
               variant="outline"
               size="sm"
               onClick={step.onClick}
-              className="hover:border-green-500 hover:text-green-600"
+              className="hover:border-primary-500 hover:text-primary-600"
             >
               {step.action}
             </Button>

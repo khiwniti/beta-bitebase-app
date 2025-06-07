@@ -159,7 +159,7 @@ export function WebTour({ isOpen, onClose, onComplete, isFirstTimeUser = false }
       />
 
       {/* Tour Active Indicator */}
-      <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-green-600 text-white px-4 py-2 rounded-full shadow-lg text-sm font-medium">
+      <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-primary-600 text-white px-4 py-2 rounded-full shadow-lg text-sm font-medium">
         🎯 Interactive Tour Active - Click anywhere to close or use buttons below
       </div>
 
@@ -172,11 +172,11 @@ export function WebTour({ isOpen, onClose, onComplete, isFirstTimeUser = false }
           maxWidth: '400px'
         }}
       >
-        <Card className="shadow-2xl border-2 border-green-200 bg-white">
+        <Card className="shadow-2xl border-2 border-primary-200 bg-white">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                <div className="p-2 bg-green-100 rounded-lg text-green-600">
+                <div className="p-2 bg-primary-100 rounded-lg text-primary-600">
                   {step.icon}
                 </div>
                 <div>
@@ -205,7 +205,7 @@ export function WebTour({ isOpen, onClose, onComplete, isFirstTimeUser = false }
             {/* Progress Bar */}
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div
-                className="bg-green-600 h-2 rounded-full transition-all duration-300"
+                className="bg-primary-600 h-2 rounded-full transition-all duration-300"
                 style={{ width: `${((currentStep + 1) / tourSteps.length) * 100}%` }}
               />
             </div>
@@ -218,7 +218,7 @@ export function WebTour({ isOpen, onClose, onComplete, isFirstTimeUser = false }
                   id="dont-show-again"
                   checked={dontShowAgain}
                   onChange={(e) => setDontShowAgain(e.target.checked)}
-                  className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-2"
+                  className="w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 focus:ring-2"
                 />
                 <label
                   htmlFor="dont-show-again"
@@ -256,7 +256,7 @@ export function WebTour({ isOpen, onClose, onComplete, isFirstTimeUser = false }
                 <Button
                   onClick={nextStep}
                   size="sm"
-                  className="bg-green-600 hover:bg-green-700 flex items-center space-x-1"
+                  className="bg-primary-600 hover:bg-primary-700 flex items-center space-x-1"
                 >
                   <span>
                     {currentStep === tourSteps.length - 1 ? 'Get Started' : 'Next'}
@@ -280,7 +280,7 @@ export function WebTour({ isOpen, onClose, onComplete, isFirstTimeUser = false }
             {step.action && currentStep === tourSteps.length - 1 && (
               <div className="pt-2 border-t">
                 <Button
-                  className="w-full bg-green-600 hover:bg-green-700"
+                  className="w-full bg-primary-600 hover:bg-primary-700"
                   onClick={() => {
                     completeTour()
                     window.location.href = '/restaurant-setup'

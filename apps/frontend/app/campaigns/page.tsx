@@ -166,7 +166,7 @@ export default function CampaignManagementPage() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'active': return 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100'
+      case 'active': return 'bg-primary-100 text-primary-800 dark:bg-primary-800 dark:text-primary-100'
       case 'paused': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100'
       case 'completed': return 'bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100'
       case 'draft': return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100'
@@ -237,11 +237,11 @@ export default function CampaignManagementPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Active</p>
-                <p className="text-2xl font-bold text-green-600 dark:text-green-400">
+                <p className="text-2xl font-bold text-primary-600 dark:text-primary-400">
                   {campaignStats.activeCampaigns}
                 </p>
               </div>
-              <Play className="w-8 h-8 text-green-600 dark:text-green-400" />
+              <Play className="w-8 h-8 text-primary-600 dark:text-primary-400" />
             </div>
           </CardContent>
         </Card>
@@ -279,11 +279,11 @@ export default function CampaignManagementPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Revenue</p>
-                <p className="text-2xl font-bold text-green-600 dark:text-green-400">
+                <p className="text-2xl font-bold text-primary-600 dark:text-primary-400">
                   ฿{(campaignStats.totalRevenue / 1000).toFixed(0)}K
                 </p>
               </div>
-              <TrendingUp className="w-8 h-8 text-green-600 dark:text-green-400" />
+              <TrendingUp className="w-8 h-8 text-primary-600 dark:text-primary-400" />
             </div>
           </CardContent>
         </Card>
@@ -394,7 +394,7 @@ export default function CampaignManagementPage() {
                   </div>
                   
                   <div className="text-center">
-                    <div className="text-lg font-bold text-green-600 dark:text-green-400">
+                    <div className="text-lg font-bold text-primary-600 dark:text-primary-400">
                       ฿{(campaign.revenue / 1000).toFixed(0)}K
                     </div>
                     <div className="text-xs text-gray-500 dark:text-gray-400">Revenue</div>
@@ -472,7 +472,7 @@ export default function CampaignManagementPage() {
             </Button>
             
             <Button variant="outline" className="h-auto p-4 flex flex-col items-center gap-2">
-              <Users className="w-6 h-6 text-green-600" />
+              <Users className="w-6 h-6 text-primary-600" />
               <span className="text-sm font-medium">Loyalty Program</span>
               <span className="text-xs text-gray-500">Set up customer rewards</span>
             </Button>

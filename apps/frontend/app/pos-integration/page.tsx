@@ -181,16 +181,16 @@ export default function POSIntegrationPage() {
 
       {/* Connection Status */}
       {connectedPOS && (
-        <Card className="border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20">
+        <Card className="border-primary-200 bg-primary-50 dark:border-primary-800 dark:bg-primary-900/20">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="text-2xl">{connectedPOS.logo}</div>
                 <div>
-                  <CardTitle className="text-green-800 dark:text-green-200">
+                  <CardTitle className="text-primary-800 dark:text-primary-200">
                     {connectedPOS.name} Connected
                   </CardTitle>
-                  <CardDescription className="text-green-600 dark:text-green-400">
+                  <CardDescription className="text-primary-600 dark:text-primary-400">
                     Last sync: {integrationStats.lastSync} • Data accuracy:{" "}
                     {integrationStats.dataAccuracy}%
                   </CardDescription>
@@ -198,7 +198,7 @@ export default function POSIntegrationPage() {
               </div>
               <Badge
                 variant="secondary"
-                className="bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"
+                className="bg-primary-100 text-primary-800 dark:bg-primary-800 dark:text-primary-100"
               >
                 <CheckCircle className="w-3 h-3 mr-1" />
                 Active
@@ -208,34 +208,34 @@ export default function POSIntegrationPage() {
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center">
-                <div className="text-2xl font-bold text-green-800 dark:text-green-200">
+                <div className="text-2xl font-bold text-primary-800 dark:text-primary-200">
                   {integrationStats.totalTransactions.toLocaleString()}
                 </div>
-                <div className="text-sm text-green-600 dark:text-green-400">
+                <div className="text-sm text-primary-600 dark:text-primary-400">
                   Total Transactions
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-green-800 dark:text-green-200">
+                <div className="text-2xl font-bold text-primary-800 dark:text-primary-200">
                   ฿{integrationStats.dailyRevenue.toLocaleString()}
                 </div>
-                <div className="text-sm text-green-600 dark:text-green-400">
+                <div className="text-sm text-primary-600 dark:text-primary-400">
                   Daily Revenue
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-green-800 dark:text-green-200">
+                <div className="text-2xl font-bold text-primary-800 dark:text-primary-200">
                   ฿{integrationStats.averageOrderValue}
                 </div>
-                <div className="text-sm text-green-600 dark:text-green-400">
+                <div className="text-sm text-primary-600 dark:text-primary-400">
                   Avg Order Value
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-green-800 dark:text-green-200">
+                <div className="text-2xl font-bold text-primary-800 dark:text-primary-200">
                   {integrationStats.peakHours}
                 </div>
-                <div className="text-sm text-green-600 dark:text-green-400">
+                <div className="text-sm text-primary-600 dark:text-primary-400">
                   Peak Hours
                 </div>
               </div>
@@ -274,7 +274,7 @@ export default function POSIntegrationPage() {
 
         <Card>
           <CardHeader className="text-center">
-            <Shield className="w-8 h-8 mx-auto text-green-600 dark:text-green-400" />
+            <Shield className="w-8 h-8 mx-auto text-primary-600 dark:text-primary-400" />
             <CardTitle className="text-lg">Secure Integration</CardTitle>
           </CardHeader>
           <CardContent>
@@ -300,7 +300,7 @@ export default function POSIntegrationPage() {
                 key={pos.id}
                 className={`cursor-pointer transition-all hover:shadow-md ${
                   pos.status === "connected"
-                    ? "border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20"
+                    ? "border-primary-200 bg-primary-50 dark:border-primary-800 dark:bg-primary-900/20"
                     : pos.status === "coming-soon"
                       ? "opacity-60"
                       : "hover:border-primary-200 dark:hover:border-primary-800"
@@ -327,7 +327,7 @@ export default function POSIntegrationPage() {
                       }
                       className={
                         pos.status === "connected"
-                          ? "bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"
+                          ? "bg-primary-100 text-primary-800 dark:bg-primary-800 dark:text-primary-100"
                           : pos.status === "coming-soon"
                             ? "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"
                             : ""
@@ -358,7 +358,7 @@ export default function POSIntegrationPage() {
                         key={index}
                         className="flex items-center text-xs text-gray-500 dark:text-gray-400"
                       >
-                        <CheckCircle className="w-3 h-3 mr-2 text-green-500" />
+                        <CheckCircle className="w-3 h-3 mr-2 text-primary-500" />
                         {feature}
                       </div>
                     ))}
@@ -481,7 +481,7 @@ export default function POSIntegrationPage() {
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/40 flex items-center justify-center text-green-700 dark:text-green-300 font-semibold text-sm">
+              <div className="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center text-primary-700 dark:text-primary-300 font-semibold text-sm">
                 ✓
               </div>
               <div>

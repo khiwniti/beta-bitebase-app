@@ -49,7 +49,7 @@ export function MetricCard({
     
     switch (change.trend) {
       case 'up':
-        return <TrendingUp className="h-4 w-4 text-green-500" />
+        return <TrendingUp className="h-4 w-4 text-primary-500" />
       case 'down':
         return <TrendingDown className="h-4 w-4 text-red-500" />
       default:
@@ -62,7 +62,7 @@ export function MetricCard({
     
     switch (change.trend) {
       case 'up':
-        return 'text-green-600 dark:text-green-400'
+        return 'text-primary-600 dark:text-primary-400'
       case 'down':
         return 'text-red-600 dark:text-red-400'
       default:
@@ -73,7 +73,7 @@ export function MetricCard({
   const getStatusIndicator = () => {
     switch (status) {
       case 'connected':
-        return <div className="w-2 h-2 bg-green-500 rounded-full" />
+        return <div className="w-2 h-2 bg-primary-500 rounded-full" />
       case 'pending':
         return <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
       default:
@@ -263,10 +263,10 @@ export function InsightCard({
     switch (type) {
       case 'opportunity':
         return {
-          bg: 'bg-green-50 dark:bg-green-900/20',
-          border: 'border-green-200 dark:border-green-800',
-          icon: 'text-green-600 dark:text-green-400',
-          badge: 'bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-400'
+          bg: 'bg-primary-50 dark:bg-primary-900/20',
+          border: 'border-primary-200 dark:border-primary-800',
+          icon: 'text-primary-600 dark:text-primary-400',
+          badge: 'bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-400'
         }
       case 'warning':
         return {
@@ -299,7 +299,7 @@ export function InsightCard({
       case 'Medium':
         return 'text-yellow-600 dark:text-yellow-400'
       default:
-        return 'text-green-600 dark:text-green-400'
+        return 'text-primary-600 dark:text-primary-400'
     }
   }
 
@@ -365,7 +365,7 @@ export function ActivityItem({ action, time, type, icon }: ActivityItemProps) {
       case 'analysis':
         return 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400'
       case 'report':
-        return 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400'
+        return 'bg-primary-100 text-primary-600 dark:bg-primary-900/30 dark:text-primary-400'
       case 'optimization':
         return 'bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400'
       case 'feedback':

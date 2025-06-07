@@ -181,7 +181,7 @@ export default function ProductionMapComponent({
       <div className={`relative ${className} bg-gradient-to-br from-slate-50 via-gray-50 to-slate-100`}>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center p-8">
-            <div className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin mb-6 mx-auto"></div>
+            <div className="w-16 h-16 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mb-6 mx-auto"></div>
             <h3 className="text-xl font-bold text-gray-800 mb-2">BiteBase Market Intelligence</h3>
             <p className="text-gray-600 font-medium mb-1">Loading interactive map...</p>
             <p className="text-gray-500 text-sm mb-4">Powered by Mapbox & Real Data</p>
@@ -219,8 +219,8 @@ export default function ProductionMapComponent({
             center={[selectedLocation.lat, selectedLocation.lng]}
             radius={searchRadius}
             pathOptions={{
-              color: '#10b981',
-              fillColor: '#10b981',
+              color: '#74C365',
+              fillColor: '#74C365',
               fillOpacity: 0.1,
               weight: 2
             }}
@@ -258,7 +258,7 @@ export default function ProductionMapComponent({
                   )}
                 </div>
                 <button 
-                  className="mt-3 px-4 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 transition-colors"
+                  className="mt-3 px-4 py-2 bg-primary-600 text-white text-sm rounded-lg hover:bg-primary-700 transition-colors"
                   onClick={() => {
                     if (onClick) {
                       onClick({
@@ -314,7 +314,7 @@ export default function ProductionMapComponent({
         {loading && (
           <div className="bg-white bg-opacity-90 px-3 py-2 rounded-lg shadow-lg">
             <div className="flex items-center space-x-2">
-              <div className="w-4 h-4 border-2 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-4 h-4 border-2 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
               <span className="text-sm text-gray-700">Loading restaurants...</span>
             </div>
           </div>

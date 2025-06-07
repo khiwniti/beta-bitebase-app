@@ -424,7 +424,7 @@ export function MainLayout({
                       <div className="h-8 w-8 rounded-full bg-primary-100 dark:bg-primary-900/50 flex items-center justify-center text-primary-700 dark:text-primary-400 font-medium">
                         {user?.email?.charAt(0).toUpperCase() || 'U'}
                         </div>
-                      <div className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-green-500 border-2 border-white dark:border-gray-900"></div>
+                      <div className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-primary-500 border-2 border-white dark:border-gray-900"></div>
                     </div>
                     <div className="flex-1 truncate text-left">
                       <p className="font-medium">{user?.email?.split('@')[0] || 'User'}</p>
@@ -442,7 +442,7 @@ export function MainLayout({
                     <div className="h-8 w-8 rounded-full bg-primary-100 dark:bg-primary-900/50 flex items-center justify-center text-primary-700 dark:text-primary-400 font-medium">
                       {user?.email?.charAt(0).toUpperCase() || 'U'}
                         </div>
-                    <div className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-green-500 border-2 border-white dark:border-gray-900"></div>
+                    <div className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-primary-500 border-2 border-white dark:border-gray-900"></div>
                       </div>
                 </button>
               )}

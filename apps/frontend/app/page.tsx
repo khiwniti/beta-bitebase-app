@@ -29,7 +29,7 @@ export default function HomePage() {
 
   return (
     <Providers>
-      <div className="min-h-screen bg-gray-50 font-sans antialiased overflow-x-hidden">
+      <div className="min-h-screen bg-gray-50 font-body antialiased overflow-x-hidden">
         {/* Navigation */}
         <nav className="bg-white shadow-sm border-b border-gray-100 fixed w-full z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,8 +37,8 @@ export default function HomePage() {
               <div className="flex items-center">
                 <div className="flex-shrink-0 flex items-center">
                   <BiteBaseLogo size="xs" showText={false} />
-                  <span className="ml-2 text-xl font-bold text-gray-900">BiteBase</span>
-                  <span className="ml-1 text-sm text-gray-500">Intelligence</span>
+                  <span className="ml-2 text-xl font-bold text-primary-700">BiteBase</span>
+                  <span className="ml-1 text-sm text-accent-saffron-600">Intelligence</span>
                 </div>
               </div>
               <div className="hidden md:block">
@@ -67,7 +67,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="md:hidden">
-                <button className="text-gray-500 hover:text-green-600 focus:outline-none">
+                <button className="text-gray-500 hover:text-primary-600 focus:outline-none">
                   <Menu className="h-6 w-6" />
                 </button>
               </div>
@@ -76,44 +76,44 @@ export default function HomePage() {
         </nav>
 
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-green-50 via-white to-blue-50 pt-24 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-primary-50 via-white to-accent-saffron-50 pt-24 overflow-hidden">
           {/* Floating Shapes */}
           <div className="absolute inset-0 overflow-hidden z-0">
-            <div className="absolute w-72 h-72 bg-green-500 rounded-full opacity-10 -top-24 -right-24 animate-spin" style={{ animation: 'spin 20s linear infinite' }}></div>
-            <div className="absolute w-48 h-48 bg-green-500 rounded-full opacity-10 -bottom-12 -left-12 animate-spin" style={{ animation: 'spin 15s linear infinite reverse' }}></div>
-            <div className="absolute w-36 h-36 bg-green-500 rounded-full opacity-10 top-1/2 left-1/3 animate-bounce" style={{ animation: 'bounce 6s ease-in-out infinite' }}></div>
-            <div className="absolute w-24 h-24 bg-green-500 rounded-full opacity-10 bottom-1/4 right-1/4 animate-bounce" style={{ animation: 'bounce 5s ease-in-out infinite reverse' }}></div>
+            <div className="absolute w-72 h-72 bg-primary-500 rounded-full opacity-10 -top-24 -right-24 animate-spin" style={{ animation: 'spin 20s linear infinite' }}></div>
+            <div className="absolute w-48 h-48 bg-accent-red-500 rounded-full opacity-10 -bottom-12 -left-12 animate-spin" style={{ animation: 'spin 15s linear infinite reverse' }}></div>
+            <div className="absolute w-36 h-36 bg-accent-saffron-500 rounded-full opacity-10 top-1/2 left-1/3 animate-bounce" style={{ animation: 'bounce 6s ease-in-out infinite' }}></div>
+            <div className="absolute w-24 h-24 bg-primary-500 rounded-full opacity-10 bottom-1/4 right-1/4 animate-bounce" style={{ animation: 'bounce 5s ease-in-out infinite reverse' }}></div>
           </div>
 
           {/* Floating Elements */}
-          <div className="absolute w-24 h-24 top-1/5 left-1/20 bg-green-500 opacity-20 z-0" style={{
+          <div className="absolute w-24 h-24 top-1/5 left-1/20 bg-primary-500 opacity-20 z-0" style={{
             borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
             animation: 'float 8s ease-in-out infinite, spin 20s linear infinite'
           }}></div>
-          <div className="absolute w-36 h-36 bottom-1/10 right-1/20 bg-green-500 opacity-20 z-0" style={{
+          <div className="absolute w-36 h-36 bottom-1/10 right-1/20 bg-primary-500 opacity-20 z-0" style={{
             borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
             animation: 'float 7s ease-in-out infinite reverse, spin 25s linear infinite'
           }}></div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
             <div className="text-center">
-              <span className="inline-block px-4 py-2 rounded-full border border-green-500 text-green-500 font-semibold mb-6 hover:rotate-3 transition-transform">
+              <span className="inline-block px-4 py-2 rounded-full border border-primary-500 text-primary-500 font-semibold mb-6 hover:rotate-3 transition-transform">
                 🚀 AI-Powered Restaurant Intelligence
               </span>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                Introducing <span className="text-green-600 hover:scale-105 transition-transform inline-block">BiteBase</span> Intelligence
+              <h1 className="text-4xl md:text-6xl font-brand-display text-gray-900 mb-6">
+                Introducing <span className="text-brand-gradient hover:scale-105 transition-transform inline-block">BiteBase</span> Intelligence
               </h1>
-              <h2 className="text-2xl md:text-4xl font-bold text-green-600 mb-8">
+              <h2 className="text-2xl md:text-4xl font-brand-display text-primary-600 mb-8">
                 Data-Driven Restaurant Success
               </h2>
               <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
                 Harness the power of AI to analyze markets, optimize locations, and outperform competitors with BiteBase Intelligence.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                <Link href="/auth" className="btn-primary px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                <Link href="/auth" className="btn-brand-primary px-8 py-4 rounded-lg font-semibold text-lg hover-brand-lift">
                   Start Free Trial
                 </Link>
-                <a href="#demo" className="btn-secondary border-2 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:-translate-y-1 hover:rotate-1 flex items-center">
+                <a href="#demo" className="btn-brand-secondary border-2 px-8 py-4 rounded-lg font-semibold text-lg hover-brand-lift flex items-center">
                   <Play className="w-5 h-5 mr-2" /> Watch Demo
                 </a>
               </div>
@@ -139,14 +139,14 @@ export default function HomePage() {
               <div className="absolute bottom-6 left-6 text-white">
                 <h3 className="text-xl font-semibold mb-2">See it in action</h3>
                 <p className="text-white/90">Our AI-powered dashboard gives you real-time insights</p>
-                <button className="mt-4 bg-white text-green-600 px-4 py-2 rounded-lg hover:bg-gray-100 font-medium flex items-center hover:scale-105 transition-transform">
+                <button className="mt-4 bg-white text-primary-600 px-4 py-2 rounded-lg hover:bg-gray-100 font-medium flex items-center hover:scale-105 transition-transform">
                   <Play className="w-4 h-4 mr-2" /> Watch demo
                 </button>
               </div>
             </div>
           </div>
 
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-green-600 text-2xl animate-bounce cursor-pointer">
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-primary-600 text-2xl animate-bounce cursor-pointer">
             <ChevronDown />
           </div>
         </section>
@@ -156,33 +156,33 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 hover:rotate-1">
-                <div className="text-3xl md:text-4xl font-bold text-green-600 mb-2">87%</div>
+                <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-2">87%</div>
                 <div className="text-gray-600">Increase in success rate</div>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 hover:-rotate-1">
-                <div className="text-3xl md:text-4xl font-bold text-green-600 mb-2">5,000+</div>
+                <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-2">5,000+</div>
                 <div className="text-gray-600">Restaurants using our platform</div>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 hover:rotate-1">
-                <div className="text-3xl md:text-4xl font-bold text-green-600 mb-2">$1.2M</div>
+                <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-2">$1.2M</div>
                 <div className="text-gray-600">Average revenue increase</div>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 hover:-rotate-1">
-                <div className="text-3xl md:text-4xl font-bold text-green-600 mb-2">40h</div>
+                <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-2">40h</div>
                 <div className="text-gray-600">Saved per month on research</div>
               </div>
             </div>
           </div>
 
-          <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-green-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 20s linear infinite' }}></div>
-          <div className="absolute -top-20 -left-20 w-80 h-80 bg-green-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 25s linear infinite reverse' }}></div>
+          <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-primary-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 20s linear infinite' }}></div>
+          <div className="absolute -top-20 -left-20 w-80 h-80 bg-primary-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 25s linear infinite reverse' }}></div>
         </section>
 
         {/* Features Section */}
         <section id="features" className="py-20 bg-gray-50 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-16">
-              <span className="inline-block px-4 py-2 rounded-full border border-green-500 text-green-500 font-semibold mb-4 hover:rotate-3 transition-transform">
+              <span className="inline-block px-4 py-2 rounded-full border border-primary-500 text-primary-500 font-semibold mb-4 hover:rotate-3 transition-transform">
                 Features
               </span>
               <h3 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">Everything you need to succeed</h3>
@@ -193,8 +193,8 @@ export default function HomePage() {
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               <div className="bg-white p-8 rounded-xl border border-gray-100 transition-all duration-300 hover:-translate-y-2 hover:rotate-1 hover:shadow-lg">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6 animate-pulse">
-                  <MapPin className="text-green-600 w-6 h-6" />
+                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-6 animate-pulse">
+                  <MapPin className="text-primary-600 w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Location Intelligence</h3>
                 <p className="text-gray-600">
@@ -203,8 +203,8 @@ export default function HomePage() {
               </div>
 
               <div className="bg-white p-8 rounded-xl border border-gray-100 transition-all duration-300 hover:-translate-y-2 hover:rotate-1 hover:shadow-lg">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6 animate-pulse">
-                  <BarChart3 className="text-green-600 w-6 h-6" />
+                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-6 animate-pulse">
+                  <BarChart3 className="text-primary-600 w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Market Analysis</h3>
                 <p className="text-gray-600">
@@ -213,8 +213,8 @@ export default function HomePage() {
               </div>
 
               <div className="bg-white p-8 rounded-xl border border-gray-100 transition-all duration-300 hover:-translate-y-2 hover:rotate-1 hover:shadow-lg">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6 animate-pulse">
-                  <Users className="text-green-600 w-6 h-6" />
+                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-6 animate-pulse">
+                  <Users className="text-primary-600 w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Customer Insights</h3>
                 <p className="text-gray-600">
@@ -223,8 +223,8 @@ export default function HomePage() {
               </div>
 
               <div className="bg-white p-8 rounded-xl border border-gray-100 transition-all duration-300 hover:-translate-y-2 hover:rotate-1 hover:shadow-lg">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6 animate-pulse">
-                  <DollarSign className="text-green-600 w-6 h-6" />
+                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-6 animate-pulse">
+                  <DollarSign className="text-primary-600 w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Revenue Optimization</h3>
                 <p className="text-gray-600">
@@ -233,8 +233,8 @@ export default function HomePage() {
               </div>
 
               <div className="bg-white p-8 rounded-xl border border-gray-100 transition-all duration-300 hover:-translate-y-2 hover:rotate-1 hover:shadow-lg">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6 animate-pulse">
-                  <Store className="text-green-600 w-6 h-6" />
+                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-6 animate-pulse">
+                  <Store className="text-primary-600 w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Restaurant Setup</h3>
                 <p className="text-gray-600">
@@ -243,8 +243,8 @@ export default function HomePage() {
               </div>
 
               <div className="bg-white p-8 rounded-xl border border-gray-100 transition-all duration-300 hover:-translate-y-2 hover:rotate-1 hover:shadow-lg">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6 animate-pulse">
-                  <ClipboardList className="text-green-600 w-6 h-6" />
+                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-6 animate-pulse">
+                  <ClipboardList className="text-primary-600 w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Automated Reports</h3>
                 <p className="text-gray-600">
@@ -254,14 +254,14 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-green-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 20s linear infinite' }}></div>
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-primary-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 20s linear infinite' }}></div>
         </section>
 
         {/* How It Works Section */}
         <section className="py-20 bg-white relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-16">
-              <span className="inline-block px-4 py-2 rounded-full border border-green-500 text-green-500 font-semibold mb-4 hover:rotate-3 transition-transform">
+              <span className="inline-block px-4 py-2 rounded-full border border-primary-500 text-primary-500 font-semibold mb-4 hover:rotate-3 transition-transform">
                 How It Works
               </span>
               <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get Started in 3 Simple Steps</h3>
@@ -272,15 +272,15 @@ export default function HomePage() {
 
             <div className="relative max-w-4xl mx-auto">
               {/* Timeline line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-green-200 rounded-full hidden md:block"></div>
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-primary-200 rounded-full hidden md:block"></div>
 
               {/* Step 1 */}
               <div className="relative flex items-center mb-12 md:mb-16">
                 <div className="flex-1 md:pr-8 md:text-right">
                   <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 hover:scale-105">
                     <div className="flex items-center mb-4 md:justify-end">
-                      <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4 md:mr-0 md:ml-4 md:order-2 animate-pulse">
-                        <span className="text-green-600 font-bold">1</span>
+                      <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-4 md:mr-0 md:ml-4 md:order-2 animate-pulse">
+                        <span className="text-primary-600 font-bold">1</span>
                       </div>
                       <h4 className="text-xl font-bold text-gray-900 md:order-1">Sign Up & Connect</h4>
                     </div>
@@ -289,19 +289,19 @@ export default function HomePage() {
                     </p>
                   </div>
                 </div>
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-lg hidden md:block animate-pulse"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-primary-500 rounded-full border-4 border-white shadow-lg hidden md:block animate-pulse"></div>
                 <div className="flex-1 md:pl-8 hidden md:block"></div>
               </div>
 
               {/* Step 2 */}
               <div className="relative flex items-center mb-12 md:mb-16">
                 <div className="flex-1 md:pr-8 hidden md:block"></div>
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-lg hidden md:block animate-pulse"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-primary-500 rounded-full border-4 border-white shadow-lg hidden md:block animate-pulse"></div>
                 <div className="flex-1 md:pl-8">
                   <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 hover:scale-105">
                     <div className="flex items-center mb-4">
-                      <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4 animate-pulse">
-                        <span className="text-green-600 font-bold">2</span>
+                      <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-4 animate-pulse">
+                        <span className="text-primary-600 font-bold">2</span>
                       </div>
                       <h4 className="text-xl font-bold text-gray-900">Set Your Goals</h4>
                     </div>
@@ -317,8 +317,8 @@ export default function HomePage() {
                 <div className="flex-1 md:pr-8 md:text-right">
                   <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 hover:scale-105">
                     <div className="flex items-center mb-4 md:justify-end">
-                      <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4 md:mr-0 md:ml-4 md:order-2 animate-pulse">
-                        <span className="text-green-600 font-bold">3</span>
+                      <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-4 md:mr-0 md:ml-4 md:order-2 animate-pulse">
+                        <span className="text-primary-600 font-bold">3</span>
                       </div>
                       <h4 className="text-xl font-bold text-gray-900 md:order-1">Get Insights & Grow</h4>
                     </div>
@@ -327,19 +327,19 @@ export default function HomePage() {
                     </p>
                   </div>
                 </div>
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-lg hidden md:block animate-pulse"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-primary-500 rounded-full border-4 border-white shadow-lg hidden md:block animate-pulse"></div>
                 <div className="flex-1 md:pl-8 hidden md:block"></div>
               </div>
             </div>
           </div>
 
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-green-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 20s linear infinite' }}></div>
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 20s linear infinite' }}></div>
         </section>
 
         {/* Demo Video Section */}
         <section id="demo" className="py-20 bg-gray-50 relative overflow-hidden">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 className="text-sm font-semibold text-green-600 uppercase tracking-wide mb-2">Demo</h2>
+            <h2 className="text-sm font-semibold text-primary-600 uppercase tracking-wide mb-2">Demo</h2>
             <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">See BiteBase in Action</h3>
             <p className="text-xl text-gray-600 mb-12">
               Watch our 2-minute demo to see how BiteBase can transform your restaurant business
@@ -348,7 +348,7 @@ export default function HomePage() {
             <div className="relative rounded-xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-500 bg-gray-800">
               <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform cursor-pointer">
+                  <div className="w-20 h-20 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform cursor-pointer">
                     <Play className="w-8 h-8 text-white ml-1" />
                   </div>
                   <p className="text-white text-lg font-medium">Click to watch demo</p>
@@ -358,20 +358,20 @@ export default function HomePage() {
             </div>
 
             <div className="mt-8">
-              <button className="border-2 border-green-600 text-green-600 px-6 py-3 rounded-lg hover:bg-green-600 hover:text-white font-medium transition-all duration-300 flex items-center mx-auto hover:scale-105">
+              <button className="border-2 border-primary-600 text-primary-600 px-6 py-3 rounded-lg hover:bg-primary-600 hover:text-white font-medium transition-all duration-300 flex items-center mx-auto hover:scale-105">
                 <Download className="w-4 h-4 mr-2" /> Download product brochure (PDF)
               </button>
             </div>
           </div>
 
-          <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-green-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 20s linear infinite' }}></div>
+          <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-primary-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 20s linear infinite' }}></div>
         </section>
 
         {/* Testimonials Section */}
         <section id="testimonials" className="py-20 bg-white relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-16">
-              <span className="inline-block px-4 py-2 rounded-full border border-green-500 text-green-500 font-semibold mb-4 hover:rotate-3 transition-transform">
+              <span className="inline-block px-4 py-2 rounded-full border border-primary-500 text-primary-500 font-semibold mb-4 hover:rotate-3 transition-transform">
                 Testimonials
               </span>
               <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Customers Say</h3>
@@ -437,14 +437,14 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-green-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 20s linear infinite' }}></div>
+          <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-primary-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 20s linear infinite' }}></div>
         </section>
 
         {/* Pricing Section */}
         <section id="pricing" className="py-20 bg-gray-50 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-16">
-              <span className="inline-block px-4 py-2 rounded-full border border-green-500 text-green-500 font-semibold mb-4 hover:rotate-3 transition-transform">
+              <span className="inline-block px-4 py-2 rounded-full border border-primary-500 text-primary-500 font-semibold mb-4 hover:rotate-3 transition-transform">
                 Pricing Plans
               </span>
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Choose Your Plan</h2>
@@ -456,7 +456,7 @@ export default function HomePage() {
                 <button
                   className={`px-8 py-3 font-semibold transition-all duration-300 rounded-l-lg border ${
                     billingPeriod === 'monthly'
-                      ? 'bg-green-600 text-white border-green-600'
+                      ? 'bg-primary-600 text-white border-primary-600'
                       : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
                   }`}
                   onClick={() => setBillingPeriod('monthly')}
@@ -466,13 +466,13 @@ export default function HomePage() {
                 <button
                   className={`px-8 py-3 font-semibold transition-all duration-300 rounded-r-lg border-l-0 border relative ${
                     billingPeriod === 'yearly'
-                      ? 'bg-green-600 text-white border-green-600'
+                      ? 'bg-primary-600 text-white border-primary-600'
                       : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
                   }`}
                   onClick={() => setBillingPeriod('yearly')}
                 >
                   Yearly
-                  <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs px-2 py-1 rounded-full font-bold animate-bounce">
+                  <span className="absolute -top-2 -right-2 bg-primary-600 text-white text-xs px-2 py-1 rounded-full font-bold animate-bounce">
                     Save 20%
                   </span>
                 </button>
@@ -492,15 +492,15 @@ export default function HomePage() {
 
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Sales overview, peak hours</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Limited trade area view</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Monitor & receive alerts</span>
                   </li>
                   <li className="flex items-start gap-2">
@@ -537,39 +537,39 @@ export default function HomePage() {
 
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Analytics Overview Dashboard</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Local Market Snapshot (Limited)</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Review Monitoring (Google & Yelp)</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Track up to 5 competitors</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Monthly AI business reports</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">3-month data history</span>
                   </li>
                 </ul>
 
-                <button className="w-full py-3 px-4 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300 hover:scale-105">
+                <button className="w-full py-3 px-4 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-all duration-300 hover:scale-105">
                   Subscribe Now
                 </button>
               </div>
 
               {/* Pro Plan */}
-              <div className="bg-white p-8 rounded-xl shadow-xl border-2 border-green-500 relative hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:rotate-1">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-2 rounded-full text-sm font-medium animate-pulse">
+              <div className="bg-white p-8 rounded-xl shadow-xl border-2 border-primary-500 relative hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:rotate-1">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary-600 text-white px-4 py-2 rounded-full text-sm font-medium animate-pulse">
                   Most Popular
                 </div>
                 <div className="text-center">
@@ -585,32 +585,32 @@ export default function HomePage() {
 
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Advanced Analytics Dashboard</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Extended Market Analysis</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Full Review Suite Integration</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Track up to 15 competitors</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Weekly AI strategy recommendations</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">1-year data history retention</span>
                   </li>
                 </ul>
 
-                <button className="w-full py-3 px-4 bg-green-600 text-white rounded-lg font-bold hover:bg-green-700 transition-all duration-300 hover:scale-105">
+                <button className="w-full py-3 px-4 bg-primary-600 text-white rounded-lg font-bold hover:bg-primary-700 transition-all duration-300 hover:scale-105">
                   Choose Pro
                 </button>
               </div>
@@ -627,27 +627,27 @@ export default function HomePage() {
 
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Everything in Pro</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Unlimited competitor tracking</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Custom integrations & API access</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Dedicated account manager</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Priority phone & email support</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-gray-700">Custom training & onboarding</span>
                   </li>
                 </ul>
@@ -664,20 +664,20 @@ export default function HomePage() {
         <section className="py-20 bg-gradient-to-br from-green-600 to-green-800 relative overflow-hidden">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <h2 className="text-4xl font-bold text-white mb-4">Ready to get started?</h2>
-            <p className="text-xl text-green-100 mb-8">Join thousands of restaurants already using BiteBase to grow their business.</p>
+            <p className="text-xl text-primary-100 mb-8">Join thousands of restaurants already using BiteBase to grow their business.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/auth" className="bg-white text-green-600 px-8 py-4 rounded-lg hover:bg-gray-100 font-semibold text-lg transition-all duration-300 hover:scale-105 flex items-center justify-center">
+              <Link href="/auth" className="bg-white text-primary-600 px-8 py-4 rounded-lg hover:bg-gray-100 font-semibold text-lg transition-all duration-300 hover:scale-105 flex items-center justify-center">
                 Start Free Trial
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
-              <Link href="/restaurant-setup" className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-green-600 font-semibold text-lg transition-all duration-300 hover:scale-105">
+              <Link href="/restaurant-setup" className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-primary-600 font-semibold text-lg transition-all duration-300 hover:scale-105">
                 Try Market Research
               </Link>
             </div>
           </div>
 
-          <div className="absolute -top-20 -right-20 w-64 h-64 bg-green-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 20s linear infinite' }}></div>
-          <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-green-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 25s linear infinite reverse' }}></div>
+          <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 20s linear infinite' }}></div>
+          <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-primary-100 rounded-full opacity-10 animate-spin" style={{ animation: 'spin 25s linear infinite reverse' }}></div>
         </section>
 
         {/* Footer */}
@@ -747,7 +747,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-green-100 rounded-full opacity-5 animate-spin" style={{ animation: 'spin 30s linear infinite' }}></div>
+          <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-primary-100 rounded-full opacity-5 animate-spin" style={{ animation: 'spin 30s linear infinite' }}></div>
         </footer>
       </div>
     </Providers>

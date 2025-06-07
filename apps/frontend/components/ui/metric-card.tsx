@@ -57,7 +57,7 @@ export function MetricCard({
               {(change !== undefined && change !== null) && (
                 <div className="flex items-center text-sm">
                   {isPositiveChange ? (
-                    <div className="flex items-center text-green-600">
+                    <div className="flex items-center text-primary-600">
                       <TrendingUp className="w-4 h-4 mr-1" />
                       <span>+{Math.abs(change).toFixed(1)}%</span>
                     </div>

@@ -122,30 +122,30 @@ sleep 3
 
 # Start Agent
 print_status "Starting Agent (Python FastAPI) on port 8000..."
-cd agent
+cd apps/backend/agent
 
 # Check if virtual environment exists and activate it
 if [ -d "venv" ]; then
     source venv/bin/activate
 elif command -v poetry &> /dev/null; then
-    poetry run python run_server.py > ../logs/agent.log 2>&1 &
+    poetry run python run_server.py > ../../../logs/agent.log 2>&1 &
     AGENT_PID=$!
 else
-    python3 run_server.py > ../logs/agent.log 2>&1 &
+    python3 run_server.py > ../../../logs/agent.log 2>&1 &
     AGENT_PID=$!
 fi
 
 if [ -z "$AGENT_PID" ]; then
     if command -v poetry &> /dev/null; then
-        poetry run python run_server.py > ../logs/agent.log 2>&1 &
+        poetry run python run_server.py > ../../../logs/agent.log 2>&1 &
         AGENT_PID=$!
     else
-        python3 run_server.py > ../logs/agent.log 2>&1 &
+        python3 run_server.py > ../../../logs/agent.log 2>&1 &
         AGENT_PID=$!
     fi
 fi
 
-cd ..
+cd ../../..
 
 # Wait a moment for agent to start
 sleep 3

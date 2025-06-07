@@ -80,7 +80,7 @@ export default function RealMapComponent({
       <div className={`relative ${className} bg-gradient-to-br from-slate-50 via-gray-50 to-slate-100`}>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center p-8">
-            <div className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin mb-6 mx-auto"></div>
+            <div className="w-16 h-16 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mb-6 mx-auto"></div>
             <h3 className="text-xl font-bold text-gray-800 mb-2">BiteBase Market Intelligence</h3>
             <p className="text-gray-600 font-medium mb-1">Loading interactive map...</p>
             <p className="text-gray-500 text-sm mb-4">Powered by Mapbox</p>

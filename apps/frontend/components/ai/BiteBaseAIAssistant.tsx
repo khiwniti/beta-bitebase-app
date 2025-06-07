@@ -231,7 +231,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
   const getResponseTypeColor = (type: string) => {
     switch (type) {
       case "sales_analysis":
-        return "bg-green-100 text-green-800";
+        return "bg-primary-100 text-primary-800";
       case "customer_analysis":
         return "bg-blue-100 text-blue-800";
       case "performance_report":

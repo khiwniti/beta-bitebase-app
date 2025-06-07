@@ -66,7 +66,7 @@ export default function SubscriptionPage() {
       icon: "📈",
       iconImage: "/subscription/growth.png",
       buttonText: "Subscribe Now",
-      buttonStyle: "bg-green-600 text-white hover:bg-green-700 transition-all duration-300 hover:-translate-y-0.5 shadow-lg hover:shadow-xl",
+      buttonStyle: "bg-primary-600 text-white hover:bg-primary-700 transition-all duration-300 hover:-translate-y-0.5 shadow-lg hover:shadow-xl",
       features: [
         "Analytics Overview Dashboard",
         "Local Market Snapshot (Limited)",
@@ -87,7 +87,7 @@ export default function SubscriptionPage() {
       icon: "⭐",
       iconImage: "/subscription/pro.png",
       buttonText: "Choose Pro",
-      buttonStyle: "bg-green-600 text-white hover:bg-green-700 font-bold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl",
+      buttonStyle: "bg-primary-600 text-white hover:bg-primary-700 font-bold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl",
       popular: true,
       features: [
         "Advanced Analytics Dashboard",
@@ -154,10 +154,10 @@ export default function SubscriptionPage() {
     <div className="min-h-screen bg-gray-50 relative overflow-hidden">
       {/* Floating Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-green-100 rounded-full opacity-10 animate-spin-slow"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-green-100 rounded-full opacity-10 animate-spin-slow"></div>
-        <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-green-200 rounded-full opacity-20 animate-float"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-green-300 rounded-full opacity-15 animate-bounce-slow"></div>
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-100 rounded-full opacity-10 animate-spin-slow"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary-100 rounded-full opacity-10 animate-spin-slow"></div>
+        <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-primary-200 rounded-full opacity-20 animate-float"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-primary-300 rounded-full opacity-15 animate-bounce-slow"></div>
       </div>
 
       {/* Header */}
@@ -178,10 +178,10 @@ export default function SubscriptionPage() {
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-16 animate-fadeInUp">
-            <span className="inline-block px-4 py-2 rounded-full border border-green-500 text-green-500 font-semibold mb-4 hover:rotate-3 transition-transform animate-pulse">
+            <span className="inline-block px-4 py-2 rounded-full border border-primary-500 text-primary-500 font-semibold mb-4 hover:rotate-3 transition-transform animate-pulse">
               Pricing Plans
             </span>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Choose Your <span className="text-green-600">Plan</span></h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Choose Your <span className="text-primary-600">Plan</span></h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Select a plan that fits your needs and start building with BiteBase today!
             </p>
@@ -210,7 +210,7 @@ export default function SubscriptionPage() {
               >
                 Yearly
                 {billingPeriod === 'yearly' && (
-                  <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold animate-pulse">
+                  <span className="absolute -top-2 -right-2 bg-primary-500 text-white text-xs px-2 py-1 rounded-full font-bold animate-pulse">
                     Save 20%
                   </span>
                 )}
@@ -225,7 +225,7 @@ export default function SubscriptionPage() {
                 key={plan.id}
                 className={`relative bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:rotate-1 ${
                   plan.popular
-                    ? 'transform scale-105 border-2 border-green-500 z-10 shadow-green-500/25'
+                    ? 'transform scale-105 border-2 border-primary-500 z-10 shadow-green-500/25'
                     : 'border border-gray-200'
                 }`}
                 style={{
@@ -234,7 +234,7 @@ export default function SubscriptionPage() {
                 }}
               >
                 {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse">
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary-600 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse">
                     Most Popular
                   </div>
                 )}
@@ -269,7 +269,7 @@ export default function SubscriptionPage() {
                       </span>
                     </div>
                     {billingPeriod === 'yearly' && plan.price > 0 && (
-                      <div className="text-sm text-green-600 font-medium mt-1">
+                      <div className="text-sm text-primary-600 font-medium mt-1">
                         Save ${(plan.price - plan.yearlyPrice) * 12}/year
                       </div>
                     )}
@@ -279,7 +279,7 @@ export default function SubscriptionPage() {
                   <ul className="space-y-3 mb-8">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <Check className="w-5 h-5 text-primary-600 mt-0.5 flex-shrink-0" />
                         <span className="text-gray-700">{feature}</span>
                       </li>
                     ))}

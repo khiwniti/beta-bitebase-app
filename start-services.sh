@@ -134,13 +134,13 @@ install_frontend_dependencies() {
 install_agent_dependencies() {
     print_header "Installing agent dependencies..."
     
-    if [ -d "agent" ]; then
-        cd agent
+    if [ -d "apps/backend/agent" ]; then
+        cd apps/backend/agent
         
         # Check if Python is available
         if ! command -v python3 &> /dev/null; then
             print_warning "Python3 not found. Agent service will be skipped."
-            cd ..
+            cd ../../..
             return
         fi
         
@@ -160,7 +160,7 @@ install_agent_dependencies() {
             print_status "Agent Node.js dependencies installed"
         fi
         
-        cd ..
+        cd ../../..
     else
         print_warning "Agent directory not found. Agent service will be skipped."
     fi
@@ -233,13 +233,13 @@ start_frontend() {
 start_agent() {
     print_header "Starting agent service..."
     
-    if [ -d "agent" ]; then
-        cd agent
+    if [ -d "apps/backend/agent" ]; then
+        cd apps/backend/agent
         
         # Check if Python is available
         if ! command -v python3 &> /dev/null; then
             print_warning "Python3 not found. Skipping agent service."
-            cd ..
+            cd ../../..
             return
         fi
         
@@ -272,7 +272,7 @@ start_agent() {
         else
             print_warning "run_server.py not found in agent directory"
         fi
-        cd ..
+        cd ../../..
     else
         print_warning "Agent directory not found. Skipping agent service."
     fi
@@ -311,7 +311,7 @@ wait_for_services() {
     done
     
     # Wait for agent service (optional)
-    if [ -f "agent/agent.pid" ]; then
+    if [ -f "apps/backend/agent/agent.pid" ]; then
         print_status "Checking agent service..."
         for i in {1..30}; do
             if curl -s http://localhost:8000/health > /dev/null 2>&1; then
@@ -335,7 +335,7 @@ show_service_info() {
     print_status "✅ Frontend App: http://localhost:3000"
     print_status "📊 Backend Health: http://localhost:12001/health"
     
-    if [ -f "agent/agent.pid" ]; then
+    if [ -f "apps/backend/agent/agent.pid" ]; then
         print_status "🤖 Agent Service: http://localhost:8000"
         print_status "📊 Agent Health: http://localhost:8000/health"
     fi
@@ -345,8 +345,8 @@ show_service_info() {
     print_status "   Backend: apps/backend/backend.log"
     print_status "   Frontend: apps/frontend/frontend.log"
     
-    if [ -f "agent/agent.log" ]; then
-        print_status "   Agent: agent/agent.log"
+    if [ -f "apps/backend/agent/agent.log" ]; then
+        print_status "   Agent: apps/backend/agent/agent.log"
     fi
     
     echo ""
@@ -357,8 +357,8 @@ show_service_info() {
     if [ -f "apps/frontend/frontend.pid" ]; then
         print_status "   Frontend PID: $(cat apps/frontend/frontend.pid)"
     fi
-    if [ -f "agent/agent.pid" ]; then
-        print_status "   Agent PID: $(cat agent/agent.pid)"
+    if [ -f "apps/backend/agent/agent.pid" ]; then
+        print_status "   Agent PID: $(cat apps/backend/agent/agent.pid)"
     fi
     echo "================================================"
 }
@@ -385,13 +385,13 @@ cleanup() {
         rm -f apps/frontend/frontend.pid
     fi
     
-    if [ -f "agent/agent.pid" ]; then
-        AGENT_PID=$(cat agent/agent.pid)
+    if [ -f "apps/backend/agent/agent.pid" ]; then
+        AGENT_PID=$(cat apps/backend/agent/agent.pid)
         if kill -0 $AGENT_PID 2>/dev/null; then
             kill $AGENT_PID
             print_status "Agent process stopped"
         fi
-        rm -f agent/agent.pid
+        rm -f apps/backend/agent/agent.pid
     fi
 }
 
@@ -450,8 +450,8 @@ main() {
             fi
         fi
         
-        if [ -f "agent/agent.pid" ]; then
-            AGENT_PID=$(cat agent/agent.pid)
+        if [ -f "apps/backend/agent/agent.pid" ]; then
+            AGENT_PID=$(cat apps/backend/agent/agent.pid)
             if ! kill -0 $AGENT_PID 2>/dev/null; then
                 print_warning "Agent process died unexpectedly (this is optional)"
             fi

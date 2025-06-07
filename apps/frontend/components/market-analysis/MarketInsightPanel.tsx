@@ -66,7 +66,7 @@ export default function MarketInsightPanel({
       <div className={cn('bg-white rounded-xl shadow-lg overflow-hidden h-full', className)}>
         <div className="flex items-center justify-center h-full p-8">
           <div className="text-center">
-            <Loader2 className="h-10 w-10 animate-spin mx-auto text-green-600 mb-4" />
+            <Loader2 className="h-10 w-10 animate-spin mx-auto text-primary-600 mb-4" />
             <h3 className="text-lg font-medium text-gray-900">Analyzing market data...</h3>
             <p className="text-sm text-gray-500 mt-2">This may take a few moments</p>
           </div>
@@ -81,10 +81,10 @@ export default function MarketInsightPanel({
       <div className="px-6 py-4 border-b border-gray-100">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-            <MapPin className="h-4 w-4 text-green-600" />
+            <MapPin className="h-4 w-4 text-primary-600" />
             {locationName}
           </h2>
-          <span className="text-xs font-medium px-2 py-1 rounded-full bg-green-100 text-green-800">
+          <span className="text-xs font-medium px-2 py-1 rounded-full bg-primary-100 text-primary-800">
             Analysis Complete
           </span>
         </div>
@@ -98,7 +98,7 @@ export default function MarketInsightPanel({
             className={cn(
               'px-4 py-3 text-sm font-medium whitespace-nowrap',
               activeTab === 'overview'
-                ? 'text-green-600 border-b-2 border-green-600'
+                ? 'text-primary-600 border-b-2 border-primary-600'
                 : 'text-gray-600 hover:text-gray-900'
             )}
           >
@@ -109,7 +109,7 @@ export default function MarketInsightPanel({
             className={cn(
               'px-4 py-3 text-sm font-medium whitespace-nowrap',
               activeTab === 'metrics'
-                ? 'text-green-600 border-b-2 border-green-600'
+                ? 'text-primary-600 border-b-2 border-primary-600'
                 : 'text-gray-600 hover:text-gray-900'
             )}
           >
@@ -120,7 +120,7 @@ export default function MarketInsightPanel({
             className={cn(
               'px-4 py-3 text-sm font-medium whitespace-nowrap',
               activeTab === 'insights'
-                ? 'text-green-600 border-b-2 border-green-600'
+                ? 'text-primary-600 border-b-2 border-primary-600'
                 : 'text-gray-600 hover:text-gray-900'
             )}
           >
@@ -131,7 +131,7 @@ export default function MarketInsightPanel({
             className={cn(
               'px-4 py-3 text-sm font-medium whitespace-nowrap',
               activeTab === 'competitors'
-                ? 'text-green-600 border-b-2 border-green-600'
+                ? 'text-primary-600 border-b-2 border-primary-600'
                 : 'text-gray-600 hover:text-gray-900'
             )}
           >
@@ -182,14 +182,14 @@ export default function MarketInsightPanel({
                   </div>
                 </div>
                 
-                <div className="bg-green-50 rounded-lg p-4">
+                <div className="bg-primary-50 rounded-lg p-4">
                   <div className="flex items-center gap-3">
-                    <div className="bg-green-100 p-2 rounded-lg">
-                      <Clock className="h-5 w-5 text-green-600" />
+                    <div className="bg-primary-100 p-2 rounded-lg">
+                      <Clock className="h-5 w-5 text-primary-600" />
                     </div>
                     <div>
-                      <h4 className="font-medium text-green-900">Peak Hours</h4>
-                      <p className="text-sm text-green-800">
+                      <h4 className="font-medium text-primary-900">Peak Hours</h4>
+                      <p className="text-sm text-primary-800">
                         {footTrafficData?.peakHours || 'Lunch & dinner time'}
                       </p>
                     </div>
@@ -230,8 +230,8 @@ export default function MarketInsightPanel({
             {insights.length > 0 && (
               <section>
                 <h3 className="text-base font-medium text-gray-900 mb-3">Top Recommendation</h3>
-                <div className="bg-green-50 border border-green-100 rounded-lg p-4">
-                  <p className="text-sm text-green-800">
+                <div className="bg-primary-50 border border-primary-100 rounded-lg p-4">
+                  <p className="text-sm text-primary-800">
                     {insights[0].recommendation || 
                       "Consider a mid-range Asian fusion restaurant targeting young professionals with focus on dinner service and weekend brunch options."}
                   </p>
@@ -272,7 +272,7 @@ export default function MarketInsightPanel({
                   {metric.change !== undefined && (
                     <div className="mt-2 flex items-center">
                       {metric.change > 0 ? (
-                        <div className="flex items-center text-green-600 text-xs">
+                        <div className="flex items-center text-primary-600 text-xs">
                           <TrendingUp size={12} className="mr-1" />
                           <span>+{metric.change}% from average</span>
                         </div>
@@ -311,14 +311,14 @@ export default function MarketInsightPanel({
                 transition={{ duration: 0.2, delay: index * 0.05 }}
                 className={cn(
                   'border rounded-lg p-4',
-                  insight.type === 'positive' ? 'bg-green-50 border-green-100' :
+                  insight.type === 'positive' ? 'bg-primary-50 border-primary-100' :
                   insight.type === 'negative' ? 'bg-red-50 border-red-100' :
                   'bg-blue-50 border-blue-100'
                 )}
               >
                 <h4 className={cn(
                   'font-medium mb-1',
-                  insight.type === 'positive' ? 'text-green-800' :
+                  insight.type === 'positive' ? 'text-primary-800' :
                   insight.type === 'negative' ? 'text-red-800' :
                   'text-blue-800'
                 )}>
@@ -326,7 +326,7 @@ export default function MarketInsightPanel({
                 </h4>
                 <p className={cn(
                   'text-sm',
-                  insight.type === 'positive' ? 'text-green-700' :
+                  insight.type === 'positive' ? 'text-primary-700' :
                   insight.type === 'negative' ? 'text-red-700' :
                   'text-blue-700'
                 )}>
@@ -336,7 +336,7 @@ export default function MarketInsightPanel({
                 {insight.recommendation && (
                   <div className={cn(
                     'mt-2 pt-2 text-sm border-t',
-                    insight.type === 'positive' ? 'border-green-200 text-green-800' :
+                    insight.type === 'positive' ? 'border-primary-200 text-primary-800' :
                     insight.type === 'negative' ? 'border-red-200 text-red-800' :
                     'border-blue-200 text-blue-800'
                   )}>
@@ -418,7 +418,7 @@ export default function MarketInsightPanel({
           <div className="text-xs text-gray-500">
             Last updated: {new Date().toLocaleDateString()}
           </div>
-          <button className="text-sm text-green-600 font-medium hover:text-green-700">
+          <button className="text-sm text-primary-600 font-medium hover:text-primary-700">
             Export Report
           </button>
         </div>

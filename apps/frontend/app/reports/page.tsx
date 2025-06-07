@@ -300,7 +300,7 @@ export default function ReportsPage() {
             <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
               📋 Report Templates
             </button>
-            <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+            <button className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
               ➕ Generate New Report
             </button>
           </div>
@@ -319,7 +319,7 @@ export default function ReportsPage() {
                   key={key}
                   className={`cursor-pointer transition-all duration-200 border rounded-lg p-4 hover:shadow-md ${
                     selectedReport === key 
-                      ? "ring-2 ring-green-500 border-green-200 bg-green-50" 
+                      ? "ring-2 ring-green-500 border-primary-200 bg-primary-50" 
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                   onClick={() => setSelectedReport(key)}
@@ -337,7 +337,7 @@ export default function ReportsPage() {
                       </div>
                     </div>
                     <div className={`w-3 h-3 rounded-full ${
-                      selectedReport === key ? "bg-green-500" : "bg-gray-300"
+                      selectedReport === key ? "bg-primary-500" : "bg-gray-300"
                     }`}></div>
                   </div>
                   <p className="text-sm text-gray-600 mb-3">
@@ -392,7 +392,7 @@ export default function ReportsPage() {
                 {currentReport.sections.map((section, index) => (
                   <div key={section.id} className="border-b border-gray-100 pb-8 last:border-b-0">
                     <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-semibold">
+                      <div className="flex-shrink-0 w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-semibold">
                         {index + 1}
                       </div>
                       <div className="flex-1">
@@ -425,7 +425,7 @@ export default function ReportsPage() {
                   <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
                     📧 Share Report
                   </button>
-                  <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                  <button className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
                     🔄 Update Analysis
                   </button>
                 </div>
@@ -446,7 +446,7 @@ export default function ReportsPage() {
                 <button
                   key={key}
                   onClick={() => handleGenerateReport(key)}
-                  className="p-4 border border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition-all duration-200 text-left"
+                  className="p-4 border border-gray-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-all duration-200 text-left"
                 >
                   <div className="text-2xl mb-2">
                     {key === 'market-penetration' && '🎯'}
@@ -467,7 +467,7 @@ export default function ReportsPage() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-green-600">5</div>
+              <div className="text-2xl font-bold text-primary-600">5</div>
               <div className="ml-3">
                 <div className="text-sm font-medium text-gray-900">Professional Reports</div>
                 <div className="text-xs text-gray-600">Available Templates</div>

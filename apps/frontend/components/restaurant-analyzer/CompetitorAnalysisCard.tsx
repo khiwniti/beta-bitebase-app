@@ -55,12 +55,12 @@ export default function CompetitorAnalysisCard({
   const getSimilarityColor = () => {
     if (similarity >= 0.7) return 'text-red-600';
     if (similarity >= 0.4) return 'text-amber-600';
-    return 'text-green-600';
+    return 'text-primary-600';
   };
   
   const getPopularityIcon = () => {
     switch (competitor.popularity) {
-      case 'high': return <TrendingUp className="text-green-500" size={16} />;
+      case 'high': return <TrendingUp className="text-primary-500" size={16} />;
       case 'medium': return <Activity className="text-amber-500" size={16} />;
       case 'low': return <TrendingDown className="text-red-500" size={16} />;
       default: return <Info size={16} />;

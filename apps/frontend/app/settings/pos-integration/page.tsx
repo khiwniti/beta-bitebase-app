@@ -109,7 +109,7 @@ export default function POSIntegrationPage() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'connected': return 'bg-green-500'
+      case 'connected': return 'bg-primary-500'
       case 'error': return 'bg-red-500'
       default: return 'bg-gray-400'
     }
@@ -117,7 +117,7 @@ export default function POSIntegrationPage() {
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case 'connected': return <Badge className="bg-green-100 text-green-800">Connected</Badge>
+      case 'connected': return <Badge className="bg-primary-100 text-primary-800">Connected</Badge>
       case 'error': return <Badge variant="destructive">Error</Badge>
       default: return <Badge variant="secondary">Disconnected</Badge>
     }
@@ -336,14 +336,14 @@ export default function POSIntegrationPage() {
                   ].map((log, index) => (
                     <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
                       <div className="flex items-center gap-3">
-                        <div className={`w-2 h-2 rounded-full ${log.status === 'success' ? 'bg-green-500' : 'bg-red-500'}`} />
+                        <div className={`w-2 h-2 rounded-full ${log.status === 'success' ? 'bg-primary-500' : 'bg-red-500'}`} />
                         <div>
                           <p className="font-medium">{log.action}</p>
                           <p className="text-sm text-gray-500">{log.system} • {log.time}</p>
                         </div>
                       </div>
                       {log.status === 'success' ? (
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-primary-500" />
                       ) : (
                         <AlertTriangle className="w-4 h-4 text-red-500" />
                       )}

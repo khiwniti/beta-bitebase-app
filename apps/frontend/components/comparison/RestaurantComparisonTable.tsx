@@ -117,7 +117,7 @@ export default function RestaurantComparisonTable({
     if (score === undefined) return <span className="text-gray-400">-</span>;
     
     let color;
-    if (score >= 80) color = "text-green-600";
+    if (score >= 80) color = "text-primary-600";
     else if (score >= 60) color = "text-blue-600";
     else if (score >= 40) color = "text-amber-600";
     else color = "text-red-600";
@@ -130,7 +130,7 @@ export default function RestaurantComparisonTable({
     if (!level) return "text-gray-400";
     
     switch (level) {
-      case 'Low': return "text-green-600";
+      case 'Low': return "text-primary-600";
       case 'Medium': return "text-amber-600";
       case 'High': return "text-red-600";
       default: return "text-gray-600";
@@ -184,7 +184,7 @@ export default function RestaurantComparisonTable({
               key={restaurant.id} 
               className={cn(
                 "hover:bg-gray-50 transition-colors",
-                highlightedId === restaurant.id && "bg-green-50"
+                highlightedId === restaurant.id && "bg-primary-50"
               )}
             >
               {/* Restaurant Name */}
@@ -250,7 +250,7 @@ export default function RestaurantComparisonTable({
                     <div 
                       className={cn(
                         "h-full rounded-full",
-                        restaurant.targetMatch >= 80 ? "bg-green-500" :
+                        restaurant.targetMatch >= 80 ? "bg-primary-500" :
                         restaurant.targetMatch >= 60 ? "bg-blue-500" :
                         restaurant.targetMatch >= 40 ? "bg-amber-500" : "bg-red-500"
                       )}
@@ -300,7 +300,7 @@ export default function RestaurantComparisonTable({
                     <div 
                       className={cn(
                         "h-full rounded-full",
-                        restaurant.demographicMatch >= 80 ? "bg-green-500" :
+                        restaurant.demographicMatch >= 80 ? "bg-primary-500" :
                         restaurant.demographicMatch >= 60 ? "bg-blue-500" :
                         restaurant.demographicMatch >= 40 ? "bg-amber-500" : "bg-red-500"
                       )}
@@ -338,7 +338,7 @@ export default function RestaurantComparisonTable({
                   className={cn(
                     "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded",
                     highlightedId === restaurant.id
-                      ? "bg-green-100 text-green-800 hover:bg-green-200"
+                      ? "bg-primary-100 text-primary-800 hover:bg-primary-200"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   )}
                 >

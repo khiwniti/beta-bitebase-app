@@ -24,10 +24,10 @@ export default function InsightCard({
 }: InsightCardProps) {
   const categoryColors = {
     positive: {
-      bg: 'bg-green-50',
-      border: 'border-green-200',
-      icon: 'bg-green-500/20 text-green-600',
-      action: 'text-green-600 hover:text-green-700'
+      bg: 'bg-primary-50',
+      border: 'border-primary-200',
+      icon: 'bg-primary-500/20 text-primary-600',
+      action: 'text-primary-600 hover:text-primary-700'
     },
     neutral: {
       bg: 'bg-blue-50',

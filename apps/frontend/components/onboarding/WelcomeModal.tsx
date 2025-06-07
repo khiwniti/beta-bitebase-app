@@ -267,7 +267,7 @@ export function WelcomeModal({ userName = 'there', isOpen, onClose, isFirstTimeU
                 id="welcome-dont-show-again"
                 checked={dontShowAgain}
                 onChange={(e) => setDontShowAgain(e.target.checked)}
-                className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-2"
+                className="w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 focus:ring-2"
               />
               <label
                 htmlFor="welcome-dont-show-again"

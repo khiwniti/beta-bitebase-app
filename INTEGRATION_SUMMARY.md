@@ -17,7 +17,7 @@ Your BiteBase application consists of three core components that work together:
 - **Purpose**: REST API, data management, authentication
 
 ### 3. **Agent** (Python FastAPI)
-- **Location**: `agent/`
+- **Location**: `apps/backend/agent/`
 - **Port**: 8000 (development)
 - **Technology**: Python, FastAPI, LangChain, OpenAI
 - **Purpose**: AI-powered market research and analysis
@@ -101,7 +101,7 @@ PORT=12001
 CORS_ORIGIN=http://localhost:3000
 ```
 
-3. **Agent** (`agent/.env`):
+3. **Agent** (`apps/backend/agent/.env`):
 ```env
 OPENAI_API_KEY=your_openai_key
 GOOGLE_MAPS_API_KEY=your_google_maps_key
@@ -195,7 +195,7 @@ curl http://localhost:3000
 - `SYSTEM_INTEGRATION_GUIDE.md` - Detailed setup guide
 - `apps/frontend/.env.local` - Frontend environment
 - `apps/backend/.env` - Backend environment  
-- `agent/.env` - Agent environment
+- `apps/backend/agent/.env` - Agent environment
 
 ### Scripts
 - `start-dev-stack.sh` - Start all services
@@ -206,7 +206,7 @@ curl http://localhost:3000
 ### API Integration
 - `apps/frontend/lib/api-client.ts` - Frontend API client
 - `apps/backend/minimal-server.js` - Backend server
-- `agent/run_server.py` - Agent server
+- `apps/backend/agent/run_server.py` - Agent server
 
 ## ✅ Success Criteria
 

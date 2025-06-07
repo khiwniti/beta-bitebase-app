@@ -81,7 +81,7 @@ cd ../..
 
 # Step 4: Setup AI Agents (Python)
 print_status "Setting up AI Agents (Python)..."
-cd agent
+cd apps/backend/agent
 
 # Check if Poetry is installed
 if ! command -v poetry &> /dev/null; then
@@ -109,7 +109,7 @@ if [ -f "package.json" ]; then
     fi
 fi
 
-cd ..
+cd ../../..
 
 # Step 5: Setup Environment Files
 print_status "Setting up environment files..."
@@ -139,17 +139,17 @@ if [ ! -f "apps/backend/.env" ]; then
 fi
 
 # Agent environment
-if [ ! -f "agent/.env" ]; then
+if [ ! -f "apps/backend/agent/.env" ]; then
     print_status "Creating agent environment file..."
-    cp agent/.env.example agent/.env
+    cp apps/backend/agent/.env.example apps/backend/agent/.env
     print_success "Agent environment file created"
-    print_warning "Please update agent/.env with your API keys"
+    print_warning "Please update apps/backend/agent/.env with your API keys"
 fi
 
 # Step 6: Make scripts executable
 print_status "Making scripts executable..."
-chmod +x agent/dev-servers.sh
-chmod +x agent/start-servers.sh
+chmod +x apps/backend/agent/dev-servers.sh
+chmod +x apps/backend/agent/start-servers.sh
 chmod +x apps/backend/scripts/*.sh 2>/dev/null || true
 print_success "Scripts made executable"
 
@@ -195,9 +195,9 @@ echo ""
 echo "⚙️  Environment Configuration:"
 echo "  - Frontend: apps/frontend/.env.local"
 echo "  - Backend: apps/backend/.env"
-echo "  - Agents: agent/.env"
+echo "  - Agents: apps/backend/agent/.env"
 echo ""
-echo "🔑 Required API Keys (update in agent/.env):"
+echo "🔑 Required API Keys (update in apps/backend/agent/.env):"
 echo "  - OPENAI_API_KEY"
 echo "  - GOOGLE_MAPS_API_KEY"
 echo "  - TAVILY_API_KEY (optional)"

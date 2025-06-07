@@ -1,7 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Ensure brand styles are loaded */
+@layer components {
+  .btn-primary {
+    @apply bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500;
+  }
+  
+  .btn-brand-primary {
+    background: linear-gradient(135deg, #74C365 0%, #5fa854 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(116, 195, 101, 0.1);
+  }
+  
+  .btn-brand-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(116, 195, 101, 0.3);
+  }
+  
+  .text-brand-gradient {
+    background: linear-gradient(135deg, #74C365 0%, #E23D28 50%, #F4C431 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
 
 :root {
   /* BiteBase Brand Colors - Following Brand Guidelines V1 2024 */

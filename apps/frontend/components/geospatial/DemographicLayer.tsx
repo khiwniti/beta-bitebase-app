@@ -31,7 +31,7 @@ export function DemographicLayer({ data, metric, visible }: DemographicLayerProp
         if (demo.population > 80000) return "bg-red-500"
         if (demo.population > 60000) return "bg-orange-500"
         if (demo.population > 40000) return "bg-yellow-500"
-        return "bg-green-500"
+        return "bg-primary-500"
       case "income":
         if (demo.medianIncome > 50000) return "bg-purple-500"
         if (demo.medianIncome > 40000) return "bg-blue-500"
@@ -122,7 +122,7 @@ export function DemographicLayer({ data, metric, visible }: DemographicLayerProp
                 <span className="text-xs text-gray-600">40K-60K</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-green-500 rounded"></div>
+                <div className="w-3 h-3 bg-primary-500 rounded"></div>
                 <span className="text-xs text-gray-600">&lt;40K</span>
               </div>
             </>

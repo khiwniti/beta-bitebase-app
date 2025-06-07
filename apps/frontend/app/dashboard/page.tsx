@@ -244,8 +244,8 @@ export default function DashboardPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="text-center p-4 bg-green-50 rounded-lg">
-                <div className="text-2xl font-bold text-green-600">{restaurants.length}</div>
+              <div className="text-center p-4 bg-primary-50 rounded-lg">
+                <div className="text-2xl font-bold text-primary-600">{restaurants.length}</div>
                 <div className="text-sm text-gray-600">Total Restaurants</div>
               </div>
               <div className="text-center p-4 bg-blue-50 rounded-lg">
@@ -539,7 +539,7 @@ export default function DashboardPage() {
                       <td className="py-3 px-4 text-gray-900 dark:text-gray-100">{competitor.marketShare}%</td>
                       <td className="py-3 px-4">
                         <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                          competitor.trend === 'up' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
+                          competitor.trend === 'up' ? 'bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-400' :
                           competitor.trend === 'down' ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400' :
                           'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300'
                         }`}>

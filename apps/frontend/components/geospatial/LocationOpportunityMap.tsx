@@ -133,7 +133,7 @@ export default function LocationOpportunityMap({
       case 'cafe':
         return 'text-amber-500';
       case 'opportunity':
-        return 'text-green-500';
+        return 'text-primary-500';
       default:
         return 'text-blue-500';
     }
@@ -231,7 +231,7 @@ export default function LocationOpportunityMap({
             )}
             {shouldShowLayer('opportunities') && (
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-primary-500 rounded-full"></div>
                 <span>Opportunities</span>
               </div>
             )}

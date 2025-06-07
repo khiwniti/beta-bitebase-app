@@ -625,7 +625,7 @@ export default function ExternalDataSourceConfig({
                       <Database className="w-5 h-5 text-blue-500" />
                     )}
                     {config.type === "google_sheets" && (
-                      <FileSpreadsheet className="w-5 h-5 text-green-500" />
+                      <FileSpreadsheet className="w-5 h-5 text-primary-500" />
                     )}
                     {config.type === "csv_import" && (
                       <Upload className="w-5 h-5 text-orange-500" />

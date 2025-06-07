@@ -40,7 +40,7 @@ const demoUsers = [
       "Trend Analysis",
       "Custom Reports"
     ],
-    color: "bg-green-500"
+    color: "bg-primary-500"
   },
   {
     id: 3,
@@ -303,8 +303,8 @@ export default function DemoLoginPage() {
             </div>
             
             <div className="text-center">
-              <div className="bg-green-100 p-3 rounded-lg inline-block mb-3">
-                <BarChart3 className="w-6 h-6 text-green-600" />
+              <div className="bg-primary-100 p-3 rounded-lg inline-block mb-3">
+                <BarChart3 className="w-6 h-6 text-primary-600" />
               </div>
               <h3 className="font-semibold mb-2">Market Intelligence</h3>
               <p className="text-sm text-gray-600">Location analysis and market research</p>

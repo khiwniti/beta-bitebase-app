@@ -41,7 +41,7 @@ export const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({
       <CardHeader className="pb-2">
         <CardTitle className="text-md flex items-center">
           {overallSentiment === 'positive' ? (
-            <SmilePlus className="h-4 w-4 mr-2 text-green-500" />
+            <SmilePlus className="h-4 w-4 mr-2 text-primary-500" />
           ) : overallSentiment === 'negative' ? (
             <Frown className="h-4 w-4 mr-2 text-red-500" />
           ) : (
@@ -55,7 +55,7 @@ export const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({
           <span className="font-medium">Overall Score:</span> 
           <span className={`ml-2 font-bold ${
             overallSentiment === 'positive' 
-              ? 'text-green-500' 
+              ? 'text-primary-500' 
               : overallSentiment === 'negative' 
                 ? 'text-red-500' 
                 : 'text-gray-500'
@@ -68,11 +68,11 @@ export const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({
           <div className="sentiment-bar-container">
             <div className="flex justify-between mb-1">
               <span className="text-sm">Positive</span>
-              <span className="text-sm text-green-500">{positivePercentage}%</span>
+              <span className="text-sm text-primary-500">{positivePercentage}%</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2.5">
               <div 
-                className="bg-green-500 h-2.5 rounded-full" 
+                className="bg-primary-500 h-2.5 rounded-full" 
                 style={{ width: `${positivePercentage}%` }}
               ></div>
             </div>

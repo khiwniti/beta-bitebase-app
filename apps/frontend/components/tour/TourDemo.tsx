@@ -53,7 +53,7 @@ export function TourDemo() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Button 
             onClick={handleSimulateNewUser}
-            className="bg-green-600 hover:bg-green-700"
+            className="bg-primary-600 hover:bg-primary-700"
           >
             🆕 Simulate New User
           </Button>

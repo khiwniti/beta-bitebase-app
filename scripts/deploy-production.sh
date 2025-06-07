@@ -79,7 +79,7 @@ cd ../..
 
 # Step 4: Prepare AI Agents
 print_status "Preparing AI Agents for deployment..."
-cd agent
+cd apps/backend/agent
 
 # Check if Poetry is available
 if command -v poetry &> /dev/null; then
@@ -104,7 +104,7 @@ if [ -f "package.json" ]; then
     fi
 fi
 
-cd ..
+cd ../../..
 
 # Step 5: Validate environment files
 print_status "Validating environment configuration..."
@@ -182,7 +182,7 @@ required_files=(
     "vercel.json"
     "apps/backend/.env.production"
     "apps/frontend/.env.production"
-    "agent/requirements.txt"
+    "apps/backend/agent/requirements.txt"
     "DEPLOYMENT.md"
 )
 

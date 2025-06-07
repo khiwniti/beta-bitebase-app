@@ -305,7 +305,7 @@ export function SimplePieChart({
   height = 300,
   nameKey = "name",
   valueKey = "value",
-  colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#6366f1']
+  colors = ['#3b82f6', '#74C365', '#f59e0b', '#ef4444', '#6366f1']
 }) {
   const chartData = Array.isArray(data) ? data : [];
   

@@ -23,7 +23,7 @@ This is the agent component of Bitebase Geospatial SaaS.
 2. Install dependencies:
 
 ```bash
-cd bitebase-geospatial-saas/agent
+cd bitebase-geospatial-saas/apps/backend/agent
 poetry install
 ```
 
