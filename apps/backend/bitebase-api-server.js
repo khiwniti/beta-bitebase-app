@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Minimal BiteBase Backend Server
- * Simple Express server for frontend-backend connection testing
+ * BiteBase API Server
+ * Main backend API server for BiteBase Intelligence Platform
  */
 
 const express = require("express");
@@ -1625,7 +1625,7 @@ async function validateCSVImport(config) {
 // ============================================================================
 
 const server = app.listen(PORT, HOST, () => {
-  console.log(`🚀 BiteBase Minimal Backend running on http://${HOST}:${PORT}`);
+  console.log(`🚀 BiteBase API Server running on http://${HOST}:${PORT}`);
   console.log(`📊 Available endpoints:`);
   console.log(`   GET  /health - Health check`);
   console.log(`   GET  /api/restaurants - List restaurants`);

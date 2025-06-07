@@ -4,7 +4,7 @@
   "description": "BiteBase Backend API for Cloudflare Workers",
   "main": "cloudflare-worker.js",
   "scripts": {
-    "start": "node minimal-server.js",
+    "start": "node bitebase-api-server.js",
     "dev": "wrangler dev",
     "dev:local": "wrangler dev --local",
     "build": "echo 'Build completed'",
