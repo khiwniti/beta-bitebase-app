@@ -237,7 +237,7 @@ export default function SettingsPage() {
                       <div>
                         <h3 className="font-medium">{integration.provider}</h3>
                         <p className="text-sm text-gray-500">
-                          {integration.connected ? `Connected • ${integration.lastSync || integration.status}` : 'Not connected'}
+                          {integration.connected ? `Connected • ${(integration as any).lastSync || (integration as any).status}` : 'Not connected'}
                         </p>
                       </div>
                     </div>

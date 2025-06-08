@@ -48,8 +48,31 @@ import BiteBaseLogo from '../BiteBaseLogo'
 import { WebTour, useTour } from '../tour/WebTour'
 import { TourTrigger, WelcomeBanner } from '../tour/TourTrigger'
 
+// Type definitions for navigation
+interface NavigationSubItem {
+  name: string;
+  href: string;
+}
+
+interface NavigationItem {
+  name: string;
+  href: string;
+  icon: any;
+  tourId?: string;
+  description: string;
+  badge?: string;
+  expandable?: boolean;
+  highlight?: boolean;
+  subitems?: NavigationSubItem[];
+}
+
+interface NavigationSection {
+  name: string;
+  items: NavigationItem[];
+}
+
 // Updated navigation structure with improved organization and categorization for restaurant context
-const navigation = [
+const navigation: NavigationSection[] = [
   {
     name: "Dashboard",
     items: [
@@ -235,6 +258,7 @@ export function MainLayout({
   }
 
   const isActive = (href: string) => {
+    if (!pathname) return false;
     if (href === '/dashboard') {
       return pathname === href
     }
@@ -290,7 +314,11 @@ export function MainLayout({
   return (
     <div className={`h-screen flex overflow-hidden ${darkMode ? 'dark' : ''}`}>
       {/* Web Tour Integration */}
-      <WebTour />
+      <WebTour
+        isOpen={isTourOpen}
+        onClose={closeTour}
+        onComplete={completeTour}
+      />
       
       {/* Sidebar - Improved with cleaner styling */}
       {showSidebar && (
@@ -636,7 +664,7 @@ export function MainLayout({
             {/* Welcome Banner */}
             {showWelcomeBanner && (
               <div className="mb-6">
-                <TourTrigger />
+                <TourTrigger onStartTour={startTour} />
               </div>
             )}
             

@@ -51,8 +51,29 @@ import BiteBaseLogo from '../BiteBaseLogo'
 import { WebTour, useTour } from '../tour/WebTour'
 import { TourTrigger } from '../tour/TourTrigger'
 
+// Type definitions for navigation
+interface NavigationSubItem {
+  name: string;
+  href: string;
+}
+
+interface NavigationItem {
+  name: string;
+  href: string;
+  icon: any;
+  description: string;
+  badge?: string;
+  expandable?: boolean;
+  subitems?: NavigationSubItem[];
+}
+
+interface NavigationSection {
+  name: string;
+  items: NavigationItem[];
+}
+
 // Enhanced navigation structure with better organization
-const navigation = [
+const navigation: NavigationSection[] = [
   {
     name: "OVERVIEW",
     items: [
@@ -245,6 +266,7 @@ export function DashboardLayout({
   }, [darkMode]);
 
   const isActive = (href: string) => {
+    if (!pathname) return false;
     if (href === '/dashboard') {
       return pathname === href
     }

@@ -146,7 +146,10 @@ class ApiClient {
   async getAllRestaurants(): Promise<ApiResponse<Restaurant[]>> {
     const response = await this.request<{ restaurants: Restaurant[]; total: number; limit: number; offset: number }>('/api/restaurants');
     if (response.error) {
-      return response;
+      return {
+        error: response.error,
+        status: response.status,
+      };
     }
     return {
       data: response.data?.restaurants || [],
@@ -317,5 +320,4 @@ class ApiClient {
 // Export singleton instance
 export const apiClient = new ApiClient();
 
-// Export types for use in components
-export type { Restaurant, RestaurantMenu, MarketAnalysis, MenuItem, MenuCategory };
+// Types are already exported above as interfaces

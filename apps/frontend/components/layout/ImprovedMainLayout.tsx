@@ -48,8 +48,31 @@ import BiteBaseLogo from '../BiteBaseLogo'
 import { WebTour, useTour } from '../tour/WebTour'
 import { TourTrigger, WelcomeBanner } from '../tour/TourTrigger'
 
+// Type definitions for navigation
+interface NavigationSubItem {
+  name: string;
+  href: string;
+}
+
+interface NavigationItem {
+  name: string;
+  href: string;
+  icon: any;
+  tourId?: string;
+  description: string;
+  badge?: string;
+  expandable?: boolean;
+  highlight?: boolean;
+  subitems?: NavigationSubItem[];
+}
+
+interface NavigationSection {
+  name: string;
+  items: NavigationItem[];
+}
+
 // Navigation structure with nested sections for better organization
-const navigation = [
+const navigation: NavigationSection[] = [
   {
     name: "Main",
     items: [
@@ -235,6 +258,7 @@ export function MainLayout({
   }
 
   const isActive = (href: string) => {
+    if (!pathname) return false;
     if (href === '/dashboard') {
       return pathname === href
     }
@@ -446,7 +470,7 @@ export function MainLayout({
                     </div>
                     <div className="hidden lg:block ml-2 text-left">
                       <p className={`text-sm font-medium ${darkMode ? 'text-white' : 'text-gray-700'}`}>
-                        {user?.displayName || user?.email?.split('@')[0] || 'User'}
+                        {user?.name || user?.email?.split('@')[0] || 'User'}
                       </p>
                       <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Premium Plan</p>
                     </div>
@@ -462,7 +486,7 @@ export function MainLayout({
                     >
                       <div className={`px-4 py-3 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
                         <p className={`text-sm font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                          {user?.displayName || user?.email?.split('@')[0] || 'User'}
+                          {user?.name || user?.email?.split('@')[0] || 'User'}
                         </p>
                         <p className={`text-xs truncate ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                           {user?.email || 'user@example.com'}
@@ -766,7 +790,7 @@ export function MainLayout({
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className={`text-sm font-medium truncate ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                              {user?.displayName || user?.email?.split('@')[0] || 'Restaurant Owner'}
+                              {user?.name || user?.email?.split('@')[0] || 'Restaurant Owner'}
                             </p>
                             <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Premium Plan</p>
                           </div>
@@ -1005,7 +1029,7 @@ export function MainLayout({
                         <p className={`text-sm font-medium truncate ${
                           darkMode ? 'text-white' : 'text-gray-900'
                         }`}>
-                          {user?.displayName || user?.email?.split('@')[0] || 'Restaurant Owner'}
+                          {user?.name || user?.email?.split('@')[0] || 'Restaurant Owner'}
                         </p>
                         <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                           Premium Plan

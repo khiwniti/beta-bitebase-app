@@ -37,53 +37,33 @@ export default function PlacePage() {
         <MetricCard
           title="Daily Foot Traffic"
           value="1,240"
-          change={{
-            value: 12.7,
-            period: 'vs last week',
-            trend: 'up' as const
-          }}
+          change={12.7}
+          period="vs last week"
           icon={<Eye className="h-5 w-5" />}
-          variant="success"
-          description="Peak: 12-2 PM, 7-9 PM"
         />
 
         <MetricCard
           title="Market Potential"
           value="87/100"
-          change={{
-            value: 8.2,
-            period: 'vs last month',
-            trend: 'up' as const
-          }}
+          change={8.2}
+          period="vs last month"
           icon={<Target className="h-5 w-5" />}
-          variant="success"
-          description="High growth opportunity"
         />
 
         <MetricCard
           title="Competitor Density"
           value="12"
-          change={{
-            value: 3.4,
-            period: 'vs last quarter',
-            trend: 'down' as const
-          }}
+          change={-3.4}
+          period="vs last quarter"
           icon={<Building className="h-5 w-5" />}
-          variant="warning"
-          description="Restaurants within 1 mile"
         />
 
         <MetricCard
           title="Location Score"
           value="8.5/10"
-          change={{
-            value: 0.5,
-            period: 'vs last assessment',
-            trend: 'up' as const
-          }}
+          change={0.5}
+          period="vs last assessment"
           icon={<Star className="h-5 w-5" />}
-          variant="success"
-          description="Overall location rating"
         />
       </div>
 

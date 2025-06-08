@@ -1,79 +1,122 @@
 #!/bin/bash
 
 # BiteBase Deployment Script
+# This script helps prepare and deploy the BiteBase application
+
 set -e
 
-echo "🚀 Starting BiteBase deployment..."
+echo "🚀 BiteBase Deployment Script"
+echo "=============================="
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Function to print colored output
+print_status() {
+    echo -e "${BLUE}[INFO]${NC} $1"
+}
+
+print_success() {
+    echo -e "${GREEN}[SUCCESS]${NC} $1"
+}
+
+print_warning() {
+    echo -e "${YELLOW}[WARNING]${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
 
 # Check if we're in the right directory
-if [ ! -f "package.json" ] && [ ! -d "apps" ]; then
-    echo "❌ Error: Please run this script from the project root directory"
+if [ ! -f "package.json" ] || [ ! -d "apps/frontend" ] || [ ! -d "apps/backend" ]; then
+    print_error "Please run this script from the root of the BiteBase project"
     exit 1
 fi
 
-# Load environment variables
-if [ -f ".env.production" ]; then
-    echo "📋 Loading production environment variables..."
-    export $(cat .env.production | grep -v '^#' | xargs)
-else
-    echo "⚠️  Warning: .env.production file not found. Using default values."
-fi
+print_status "Checking project structure..."
+print_success "Project structure verified"
+
+# Check Node.js version
+NODE_VERSION=$(node --version)
+print_status "Node.js version: $NODE_VERSION"
 
 # Install dependencies
-echo "📦 Installing dependencies..."
+print_status "Installing dependencies..."
 
-# Frontend dependencies
-echo "Installing frontend dependencies..."
+print_status "Installing root dependencies..."
+npm install
+
+print_status "Installing frontend dependencies..."
 cd apps/frontend
-npm ci --production
-echo "✅ Frontend dependencies installed"
-
-# Backend dependencies
-echo "Installing backend dependencies..."
-cd ../backend
-npm ci --production
-echo "✅ Backend dependencies installed"
-
+npm install
 cd ../..
 
-# Build frontend
-echo "🏗️  Building frontend..."
-cd apps/frontend
-npm run build
-echo "✅ Frontend built successfully"
-
+print_status "Installing backend dependencies..."
+cd apps/backend
+npm install
 cd ../..
 
-# Create deployment package
-echo "📦 Creating deployment package..."
-mkdir -p dist
+print_success "All dependencies installed"
 
-# Copy frontend build
-cp -r apps/frontend/.next dist/frontend-build
-cp -r apps/frontend/public dist/frontend-public
-cp apps/frontend/package.json dist/frontend-package.json
+# Build frontend to check for errors
+print_status "Building frontend to check for errors..."
+cd apps/frontend
+if npm run build; then
+    print_success "Frontend build successful"
+else
+    print_error "Frontend build failed. Please fix errors before deploying."
+    exit 1
+fi
+cd ../..
 
-# Copy backend
-cp -r apps/backend dist/backend
-cp apps/backend/package.json dist/backend/package.json
+print_success "Pre-deployment checks completed!"
 
-# Copy environment files
-cp .env.production dist/.env
-
-echo "✅ Deployment package created in ./dist directory"
-
-# Display deployment instructions
 echo ""
-echo "🎉 Deployment preparation complete!"
+echo "🎯 Next Steps:"
+echo "=============="
 echo ""
-echo "📋 Next steps:"
-echo "1. Update .env.production with your actual production values"
-echo "2. Deploy the frontend (./dist/frontend-*) to your hosting platform"
-echo "3. Deploy the backend (./dist/backend) to your server"
-echo "4. Update CORS settings in backend to match your frontend domain"
+echo "1. Deploy Backend to Render:"
+echo "   - Go to https://render.com"
+echo "   - Create new Web Service"
+echo "   - Connect repository: khiwniti/beta-bitebase-app"
+echo "   - Root directory: apps/backend"
+echo "   - Build command: npm install"
+echo "   - Start command: npm run start:vercel"
+echo "   - See RENDER_SETUP.md for detailed instructions"
 echo ""
-echo "🔧 Quick deployment commands:"
-echo "Frontend: npm start (from dist/frontend-build directory)"
-echo "Backend: npm start (from dist/backend directory)"
+echo "2. Deploy Frontend to Vercel:"
+echo "   - Run: cd apps/frontend && vercel --prod"
+echo "   - See VERCEL_SETUP.md for detailed instructions"
 echo ""
-echo "📚 For detailed deployment instructions, see the deployment documentation."
+echo "3. Configure Environment Variables:"
+echo "   - Backend: Set JWT_SECRET, GOOGLE_CLIENT_ID in Render"
+echo "   - Frontend: Set NEXT_PUBLIC_API_URL in Vercel"
+echo ""
+echo "4. Test the deployment:"
+echo "   - Visit your frontend URL"
+echo "   - Test login and API functionality"
+echo ""
+
+# Check if Vercel CLI is installed
+if command -v vercel &> /dev/null; then
+    print_success "Vercel CLI is installed"
+    echo ""
+    echo "🚀 Quick Deploy Frontend:"
+    echo "========================"
+    echo "Run: cd apps/frontend && vercel --prod"
+else
+    print_warning "Vercel CLI not installed"
+    echo ""
+    echo "📦 Install Vercel CLI:"
+    echo "====================="
+    echo "Run: npm install -g vercel"
+fi
+
+echo ""
+print_success "Deployment preparation complete!"
+print_status "See DEPLOYMENT_GUIDE.md for full instructions"

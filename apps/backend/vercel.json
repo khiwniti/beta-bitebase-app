@@ -3,7 +3,7 @@
   "name": "bitebase-backend",
   "builds": [
     {
-      "src": "minimal-server.js",
+      "src": "server.js",
       "use": "@vercel/node",
       "config": {
         "maxLambdaSize": "50mb"
@@ -13,21 +13,16 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/minimal-server.js"
+      "dest": "/server.js"
     }
   ],
   "env": {
     "NODE_ENV": "production",
     "PORT": "3000",
-    "HOST": "0.0.0.0",
-    "JWT_SECRET": "@jwt-secret",
-    "GOOGLE_CLIENT_ID": "@google-client-id",
-    "STRIPE_SECRET_KEY": "@stripe-secret-key",
-    "DATABASE_URL": "@database-url",
-    "REDIS_URL": "@redis-url"
+    "HOST": "0.0.0.0"
   },
   "functions": {
-    "minimal-server.js": {
+    "server.js": {
       "maxDuration": 30
     }
   },

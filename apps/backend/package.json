@@ -5,8 +5,11 @@
   "main": "cloudflare-worker.js",
   "scripts": {
     "start": "node bitebase-api-server.js",
+    "start:vercel": "node server.js",
+    "express:start": "node bitebase-api-server.js",
     "dev": "wrangler dev",
     "dev:local": "wrangler dev --local",
+    "dev:express": "node bitebase-api-server.js",
     "build": "echo 'Build completed'",
     "build:worker": "esbuild cloudflare-worker-enhanced.js --bundle --format=esm --outfile=dist/worker.js",
     "deploy": "wrangler deploy",

@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 import { MAPBOX_TOKEN, getMapboxTileUrl } from '../../lib/mapbox'
+import { Restaurant as ApiRestaurant } from '../../lib/api-client'
 
 // Dynamically import Leaflet components to avoid SSR issues
 const MapContainer = dynamic(
@@ -36,17 +37,8 @@ const MapEventsComponent = dynamic(
   { ssr: false }
 )
 
-interface Restaurant {
-  id: number
-  name: string
-  latitude: number
-  longitude: number
-  cuisine: string
-  rating?: number
-  price_range?: string
-  platform?: string
-  status?: 'active' | 'closed' | 'coming_soon'
-}
+// Use the Restaurant type from API client
+type Restaurant = ApiRestaurant
 
 interface ProductionMapComponentProps {
   center: [number, number]

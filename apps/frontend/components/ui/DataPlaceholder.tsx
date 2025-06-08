@@ -275,10 +275,10 @@ export function ListPlaceholder({
 
 // Quick access to common placeholder types
 export const PlaceholderTypes = {
-  Loading: (props: Omit<DataPlaceholderProps, 'type'>) => <DataPlaceholder type="loading" {...props} />,
-  Empty: (props: Omit<DataPlaceholderProps, 'type'>) => <DataPlaceholder type="empty" {...props} />,
-  Error: (props: Omit<DataPlaceholderProps, 'type'>) => <DataPlaceholder type="error" {...props} />,
-  NoConnection: (props: Omit<DataPlaceholderProps, 'type'>) => <DataPlaceholder type="no-connection" {...props} />
+  Loading: (props: Partial<PlaceholderProps>) => <DataPlaceholder message="Loading..." icon={<RefreshCw className="h-12 w-12 animate-spin" />} {...props} />,
+  Empty: (props: Partial<PlaceholderProps>) => <DataPlaceholder message="No data available" icon={<PackageOpen className="h-12 w-12" />} {...props} />,
+  Error: (props: Partial<PlaceholderProps>) => <DataPlaceholder message="Error loading data" icon={<AlertCircle className="h-12 w-12" />} {...props} />,
+  NoConnection: (props: Partial<PlaceholderProps>) => <DataPlaceholder message="No connection" icon={<Wifi className="h-12 w-12" />} {...props} />
 }
 
 export default DataPlaceholder;
