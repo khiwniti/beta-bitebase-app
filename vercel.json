@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "bitebase-monorepo",
+  "name": "bitebase-intelligence",
   "builds": [
     {
       "src": "apps/frontend/package.json",
@@ -20,14 +20,22 @@
     "NEXT_PUBLIC_API_URL": "@next-public-api-url",
     "NEXT_PUBLIC_STRAPI_URL": "@next-public-strapi-url",
     "NEXT_PUBLIC_AGENT_API_URL": "@next-public-agent-api-url",
-    "NEXT_PUBLIC_SITE_URL": "@next-public-site-url"
+    "NEXT_PUBLIC_SITE_URL": "@next-public-site-url",
+    "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN": "@next-public-mapbox-token",
+    "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY": "@next-public-google-maps-key",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "@next-public-stripe-key",
+    "NEXT_PUBLIC_GA_ID": "@next-public-ga-id"
   },
   "build": {
     "env": {
       "NEXT_PUBLIC_API_URL": "@next-public-api-url",
       "NEXT_PUBLIC_STRAPI_URL": "@next-public-strapi-url",
       "NEXT_PUBLIC_AGENT_API_URL": "@next-public-agent-api-url",
-      "NEXT_PUBLIC_SITE_URL": "@next-public-site-url"
+      "NEXT_PUBLIC_SITE_URL": "@next-public-site-url",
+      "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN": "@next-public-mapbox-token",
+      "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY": "@next-public-google-maps-key",
+      "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "@next-public-stripe-key",
+      "NEXT_PUBLIC_GA_ID": "@next-public-ga-id"
     }
   },
   "functions": {
@@ -57,6 +65,14 @@
         {
           "key": "Referrer-Policy",
           "value": "origin-when-cross-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains; preload"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' *.vercel.app *.google.com *.googleapis.com *.gstatic.com; style-src 'self' 'unsafe-inline' *.googleapis.com; img-src 'self' data: blob: *.vercel.app *.google.com *.googleapis.com *.gstatic.com; font-src 'self' *.googleapis.com *.gstatic.com; connect-src 'self' *.vercel.app *.google.com *.googleapis.com api.mapbox.com; frame-src 'self' *.google.com;"
         }
       ]
     },
@@ -66,6 +82,33 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/_next/static/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
         }
       ]
     }
