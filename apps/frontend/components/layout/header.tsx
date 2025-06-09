@@ -41,11 +41,13 @@ export function Header({ onOpenSidebar, userName = 'Maria Rodriguez', restaurant
             <Menu className="h-5 w-5" />
           </button>
           
-          <div className="hidden md:flex items-center gap-3">
-            <div>
-              <h2 className="text-sm font-semibold text-primary-700 dark:text-white">{restaurantName}</h2>
-              <p className="text-xs text-accent-saffron-600 dark:text-gray-400">Culinary Intelligence Platform</p>
-            </div>
+          <div className="flex items-center gap-3">
+            <BiteBaseLogo
+              size="sm"
+              showText={true}
+              variant="default"
+              animated={true}
+            />
           </div>
         </div>
 

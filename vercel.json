@@ -59,6 +59,15 @@
           "value": "origin-when-cross-origin"
         }
       ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ],
   "redirects": [
@@ -67,5 +76,27 @@
       "destination": "https://bitebase-backend.vercel.app/api/$1",
       "permanent": false
     }
-  ]
+  ],
+  "buildCommand": "yarn build",
+  "framework": "nextjs",
+  "installCommand": "yarn",
+  "outputDirectory": "apps/frontend/.next",
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "production": true,
+      "preview": true
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/cleanup-temp-data",
+      "schedule": "0 0 * * *"
+    }
+  ],
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://api.bitebase.com/api/:path*" }
+  ],
+  "regions": ["sin1", "iad1", "sfo1"],
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./apps/frontend"
 }

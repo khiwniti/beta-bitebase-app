@@ -1,8 +1,8 @@
-/* BiteBase Theme - Based on Landing Page Design System */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* BiteBase Design System - Enterprise-Grade UI Framework */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  /* BiteBase Brand Colors - Following Brand Guidelines V1 2024 */
+  /* BiteBase Brand Colors - Following Design System */
   /* Primary Color: Mantis (90% usage) */
   --primary-color: #74C365;
   --primary-dark: #5fa854;
@@ -27,6 +27,21 @@
   --accent-saffron: #F4C431;
   --accent-saffron-dark: #e0b02a;
   --accent-saffron-light: #fef7e0;
+
+  /* Design System Colors */
+  --color-primary: #74C365;
+  --color-secondary: #E23D28;
+  --color-accent: #F4C431;
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
 
   /* Text Colors */
   --text-dark: #1f2937;
@@ -71,12 +86,23 @@
 }
 
 body {
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-dark);
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+/* Font Classes */
+.font-display {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 700;
+}
+
+.font-body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Typography */
@@ -372,17 +398,95 @@ p {
 .rounded-lg { border-radius: var(--radius-lg); }
 .rounded-xl { border-radius: var(--radius-xl); }
 
+/* Translucent Effects */
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.translucent-bg {
+  background: rgba(116, 195, 101, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+/* Modern Interactive Elements */
+.interactive-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.interactive-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Gradient Overlays */
+.gradient-overlay {
+  background: linear-gradient(135deg,
+    rgba(116, 195, 101, 0.9) 0%,
+    rgba(226, 61, 40, 0.8) 50%,
+    rgba(244, 196, 49, 0.9) 100%);
+}
+
+/* Modern Button Styles */
+.btn-modern {
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(116, 195, 101, 0.3);
+}
+
+.btn-modern:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(116, 195, 101, 0.4);
+}
+
+.btn-modern:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-modern:hover:before {
+  left: 100%;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   h1 { font-size: 2rem; }
   h2 { font-size: 1.75rem; }
   h3 { font-size: 1.5rem; }
-  
+
   .card-content {
     padding: 1rem;
   }
-  
+
   .feature-card {
     padding: 1.5rem;
+  }
+
+  .glass-card {
+    backdrop-filter: blur(5px);
   }
 }
