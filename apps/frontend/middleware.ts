@@ -36,7 +36,7 @@ export default async function middleware(req: NextRequest) {
   
   // Redirect to login if accessing a protected route without auth token
   if (isProtectedRoute && !authToken) {
-    const url = new URL('/auth/login', req.url);
+    const url = new URL('/auth', req.url);
     url.searchParams.set('callbackUrl', encodeURI(pathname));
     return NextResponse.redirect(url);
   }

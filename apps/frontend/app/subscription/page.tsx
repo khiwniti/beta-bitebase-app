@@ -7,6 +7,8 @@ import { Badge } from "@bitebase/ui"
 import { Check, Crown, Star, Zap, ArrowRight, Building2, X } from "lucide-react"
 import BiteBaseLogo from "../../components/BiteBaseLogo"
 import Image from "next/image"
+import "../../styles/bitebase-official-design.css"
+import "../../styles/bitebase-design-system.css"
 
 interface PricingPlan {
   id: string

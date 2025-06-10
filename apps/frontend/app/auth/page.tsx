@@ -7,6 +7,8 @@ import BiteBaseLogo from '../../components/BiteBaseLogo';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from "@bitebase/ui";
+import "../../styles/bitebase-official-design.css";
+import "../../styles/bitebase-design-system.css";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);

@@ -9,6 +9,7 @@ import { Search, Clock, ChevronRight, Tag, Calendar } from "lucide-react";
 import BiteBaseLogo from "../../components/BiteBaseLogo";
 
 // Apply BiteBase Design System
+import "../../styles/bitebase-official-design.css";
 import "../../styles/bitebase-design-system.css";
 
 interface BlogPost {
