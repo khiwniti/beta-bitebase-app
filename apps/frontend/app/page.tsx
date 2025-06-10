@@ -443,12 +443,23 @@ export default function HomePage() {
         </section>
 
         {/* Pricing Section - Official BiteBase Style Guide */}
-        <section id="pricing" className="section bordered-section">
-          <div className="container">
-            <div className="text-center mb-xl">
-              <span className="badge badge-outline badge-accent mb-sm">Pricing Plans</span>
-              <h2>Choose Your Plan</h2>
-              <p className="text-lead mx-auto" style={{ maxWidth: '600px' }}>Select a plan that fits your needs and start building with BiteBase today!</p>
+        <section id="pricing" className="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50 relative overflow-hidden">
+          {/* Background Elements */}
+          <div className="absolute inset-0 overflow-hidden z-0">
+            <div className="absolute w-64 h-64 bg-primary-500 rounded-full opacity-5 -top-32 -right-32 animate-spin" style={{ animation: 'spin 25s linear infinite' }}></div>
+            <div className="absolute w-48 h-48 bg-accent-saffron-500 rounded-full opacity-5 -bottom-24 -left-24 animate-spin" style={{ animation: 'spin 20s linear infinite reverse' }}></div>
+            <div className="absolute w-32 h-32 bg-primary-500 rounded-full opacity-5 top-1/3 left-1/4 animate-bounce" style={{ animation: 'bounce 8s ease-in-out infinite' }}></div>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-16">
+              <span className="inline-block px-4 py-2 rounded-full border border-primary-500 text-primary-500 font-semibold mb-4 hover:rotate-3 transition-transform">
+                💰 Pricing Plans
+              </span>
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Choose Your Perfect Plan</h3>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Select a plan that fits your restaurant's needs and start transforming your business with BiteBase Intelligence today!
+              </p>
             </div>
             <OfficialPricingCards />
           </div>

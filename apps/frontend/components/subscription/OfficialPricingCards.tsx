@@ -94,135 +94,90 @@ export default function OfficialPricingCards() {
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'yearly'>('monthly');
 
   return (
-    <section className="section bordered-section" id="pricing-section">
-      <div className="container">
-        <div className="text-center mb-xl">
-          <span className="badge badge-outline badge-accent mb-sm">Pricing Plans</span>
-          <h2>Choose Your Plan</h2>
-          <p className="text-lead mx-auto" style={{ maxWidth: '600px' }}>
-            Select a plan that fits your needs and start building with BiteBase today!
-          </p>
-        </div>
+    <div className="w-full">
+      {/* Billing Period Toggle */}
         
-        <div className="flex justify-center mb-8" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+      <div className="flex justify-center mb-12">
+        <div className="bg-white rounded-lg p-1 shadow-sm border border-gray-200">
           <button 
-            className={`toggle-btn ${billingPeriod === 'monthly' ? 'active' : ''}`}
+            className={`px-6 py-3 rounded-md font-medium transition-all duration-300 ${
+              billingPeriod === 'monthly' 
+                ? 'bg-primary-600 text-white shadow-md' 
+                : 'text-gray-600 hover:text-primary-600'
+            }`}
             onClick={() => setBillingPeriod('monthly')}
-            style={{
-              padding: '8px 16px',
-              border: billingPeriod === 'monthly' ? '2px solid var(--accent-color)' : '1px solid #ccc',
-              background: billingPeriod === 'monthly' ? 'var(--accent-color)' : 'transparent',
-              color: billingPeriod === 'monthly' ? 'white' : '#333',
-              borderRadius: '8px 0 0 8px',
-              cursor: 'pointer',
-              fontFamily: 'JetBrains Mono, monospace'
-            }}
           >
             Monthly
           </button>
           <button 
-            className={`toggle-btn ${billingPeriod === 'yearly' ? 'active' : ''}`}
+            className={`px-6 py-3 rounded-md font-medium transition-all duration-300 relative ${
+              billingPeriod === 'yearly' 
+                ? 'bg-primary-600 text-white shadow-md' 
+                : 'text-gray-600 hover:text-primary-600'
+            }`}
             onClick={() => setBillingPeriod('yearly')}
-            style={{
-              padding: '8px 16px',
-              border: billingPeriod === 'yearly' ? '2px solid var(--accent-color)' : '1px solid #ccc',
-              background: billingPeriod === 'yearly' ? 'var(--accent-color)' : 'transparent',
-              color: billingPeriod === 'yearly' ? 'white' : '#333',
-              borderRadius: '0 8px 8px 0',
-              cursor: 'pointer',
-              fontFamily: 'JetBrains Mono, monospace',
-              position: 'relative'
-            }}
           >
             Yearly
-            <span 
-              className="pricing-save"
-              style={{
-                position: 'absolute',
-                top: '-8px',
-                right: '-8px',
-                background: 'var(--contrast-color)',
-                color: '#333',
-                fontSize: '10px',
-                padding: '2px 6px',
-                borderRadius: '10px',
-                fontWeight: 'bold'
-              }}
-            >
+            <span className="absolute -top-2 -right-2 bg-accent-saffron-500 text-white text-xs px-2 py-1 rounded-full font-bold">
               Save 20%
             </span>
           </button>
         </div>
+      </div>
         
-        <div className="pricing-grid">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
           {pricingPlans.map((plan) => (
             <div 
               key={plan.id}
-              className={`pricing-card translucent-card ${plan.featured ? 'popular' : ''}`}
-              style={{
-                position: 'relative',
-                ...(plan.featured && {
-                  transform: 'scale(1.05)',
-                  border: '2px solid var(--accent-color)',
-                  zIndex: 10,
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.15)'
-                })
-              }}
+              className={`relative bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-primary-300 ${
+                plan.featured 
+                  ? 'scale-105 border-primary-500 shadow-lg z-10' 
+                  : 'hover:rotate-1'
+              }`}
             >
               {plan.featured && (
-                <div className="popular-tag">
-                  Most Popular
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-primary-500 to-primary-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                  ⭐ Most Popular
                 </div>
               )}
               
-              <div className="pricing-header">
-                <div 
-                  className="plan-icon"
-                  style={{ 
-                    marginBottom: '1rem',
-                    display: 'flex',
-                    justifyContent: 'center'
-                  }}
-                >
+              <div className="text-center mb-6">
+                <div className="flex justify-center mb-4">
                   <Image
                     src={plan.icon}
                     alt={`${plan.name} plan icon`}
                     width={64}
                     height={64}
-                    style={{ objectFit: 'contain' }}
+                    className="object-contain"
                   />
                 </div>
-                <h2 className="plan-name" style={{ 
-                  fontSize: '1.5rem', 
-                  margin: '8px 0',
-                  fontFamily: 'JetBrains Mono, monospace',
-                  fontWeight: '600'
-                }}>{plan.name}</h2>
-                <div className="pricing-description" style={{
-                  fontFamily: 'JetBrains Mono, monospace',
-                  fontSize: '0.875rem',
-                  color: '#6b7280',
-                  marginBottom: '1rem'
-                }}>{plan.description}</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                <p className="text-sm text-gray-600 mb-4">{plan.description}</p>
               </div>
               
-              <p className="price" style={plan.featured ? { fontSize: '1.2em', fontWeight: 'bold' } : {}}>
-                US${billingPeriod === 'yearly' ? (plan.price * 12 * 0.8).toFixed(2) : plan.price} 
-                <span className="price-period"> {plan.period}</span>
-              </p>
+              <div className="text-center mb-6">
+                <div className={`text-4xl font-bold text-gray-900 ${plan.featured ? 'text-primary-600' : ''}`}>
+                  ${billingPeriod === 'yearly' ? (plan.price * 12 * 0.8).toFixed(2) : plan.price}
+                </div>
+                <div className="text-gray-500 text-sm">{plan.period}</div>
+                {billingPeriod === 'yearly' && plan.price > 0 && (
+                  <div className="text-xs text-accent-saffron-600 font-semibold mt-1">
+                    Save ${((plan.price * 12) - (plan.price * 12 * 0.8)).toFixed(2)}/year
+                  </div>
+                )}
+              </div>
               
-              <ul className="pricing-features">
+              <ul className="space-y-3 mb-8">
                 {plan.features.map((feature, index) => (
-                  <li key={index}>
-                    <i 
-                      className={`fas ${feature.included ? 'fa-check-circle' : 'fa-times-circle'}`}
-                      style={{ 
-                        color: feature.included 
-                          ? (plan.featured ? 'var(--accent-color)' : 'var(--accent-color)') 
-                          : '#ccc' 
-                      }}
-                    ></i>
-                    <span style={{ color: feature.included ? '#333' : '#999' }}>
+                  <li key={index} className="flex items-center text-sm">
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center mr-3 ${
+                      feature.included 
+                        ? 'bg-green-100 text-green-600' 
+                        : 'bg-gray-100 text-gray-400'
+                    }`}>
+                      {feature.included ? '✓' : '✕'}
+                    </div>
+                    <span className={feature.included ? 'text-gray-700' : 'text-gray-400'}>
                       {feature.text}
                     </span>
                   </li>
@@ -230,23 +185,17 @@ export default function OfficialPricingCards() {
               </ul>
               
               <button 
-                className="button button-lg"
-                style={plan.featured ? {
-                  background: 'var(--accent-color)',
-                  color: 'white',
-                  fontWeight: 'bold',
-                  padding: '12px 24px',
-                  transform: 'scale(1.05)',
-                  boxShadow: '0 4px 12px rgba(116, 195, 101, 0.4)',
-                  transition: 'all 0.3s ease'
-                } : {}}
+                className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+                  plan.featured
+                    ? 'bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-md hover:from-primary-700 hover:to-primary-800'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
+                }`}
               >
                 {plan.buttonText}
               </button>
             </div>
           ))}
         </div>
-      </div>
-    </section>
+    </div>
   );
 }
