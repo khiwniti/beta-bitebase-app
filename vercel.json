@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "bitebase-intelligence",
-  "buildCommand": "cd apps/frontend && npm run build",
+  "buildCommand": "cd apps/frontend && npm install && npm run build",
   "outputDirectory": "apps/frontend/.next",
   "installCommand": "cd apps/frontend && npm install",
   "framework": "nextjs",
@@ -14,26 +14,6 @@
     "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY": "@next-public-google-maps-key",
     "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "@next-public-stripe-key",
     "NEXT_PUBLIC_GA_ID": "@next-public-ga-id"
-  },
-  "build": {
-    "env": {
-      "NEXT_PUBLIC_API_URL": "@next-public-api-url",
-      "NEXT_PUBLIC_STRAPI_URL": "@next-public-strapi-url",
-      "NEXT_PUBLIC_AGENT_API_URL": "@next-public-agent-api-url",
-      "NEXT_PUBLIC_SITE_URL": "@next-public-site-url",
-      "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN": "@next-public-mapbox-token",
-      "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY": "@next-public-google-maps-key",
-      "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "@next-public-stripe-key",
-      "NEXT_PUBLIC_GA_ID": "@next-public-ga-id"
-    }
-  },
-  "functions": {
-    "apps/frontend/pages/api/**/*.js": {
-      "maxDuration": 30
-    },
-    "apps/frontend/pages/api/**/*.ts": {
-      "maxDuration": 30
-    }
   },
   "headers": [
     {
@@ -56,21 +36,8 @@
           "value": "origin-when-cross-origin"
         },
         {
-          "key": "Strict-Transport-Security",
-          "value": "max-age=31536000; includeSubDomains; preload"
-        },
-        {
           "key": "Content-Security-Policy",
           "value": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' *.vercel.app *.google.com *.googleapis.com *.gstatic.com; style-src 'self' 'unsafe-inline' *.googleapis.com; img-src 'self' data: blob: *.vercel.app *.google.com *.googleapis.com *.gstatic.com; font-src 'self' *.googleapis.com *.gstatic.com; connect-src 'self' *.vercel.app *.google.com *.googleapis.com api.mapbox.com; frame-src 'self' *.google.com;"
-        }
-      ]
-    },
-    {
-      "source": "/assets/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
         }
       ]
     },
@@ -82,50 +49,11 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
-    },
-    {
-      "source": "/images/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
-        }
-      ]
-    },
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
-        }
-      ]
     }
   ],
-  "redirects": [
-    {
-      "source": "/api/backend/(.*)",
-      "destination": "https://bitebase-backend.vercel.app/api/$1",
-      "permanent": false
-    }
-  ],
-
   "git": {
     "deploymentEnabled": {
-      "main": true,
-      "production": true,
-      "preview": true
+      "main": true
     }
-  },
-  "crons": [
-    {
-      "path": "/api/cron/cleanup-temp-data",
-      "schedule": "0 0 * * *"
-    }
-  ],
-  "rewrites": [
-    { "source": "/api/:path*", "destination": "https://api.bitebase.com/api/:path*" }
-  ],
-  "regions": ["sin1", "iad1", "sfo1"],
-
+  }
 }

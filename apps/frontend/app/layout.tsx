@@ -97,6 +97,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <title>BiteBase Intelligence - Restaurant Analytics Platform</title>
+        {/* Force deployment: 2025-06-09 08:55 UTC */}
         <meta
           name="description"
           content="BiteBase Intelligence provides data-driven insights and AI-powered analytics to help restaurants optimize operations, increase profitability, and gain competitive advantage."
