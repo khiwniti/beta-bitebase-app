@@ -9,14 +9,14 @@ import BiteBaseLogo from "../../../components/BiteBaseLogo";
 import BlogInteractions from "../../../components/blog/BlogInteractions";
 
 interface BlogPostParams {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
+  searchParams?: Promise<any>;
 }
 
-export default function BlogPostPage({ params }: BlogPostParams) {
-  const { slug } = params;
-  const [isBookmarked, setIsBookmarked] = useState(false);
+export default async function BlogPostPage({ params }: BlogPostParams) {
+  const { slug } = await params;
   
   // Mock data for a single blog post
   const post = {
