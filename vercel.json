@@ -1,21 +1,10 @@
 {
   "version": 2,
   "name": "bitebase-intelligence",
-  "builds": [
-    {
-      "src": "apps/frontend/package.json",
-      "use": "@vercel/next",
-      "config": {
-        "distDir": ".next"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "apps/frontend/$1"
-    }
-  ],
+  "buildCommand": "cd apps/frontend && npm run build",
+  "outputDirectory": "apps/frontend/.next",
+  "installCommand": "cd apps/frontend && npm install",
+  "framework": "nextjs",
   "env": {
     "NEXT_PUBLIC_API_URL": "@next-public-api-url",
     "NEXT_PUBLIC_STRAPI_URL": "@next-public-strapi-url",
@@ -120,10 +109,7 @@
       "permanent": false
     }
   ],
-  "buildCommand": "yarn build",
-  "framework": "nextjs",
-  "installCommand": "yarn",
-  "outputDirectory": "apps/frontend/.next",
+
   "git": {
     "deploymentEnabled": {
       "main": true,
@@ -141,5 +127,5 @@
     { "source": "/api/:path*", "destination": "https://api.bitebase.com/api/:path*" }
   ],
   "regions": ["sin1", "iad1", "sfo1"],
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./apps/frontend"
+
 }

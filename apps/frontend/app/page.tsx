@@ -1,5 +1,6 @@
 "use client"
 
+// Force deployment trigger - 2025-06-09 08:45 UTC
 import React, { useState } from "react"
 import { Providers } from "./providers"
 import BiteBaseLogo from "../components/BiteBaseLogo"
