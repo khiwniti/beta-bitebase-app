@@ -1,13 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false, // Disable strict mode to help with React hooks issues
-  // output: 'export',  // Disable static export for development
+  reactStrictMode: false,
   distDir: ".next",
   trailingSlash: true,
   images: {
     unoptimized: true,
   },
-  // Development server configuration
+  // Production-ready headers for security and CORS
   async headers() {
     return [
       {
@@ -33,16 +32,12 @@ const nextConfig = {
       },
     ];
   },
-  // Headers are not supported with static export
-  // Use _headers file for Cloudflare Pages instead
+  // Webpack configuration for Firebase compatibility
   webpack: (config, { isServer }) => {
-    // Fix issues with Firebase and undici
     if (!isServer) {
-      // Avoid undici issues by replacing with noop for client-side
       config.resolve.alias = {
         ...config.resolve.alias,
         undici: false,
-        // Prevent issues with node modules in the browser
         fs: false,
         path: false,
         os: false,
@@ -50,7 +45,6 @@ const nextConfig = {
         tls: false,
       };
 
-      // Ignore specific node modules that cause issues
       config.resolve.fallback = {
         ...config.resolve.fallback,
         crypto: false,
@@ -64,7 +58,6 @@ const nextConfig = {
       };
     }
 
-    // Handle Firebase dependencies properly
     config.module.rules.push({
       test: /\.m?js$/,
       type: "javascript/auto",
@@ -75,17 +68,14 @@ const nextConfig = {
 
     return config;
   },
-  // Use serverExternalPackages instead of transpilePackages for Firebase
-  // This prevents conflicts and follows Next.js 15 best practices
+  // Firebase packages handled as external for server-side rendering
+  // This prevents bundling conflicts in Next.js 15
   serverExternalPackages: [
     "firebase",
     "@firebase/auth",
     "@firebase/app",
     "@firebase/firestore",
   ],
-  experimental: {
-    // Keep experimental features minimal for production
-  },
 };
 
 module.exports = nextConfig;
