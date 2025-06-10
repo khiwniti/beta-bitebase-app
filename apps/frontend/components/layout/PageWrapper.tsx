@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react'
 import { usePathname } from 'next/navigation'
-import Header from './header'
-import Sidebar from './sidebar'
-import { WebTour, useTour } from '../tour/WebTour'
-import { TourTrigger, WelcomeBanner } from '../tour/TourTrigger'
+// import Header from './header'
+// import Sidebar from './sidebar'
+// import { WebTour, useTour } from '../tour/WebTour'
+// import { TourTrigger, WelcomeBanner } from '../tour/TourTrigger'
 
 interface PageWrapperProps {
   children: React.ReactNode
@@ -39,7 +39,7 @@ export function PageWrapper({
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
 
   // Tour state management
-  const { isTourOpen, isFirstTimeUser, startTour, closeTour, completeTour } = useTour()
+  // const { isTourOpen, isFirstTimeUser, startTour, closeTour, completeTour } = useTour()
 
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed)
@@ -48,15 +48,15 @@ export function PageWrapper({
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex">
       {/* Tour integration with proper props */}
-      <WebTour 
+      {/* <WebTour 
         isOpen={isTourOpen}
         onClose={closeTour}
         onComplete={completeTour}
         isFirstTimeUser={isFirstTimeUser}
-      />
+      /> */}
 
       {/* Sidebar */}
-      {showSidebar && (
+      {/* {showSidebar && (
         <Sidebar 
           collapsed={sidebarCollapsed}
           toggleCollapsed={toggleSidebar}
@@ -65,26 +65,26 @@ export function PageWrapper({
           userName={userName}
           restaurantName={restaurantName}
         />
-      )}
+      )} */}
 
       {/* Main content */}
       <div className="flex-1 flex flex-col relative overflow-hidden">
         {/* Header */}
-        <Header 
+        {/* <Header 
           onOpenSidebar={() => setMobileSidebarOpen(true)}
           restaurantName={restaurantName}
           userName={userName}
-        />
+        /> */}
 
         {/* Main content */}
         <main className="flex-1 overflow-auto">
           <div className="container max-w-7xl mx-auto px-4 py-6">
             {/* Welcome Banner */}
-            {showWelcomeBanner && (
+            {/* {showWelcomeBanner && (
               <div className="mb-6">
                 <WelcomeBanner onStartTour={startTour} />
               </div>
-            )}
+            )} */}
 
             {/* Page header */}
             {(pageTitle || pageDescription) && (

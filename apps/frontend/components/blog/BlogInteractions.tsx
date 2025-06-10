@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@bitebase/ui";
+import { Button } from "../ui/button";
 import { Share2, Bookmark, Twitter, Facebook, Linkedin } from "lucide-react";
 
 interface BlogInteractionsProps {
