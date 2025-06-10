@@ -1,0 +1,17 @@
+npm warn config ignoring workspace config at /workspace/beta-bitebase-app/apps/frontend/.npmrc
+
+> bitebase-frontend@0.1.0 dev
+> next dev --port 12000 --hostname 0.0.0.0
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:12000
+   - Network:      http://0.0.0.0:12000
+
+ ✓ Starting...
+ ✓ Ready in 1502ms
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 527ms (108 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 6.4s (1321 modules)
+ GET / 200 in 7003ms
+ ✓ Compiled in 905ms (600 modules)

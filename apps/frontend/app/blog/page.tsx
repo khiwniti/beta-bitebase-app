@@ -8,6 +8,9 @@ import { Button } from "@bitebase/ui";
 import { Search, Clock, ChevronRight, Tag, Calendar } from "lucide-react";
 import BiteBaseLogo from "../../components/BiteBaseLogo";
 
+// Apply BiteBase Design System
+import "../../styles/bitebase-design-system.css";
+
 interface BlogPost {
   id: number;
   title: string;
@@ -150,7 +153,7 @@ export default function BlogPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -159,25 +162,25 @@ export default function BlogPage() {
               <BiteBaseLogo size="sm" showText={true} />
             </Link>
             
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-gray-500 hover:text-gray-900">Home</Link>
-              <Link href="/about" className="text-gray-500 hover:text-gray-900">About</Link>
-              <Link href="/blog" className="text-primary-600 font-medium">Blog</Link>
-              <Link href="/contact" className="text-gray-500 hover:text-gray-900">Contact</Link>
+            <nav className="hidden md:flex items-center space-x-8" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+              <Link href="/" className="text-gray-500 hover:text-gray-900 font-medium">Home</Link>
+              <Link href="/about" className="text-gray-500 hover:text-gray-900 font-medium">About</Link>
+              <Link href="/blog" className="font-medium" style={{ color: 'var(--accent-color)' }}>Blog</Link>
+              <Link href="/contact" className="text-gray-500 hover:text-gray-900 font-medium">Contact</Link>
             </nav>
             
             <div className="flex items-center">
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="mr-2 hidden sm:inline-flex"
+                className="mr-2 hidden sm:inline-flex button button-secondary"
                 asChild
               >
                 <Link href="/auth/login">Sign In</Link>
               </Button>
               <Button 
                 size="sm" 
-                className="bg-primary-600 hover:bg-primary-700 text-white"
+                className="button button-primary"
                 asChild
               >
                 <Link href="/auth/register">Get Started</Link>
@@ -188,13 +191,16 @@ export default function BlogPage() {
       </header>
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-white to-gray-50 py-16">
+      <section className="py-16" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95))' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center glass-panel">
+            <span className="glass-badge glass-badge-accent mb-md" style={{ background: 'var(--contrast-color)', color: '#333', padding: '4px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: '500', display: 'inline-block', marginBottom: 'var(--spacing-md)' }}>
+              BiteBase Intelligence Blog
+            </span>
+            <h1 className="mb-sm" style={{ fontSize: '2.5rem', fontWeight: '700', color: '#333', marginBottom: 'var(--spacing-sm)', fontFamily: 'JetBrains Mono, monospace' }}>
               Restaurant Intelligence Blog
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lead" style={{ fontSize: '1.25rem', color: '#666', maxWidth: '600px', margin: '0 auto', fontFamily: 'JetBrains Mono, monospace' }}>
               Insights, strategies, and data-driven advice to help your restaurant business thrive
             </p>
           </div>
@@ -215,7 +221,11 @@ export default function BlogPage() {
                 placeholder="Search articles..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
+                style={{ 
+                  fontFamily: 'JetBrains Mono, monospace',
+                  borderColor: 'var(--accent-color)'
+                }}
               />
             </div>
             
@@ -225,9 +235,10 @@ export default function BlogPage() {
                 onClick={() => setSelectedCategory(null)}
                 className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap ${
                   selectedCategory === null
-                    ? 'bg-primary-100 text-primary-800'
-                    : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                    ? 'badge badge-primary'
+                    : 'badge badge-outline'
                 }`}
+                style={{ fontFamily: 'JetBrains Mono, monospace' }}
               >
                 All
               </button>
@@ -238,9 +249,10 @@ export default function BlogPage() {
                   onClick={() => setSelectedCategory(category === selectedCategory ? null : category)}
                   className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap ${
                     category === selectedCategory
-                      ? 'bg-primary-100 text-primary-800'
-                      : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                      ? 'badge badge-primary'
+                      : 'badge badge-outline'
                   }`}
+                  style={{ fontFamily: 'JetBrains Mono, monospace' }}
                 >
                   {category}
                 </button>
