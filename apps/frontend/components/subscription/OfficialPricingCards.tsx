@@ -179,22 +179,31 @@ export default function OfficialPricingCards() {
                 <div 
                   className="plan-icon"
                   style={{ 
-                    fontSize: '3rem', 
-                    color: 'var(--accent-color)', 
-                    marginBottom: 'var(--spacing-sm)',
+                    marginBottom: '1rem',
                     display: 'flex',
                     justifyContent: 'center'
                   }}
                 >
-                  <i className={`fas ${
-                    plan.id === 'free' ? 'fa-seedling' :
-                    plan.id === 'growth' ? 'fa-chart-line' :
-                    plan.id === 'pro' ? 'fa-crown' :
-                    'fa-building'
-                  }`}></i>
+                  <Image
+                    src={plan.icon}
+                    alt={`${plan.name} plan icon`}
+                    width={64}
+                    height={64}
+                    style={{ objectFit: 'contain' }}
+                  />
                 </div>
-                <h2 className="price" style={{ fontSize: '1.5rem', margin: '8px 0' }}>{plan.name}</h2>
-                <div className="pricing-description">{plan.description}</div>
+                <h2 className="plan-name" style={{ 
+                  fontSize: '1.5rem', 
+                  margin: '8px 0',
+                  fontFamily: 'JetBrains Mono, monospace',
+                  fontWeight: '600'
+                }}>{plan.name}</h2>
+                <div className="pricing-description" style={{
+                  fontFamily: 'JetBrains Mono, monospace',
+                  fontSize: '0.875rem',
+                  color: '#6b7280',
+                  marginBottom: '1rem'
+                }}>{plan.description}</div>
               </div>
               
               <p className="price" style={plan.featured ? { fontSize: '1.2em', fontWeight: 'bold' } : {}}>
