@@ -20,8 +20,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./app/*", "./components/*", "./lib/*"],
-      "@bitebase/ui": ["../../packages/ui"]
+      "@/*": ["./app/*", "./components/*", "./lib/*"]
     }
   },
   "include": [

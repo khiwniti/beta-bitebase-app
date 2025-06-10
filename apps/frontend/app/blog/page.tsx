@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent } from "@bitebase/ui";
-import { Button } from "@bitebase/ui";
+import { Card, CardContent } from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
 import { Search, Clock, ChevronRight, Tag, Calendar } from "lucide-react";
 import BiteBaseLogo from "../../components/BiteBaseLogo";
 
@@ -171,21 +171,23 @@ export default function BlogPage() {
             </nav>
             
             <div className="flex items-center">
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="mr-2 hidden sm:inline-flex button button-secondary"
-                asChild
-              >
-                <Link href="/auth/login">Sign In</Link>
-              </Button>
-              <Button 
-                size="sm" 
-                className="button button-primary"
-                asChild
-              >
-                <Link href="/auth/register">Get Started</Link>
-              </Button>
+              <Link href="/auth">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="mr-2 hidden sm:inline-flex button button-secondary"
+                >
+                  Sign In
+                </Button>
+              </Link>
+              <Link href="/auth/register">
+                <Button 
+                  size="sm" 
+                  className="button button-primary"
+                >
+                  Get Started
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

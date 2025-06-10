@@ -4,19 +4,10 @@
  */
 
 import React, { useState, useRef, useEffect } from "react";
-import {
-  Button,
-  Textarea,
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  Badge,
-} from "@bitebase/ui";
+import { Button } from "../ui/button";
+import { Textarea } from "../ui/textarea";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
+import { Badge } from "../ui/badge";
 import {
   Bot,
   Send,
@@ -348,23 +339,13 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
                   message.role === "user" ? "flex-row-reverse" : ""
                 }`}
               >
-                <Avatar className="flex-shrink-0">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
                   {message.role === "user" ? (
-                    <>
-                      <AvatarImage src="/avatars/user.png" alt="User" />
-                      <AvatarFallback className="bg-primary-100">
-                        <User className="h-5 w-5 text-primary" />
-                      </AvatarFallback>
-                    </>
+                    <User className="h-4 w-4" />
                   ) : (
-                    <>
-                      <AvatarImage src="/avatars/bot.png" alt="AI" />
-                      <AvatarFallback className="bg-primary-100">
-                        <Bot className="h-5 w-5 text-primary" />
-                      </AvatarFallback>
-                    </>
+                    <Bot className="h-4 w-4" />
                   )}
-                </Avatar>
+                </div>
 
                 <div className="flex flex-col gap-2">
                   <div
@@ -446,12 +427,9 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
         {isLoading && (
           <div className="flex justify-start">
             <div className="flex gap-3 max-w-[80%]">
-              <Avatar>
-                <AvatarImage src="/avatars/bot.png" alt="AI" />
-                <AvatarFallback className="bg-primary-100">
-                  <Bot className="h-5 w-5 text-primary" />
-                </AvatarFallback>
-              </Avatar>
+              <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+                <Bot className="h-4 w-4" />
+              </div>
 
               <div className="rounded-lg px-4 py-3 bg-gray-100">
                 <div className="flex space-x-2">
