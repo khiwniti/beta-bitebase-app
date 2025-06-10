@@ -7,6 +7,7 @@ import { Providers } from "./providers";
 // import PageWrapper from '../components/layout/PageWrapper'
 import AppContent from "./AppContent"; // Import the new component
 import "./globals.css";
+import "../styles/bitebase-official-design.css";
 import "../styles/bitebase-design-system.css";
 import "../styles/bitebase-theme.css";
 import "../styles/brand-theme.css";
@@ -123,8 +124,14 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
           rel="stylesheet"
+        />
+        
+        {/* Font Awesome Icons */}
+        <link 
+          rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
         />
         
         {/* Favicon and App Icons */}

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import PricingCards from '../../components/subscription/PricingCards';
+import OfficialPricingCards from '../../components/subscription/OfficialPricingCards';
 
 export default function PricePage() {
   return (
@@ -28,7 +28,7 @@ export default function PricePage() {
       </div>
 
       {/* Pricing Cards */}
-      <PricingCards />
+      <OfficialPricingCards />
 
       
       {/* Additional Features Section */}

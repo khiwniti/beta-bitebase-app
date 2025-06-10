@@ -6,7 +6,7 @@ import BiteBaseLogo from "../components/BiteBaseLogo"
 import Link from "next/link"
 import OfficialPricingCards from "../components/subscription/OfficialPricingCards"
 
-export default function HomePage() {
+export default function OfficialHomePage() {
   return (
     <Providers>
       <div className="wrapper" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
