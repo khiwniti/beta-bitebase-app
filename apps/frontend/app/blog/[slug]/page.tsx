@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@bitebase/ui";
 import { ArrowLeft, Calendar, Clock, Share2, User, Bookmark, Twitter, Facebook, Linkedin, Tag } from "lucide-react";
 import BiteBaseLogo from "../../../components/BiteBaseLogo";
+import BlogInteractions from "../../../components/blog/BlogInteractions";
 
 interface BlogPostParams {
   params: {
@@ -264,25 +265,7 @@ Ready to start tracking these metrics but not sure where to begin? BiteBase Inte
     );
   };
 
-  const handleShare = (platform: string) => {
-    const url = encodeURIComponent(window.location.href);
-    const title = encodeURIComponent(post.title);
-    
-    switch (platform) {
-      case 'twitter':
-        window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank');
-        break;
-      case 'facebook':
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
-        break;
-      case 'linkedin':
-        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
-        break;
-      default:
-        navigator.clipboard.writeText(window.location.href);
-        alert('Link copied to clipboard!');
-    }
-  };
+
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -406,53 +389,7 @@ Ready to start tracking these metrics but not sure where to begin? BiteBase Inte
         {/* Article Footer */}
         <footer className="mt-12 pt-6 border-t border-gray-200">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div className="flex items-center">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setIsBookmarked(!isBookmarked)}
-                className="mr-2"
-              >
-                <Bookmark
-                  className={`h-4 w-4 mr-2 ${isBookmarked ? "fill-primary-600" : ""}`}
-                />
-                {isBookmarked ? "Saved" : "Save Article"}
-              </Button>
-              
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handleShare('copy')}
-              >
-                <Share2 className="h-4 w-4 mr-2" />
-                Share
-              </Button>
-            </div>
-            
-            <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-500 mr-2">Share on:</span>
-              <button
-                onClick={() => handleShare('twitter')}
-                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600"
-                aria-label="Share on Twitter"
-              >
-                <Twitter className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => handleShare('facebook')}
-                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600"
-                aria-label="Share on Facebook"
-              >
-                <Facebook className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => handleShare('linkedin')}
-                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600"
-                aria-label="Share on LinkedIn"
-              >
-                <Linkedin className="h-4 w-4" />
-              </button>
-            </div>
+            <BlogInteractions title={post.title} />
           </div>
         </footer>
       </article>
