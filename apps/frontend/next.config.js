@@ -75,20 +75,16 @@ const nextConfig = {
 
     return config;
   },
-  transpilePackages: [
+  // Use serverExternalPackages instead of transpilePackages for Firebase
+  // This prevents conflicts and follows Next.js 15 best practices
+  serverExternalPackages: [
     "firebase",
     "@firebase/auth",
     "@firebase/app",
     "@firebase/firestore",
   ],
   experimental: {
-    // Reduce serialization issues
-    serverComponentsExternalPackages: [
-      "firebase",
-      "@firebase/auth",
-      "@firebase/app",
-      "@firebase/firestore",
-    ],
+    // Keep experimental features minimal for production
   },
 };
 
