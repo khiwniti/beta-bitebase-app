@@ -6,7 +6,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  
   // Production-ready headers for security and CORS
   async headers() {
     return [
@@ -33,8 +32,7 @@ const nextConfig = {
       },
     ];
   },
-
-  // Webpack configuration for Firebase and Node.js compatibility
+  // Webpack configuration for Firebase compatibility
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.alias = {
@@ -70,9 +68,8 @@ const nextConfig = {
 
     return config;
   },
-
-  // Firebase packages should be external to server components
-  // This prevents bundling issues and follows Next.js 15 best practices
+  // Firebase packages handled as external for server-side rendering
+  // This prevents bundling conflicts in Next.js 15
   serverExternalPackages: [
     "firebase",
     "@firebase/auth",
