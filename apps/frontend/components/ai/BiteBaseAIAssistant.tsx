@@ -84,7 +84,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
   const loadChatHistory = async () => {
     try {
       const response = await fetch(
-        `http://localhost:12001/api/chat/history/${userId}?limit=5`,
+        `http://localhost:12000/api/v1/ai/history/${userId}?limit=5`,
       );
       if (response.ok) {
         const data = await response.json();
@@ -115,17 +115,23 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
   // Send message to AI assistant
   const sendMessage = async (message: string) => {
     try {
-      const response = await fetch("http://localhost:12001/api/chat", {
+      // Get auth token from localStorage or cookie
+      const token = localStorage.getItem("bitebase_token") || 
+                   document.cookie.split('; ').find(row => row.startsWith('auth_token='))?.split('=')[1] ||
+                   "demo-token";
+
+      const response = await fetch("http://localhost:12000/api/v1/ai/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify({
           message,
-          userId,
-          userContext: {
+          context: {
             language: currentLanguage,
             timestamp: new Date().toISOString(),
+            userId,
           },
         }),
       });
@@ -136,11 +142,14 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
 
       const data = await response.json();
 
-      if (data.success) {
-        return data.response;
-      } else {
-        throw new Error(data.error || "Failed to get AI response");
-      }
+      // Backend returns AIChatResponse format: { response: string, suggestions?: string[], context?: object }
+      return {
+        content: data.response,
+        type: "text",
+        language: currentLanguage,
+        suggestions: data.suggestions,
+        data: data.context
+      };
     } catch (error) {
       console.error("AI request failed:", error);
       throw error;
@@ -194,7 +203,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
   // Clear chat history
   const clearChat = async () => {
     try {
-      await fetch(`http://localhost:12001/api/chat/session/${userId}`, {
+      await fetch(`http://localhost:12000/api/v1/ai/clear/${userId}`, {
         method: "DELETE",
       });
       setMessages([]);

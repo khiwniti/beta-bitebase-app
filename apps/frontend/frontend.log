@@ -1,0 +1,365 @@
+npm warn config ignoring workspace config at /workspace/beta-bitebase-app/apps/frontend/.npmrc
+
+> bitebase-frontend@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:12001
+   - Network:      http://10.2.10.144:12001
+
+ ✓ Starting...
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+ ✓ Ready in 1503ms
+ ✓ Compiled /middleware in 495ms (108 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 6.4s (1313 modules)
+ GET / 200 in 6931ms
+ ✓ Compiled in 841ms (596 modules)
+ GET / 200 in 67ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 782ms (1251 modules)
+ GET /bitebase-logo-03.png 404 in 1009ms
+ GET /bitebase-logo-03.png 404 in 32ms
+ ⚠ Cross origin request detected from work-2-yneqfrrglgawmjvb.prod-runtime.all-hands.dev to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ GET /bitebase-logo-03.png 404 in 177ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 404 in 12ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 404 in 39ms
+ ✓ Compiled in 816ms (599 modules)
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 404 in 24ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 404 in 48ms
+ ○ Compiling /auth/login ...
+ ✓ Compiled /auth/login in 1197ms (1366 modules)
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 908ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 14ms
+ GET /bitebase-logo-03.png 404 in 191ms
+ GET /auth/login/ 200 in 52ms
+ GET /bitebase-logo-03.png 404 in 45ms
+ GET /bitebase-logo-03.png 404 in 45ms
+ ○ Compiling /auth/register ...
+ ✓ Compiled /auth/register in 1181ms (1301 modules)
+ GET /auth/register/ 200 in 1270ms
+ GET /bitebase-logo-03.png 404 in 249ms
+ ✓ Compiled in 941ms (1311 modules)
+ GET /auth/register/ 200 in 151ms
+ ✓ Compiled in 606ms (1311 modules)
+ GET /auth/register/ 200 in 73ms
+ ✓ Compiled /_not-found in 278ms (1301 modules)
+ GET /bitebase-logo-03.png 404 in 519ms
+ ✓ Compiled in 529ms (1315 modules)
+ GET /auth/register/ 200 in 42ms
+ ✓ Compiled in 482ms (1315 modules)
+ GET /auth/register/ 200 in 40ms
+ GET /auth/register/ 200 in 166ms
+ GET /bitebase-logo-03.png 404 in 49ms
+ GET /bitebase-logo-03.png 404 in 38ms
+ GET /auth/login/ 200 in 67ms
+ GET /bitebase-logo-03.png 404 in 54ms
+ GET /bitebase-logo-03.png 404 in 33ms
+ ⨯ ./app/auth/login/page.tsx:5:1
+Module not found: Can't resolve '../../contexts/AuthContext'
+  3 | import React, { useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import { useAuth } from '../../contexts/AuthContext';
+    | ^
+  6 | import BiteBaseLogo from '../../components/BiteBaseLogo';
+  7 | import Image from 'next/image';
+  8 | import Link from 'next/link';
+
+https://nextjs.org/docs/messages/module-not-found
+ ○ Compiling /_error ...
+ ⨯ ./app/auth/login/page.tsx:5:1
+Module not found: Can't resolve '../../contexts/AuthContext'
+  3 | import React, { useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import { useAuth } from '../../contexts/AuthContext';
+    | ^
+  6 | import BiteBaseLogo from '../../components/BiteBaseLogo';
+  7 | import Image from 'next/image';
+  8 | import Link from 'next/link';
+
+https://nextjs.org/docs/messages/module-not-found
+ GET /auth/login/ 500 in 4800ms
+ GET /auth/login/ 500 in 1383ms
+ ⨯ ./app/auth/login/page.tsx:6:1
+Module not found: Can't resolve '../../components/BiteBaseLogo'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import { useAuth } from '../../../contexts/AuthContext';
+> 6 | import BiteBaseLogo from '../../components/BiteBaseLogo';
+    | ^
+  7 | import Image from 'next/image';
+  8 | import Link from 'next/link';
+  9 | import { Button } from "@bitebase/ui";
+
+https://nextjs.org/docs/messages/module-not-found
+ ✓ Compiled /_not-found in 1931ms (1646 modules)
+ GET /_next/static/webpack/5457521660b2a4d0.webpack.hot-update.json 404 in 1805ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /auth/login/ 200 in 84ms
+ GET /auth/login/ 200 in 56ms
+ GET /bitebase-logo-03.png 404 in 30ms
+ GET /bitebase-logo-03.png 404 in 63ms
+ GET /bitebase-logo-03.png 404 in 41ms
+ GET /auth/login/ 200 in 59ms
+ GET /bitebase-logo-03.png 404 in 42ms
+ GET /bitebase-logo-03.png 404 in 34ms
+ GET /bitebase-logo-03.png 404 in 35ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 19ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 71ms
+ GET /bitebase-logo-03.png 404 in 31ms
+ GET /bitebase-logo-03.png 404 in 57ms
+ GET /bitebase-logo-03.png 404 in 59ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 11ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 57ms
+ GET /bitebase-logo-03.png 404 in 50ms
+ GET /bitebase-logo-03.png 404 in 33ms
+ GET /bitebase-logo-03.png 404 in 36ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 16ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 65ms
+ GET /bitebase-logo-03.png 404 in 65ms
+ GET /bitebase-logo-03.png 404 in 41ms
+ GET /bitebase-logo-03.png 404 in 34ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 61ms
+ GET /bitebase-logo-03.png 404 in 28ms
+ GET /bitebase-logo-03.png 404 in 43ms
+ GET /apple-touch-icon.png 404 in 31ms
+ GET /bitebase-logo-03.png 404 in 25ms
+ GET /icon.svg 404 in 26ms
+ GET /manifest.json 404 in 24ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 11ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 9ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 12ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 11ms
+ GET / 200 in 81ms
+ GET /bitebase-logo-03.png 404 in 31ms
+ GET / 200 in 83ms
+ GET /bitebase-logo-03.png 404 in 29ms
+ GET /bitebase-logo-03.png 404 in 41ms
+ ✓ Compiled in 1539ms (1646 modules)
+ GET /bitebase-logo-03.png 404 in 341ms
+ GET /bitebase-logo-03.png 404 in 29ms
+ GET /bitebase-logo-03.png 404 in 26ms
+ ✓ Compiled in 842ms (1660 modules)
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 86ms
+ GET / 200 in 109ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 31ms
+ GET /bitebase-logo-03.png 404 in 93ms
+ ✓ Compiled in 598ms (1646 modules)
+ GET /bitebase-logo-03.png 404 in 143ms
+ GET /bitebase-logo-03.png 404 in 47ms
+ GET /bitebase-logo-03.png 404 in 29ms
+ ✓ Compiled in 399ms (1646 modules)
+ GET /bitebase-logo-03.png 404 in 146ms
+ GET /bitebase-logo-03.png 404 in 24ms
+ GET /bitebase-logo-03.png 404 in 32ms
+ GET /auth/login/ 200 in 97ms
+ GET /bitebase-logo-03.png 404 in 39ms
+ GET /bitebase-logo-03.png 404 in 59ms
+ GET /bitebase-logo-03.png 404 in 31ms
+ GET /bitebase-logo-03.png 404 in 58ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 1167ms (1713 modules)
+ GET /dashboard/ 200 in 1283ms
+ GET /bitebase-logo-03.png 404 in 250ms
+ GET /bitebase-logo-03.png 404 in 48ms
+ GET /bitebase-logo-03.png 404 in 50ms
+ GET /bitebase-logo-03.png 404 in 49ms
+ GET /bitebase-logo-03.png 404 in 41ms
+ GET /avatars/bot.png 404 in 79ms
+ GET /avatars/user.png 404 in 79ms
+ ✓ Compiled in 1308ms (1723 modules)
+ GET /dashboard/ 200 in 134ms
+ GET / 200 in 69ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 67ms
+ ✓ Compiled in 671ms (1723 modules)
+ GET /dashboard/ 200 in 66ms
+ GET / 200 in 54ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 57ms
+ ✓ Compiled in 537ms (1723 modules)
+ GET /dashboard/ 200 in 48ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 16ms
+ GET / 200 in 19ms
+ ✓ Compiled in 744ms (1723 modules)
+ GET /dashboard/ 200 in 51ms
+ GET / 200 in 16ms
+ ✓ Compiled in 544ms (1723 modules)
+ GET /dashboard/ 200 in 45ms
+ GET / 200 in 15ms
+ GET /dashboard/ 200 in 201ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1526ms (1713 modules)
+ GET /bitebase-logo-03.png 404 in 1902ms
+ GET /avatars/user.png 404 in 56ms
+ GET /avatars/bot.png 404 in 56ms
+ GET /dashboard/ 200 in 121ms
+ GET /bitebase-logo-03.png 404 in 34ms
+ GET /avatars/user.png 404 in 74ms
+ GET /avatars/bot.png 404 in 74ms
+ GET /avatars/bot.png 404 in 33ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 38ms
+ GET /auth/login/?callbackUrl=%2Fdashboard%2F 200 in 12ms
+ GET /dashboard/ 200 in 11ms
+ GET /bitebase-logo-03.png 404 in 31ms
+ GET /bitebase-logo-03.png 404 in 27ms
+ GET /bitebase-logo-03.png 404 in 28ms
+ GET /avatars/user.png 404 in 62ms
+ GET /avatars/bot.png 404 in 63ms
+ GET /dashboard/ 200 in 30ms
+ GET /avatars/user.png 404 in 90ms
+ GET /avatars/bot.png 404 in 88ms
+ GET / 200 in 140ms
+ GET /manifest.json 404 in 42ms
+ GET /bitebase-logo-03.png 404 in 32ms
+ GET /avatars/bot.png 404 in 27ms
+ GET /dashboard/ 200 in 11ms
+ GET /bitebase-logo-03.png 404 in 33ms
+ GET /bitebase-logo-03.png 404 in 24ms
+ GET /avatars/user.png 404 in 38ms
+ GET /avatars/bot.png 404 in 25ms
+ GET /avatars/bot.png 404 in 73ms
+ GET /avatars/user.png 404 in 72ms
+ GET /avatars/bot.png 404 in 29ms
+ GET / 200 in 68ms
+ GET /bitebase-logo-03.png 404 in 39ms
+ GET /bitebase-logo-03.png 404 in 33ms
+ GET /bitebase-logo-03.png 404 in 116ms
+ GET /dashboard/ 200 in 16ms
+ GET /bitebase-logo-03.png 404 in 85ms
+ GET /bitebase-logo-03.png 404 in 47ms
+ GET /bitebase-logo-03.png 404 in 58ms
+ GET /bitebase-logo-03.png 404 in 39ms
+ GET /bitebase-logo-03.png 404 in 28ms
+ GET /avatars/user.png 404 in 85ms
+ GET /avatars/bot.png 404 in 88ms
+ GET /avatars/bot.png 404 in 37ms
+ GET / 200 in 70ms
+ GET /bitebase-logo-03.png 404 in 45ms
+ GET /bitebase-logo-03.png 404 in 36ms
+ GET /bitebase-logo-03.png 404 in 30ms
+ GET /dashboard/ 200 in 37ms
+ GET / 200 in 85ms
+ GET /bitebase-logo-03.png 404 in 27ms
+ GET /bitebase-logo-03.png 404 in 64ms
+ GET /bitebase-logo-03.png 404 in 30ms
+ GET /bitebase-logo-03.png 404 in 26ms
+ GET /manifest.json 404 in 23ms
+ GET /dashboard/ 200 in 13ms
+ GET /bitebase-logo-03.png 404 in 28ms
+ GET /bitebase-logo-03.png 404 in 27ms
+ GET /restaurant-setup/ 404 in 11ms
+ GET /restaurant-setup/ 404 in 28ms
+ GET /manifest.json 404 in 29ms
+ GET /bitebase-logo-03.png 404 in 29ms
+ GET /notifications/ 404 in 9ms
+ GET /notifications/ 404 in 26ms
+ GET / 200 in 70ms
+ GET /manifest.json 404 in 24ms
+ GET /bitebase-logo-03.png 404 in 25ms
+ GET /avatars/user.png 404 in 28ms
+ GET /avatars/bot.png 404 in 28ms
+ ✓ Compiled in 879ms (897 modules)
+ GET / 200 in 19ms
+ GET /dashboard/ 200 in 15ms
+ GET /notifications/ 404 in 11ms
+ GET /notifications/ 404 in 58ms
+ GET /manifest.json 404 in 23ms
+ GET /bitebase-logo-03.png 404 in 29ms
+ GET /bitebase-logo-03.png 404 in 24ms
+ GET /bitebase-logo-03.png 404 in 35ms
+ GET / 200 in 38ms
+ GET /bitebase-logo-03.png 404 in 24ms
+ ✓ Compiled in 1835ms (1725 modules)
+ GET / 200 in 92ms
+ GET / 200 in 12ms
+ GET /notifications/ 404 in 26ms
+ GET /notifications/ 404 in 174ms
+ ✓ Compiled in 680ms (1727 modules)
+ GET / 200 in 52ms
+ GET /bitebase-logo-03.png 404 in 118ms
+ GET / 200 in 11ms
+ GET /bitebase-logo-03.png 404 in 27ms
+ GET /manifest.json 404 in 20ms
+ GET /bitebase-logo-03.png 404 in 45ms
+ ✓ Compiled in 347ms (897 modules)
+ GET / 200 in 16ms
+ GET / 200 in 9ms
+ GET /notifications/ 404 in 9ms
+ GET /notifications/ 404 in 25ms
+ ✓ Compiled in 340ms (897 modules)
+ GET / 200 in 12ms
+ GET / 200 in 18ms
+ GET /manifest.json 404 in 37ms
+ GET /bitebase-logo-03.png 404 in 20ms
+ ✓ Compiled in 780ms (1727 modules)
+ GET / 200 in 73ms
+ GET /notifications/ 404 in 26ms
+ GET / 200 in 29ms
+ GET /notifications/ 404 in 72ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /bitebase-logo-03.png 404 in 33ms
+ GET /manifest.json 404 in 24ms
+ ✓ Compiled in 677ms (1743 modules)
+ GET / 200 in 49ms
+ GET / 200 in 35ms
+ GET /notifications/ 404 in 27ms
+ GET /notifications/ 404 in 74ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /manifest.json 404 in 27ms
+ GET /bitebase-logo-03.png 404 in 26ms
+ GET / 200 in 89ms
+ GET /bitebase-logo-03.png 404 in 46ms
+ GET /bitebase-logo-03.png 404 in 46ms
+ GET /bitebase-logo-03.png 404 in 30ms
+ ✓ Compiled in 541ms (896 modules)
+ GET / 200 in 28ms
+ GET / 200 in 10ms
+ ✓ Compiled in 518ms (896 modules)
+ GET / 200 in 46ms
+ GET / 200 in 9ms
+ ⨯ ./app/page.tsx
+Error:   [31mx[0m Unexpected token `Providers`. Expected jsx identifier
+    ,-[[36;1;4m/workspace/beta-bitebase-app/apps/frontend/app/page.tsx[0m:9:1]
+ [2m 6[0m | 
+ [2m 7[0m | export default function HomePage() {
+ [2m 8[0m |   return (
+ [2m 9[0m |     <Providers>
+    : [35;1m     ^^^^^^^^^[0m
+ [2m10[0m |       <StunningLandingPage />
+ [2m11[0m |         {/* Navigation */}
+ [2m12[0m |         <nav className="navbar">
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ GET / 500 in 27ms
+ GET / 500 in 9ms
+ GET / 500 in 9ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1430ms (1713 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/5457521660b2a4d0.webpack.hot-update.json 404 in 1668ms
+ GET / 200 in 99ms
+ GET /bitebase-logo-03.png 404 in 40ms
+ GET / 200 in 11ms
+ GET /bitebase-logo-03.png 404 in 39ms
+ GET /bitebase-logo-03.png 404 in 107ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET / 200 in 55ms
+ GET /bitebase-logo-03.png 404 in 25ms
+ GET /bitebase-logo-03.png 404 in 38ms
+ GET /bitebase-logo-03.png 404 in 25ms
+ GET /bitebase-logo-03.png 404 in 24ms
+ GET /bitebase-logo-03.png 404 in 29ms
+ GET /bitebase-logo-03.png 404 in 22ms
+ GET /bitebase-logo-03.png 404 in 22ms
+ GET / 200 in 61ms
+ GET /bitebase-logo-03.png 404 in 41ms
+ GET /bitebase-logo-03.png 404 in 29ms
+ GET /bitebase-logo-03.png 404 in 113ms

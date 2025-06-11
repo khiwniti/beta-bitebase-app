@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import { Providers } from "./providers"
 import BiteBaseLogo from "../components/BiteBaseLogo"
 import Link from "next/link"
-import OfficialPricingCards from "../components/subscription/OfficialPricingCards"
+import EnhancedPricingCards from "../components/subscription/EnhancedPricingCards"
 
 export default function OfficialHomePage() {
   return (
@@ -190,7 +190,7 @@ export default function OfficialHomePage() {
           </section>
 
           {/* Pricing Section */}
-          <OfficialPricingCards />
+          <EnhancedPricingCards />
 
           {/* CTA Section */}
           <section className="section" style={{ 

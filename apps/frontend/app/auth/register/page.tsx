@@ -13,6 +13,7 @@ import { Label } from "@bitebase/ui";
 import { Checkbox } from "@bitebase/ui";
 import { Eye, EyeOff, ArrowRight, Loader2 } from "lucide-react";
 import BiteBaseLogo from "../../../components/BiteBaseLogo";
+import { useAuth } from "../../../contexts/AuthContext";
 
 // Form schema
 const registerSchema = z.object({
@@ -47,6 +48,7 @@ type RegisterFormValues = z.infer<typeof registerSchema>;
 
 export default function RegisterPage() {
   const router = useRouter();
+  const { signUp } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [registrationError, setRegistrationError] = useState("");
@@ -58,11 +60,11 @@ export default function RegisterPage() {
   } = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      restaurantName: "",
+      firstName: "Demo",
+      lastName: "User",
+      email: "demo@bitebase.ai",
+      password: "Demo123456",
+      restaurantName: "Demo Restaurant",
       acceptTerms: false,
       acceptMarketing: false,
     },
@@ -73,14 +75,19 @@ export default function RegisterPage() {
     setRegistrationError("");
 
     try {
-      // This would be your actual API call in production
       console.log("Registration data:", data);
       
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Call the actual signup API
+      await signUp(data.email, data.password, {
+        name: `${data.firstName} ${data.lastName}`,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        restaurantName: data.restaurantName,
+        acceptMarketing: data.acceptMarketing
+      });
 
-      // Redirect to onboarding or subscription selection
-      router.push("/subscription");
+      // Redirect to dashboard after successful registration
+      router.push("/dashboard");
     } catch (error: any) {
       console.error("Registration error:", error);
       setRegistrationError(

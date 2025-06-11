@@ -83,10 +83,10 @@ class ApiClient {
 
   constructor() {
     // Use environment variables or fallback to runtime URLs
-    // Backend Restaurant API on localhost:12001 - User Backend Service
-    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001';
-    // AI Agent on localhost:8000, accessed via frontend proxy
-    this.agentUrl = process.env.NEXT_PUBLIC_AGENT_URL || '';
+    // FastAPI Backend on localhost:12000 or production URL
+    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12000';
+    // AI Agent is now part of the main FastAPI backend
+    this.agentUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12000';
   }
 
   private async request<T>(
@@ -94,7 +94,8 @@ class ApiClient {
     options: RequestInit = {},
     useAgent = false
   ): Promise<ApiResponse<T>> {
-    const url = `${useAgent ? this.agentUrl : this.baseUrl}${endpoint}`;
+    // All endpoints now use the same FastAPI backend
+    const url = `${this.baseUrl}/api/v1${endpoint}`;
     
     console.log(`🌐 Making API request to: ${url}`, { method: options.method || 'GET', body: options.body });
     
@@ -135,16 +136,16 @@ class ApiClient {
 
   // Health checks
   async checkBackendHealth(): Promise<ApiResponse<{ status: string; message: string }>> {
-    return this.request('/health');
+    return this.request('/../health'); // Remove /api/v1 prefix for health endpoint
   }
 
   async checkAgentHealth(): Promise<ApiResponse<{ status: string; version: string }>> {
-    return this.request('/api/status', {}, true);
+    return this.request('/ai'); // AI status endpoint
   }
 
   // Restaurant data endpoints
   async getAllRestaurants(): Promise<ApiResponse<Restaurant[]>> {
-    const response = await this.request<{ restaurants: Restaurant[]; total: number; limit: number; offset: number }>('/api/restaurants');
+    const response = await this.request<{ restaurants: Restaurant[]; total: number; limit: number; offset: number }>('/restaurants');
     if (response.error) {
       return {
         error: response.error,
@@ -158,7 +159,7 @@ class ApiClient {
   }
 
   async getRestaurantById(id: string): Promise<ApiResponse<Restaurant>> {
-    return this.request(`/api/restaurants/${id}`);
+    return this.request(`/restaurants/${id}`);
   }
 
   async searchRestaurantsByLocation(
@@ -171,7 +172,7 @@ class ApiClient {
       longitude: longitude.toString(),
       radius: radius.toString(),
     });
-    return this.request(`/api/restaurants/search?${params}`);
+    return this.request(`/restaurants/search?${params}`);
   }
 
   // Wongnai integration endpoints
@@ -182,14 +183,14 @@ class ApiClient {
     cuisine?: string;
     limit?: number;
   }): Promise<ApiResponse<{ restaurants: Restaurant[]; total: number }>> {
-    return this.request('/api/wongnai/search', {
+    return this.request('/restaurants/wongnai/search', {
       method: 'POST',
       body: JSON.stringify(params),
     });
   }
 
   async getRestaurantMenu(publicId: string): Promise<ApiResponse<RestaurantMenu>> {
-    return this.request(`/api/restaurants/${publicId}/menu`);
+    return this.request(`/restaurants/${publicId}/menu-items`);
   }
 
   async getBatchMenus(publicIds: string[]): Promise<ApiResponse<{
@@ -200,7 +201,7 @@ class ApiClient {
     menus: RestaurantMenu[];
     errors: string[];
   }>> {
-    return this.request('/api/restaurants/menus/batch', {
+    return this.request('/restaurants/menus/batch', {
       method: 'POST',
       body: JSON.stringify({ publicIds }),
     });
@@ -221,7 +222,7 @@ class ApiClient {
     sample_restaurants: Restaurant[];
     message: string;
   }>> {
-    return this.request('/api/restaurants/fetch-real-data', {
+    return this.request('/restaurants/fetch-real-data', {
       method: 'POST',
       body: JSON.stringify({
         latitude: params.latitude,
@@ -239,14 +240,14 @@ class ApiClient {
     radius: number;
     analysis_type: string;
   }): Promise<ApiResponse<MarketAnalysis>> {
-    return this.request('/api/market-analyses', {
+    return this.request('/market-analyses', {
       method: 'POST',
       body: JSON.stringify(params),
     });
   }
 
   async getAllMarketAnalyses(): Promise<ApiResponse<MarketAnalysis[]>> {
-    return this.request('/api/market-analyses');
+    return this.request('/market-analyses');
   }
 
   async getRestaurantAnalytics(id: string): Promise<ApiResponse<{
@@ -263,10 +264,10 @@ class ApiClient {
     };
     recommendations: string[];
   }>> {
-    return this.request(`/api/restaurants/${id}/analytics`);
+    return this.request(`/restaurants/${id}/analytics`);
   }
 
-  // AI Agent endpoints (using local proxy)
+  // AI Agent endpoints (now part of main FastAPI backend)
   async runMarketResearch(params: {
     location: string;
     business_type: string;
@@ -287,7 +288,7 @@ class ApiClient {
     recommendations: string[];
     created_at: string;
   }>> {
-    return this.request('/api/ai', {
+    return this.request('/ai/market-research', {
       method: 'POST',
       body: JSON.stringify(params),
     });
@@ -299,7 +300,7 @@ class ApiClient {
     cuisine_type: string;
     radius_km: number;
   }): Promise<ApiResponse<any>> {
-    return this.request('/api/ai', {
+    return this.request('/ai/market-analysis', {
       method: 'POST',
       body: JSON.stringify(params),
     });
@@ -311,7 +312,7 @@ class ApiClient {
     service: string;
     version: string;
   }>> {
-    return this.request('/api/ai', {
+    return this.request('/ai', {
       method: 'GET',
     });
   }

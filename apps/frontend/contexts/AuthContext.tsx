@@ -45,8 +45,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
   // Backend API base URL
   const API_BASE =
     process.env.NODE_ENV === "production"
-      ? "https://work-2-gjqewehruzacrehd.prod-runtime.all-hands.dev/api"
-      : "http://localhost:12001/api";
+      ? "https://work-1-yneqfrrglgawmjvb.prod-runtime.all-hands.dev/api/v1"
+      : "http://localhost:12000/api/v1";
 
   // Check for existing session on mount
   useEffect(() => {
@@ -54,7 +54,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const token = localStorage.getItem("bitebase_token");
       if (token) {
         try {
-          const response = await fetch(`${API_BASE}/auth/profile`, {
+          const response = await fetch(`${API_BASE}/auth/me`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -104,8 +104,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       const data = await response.json();
 
-      // Store token
+      // Store token in localStorage and cookie
       localStorage.setItem("bitebase_token", data.token);
+      document.cookie = `auth_token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
+      document.cookie = `user_role=${data.user.role}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
 
       // Set user
       setUser({
@@ -148,8 +150,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       const data = await response.json();
 
-      // Store token
+      // Store token in localStorage and cookie
       localStorage.setItem("bitebase_token", data.token);
+      document.cookie = `auth_token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
+      document.cookie = `user_role=${data.user.role}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
 
       // Set user
       setUser({
@@ -236,6 +240,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       // Clear token and user data
       localStorage.removeItem("bitebase_token");
+      
+      // Clear cookies
+      document.cookie = 'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'user_role=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      
       setUser(null);
 
       // Clear user session data on logout
