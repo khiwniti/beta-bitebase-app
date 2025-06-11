@@ -479,6 +479,145 @@ export default function StunningLandingPage() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section style={{
+        padding: '120px 40px',
+        background: 'linear-gradient(135deg, rgba(116, 195, 99, 0.05), rgba(116, 195, 99, 0.02))',
+        position: 'relative'
+      }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+            <div style={{
+              display: 'inline-block',
+              background: 'rgba(116, 195, 99, 0.1)',
+              border: '1px solid rgba(116, 195, 99, 0.3)',
+              borderRadius: '25px',
+              padding: '8px 20px',
+              marginBottom: '20px',
+              backdropFilter: 'blur(10px)'
+            }}>
+              <span style={{ color: '#74c363', fontWeight: '600', fontSize: '14px' }}>
+                💬 Customer Success Stories
+              </span>
+            </div>
+            <h2 style={{
+              fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+              fontWeight: '800',
+              color: 'white',
+              marginBottom: '20px'
+            }}>
+              Trusted by Restaurant Owners
+            </h2>
+            <p style={{
+              fontSize: '1.2rem',
+              color: 'rgba(255, 255, 255, 0.7)',
+              maxWidth: '600px',
+              margin: '0 auto'
+            }}>
+              See how BiteBase Intelligence has transformed restaurants across the globe.
+            </p>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            gap: '40px'
+          }}>
+            {[
+              {
+                quote: "BiteBase Intelligence helped us identify the perfect location for our second restaurant. The geospatial analytics were spot-on, and we saw a 40% increase in foot traffic compared to our projections.",
+                author: "Maria Rodriguez",
+                title: "Owner, Sabor Latino",
+                location: "Miami, FL",
+                avatar: "👩‍🍳"
+              },
+              {
+                quote: "The AI insights are incredible. We discovered our peak hours were different than we thought, optimized our staffing, and reduced costs by 25% while improving customer satisfaction.",
+                author: "James Chen",
+                title: "Manager, Dragon Palace",
+                location: "San Francisco, CA",
+                avatar: "👨‍💼"
+              },
+              {
+                quote: "The competitor analysis feature is a game-changer. We can see what's working in our market and adapt our strategy accordingly. Our revenue has grown 35% since using BiteBase.",
+                author: "Sarah Johnson",
+                title: "CEO, Fresh & Fast",
+                location: "Austin, TX",
+                avatar: "👩‍💼"
+              }
+            ].map((testimonial, index) => (
+              <div key={index} style={{
+                background: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '24px',
+                padding: '40px',
+                backdropFilter: 'blur(20px)',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.background = 'rgba(116, 195, 99, 0.08)';
+                e.currentTarget.style.borderColor = 'rgba(116, 195, 99, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+              }}>
+                <div style={{
+                  fontSize: '2rem',
+                  color: '#74c363',
+                  marginBottom: '20px'
+                }}>
+                  "
+                </div>
+                <p style={{
+                  color: 'rgba(255, 255, 255, 0.9)',
+                  fontSize: '1.1rem',
+                  lineHeight: '1.6',
+                  marginBottom: '30px',
+                  fontStyle: 'italic'
+                }}>
+                  {testimonial.quote}
+                </p>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div style={{
+                    fontSize: '2.5rem',
+                    marginRight: '15px'
+                  }}>
+                    {testimonial.avatar}
+                  </div>
+                  <div>
+                    <div style={{
+                      color: 'white',
+                      fontWeight: '700',
+                      fontSize: '1.1rem',
+                      marginBottom: '5px'
+                    }}>
+                      {testimonial.author}
+                    </div>
+                    <div style={{
+                      color: 'rgba(255, 255, 255, 0.7)',
+                      fontSize: '0.9rem'
+                    }}>
+                      {testimonial.title}
+                    </div>
+                    <div style={{
+                      color: '#74c363',
+                      fontSize: '0.8rem',
+                      fontWeight: '500'
+                    }}>
+                      {testimonial.location}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section id="pricing" style={{
         padding: '120px 40px',
@@ -520,9 +659,9 @@ export default function StunningLandingPage() {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '30px',
-            maxWidth: '1000px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '25px',
+            maxWidth: '1200px',
             margin: '0 auto'
           }}>
             {[
@@ -575,6 +714,23 @@ export default function StunningLandingPage() {
                 ],
                 included: [true, true, true, true, true, true],
                 buttonText: 'Choose Pro',
+                popular: false
+              },
+              {
+                name: 'Enterprise',
+                price: '$599',
+                period: 'per month',
+                description: 'Custom solutions for restaurant chains and franchises',
+                features: [
+                  'Enterprise Analytics Suite',
+                  'Multi-location Management',
+                  'Custom Integration Support',
+                  'Unlimited competitor tracking',
+                  'Daily AI strategic insights',
+                  'Unlimited data history'
+                ],
+                included: [true, true, true, true, true, true],
+                buttonText: 'Contact Sales',
                 popular: false
               }
             ].map((plan, index) => (

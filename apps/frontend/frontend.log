@@ -363,3 +363,24 @@ Import trace for requested module:
  GET /bitebase-logo-03.png 404 in 41ms
  GET /bitebase-logo-03.png 404 in 29ms
  GET /bitebase-logo-03.png 404 in 113ms
+ GET / 200 in 52ms
+ GET /bitebase-logo-03.png 404 in 35ms
+ GET /bitebase-logo-03.png 404 in 56ms
+ GET /bitebase-logo-03.png 404 in 30ms
+ GET /manifest.json 404 in 31ms
+ GET / 200 in 77ms
+ ✓ Compiled in 1483ms (1723 modules)
+ GET / 200 in 92ms
+ GET / 200 in 12ms
+ GET / 200 in 12ms
+ ✓ Compiled in 706ms (1723 modules)
+ GET / 200 in 100ms
+ ✓ Compiled /_not-found in 405ms (1713 modules)
+ GET /bitebase-logo-03.png 404 in 579ms
+ GET / 200 in 23ms
+ GET / 200 in 11ms
+ GET /bitebase-logo-03.png 404 in 28ms
+ GET /bitebase-logo-03.png 404 in 27ms
+ GET /bitebase-logo-03.png 404 in 26ms
+ GET /bitebase-logo-03.png 404 in 27ms
+ GET /bitebase-logo-03.png 404 in 26ms
