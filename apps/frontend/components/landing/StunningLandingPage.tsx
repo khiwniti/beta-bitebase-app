@@ -554,7 +554,17 @@ export default function StunningLandingPage() {
             fontWeight: '900',
             lineHeight: '1.1',
             marginBottom: '30px',
-            animation: 'fadeInUp 1s ease-out 0.2s both'
+            animation: 'fadeInUp 1s ease-out 0.2s both',
+            ...(currentLanguage === 'th' ? {
+              background: 'linear-gradient(135deg, #74c363 0%, #5fa854 25%, #4a9142 50%, #74c363 75%, #5fa854 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              backgroundSize: '200% 200%',
+              animation: 'fadeInUp 1s ease-out 0.2s both, gradientShift 3s ease-in-out infinite'
+            } : {
+              color: 'white'
+            })
           }}>
             {t('landing.hero.title')}
           </h1>
