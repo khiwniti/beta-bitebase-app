@@ -388,7 +388,6 @@ async def scrape_and_populate_restaurants(
     region: str = Query("bangkok", description="Region to scrape (bangkok, chiang_mai, phuket, pattaya)"),
     category: str = Query("restaurant", description="Category to scrape"),
     max_pages: int = Query(2, ge=1, le=5, description="Maximum pages to scrape"),
-    current_user_id: str = Depends(get_current_user_id),
     db: Session = Depends(get_db)
 ):
     """Scrape real restaurant data and populate the database"""
@@ -452,7 +451,7 @@ async def scrape_and_populate_restaurants(
                 )
                 
                 # Create restaurant in database
-                restaurant = restaurant_service.create_restaurant(restaurant_create, current_user_id)
+                restaurant = restaurant_service.create_restaurant(restaurant_create, "system")
                 stored_restaurants.append(restaurant)
                 
                 logger.info("Restaurant stored", restaurant_id=restaurant.id, name=restaurant.name)

@@ -69,7 +69,7 @@ export default function BiteBaseLogo({
         {!imageError ? (
           <Image
             src="/bitebase-logo-03.png"
-            alt="BiteBase Intelligence Logo"
+            alt="BiteBase Explorer Logo"
             width={iconSize}
             height={iconSize}
             className={`object-contain ${animated ? "transition-transform duration-300 hover:rotate-12" : ""}`}
@@ -97,7 +97,7 @@ export default function BiteBaseLogo({
             BiteBase
           </span>
           <span className={`ml-1 text-sm ${getSubtextColor()}`}>
-            Intelligence
+            Explorer
           </span>
         </div>
       )}
