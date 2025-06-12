@@ -100,6 +100,11 @@ export default function StunningLandingPage() {
                onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>
               Features
             </a>
+            <Link href="/blog" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none', fontWeight: '500', transition: 'color 0.3s ease' }}
+               onMouseEnter={(e) => e.currentTarget.style.color = '#74c363'}
+               onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>
+              Blog
+            </Link>
             <a href="#pricing" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none', fontWeight: '500', transition: 'color 0.3s ease' }}
                onMouseEnter={(e) => e.currentTarget.style.color = '#74c363'}
                onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>

@@ -33,9 +33,9 @@ export default function BlogPage() {
   const blogPosts: BlogPost[] = [
     {
       id: 1,
-      title: "10 Essential KPIs Every Restaurant Owner Should Track",
-      slug: "essential-restaurant-kpis",
-      excerpt: "Learn which key performance indicators can transform your restaurant business with actionable data insights.",
+      title: "The Ultimate Guide to Finding Hidden Gem Restaurants",
+      slug: "finding-hidden-gem-restaurants",
+      excerpt: "Discover how to uncover amazing local restaurants that most people don't know about using data-driven exploration techniques.",
       content: "",
       coverImage: "https://images.unsplash.com/photo-1572715376701-98568319fd0b?q=80&w=2574&auto=format&fit=crop",
       author: {
@@ -44,14 +44,14 @@ export default function BlogPage() {
       },
       publishedAt: "2024-09-15",
       readingTime: "8 min",
-      tags: ["analytics", "restaurant management", "data"],
-      category: "Restaurant Analytics"
+      tags: ["restaurant discovery", "hidden gems", "local dining"],
+      category: "Restaurant Discovery"
     },
     {
       id: 2,
-      title: "How to Choose the Perfect Location for Your New Restaurant",
-      slug: "restaurant-location-selection",
-      excerpt: "Discover data-driven approaches to finding the ideal location for your restaurant's success.",
+      title: "How to Read Restaurant Reviews Like a Pro",
+      slug: "reading-restaurant-reviews-guide",
+      excerpt: "Learn to decode restaurant reviews and ratings to make better dining decisions and discover your next favorite spot.",
       content: "",
       coverImage: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=2574&auto=format&fit=crop",
       author: {
@@ -60,8 +60,8 @@ export default function BlogPage() {
       },
       publishedAt: "2024-09-10",
       readingTime: "10 min",
-      tags: ["location", "market analysis", "competition"],
-      category: "Market Research"
+      tags: ["reviews", "ratings", "dining tips"],
+      category: "Dining Guide"
     },
     {
       id: 3,
@@ -161,9 +161,9 @@ export default function BlogPage() {
             
             <nav className="hidden md:flex items-center space-x-8">
               <Link href="/" className="text-gray-500 hover:text-gray-900">Home</Link>
-              <Link href="/about" className="text-gray-500 hover:text-gray-900">About</Link>
+              <Link href="/restaurant-explorer" className="text-gray-500 hover:text-gray-900">Explore</Link>
               <Link href="/blog" className="text-primary-600 font-medium">Blog</Link>
-              <Link href="/contact" className="text-gray-500 hover:text-gray-900">Contact</Link>
+              <Link href="/dashboard" className="text-gray-500 hover:text-gray-900">Dashboard</Link>
             </nav>
             
             <div className="flex items-center">
@@ -173,14 +173,14 @@ export default function BlogPage() {
                 className="mr-2 hidden sm:inline-flex"
                 asChild
               >
-                <Link href="/auth/login">Sign In</Link>
+                <Link href="/dashboard">Sign In</Link>
               </Button>
               <Button 
                 size="sm" 
                 className="bg-primary-600 hover:bg-primary-700 text-white"
                 asChild
               >
-                <Link href="/auth/register">Get Started</Link>
+                <Link href="/restaurant-explorer">Explore Now</Link>
               </Button>
             </div>
           </div>
@@ -192,10 +192,10 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Restaurant Intelligence Blog
+              BiteBase Explorer Blog
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Insights, strategies, and data-driven advice to help your restaurant business thrive
+              Discover insights, trends, and expert advice for restaurant discovery and dining experiences
             </p>
           </div>
         </div>
@@ -358,10 +358,10 @@ export default function BlogPage() {
       <section className="py-16 bg-primary-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Stay Updated with Restaurant Intelligence
+            Stay Updated with BiteBase Explorer
           </h2>
           <p className="text-lg text-gray-600 mb-8">
-            Subscribe to our newsletter for the latest insights, trends, and tips for your restaurant business.
+            Subscribe to our newsletter for the latest restaurant discoveries, dining trends, and food insights.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">

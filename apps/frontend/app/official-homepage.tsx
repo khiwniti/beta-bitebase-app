@@ -55,6 +55,11 @@ export default function OfficialHomePage() {
                   </a>
                 </li>
                 <li role="none" className="nav-item">
+                  <Link href="/blog" role="menuitem" className="nav-link">
+                    <span className="nav-text">Blog</span>
+                  </Link>
+                </li>
+                <li role="none" className="nav-item">
                   <Link href="/dashboard" role="menuitem" className="nav-link">
                     <span className="nav-text">Dashboard</span>
                   </Link>
