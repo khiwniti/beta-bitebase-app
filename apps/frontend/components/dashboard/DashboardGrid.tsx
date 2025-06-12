@@ -82,42 +82,46 @@ export function MetricCard({
   }
 
   return (
-    <div className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-200 ${className}`}>
-      <div className="p-6">
+    <div className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden ${className}`}>
+      <div className="p-3 sm:p-4 lg:p-6">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-3">
-            <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg">
-              {icon}
+        <div className="flex items-start justify-between mb-3 sm:mb-4">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+            <div className="p-1.5 sm:p-2 bg-gray-100 dark:bg-gray-700 rounded-lg flex-shrink-0">
+              <div className="w-4 h-4 sm:w-5 sm:h-5">
+                {icon}
+              </div>
             </div>
-            <div>
-              <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">{title}</h3>
-              <div className="flex items-center space-x-2 mt-1">
+            <div className="min-w-0 flex-1">
+              <h3 className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 truncate leading-tight">{title}</h3>
+              <div className="flex items-center gap-1.5 sm:gap-2 mt-1">
                 {getStatusIndicator()}
                 <span className="text-xs text-gray-500 dark:text-gray-400 capitalize">{status}</span>
               </div>
             </div>
           </div>
           
-          <button className="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-            <MoreHorizontal className="h-4 w-4" />
+          <button className="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex-shrink-0 touch-manipulation">
+            <MoreHorizontal className="h-3 w-3 sm:h-4 sm:w-4" />
           </button>
         </div>
 
         {/* Value */}
-        <div className="mb-4">
+        <div className="mb-3 sm:mb-4 lg:mb-6">
           {loading ? (
-            <div className="space-y-2">
-              <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-              <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-3/4" />
+            <div className="space-y-2 sm:space-y-3">
+              <div className="h-6 sm:h-8 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+              <div className="h-3 sm:h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-3/4" />
             </div>
           ) : status === 'connected' ? (
-            <div>
-              <div className="text-3xl font-bold text-gray-900 dark:text-gray-100">{value}</div>
+            <div className="space-y-1 sm:space-y-2">
+              <div className="text-lg sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-gray-100 break-words leading-tight">{value}</div>
               {change && (
-                <div className={`flex items-center space-x-1 mt-1 ${getTrendColor()}`}>
-                  {getTrendIcon()}
-                  <span className="text-sm font-medium">
+                <div className={`flex items-center gap-1.5 sm:gap-2 flex-wrap ${getTrendColor()}`}>
+                  <div className="w-3 h-3 sm:w-4 sm:h-4">
+                    {getTrendIcon()}
+                  </div>
+                  <span className="text-xs sm:text-sm font-medium">
                     {change.value > 0 ? '+' : ''}{change.value}%
                   </span>
                   <span className="text-xs text-gray-500 dark:text-gray-400">{change.period}</span>
@@ -125,9 +129,9 @@ export function MetricCard({
               )}
             </div>
           ) : (
-            <div className="space-y-2">
-              <div className="text-2xl font-bold text-gray-400 dark:text-gray-500">--</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">
+            <div className="space-y-1 sm:space-y-2">
+              <div className="text-lg sm:text-2xl font-bold text-gray-400 dark:text-gray-500">--</div>
+              <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
                 {description || 'No data available'}
               </div>
             </div>
@@ -140,7 +144,7 @@ export function MetricCard({
             onClick={onAction}
             variant="outline"
             size="sm"
-            className="w-full text-xs"
+            className="w-full text-xs sm:text-sm touch-manipulation min-h-[36px] sm:min-h-[40px]"
           >
             {actionLabel}
           </Button>
@@ -183,21 +187,21 @@ export function ChartCard({
   return (
     <div className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm ${className}`}>
       {/* Header */}
-      <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{title}</h3>
+      <div className="p-3 sm:p-4 lg:p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="min-w-0">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100 truncate">{title}</h3>
           </div>
           
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-2 flex-shrink-0">
             {/* Time range selector */}
             {onTimeRangeChange && (
-              <div className="flex items-center bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+              <div className="flex items-center bg-gray-100 dark:bg-gray-700 rounded-lg p-0.5 sm:p-1">
                 {timeRanges.map((range) => (
                   <button
                     key={range.value}
                     onClick={() => onTimeRangeChange(range.value)}
-                    className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
+                    className={`px-2 sm:px-3 py-1 text-xs font-medium rounded-md transition-colors touch-manipulation min-h-[28px] sm:min-h-[32px] ${
                       timeRange === range.value
                         ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-gray-100 shadow-sm'
                         : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
@@ -214,10 +218,12 @@ export function ChartCard({
               <button
                 key={index}
                 onClick={action.onClick}
-                className="p-2 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="p-1.5 sm:p-2 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors touch-manipulation min-h-[32px] min-w-[32px] sm:min-h-[36px] sm:min-w-[36px] flex items-center justify-center"
                 title={action.label}
               >
-                {action.icon}
+                <div className="w-4 h-4 sm:w-5 sm:h-5">
+                  {action.icon}
+                </div>
               </button>
             ))}
           </div>
@@ -225,7 +231,7 @@ export function ChartCard({
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         {loading ? (
           <div className="h-64 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse" />
         ) : (
@@ -306,18 +312,18 @@ export function InsightCard({
   const styles = getTypeStyles()
 
   return (
-    <div className={`${styles.bg} ${styles.border} border rounded-xl p-4 hover:shadow-md transition-all duration-200 ${className}`}>
-      <div className="flex items-start space-x-3">
+    <div className={`${styles.bg} ${styles.border} border rounded-xl p-4 sm:p-5 hover:shadow-md transition-all duration-200 ${className}`}>
+      <div className="flex items-start gap-3">
         {/* Icon */}
-        <div className={`p-2 rounded-lg ${styles.icon} bg-white dark:bg-gray-800 shadow-sm`}>
+        <div className={`p-2 rounded-lg ${styles.icon} bg-white dark:bg-gray-800 shadow-sm flex-shrink-0`}>
           {icon || <Info className="h-5 w-5" />}
         </div>
         
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between mb-2">
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{title}</h4>
-            <div className="flex items-center space-x-2">
+          <div className="flex items-start justify-between mb-3">
+            <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 pr-2">{title}</h4>
+            <div className="flex items-center gap-2 flex-shrink-0">
               {priority && (
                 <span className="text-xs text-gray-500 dark:text-gray-400">#{priority}</span>
               )}
@@ -327,10 +333,10 @@ export function InsightCard({
             </div>
           </div>
           
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{description}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">{description}</p>
           
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
               <span className="text-xs text-gray-500 dark:text-gray-400">Impact:</span>
               <span className={`text-xs font-medium ${getImpactColor()}`}>{impact}</span>
             </div>
@@ -340,9 +346,9 @@ export function InsightCard({
                 onClick={onAction}
                 variant="outline"
                 size="sm"
-                className="text-xs"
+                className="text-xs sm:text-sm flex-shrink-0 touch-manipulation min-h-[32px] sm:min-h-[36px] px-2 sm:px-3"
               >
-                {action}
+                <span className="truncate">{action}</span>
               </Button>
             )}
           </div>
@@ -378,16 +384,18 @@ export function ActivityItem({ action, time, type, icon }: ActivityItemProps) {
   }
 
   return (
-    <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-      <div className={`p-2 rounded-lg ${getTypeColor()}`}>
-        {icon}
+    <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 lg:p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+      <div className={`p-1.5 sm:p-2 rounded-lg ${getTypeColor()} flex-shrink-0`}>
+        <div className="w-3 h-3 sm:w-4 sm:h-4">
+          {icon}
+        </div>
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">{action}</p>
-        <p className="text-xs text-gray-500 dark:text-gray-400">{time}</p>
+        <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-100 leading-relaxed line-clamp-2">{action}</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 sm:mt-1">{time}</p>
       </div>
-      <button className="p-1 rounded text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
-        <ExternalLink className="h-4 w-4" />
+      <button className="p-1 sm:p-1.5 rounded text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors flex-shrink-0 touch-manipulation">
+        <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
       </button>
     </div>
   )
@@ -400,7 +408,7 @@ interface DashboardGridProps {
 
 export function DashboardGrid({ children, className = '' }: DashboardGridProps) {
   return (
-    <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ${className}`}>
+    <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 ${className}`}>
       {children}
     </div>
   )
@@ -420,16 +428,16 @@ export function DashboardSection({
   className?: string
 }) {
   return (
-    <div className={`space-y-6 ${className}`}>
-      <div className="flex items-center justify-between">
-        <div>
+    <div className={`space-y-4 sm:space-y-6 ${className}`}>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="space-y-1">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{title}</h2>
           {description && (
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{description}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{description}</p>
           )}
         </div>
         {actions && (
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-2 flex-shrink-0">
             {actions}
           </div>
         )}
