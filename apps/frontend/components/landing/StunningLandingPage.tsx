@@ -554,7 +554,6 @@ export default function StunningLandingPage() {
             fontWeight: '900',
             lineHeight: '1.1',
             marginBottom: '30px',
-            animation: 'fadeInUp 1s ease-out 0.2s both',
             ...(currentLanguage === 'th' ? {
               background: 'linear-gradient(135deg, #74c363 0%, #5fa854 25%, #4a9142 50%, #74c363 75%, #5fa854 100%)',
               WebkitBackgroundClip: 'text',
@@ -563,7 +562,8 @@ export default function StunningLandingPage() {
               backgroundSize: '200% 200%',
               animation: 'fadeInUp 1s ease-out 0.2s both, gradientShift 3s ease-in-out infinite'
             } : {
-              color: 'white'
+              color: 'white',
+              animation: 'fadeInUp 1s ease-out 0.2s both'
             })
           }}>
             {t('landing.hero.title')}
@@ -878,7 +878,7 @@ export default function StunningLandingPage() {
             gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
             gap: '40px'
           }}>
-            {(Array.isArray(t('landing.testimonials.stories')) ? t('landing.testimonials.stories') : []).map((testimonial, index) => (
+            {(Array.isArray(t('landing.testimonials.stories')) ? t('landing.testimonials.stories') : []).map((testimonial: any, index: number) => (
               <div key={index} style={{
                 background: 'rgba(255, 255, 255, 0.05)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',

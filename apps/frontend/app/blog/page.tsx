@@ -8,6 +8,10 @@ import { Button } from "@bitebase/ui";
 import { Search, Clock, ChevronRight, Tag, Calendar } from "lucide-react";
 import BiteBaseLogo from "../../components/BiteBaseLogo";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
+import { useLanguage } from "../../contexts/LanguageContext";
+
+// Force dynamic rendering to avoid SSG issues with context
+export const dynamic = 'force-dynamic';
 
 interface BlogPost {
   id: number;
@@ -86,23 +90,13 @@ const translations = {
   }
 };
 
-export default function BlogPage() {
+function BlogPageContent() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
-  const [currentLanguage, setCurrentLanguage] = useState<'en' | 'th'>('en');
+  const { language } = useLanguage();
 
-  useEffect(() => {
-    // Load saved language preference
-    const savedLocale = localStorage.getItem('preferred-language') as 'en' | 'th' || 'en';
-    setCurrentLanguage(savedLocale);
-  }, []);
-
-  const t = translations[currentLanguage];
-
-  const handleLanguageChange = (locale: string) => {
-    setCurrentLanguage(locale as 'en' | 'th');
-  };
+  const t = translations[language];
 
   const blogPosts: BlogPost[] = [
     {
@@ -252,10 +246,7 @@ export default function BlogPage() {
             </nav>
             
             <div className="flex items-center space-x-3">
-              <LanguageSwitcher 
-                currentLocale={currentLanguage}
-                onLanguageChange={handleLanguageChange}
-              />
+              <LanguageSwitcher />
               <Button 
                 variant="outline" 
                 size="sm" 
@@ -546,4 +537,19 @@ export default function BlogPage() {
       </footer>
     </div>
   );
+}
+
+export default function BlogPage() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Don't render until mounted to avoid SSR issues
+  if (!mounted) {
+    return <div>Loading...</div>;
+  }
+
+  return <BlogPageContent />;
 } 
