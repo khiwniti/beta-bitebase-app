@@ -102,13 +102,13 @@ export default function RegisterPage() {
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
       <div className="sm:mx-auto sm:w-full sm:max-w-md mb-8 text-center">
         <Link href="/">
-          <BiteBaseLogo size="lg" className="mx-auto" />
+          <BiteBaseLogo size="lg" className="mx-auto" showText={false} />
         </Link>
         <h2 className="mt-6 text-3xl font-bold text-gray-900">
           Create your account
         </h2>
         <p className="mt-2 text-sm text-gray-600">
-          Join thousands of restaurants using BiteBase Intelligence
+          Join thousands of restaurants using BiteBase
         </p>
       </div>
 

@@ -419,7 +419,7 @@ export default function ReportsPage() {
             <div className="p-6 border-t border-gray-200 bg-gray-50">
               <div className="flex items-center justify-between">
                 <div className="text-sm text-gray-600">
-                  This report was generated using BiteBase Intelligence platform with real market data and AI-powered analysis.
+                  This report was generated using BiteBase platform with real market data and AI-powered analysis.
                 </div>
                 <div className="flex items-center space-x-2">
                   <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">

@@ -55,7 +55,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         <div className="w-64 bg-white shadow-sm border-r border-gray-200">
           <div className="p-6">
             <h2 className="text-lg font-semibold text-gray-900">Admin Panel</h2>
-            <p className="text-sm text-gray-600">BiteBase Intelligence</p>
+            <p className="text-sm text-gray-600">BiteBase</p>
             <p className="text-xs text-emerald-600 mt-2">Welcome, {user?.name}</p>
           </div>
           

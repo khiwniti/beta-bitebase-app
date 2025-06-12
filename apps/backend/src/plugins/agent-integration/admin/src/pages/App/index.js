@@ -45,7 +45,7 @@ const App = () => {
     <Box padding={8} background="neutral100">
       <Box paddingBottom={4}>
         <Typography variant="alpha">Agent Integration</Typography>
-        <Typography variant="epsilon">Connect with the BiteBase Intelligence agent system</Typography>
+        <Typography variant="epsilon">Connect with the BiteBase agent system</Typography>
       </Box>
 
       {loading ? (

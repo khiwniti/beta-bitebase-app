@@ -98,7 +98,7 @@ export default function FranchisePage() {
             Franchise Partnership Program
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Scale your restaurant empire with BiteBase Intelligence. Our enterprise solutions are designed for multi-location operations and franchise businesses.
+            Scale your restaurant empire with BiteBase. Our enterprise solutions are designed for multi-location operations and franchise businesses.
           </p>
         </div>
 

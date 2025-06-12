@@ -263,7 +263,7 @@ export function Sidebar({
           {!collapsed ? (
             <>
               <Link href="/dashboard" className="flex items-center">
-                <BiteBaseLogo size="xs" showText={true} />
+                <BiteBaseLogo size="xs" showText={false} />
         </Link>
               <button 
                 onClick={toggleCollapsed}

@@ -331,7 +331,7 @@ export function MainLayout({
           {/* Sidebar header with logo */}
           <div className={`h-16 flex items-center justify-between px-4 border-b border-gray-200 dark:border-gray-800 sticky top-0 bg-white dark:bg-gray-900 z-10`}>
             <div className="flex items-center">
-              <BiteBaseLogo size={collapsedSidebar ? "xs" : "md"} showText={!collapsedSidebar} />
+              <BiteBaseLogo size={collapsedSidebar ? "xs" : "md"} showText={false} />
               {collapsedSidebar && <span className="sr-only">BiteBase</span>}
                       </div>
                       <button 

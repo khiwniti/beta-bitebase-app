@@ -342,7 +342,7 @@ export function DashboardLayout({
           {/* Sidebar Header */}
           <div className="h-16 flex items-center justify-between px-4 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
             <div className="flex items-center">
-              <BiteBaseLogo size={sidebarCollapsed ? "xs" : "md"} showText={!sidebarCollapsed} />
+              <BiteBaseLogo size={sidebarCollapsed ? "xs" : "md"} showText={false} />
             </div>
             {sidebarCollapsible && (
               <button 

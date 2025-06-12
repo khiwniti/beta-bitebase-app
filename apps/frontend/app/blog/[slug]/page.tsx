@@ -213,7 +213,7 @@ Tracking these metrics is only valuable if you use the data to inform your decis
 
 By consistently tracking these 10 essential KPIs, restaurant owners can gain valuable insights into their operations, make informed decisions, and ultimately increase profitability. Remember that metrics should be used as tools for improvement, not just numbers on a page. When properly analyzed and acted upon, these KPIs can transform your restaurant's performance and help you stay ahead in a competitive market.
 
-Ready to start tracking these metrics but not sure where to begin? BiteBase Intelligence provides powerful analytics tools specifically designed for restaurant owners. Our platform automatically calculates all these KPIs and more, giving you clear visualizations and actionable insights to improve your business performance.
+Ready to start tracking these metrics but not sure where to begin? BiteBase provides powerful analytics tools specifically designed for restaurant owners. Our platform automatically calculates all these KPIs and more, giving you clear visualizations and actionable insights to improve your business performance.
     `,
     relatedPosts: [
       {
@@ -462,7 +462,7 @@ Ready to start tracking these metrics but not sure where to begin? BiteBase Inte
             Ready to Transform Your Restaurant with Data?
           </h2>
           <p className="text-lg text-gray-600 mb-8">
-            BiteBase Intelligence helps restaurant owners make better decisions with powerful analytics and insights.
+            BiteBase helps restaurant owners make better decisions with powerful analytics and insights.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -527,7 +527,7 @@ Ready to start tracking these metrics but not sure where to begin? BiteBase Inte
           
           <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col md:flex-row md:items-center md:justify-between">
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} BiteBase Intelligence. All rights reserved.
+              © {new Date().getFullYear()} BiteBase. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="#" className="text-gray-400 hover:text-gray-500">

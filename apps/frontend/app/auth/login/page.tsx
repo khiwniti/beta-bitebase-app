@@ -105,7 +105,7 @@ export default function AuthPage() {
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight text-center">
-            {isLogin ? 'Welcome Back to BiteBase' : 'Join BiteBase Intelligence'}
+            {isLogin ? 'Welcome Back to BiteBase' : 'Join BiteBase'}
           </h1>
 
           {/* Description with Geospatial Focus */}

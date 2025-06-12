@@ -38,7 +38,7 @@ from .core.llm_client import LLMClient
 from .core.aiq_integration import AIQProfiler, AIQEvaluator
 
 app = FastAPI(
-    title="BiteBase Intelligence API",
+    title="BiteBase API",
     description="Restaurant Market Research and Analysis System",
     version="1.0.0"
 )

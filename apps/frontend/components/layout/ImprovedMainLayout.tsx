@@ -298,7 +298,7 @@ export function MainLayout({
 
                 <div className="flex-shrink-0 flex items-center">
                   <Link href="/" className="hover:scale-105 transition-transform duration-200">
-                    <BiteBaseLogo size="sm" variant={darkMode ? "white" : "default"} />
+                    <BiteBaseLogo size="sm" variant={darkMode ? "white" : "default"} showText={false} />
                   </Link>
                 </div>
 

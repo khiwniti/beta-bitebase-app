@@ -2,7 +2,7 @@
 
 /**
  * BiteBase API Server
- * Main backend API server for BiteBase Intelligence Platform
+ * Main backend API server for BiteBase Platform
  */
 
 const express = require("express");

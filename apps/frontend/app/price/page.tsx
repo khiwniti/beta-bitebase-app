@@ -36,7 +36,7 @@ export default function PricePage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-neutral-900 font-display mb-4">
-              Why Choose BiteBase Intelligence?
+              Why Choose BiteBase?
             </h2>
             <p className="text-lg text-neutral-600">
               Get the tools you need to optimize your restaurant's performance

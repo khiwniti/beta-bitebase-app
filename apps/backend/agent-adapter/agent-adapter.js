@@ -1,7 +1,7 @@
 /**
  * BiteBase Agent Adapter
  *
- * A simple Express-based adapter for the BiteBase Intelligence agent system.
+ * A simple Express-based adapter for the BiteBase agent system.
  */
 
 // Import required modules

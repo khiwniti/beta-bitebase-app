@@ -48,18 +48,7 @@ export default function BiteBaseLogo({
     }
   };
 
-  const getSubtextColor = () => {
-    switch (variant) {
-      case "white":
-        return "text-gray-200";
-      case "dark":
-        return "text-gray-600";
-      case "gradient":
-        return "bg-gradient-to-r from-primary-500 to-accent-saffron-500 bg-clip-text text-transparent";
-      default:
-        return "text-gray-500";
-    }
-  };
+
 
   const logoContent = (
     <div
@@ -95,9 +84,6 @@ export default function BiteBaseLogo({
         <div className="ml-2 flex items-center">
           <span className={`font-bold ${textSize} ${getTextColor()}`}>
             BiteBase
-          </span>
-          <span className={`ml-1 text-sm ${getSubtextColor()}`}>
-            Intelligence
           </span>
         </div>
       )}

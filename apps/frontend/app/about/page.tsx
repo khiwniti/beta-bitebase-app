@@ -90,7 +90,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              About BiteBase Intelligence
+              About BiteBase
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We're on a mission to empower restaurant owners with the data and insights they need to build successful, profitable businesses in an increasingly competitive market.
@@ -109,7 +109,7 @@ export default function AboutPage() {
                 The restaurant industry is one of the most challenging businesses to succeed in, with high failure rates and razor-thin margins. We believe that data-driven decision making can change that.
               </p>
               <p className="text-lg text-gray-600 mb-6">
-                BiteBase Intelligence was founded by restaurant owners who experienced firsthand the challenges of running a successful restaurant. We combine deep industry knowledge with cutting-edge technology to provide actionable insights that drive real results.
+                BiteBase was founded by restaurant owners who experienced firsthand the challenges of running a successful restaurant. We combine deep industry knowledge with cutting-edge technology to provide actionable insights that drive real results.
               </p>
               <div className="flex items-center space-x-4">
                 <Heart className="h-6 w-6 text-red-500" />
@@ -159,7 +159,7 @@ export default function AboutPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
             <p className="text-lg text-gray-600">
-              The passionate people behind BiteBase Intelligence
+              The passionate people behind BiteBase
             </p>
           </div>
           
@@ -236,7 +236,7 @@ export default function AboutPage() {
             Ready to Transform Your Restaurant?
           </h2>
           <p className="text-xl text-primary-100 mb-8">
-            Join thousands of restaurant owners who trust BiteBase Intelligence to grow their business.
+            Join thousands of restaurant owners who trust BiteBase to grow their business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -300,7 +300,7 @@ export default function AboutPage() {
           </div>
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 BiteBase Intelligence. All rights reserved.</p>
+            <p>&copy; 2024 BiteBase. All rights reserved.</p>
           </div>
         </div>
       </footer>

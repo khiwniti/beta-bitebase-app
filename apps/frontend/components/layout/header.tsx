@@ -44,7 +44,7 @@ export function Header({ onOpenSidebar, userName = 'Maria Rodriguez', restaurant
           <div className="flex items-center gap-3">
             <BiteBaseLogo
               size="md"
-              showText={true}
+              showText={false}
               variant="default"
               animated={true}
             />
