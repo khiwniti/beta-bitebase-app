@@ -68,7 +68,7 @@ export default function BiteBaseLogo({
       <div className="relative flex-shrink-0">
         {!imageError ? (
           <Image
-            src="/bitebase-logo-03.png"
+            src="/logo.png"
             alt="BiteBase Intelligence Logo"
             width={iconSize}
             height={iconSize}
@@ -141,7 +141,7 @@ export function BiteBaseIcon({
     <div className={`relative ${className}`}>
       {!imageError ? (
         <Image
-          src="/bitebase-logo-03.png"
+          src="/logo.png"
           alt="BiteBase Intelligence"
           width={iconSize}
           height={iconSize}

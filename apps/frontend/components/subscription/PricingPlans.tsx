@@ -42,7 +42,7 @@ export default function PricingPlans({
       description: "Basic analytics and insights for small businesses just getting started",
       stripePriceId: "price_free",
       icon: "🚀",
-      iconImage: "/subscription/free.png",
+      iconImage: "/branding/subscription/free.png",
       buttonText: "Get Started",
       buttonVariant: "outline",
       features: [
@@ -66,7 +66,7 @@ export default function PricingPlans({
       description: "For independent restaurants looking to optimize operations",
       stripePriceId: billingPeriod === "monthly" ? "price_growth_monthly" : "price_growth_yearly",
       icon: "📈",
-      iconImage: "/subscription/growth.png",
+      iconImage: "/branding/subscription/growth.png",
       buttonText: "Subscribe Now",
       buttonVariant: "default",
       features: [
@@ -87,7 +87,7 @@ export default function PricingPlans({
       description: "Ideal for restaurants expanding to multiple locations",
       stripePriceId: billingPeriod === "monthly" ? "price_pro_monthly" : "price_pro_yearly",
       icon: "⭐",
-      iconImage: "/subscription/pro.png",
+      iconImage: "/branding/subscription/pro.png",
       buttonText: "Choose Pro",
       buttonVariant: "default",
       popular: true,
@@ -111,7 +111,7 @@ export default function PricingPlans({
       description: "For chains, franchises, and restaurant groups",
       stripePriceId: billingPeriod === "monthly" ? "price_enterprise_monthly" : "price_enterprise_yearly",
       icon: "👑",
-      iconImage: "/subscription/enterprise.png",
+      iconImage: "/branding/subscription/enterprise.png",
       buttonText: "Contact Sales",
       buttonVariant: "outline",
       features: [

@@ -3,23 +3,34 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import BiteBaseLogo from "../BiteBaseLogo";
+import LanguageSwitcher from "../LanguageSwitcher";
 
 export default function StunningLandingPage() {
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    handleResize();
 
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -28,6 +39,51 @@ export default function StunningLandingPage() {
       fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
       overflow: 'hidden'
     }}>
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes gradientShift {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        @keyframes bounce {
+          0%, 20%, 53%, 80%, 100% { transform: translateY(0); }
+          40%, 43% { transform: translateY(-10px); }
+          70% { transform: translateY(-5px); }
+          90% { transform: translateY(-2px); }
+        }
+        @keyframes countUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+          .desktop-nav { display: none !important; }
+          .mobile-nav { display: flex !important; }
+        }
+        
+        @media (min-width: 769px) {
+          .desktop-nav { display: flex !important; }
+          .mobile-nav { display: none !important; }
+        }
+      `}</style>
       {/* Animated Background */}
       <div style={{
         position: 'fixed',
@@ -82,7 +138,7 @@ export default function StunningLandingPage() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '0 40px'
+          padding: '0 20px'
         }}>
           <Link href="/" style={{
             display: 'flex',
@@ -94,22 +150,42 @@ export default function StunningLandingPage() {
             <BiteBaseLogo size="sm" showText={true} variant="white" />
           </Link>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '40px' }}>
-            <a href="#features" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none', fontWeight: '500', transition: 'color 0.3s ease' }}
-               onMouseEnter={(e) => e.currentTarget.style.color = '#74c363'}
-               onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>
-              Features
-            </a>
-            <Link href="/blog" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none', fontWeight: '500', transition: 'color 0.3s ease' }}
-               onMouseEnter={(e) => e.currentTarget.style.color = '#74c363'}
-               onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>
-              Blog
-            </Link>
-            <a href="#pricing" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none', fontWeight: '500', transition: 'color 0.3s ease' }}
-               onMouseEnter={(e) => e.currentTarget.style.color = '#74c363'}
-               onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>
-              Pricing
-            </a>
+          {/* Desktop Navigation */}
+          <div className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '30px'
+            }}>
+              <a href="#features" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none', fontWeight: '500', transition: 'color 0.3s ease' }}
+                 onMouseEnter={(e) => e.currentTarget.style.color = '#74c363'}
+                 onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>
+                Features
+              </a>
+              <Link href="/blog" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none', fontWeight: '500', transition: 'color 0.3s ease' }}
+                 onMouseEnter={(e) => e.currentTarget.style.color = '#74c363'}
+                 onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>
+                Blog
+              </Link>
+              <a href="#pricing" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none', fontWeight: '500', transition: 'color 0.3s ease' }}
+                 onMouseEnter={(e) => e.currentTarget.style.color = '#74c363'}
+                 onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>
+                Pricing
+              </a>
+            </div>
+
+            {/* Language Switcher */}
+            <div style={{ 
+              background: 'rgba(255, 255, 255, 0.1)',
+              borderRadius: '25px',
+              padding: '4px 8px',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.2)'
+            }}>
+              <LanguageSwitcher theme="dark" />
+            </div>
+
+            {/* Get Started Button */}
             <Link href="/dashboard">
               <button style={{
                 background: 'linear-gradient(135deg, #74c363, #5fa854)',
@@ -120,7 +196,9 @@ export default function StunningLandingPage() {
                 fontWeight: '600',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
-                boxShadow: '0 4px 20px rgba(116, 195, 99, 0.3)'
+                boxShadow: '0 4px 20px rgba(116, 195, 99, 0.3)',
+                fontSize: '14px',
+                whiteSpace: 'nowrap'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
@@ -134,7 +212,192 @@ export default function StunningLandingPage() {
               </button>
             </Link>
           </div>
+
+          {/* Mobile Navigation */}
+          <div className="mobile-nav" style={{ display: 'none', alignItems: 'center', gap: '15px' }}>
+            {/* Language Switcher */}
+            <div style={{ 
+              background: 'rgba(255, 255, 255, 0.1)',
+              borderRadius: '20px',
+              padding: '4px 8px',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.2)'
+            }}>
+              <LanguageSwitcher theme="dark" />
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                borderRadius: '8px',
+                padding: '8px',
+                color: 'white',
+                cursor: 'pointer',
+                backdropFilter: 'blur(10px)',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+              }}
+            >
+              <div style={{
+                width: '20px',
+                height: '20px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-around'
+              }}>
+                <div style={{
+                  width: '100%',
+                  height: '2px',
+                  background: 'white',
+                  borderRadius: '1px',
+                  transform: isMobileMenuOpen ? 'rotate(45deg) translateY(6px)' : 'none',
+                  transition: 'transform 0.3s ease'
+                }} />
+                <div style={{
+                  width: '100%',
+                  height: '2px',
+                  background: 'white',
+                  borderRadius: '1px',
+                  opacity: isMobileMenuOpen ? 0 : 1,
+                  transition: 'opacity 0.3s ease'
+                }} />
+                <div style={{
+                  width: '100%',
+                  height: '2px',
+                  background: 'white',
+                  borderRadius: '1px',
+                  transform: isMobileMenuOpen ? 'rotate(-45deg) translateY(-6px)' : 'none',
+                  transition: 'transform 0.3s ease'
+                }} />
+              </div>
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div style={{
+            position: 'fixed',
+            top: '80px',
+            left: 0,
+            right: 0,
+            background: 'rgba(15, 23, 42, 0.95)',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            zIndex: 999,
+            padding: '20px',
+            animation: 'fadeInUp 0.3s ease-out'
+          }}>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '20px',
+              maxWidth: '400px',
+              margin: '0 auto'
+            }}>
+              <a 
+                href="#features" 
+                style={{ 
+                  color: 'rgba(255,255,255,0.8)', 
+                  textDecoration: 'none', 
+                  fontWeight: '500', 
+                  padding: '15px 20px',
+                  borderRadius: '10px',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  transition: 'all 0.3s ease',
+                  textAlign: 'center'
+                }}
+                onClick={() => setIsMobileMenuOpen(false)}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#74c363';
+                  e.currentTarget.style.background = 'rgba(116, 195, 99, 0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'rgba(255,255,255,0.8)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                }}
+              >
+                Features
+              </a>
+              <Link 
+                href="/blog" 
+                style={{ 
+                  color: 'rgba(255,255,255,0.8)', 
+                  textDecoration: 'none', 
+                  fontWeight: '500', 
+                  padding: '15px 20px',
+                  borderRadius: '10px',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  transition: 'all 0.3s ease',
+                  textAlign: 'center'
+                }}
+                onClick={() => setIsMobileMenuOpen(false)}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#74c363';
+                  e.currentTarget.style.background = 'rgba(116, 195, 99, 0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'rgba(255,255,255,0.8)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                }}
+              >
+                Blog
+              </Link>
+              <a 
+                href="#pricing" 
+                style={{ 
+                  color: 'rgba(255,255,255,0.8)', 
+                  textDecoration: 'none', 
+                  fontWeight: '500', 
+                  padding: '15px 20px',
+                  borderRadius: '10px',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  transition: 'all 0.3s ease',
+                  textAlign: 'center'
+                }}
+                onClick={() => setIsMobileMenuOpen(false)}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#74c363';
+                  e.currentTarget.style.background = 'rgba(116, 195, 99, 0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'rgba(255,255,255,0.8)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                }}
+              >
+                Pricing
+              </a>
+              <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
+                <button style={{
+                  background: 'linear-gradient(135deg, #74c363, #5fa854)',
+                  color: 'white',
+                  border: 'none',
+                  padding: '15px 30px',
+                  borderRadius: '50px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 4px 20px rgba(116, 195, 99, 0.3)',
+                  fontSize: '16px',
+                  width: '100%'
+                }}>
+                  🚀 Get Started
+                </button>
+              </Link>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -144,7 +407,8 @@ export default function StunningLandingPage() {
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        padding: '80px 40px 0 40px'
+        padding: '120px 20px 0 20px', // Increased top padding and reduced side padding
+        paddingTop: isMobile ? '100px' : '120px'
       }}>
         <div style={{
           textAlign: 'center',
@@ -214,25 +478,28 @@ export default function StunningLandingPage() {
           {/* CTA Buttons */}
           <div style={{
             display: 'flex',
-            gap: '20px',
+            gap: isMobile ? '15px' : '20px',
             justifyContent: 'center',
             flexWrap: 'wrap',
-            animation: 'fadeInUp 1s ease-out 0.6s both'
+            animation: 'fadeInUp 1s ease-out 0.6s both',
+            flexDirection: isMobile ? 'column' : 'row',
+            alignItems: 'center'
           }}>
             <Link href="/dashboard">
               <button style={{
                 background: 'linear-gradient(135deg, #74c363, #5fa854)',
                 color: 'white',
                 border: 'none',
-                padding: '20px 40px',
+                padding: isMobile ? '18px 35px' : '20px 40px',
                 borderRadius: '50px',
-                fontSize: '18px',
+                fontSize: isMobile ? '16px' : '18px',
                 fontWeight: '700',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
                 boxShadow: '0 10px 30px rgba(116, 195, 99, 0.4)',
                 position: 'relative',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                width: isMobile ? '280px' : 'auto'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)';
@@ -250,13 +517,14 @@ export default function StunningLandingPage() {
               background: 'rgba(255, 255, 255, 0.1)',
               color: 'white',
               border: '2px solid rgba(255, 255, 255, 0.3)',
-              padding: '18px 38px',
+              padding: isMobile ? '16px 33px' : '18px 38px',
               borderRadius: '50px',
-              fontSize: '18px',
+              fontSize: isMobile ? '16px' : '18px',
               fontWeight: '700',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
-              backdropFilter: 'blur(10px)'
+              backdropFilter: 'blur(10px)',
+              width: isMobile ? '280px' : 'auto'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
