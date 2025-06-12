@@ -77,7 +77,7 @@ export default function OfficialHomePage() {
         
         <main>
           {/* Hero Section */}
-          <section className="hero bg-light py-xl" style={{ padding: 'var(--spacing-xl) 0' }}>
+          <section className="hero bg-light py-xl" style={{ padding: 'calc(var(--spacing-xl) + 80px) 0 var(--spacing-xl) 0' }}>
             <div className="container">
               <div className="glass-panel animate-fadeInUp">
                 <span className="glass-badge glass-badge-accent mb-md" style={{
@@ -90,7 +90,7 @@ export default function OfficialHomePage() {
                   display: 'inline-block',
                   marginBottom: 'var(--spacing-md)'
                 }}>
-                  BiteBase Intelligence
+                  BiteBase Explorer
                 </span>
                 <h1 className="mb-sm" style={{ marginBottom: 'var(--spacing-sm)' }}>
                   AI-Powered Restaurant Intelligence Platform
@@ -122,7 +122,7 @@ export default function OfficialHomePage() {
             <div className="container">
               <div className="text-center mb-xl">
                 <span className="badge badge-primary mb-sm">Features</span>
-                <h2 id="features-heading">Why Choose BiteBase Intelligence</h2>
+                <h2 id="features-heading">Why Choose BiteBase Explorer</h2>
                 <p className="text-lead mx-auto" style={{ maxWidth: '700px' }}>
                   Discover how our AI-powered platform helps restaurants optimize operations, 
                   understand markets, and increase profitability.
@@ -213,7 +213,7 @@ export default function OfficialHomePage() {
                   maxWidth: '600px',
                   margin: '0 auto var(--spacing-lg) auto'
                 }}>
-                  Join thousands of restaurants using BiteBase Intelligence to optimize 
+                  Join thousands of restaurants using BiteBase Explorer to optimize 
                   operations and increase profitability.
                 </p>
                 <div style={{ display: 'flex', gap: 'var(--spacing-md)', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -256,11 +256,11 @@ export default function OfficialHomePage() {
                 fontSize: '1.1rem', 
                 fontWeight: '600'
               }}>
-                BiteBase Intelligence
+                BiteBase Explorer
               </span>
             </div>
             <p style={{ color: '#ccc', fontSize: '14px' }}>
-              © 2024 BiteBase Intelligence. All rights reserved.
+              © 2024 BiteBase Explorer. All rights reserved.
             </p>
           </div>
         </footer>

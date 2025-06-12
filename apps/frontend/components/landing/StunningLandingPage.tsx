@@ -139,7 +139,7 @@ export default function StunningLandingPage() {
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        padding: '0 40px'
+        padding: '80px 40px 0 40px'
       }}>
         <div style={{
           textAlign: 'center',
