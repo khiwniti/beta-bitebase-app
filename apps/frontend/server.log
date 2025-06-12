@@ -14,3 +14,24 @@ npm warn config ignoring workspace config at /workspace/beta-bitebase-app/apps/f
  ✓ Compiled / in 3.5s (1263 modules)
  HEAD / 200 in 4027ms
  ✓ Compiled in 922ms (597 modules)
+ GET / 200 in 98ms
+ GET / 200 in 81ms
+ ⚠ Cross origin request detected from work-1-zgzhpsospszggvmn.prod-runtime.all-hands.dev to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ GET / 200 in 79ms
+ GET / 200 in 82ms
+ GET / 200 in 84ms
+ GET / 200 in 82ms
+ GET / 200 in 81ms
+ GET / 200 in 70ms
+ ✓ Compiled in 901ms (1263 modules)
+ GET / 200 in 85ms
+ ✓ Compiled in 503ms (1263 modules)
+ GET / 200 in 43ms
+ ✓ Compiled in 452ms (1263 modules)
+ GET / 200 in 43ms
+ ✓ Compiled in 488ms (1263 modules)
+ GET / 200 in 41ms
+ ✓ Compiled in 486ms (1263 modules)
+ GET / 200 in 44ms
+ GET / 200 in 263ms

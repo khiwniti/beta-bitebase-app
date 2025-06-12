@@ -13,8 +13,17 @@ const app = express();
 
 // Environment variables
 const JWT_SECRET = process.env.JWT_SECRET || "bitebase-demo-secret-key";
-const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || "demo-google-client-id";
-const googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+
+// Initialize Google OAuth client only if credentials are provided
+let googleClient = null;
+if (GOOGLE_CLIENT_ID && GOOGLE_CLIENT_ID !== "demo-google-client-id") {
+  googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
+  console.log("Google OAuth initialized with client ID:", GOOGLE_CLIENT_ID.substring(0, 20) + "...");
+} else {
+  console.log("Google OAuth not configured - using demo mode");
+}
 
 // In-memory user storage (in production, this would be a database)
 const users = new Map();
@@ -211,6 +220,14 @@ app.post("/api/auth/google", async (req, res) => {
       return res.status(400).json({ error: "Google token is required" });
     }
 
+    // Check if Google OAuth is configured
+    if (!googleClient) {
+      return res.status(503).json({ 
+        error: "Google authentication is not configured on this server",
+        message: "Please contact the administrator to set up Google OAuth credentials"
+      });
+    }
+
     // Verify Google token
     const ticket = await googleClient.verifyIdToken({
       idToken: token,
@@ -220,31 +237,74 @@ app.post("/api/auth/google", async (req, res) => {
     const payload = ticket.getPayload();
     const { sub: googleId, email, name, picture } = payload;
 
-    // Create or find user (in a real app, this would interact with database)
-    const user = {
-      id: googleId,
-      email,
-      name,
-      picture,
-      provider: "google"
-    };
+    if (!email) {
+      return res.status(400).json({ error: "Email not provided by Google" });
+    }
+
+    // Check if user already exists
+    let user = users.get(email);
+    
+    if (!user) {
+      // Create new user
+      user = {
+        id: googleId,
+        email,
+        name: name || email.split('@')[0],
+        picture,
+        provider: "google",
+        role: "user", // Regular users get 'user' role
+        createdAt: new Date().toISOString(),
+        isDemo: false // Google users don't get demo data
+      };
+      
+      // Store user
+      users.set(email, user);
+      console.log("New Google user created:", email);
+    } else {
+      // Update existing user with Google info
+      user.picture = picture;
+      user.provider = "google";
+      users.set(email, user);
+      console.log("Existing user logged in with Google:", email);
+    }
 
     // Generate JWT token
     const jwtToken = jwt.sign(
-      { userId: user.id, email: user.email },
+      { userId: user.id, email: user.email, role: user.role },
       JWT_SECRET,
-      { expiresIn: "24h" }
+      { expiresIn: "7d" }
     );
 
     res.json({
       message: "Google login successful",
-      user: { id: user.id, email: user.email, name: user.name, picture: user.picture },
+      user: { 
+        id: user.id, 
+        email: user.email, 
+        name: user.name, 
+        picture: user.picture,
+        role: user.role
+      },
       token: jwtToken
     });
   } catch (error) {
     console.error("Google auth error:", error);
-    res.status(401).json({ error: "Invalid Google token" });
+    if (error.message && error.message.includes("Token used too early")) {
+      res.status(401).json({ error: "Token used too early. Please try again." });
+    } else if (error.message && error.message.includes("Invalid token")) {
+      res.status(401).json({ error: "Invalid Google token" });
+    } else {
+      res.status(500).json({ error: "Google authentication failed" });
+    }
   }
+});
+
+// Check Google OAuth configuration
+app.get("/api/auth/google/config", (req, res) => {
+  res.json({
+    configured: !!googleClient,
+    clientId: GOOGLE_CLIENT_ID ? GOOGLE_CLIENT_ID.substring(0, 20) + "..." : null,
+    message: googleClient ? "Google OAuth is configured" : "Google OAuth is not configured"
+  });
 });
 
 // Get current user info

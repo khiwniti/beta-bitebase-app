@@ -74,6 +74,7 @@ export default function StunningLandingPage() {
           to { opacity: 1; transform: translateY(0); }
         }
         
+        /* Responsive Navigation */
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .mobile-nav { display: flex !important; }
@@ -82,6 +83,67 @@ export default function StunningLandingPage() {
         @media (min-width: 769px) {
           .desktop-nav { display: flex !important; }
           .mobile-nav { display: none !important; }
+        }
+
+        /* Responsive Typography */
+        @media (max-width: 640px) {
+          .hero-title {
+            font-size: 2.5rem !important;
+            line-height: 1.2 !important;
+          }
+          .hero-subtitle {
+            font-size: 1.1rem !important;
+            line-height: 1.6 !important;
+          }
+          .section-title {
+            font-size: 2rem !important;
+          }
+          .section-subtitle {
+            font-size: 1rem !important;
+          }
+        }
+
+        /* Responsive Containers */
+        @media (max-width: 640px) {
+          .container {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+          }
+          .hero-container {
+            padding-top: 100px !important;
+            padding-bottom: 60px !important;
+          }
+        }
+
+        /* Responsive Grid */
+        @media (max-width: 768px) {
+          .features-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+          }
+          .pricing-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+          }
+        }
+
+        @media (max-width: 1024px) {
+          .features-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+
+        /* Mobile-specific fixes */
+        @media (max-width: 480px) {
+          .hero-title {
+            font-size: 2rem !important;
+          }
+          .hero-subtitle {
+            font-size: 1rem !important;
+          }
+          .nav-container {
+            padding: 0 1rem !important;
+          }
         }
       `}</style>
       {/* Animated Background */}
@@ -132,7 +194,7 @@ export default function StunningLandingPage() {
         transition: 'all 0.3s ease',
         padding: '20px 0'
       }}>
-        <div style={{
+        <div className="nav-container" style={{
           maxWidth: '1200px',
           margin: '0 auto',
           display: 'flex',
@@ -401,7 +463,7 @@ export default function StunningLandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section style={{
+      <section className="hero-container" style={{
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
@@ -442,7 +504,7 @@ export default function StunningLandingPage() {
           </div>
 
           {/* Main Heading with Typewriter Effect */}
-          <h1 style={{
+          <h1 className="hero-title" style={{
             fontSize: 'clamp(3rem, 8vw, 6rem)',
             fontWeight: '900',
             lineHeight: '1.1',
@@ -462,7 +524,7 @@ export default function StunningLandingPage() {
           </h1>
 
           {/* Subtitle */}
-          <p style={{
+          <p className="hero-subtitle" style={{
             fontSize: '1.4rem',
             color: 'rgba(255, 255, 255, 0.8)',
             lineHeight: '1.6',
