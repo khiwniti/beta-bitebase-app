@@ -30,7 +30,7 @@ export default function OfficialHomePage() {
                     fontWeight: '700',
                     color: 'var(--accent-color)'
                   }}>
-                    BiteBase Intelligence
+                    BiteBase Explorer
                   </span>
                 </div>
               </Link>

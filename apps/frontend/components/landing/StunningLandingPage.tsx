@@ -91,16 +91,7 @@ export default function StunningLandingPage() {
             textDecoration: 'none',
             color: 'white'
           }}>
-            <BiteBaseLogo size="sm" showText={false} />
-            <span style={{
-              fontSize: '1.5rem',
-              fontWeight: '800',
-              background: 'linear-gradient(135deg, #74c363, #a3e635)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
-            }}>
-              BiteBase
-            </span>
+            <BiteBaseLogo size="sm" showText={true} variant="white" />
           </Link>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '40px' }}>
@@ -928,15 +919,7 @@ export default function StunningLandingPage() {
             justifyContent: 'center',
             marginBottom: '20px'
           }}>
-            <BiteBaseLogo size="sm" showText={false} />
-            <span style={{
-              marginLeft: '12px',
-              fontSize: '1.2rem',
-              fontWeight: '700',
-              color: 'white'
-            }}>
-              BiteBase Intelligence
-            </span>
+            <BiteBaseLogo size="sm" showText={true} variant="white" />
           </div>
           <p style={{
             color: 'rgba(255, 255, 255, 0.6)',
