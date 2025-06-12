@@ -20,7 +20,13 @@
     "info": "Information"
   },
   "navigation": {
+    "home": "Home",
+    "explore": "Explore",
+    "blog": "Blog",
     "dashboard": "Dashboard",
+    "about": "About",
+    "contact": "Contact",
+    "pricing": "Pricing",
     "marketAnalysis": "Market Analysis",
     "competition": "Competition",
     "demographics": "Demographics",
@@ -234,5 +240,84 @@
     "peakHoursTime": "Lunch: 12-2pm, Dinner: 7-10pm, Late night: 10pm-1am",
     "generateDetailedReport": "Generate Detailed Report",
     "exportAnalysisData": "Export Analysis Data"
+  },
+  "blog": {
+    "title": "BiteBase Explorer Blog",
+    "subtitle": "Discover insights, trends, and expert advice for restaurant discovery and dining experiences",
+    "searchPlaceholder": "Search articles...",
+    "readMore": "Read More",
+    "categories": {
+      "all": "All",
+      "restaurantDiscovery": "Restaurant Discovery",
+      "diningGuide": "Dining Guide",
+      "foodCulture": "Food Culture",
+      "technology": "Technology",
+      "sustainability": "Sustainability"
+    },
+    "newsletter": {
+      "title": "Stay Updated with BiteBase Explorer",
+      "subtitle": "Subscribe to our newsletter for the latest restaurant discoveries, dining trends, and food insights.",
+      "emailPlaceholder": "Enter your email",
+      "subscribe": "Subscribe",
+      "disclaimer": "We'll never share your email. You can unsubscribe at any time."
+    }
+  },
+  "footer": {
+    "description": "Discover amazing restaurants and enhance your dining experiences with comprehensive restaurant data.",
+    "quickLinks": "Quick Links",
+    "resources": "Resources",
+    "legal": "Legal",
+    "copyright": "All rights reserved.",
+    "links": {
+      "home": "Home",
+      "aboutUs": "About Us",
+      "blog": "Blog",
+      "contact": "Contact",
+      "resourceCenter": "Resource Center",
+      "caseStudies": "Case Studies",
+      "webinars": "Webinars",
+      "apiDocumentation": "API Documentation",
+      "termsOfService": "Terms of Service",
+      "privacyPolicy": "Privacy Policy",
+      "cookiePolicy": "Cookie Policy"
+    }
+  },
+  "hero": {
+    "title": "Discover Amazing Restaurants with Data-Driven Intelligence",
+    "subtitle": "Find your next favorite dining spot using comprehensive restaurant analytics, reviews, and location intelligence.",
+    "cta": "Start Exploring",
+    "learnMore": "Learn More"
+  },
+  "features": {
+    "title": "Why Choose BiteBase Explorer?",
+    "subtitle": "Powerful tools to discover and analyze restaurants",
+    "smartSearch": {
+      "title": "Smart Restaurant Search",
+      "description": "Find restaurants using advanced filters including cuisine, price range, ratings, and location preferences."
+    },
+    "dataAnalytics": {
+      "title": "Comprehensive Data Analytics",
+      "description": "Access detailed insights about restaurants including foot traffic, peak hours, and customer demographics."
+    },
+    "realTimeInfo": {
+      "title": "Real-time Information",
+      "description": "Get up-to-date information about wait times, availability, and current promotions."
+    }
+  },
+  "restaurant": {
+    "rating": "Rating",
+    "reviews": "Reviews",
+    "priceRange": "Price Range",
+    "cuisine": "Cuisine",
+    "location": "Location",
+    "hours": "Hours",
+    "phone": "Phone",
+    "website": "Website",
+    "menu": "Menu",
+    "photos": "Photos",
+    "directions": "Get Directions",
+    "callNow": "Call Now",
+    "viewMenu": "View Menu",
+    "bookTable": "Book Table"
   }
 }

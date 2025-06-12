@@ -7,6 +7,7 @@ import { Card, CardContent } from "@bitebase/ui";
 import { Button } from "@bitebase/ui";
 import { Search, Clock, ChevronRight, Tag, Calendar } from "lucide-react";
 import BiteBaseLogo from "../../components/BiteBaseLogo";
+import LanguageSwitcher from "../../components/LanguageSwitcher";
 
 interface BlogPost {
   id: number;
@@ -25,10 +26,83 @@ interface BlogPost {
   category: string;
 }
 
+// Simple translation system
+const translations = {
+  en: {
+    blogTitle: "BiteBase Explorer Blog",
+    blogSubtitle: "Discover insights, trends, and expert advice for restaurant discovery and dining experiences",
+    searchPlaceholder: "Search articles...",
+    readMore: "Read More",
+    categories: {
+      all: "All",
+      restaurantDiscovery: "Restaurant Discovery",
+      diningGuide: "Dining Guide", 
+      foodCulture: "Food Culture",
+      sustainability: "Sustainability"
+    },
+    newsletter: {
+      title: "Stay Updated with BiteBase Explorer",
+      subtitle: "Subscribe to our newsletter for the latest restaurant discoveries, dining trends, and food insights.",
+      emailPlaceholder: "Enter your email",
+      subscribe: "Subscribe",
+      disclaimer: "We'll never share your email. You can unsubscribe at any time."
+    },
+    navigation: {
+      home: "Home",
+      explore: "Explore", 
+      blog: "Blog",
+      dashboard: "Dashboard",
+      signIn: "Sign In",
+      exploreNow: "Explore Now"
+    }
+  },
+  th: {
+    blogTitle: "บล็อก BiteBase Explorer",
+    blogSubtitle: "ค้นพบข้อมูลเชิงลึก เทรนด์ และคำแนะนำจากผู้เชี่ยวชาญสำหรับการค้นหาร้านอาหารและประสบการณ์การรับประทานอาหาร",
+    searchPlaceholder: "ค้นหาบทความ...",
+    readMore: "อ่านเพิ่มเติม",
+    categories: {
+      all: "ทั้งหมด",
+      restaurantDiscovery: "การค้นหาร้านอาหาร",
+      diningGuide: "คู่มือการรับประทานอาหาร",
+      foodCulture: "วัฒนธรรมอาหาร", 
+      sustainability: "ความยั่งยืน"
+    },
+    newsletter: {
+      title: "รับข้อมูลล่าสุดจาก BiteBase Explorer",
+      subtitle: "สมัครรับจดหมายข่าวของเราเพื่อรับข้อมูลการค้นหาร้านอาหาร เทรนด์การรับประทานอาหาร และข้อมูลเชิงลึกเกี่ยวกับอาหารล่าสุด",
+      emailPlaceholder: "กรอกอีเมลของคุณ",
+      subscribe: "สมัครรับข้อมูล",
+      disclaimer: "เราจะไม่แชร์อีเมลของคุณ คุณสามารถยกเลิกการสมัครได้ตลอดเวลา"
+    },
+    navigation: {
+      home: "หน้าแรก",
+      explore: "สำรวจ",
+      blog: "บล็อก", 
+      dashboard: "แดชบอร์ด",
+      signIn: "เข้าสู่ระบบ",
+      exploreNow: "เริ่มสำรวจ"
+    }
+  }
+};
+
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [currentLanguage, setCurrentLanguage] = useState<'en' | 'th'>('en');
+
+  useEffect(() => {
+    // Load saved language preference
+    const savedLocale = localStorage.getItem('preferred-language') as 'en' | 'th' || 'en';
+    setCurrentLanguage(savedLocale);
+  }, []);
+
+  const t = translations[currentLanguage];
+
+  const handleLanguageChange = (locale: string) => {
+    setCurrentLanguage(locale as 'en' | 'th');
+  };
 
   const blogPosts: BlogPost[] = [
     {
@@ -132,6 +206,17 @@ export default function BlogPage() {
   // Extract all unique categories
   const categories = Array.from(new Set(blogPosts.map(post => post.category)));
   
+  // Create a mapping for category translations
+  const getCategoryTranslation = (category: string) => {
+    const categoryMap: { [key: string]: keyof typeof t.categories } = {
+      'Restaurant Discovery': 'restaurantDiscovery',
+      'Dining Guide': 'diningGuide',
+      'Food Culture': 'foodCulture',
+      'Sustainability': 'sustainability'
+    };
+    return t.categories[categoryMap[category]] || category;
+  };
+  
   // Extract all unique tags
   const allTags = Array.from(new Set(blogPosts.flatMap(post => post.tags))).sort();
   
@@ -160,27 +245,31 @@ export default function BlogPage() {
             </Link>
             
             <nav className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-gray-500 hover:text-gray-900">Home</Link>
-              <Link href="/restaurant-explorer" className="text-gray-500 hover:text-gray-900">Explore</Link>
-              <Link href="/blog" className="text-primary-600 font-medium">Blog</Link>
-              <Link href="/dashboard" className="text-gray-500 hover:text-gray-900">Dashboard</Link>
+              <Link href="/" className="text-gray-500 hover:text-gray-900">{t.navigation.home}</Link>
+              <Link href="/restaurant-explorer" className="text-gray-500 hover:text-gray-900">{t.navigation.explore}</Link>
+              <Link href="/blog" className="text-primary-600 font-medium">{t.navigation.blog}</Link>
+              <Link href="/dashboard" className="text-gray-500 hover:text-gray-900">{t.navigation.dashboard}</Link>
             </nav>
             
-            <div className="flex items-center">
+            <div className="flex items-center space-x-3">
+              <LanguageSwitcher 
+                currentLocale={currentLanguage}
+                onLanguageChange={handleLanguageChange}
+              />
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="mr-2 hidden sm:inline-flex"
+                className="hidden sm:inline-flex"
                 asChild
               >
-                <Link href="/dashboard">Sign In</Link>
+                <Link href="/dashboard">{t.navigation.signIn}</Link>
               </Button>
               <Button 
                 size="sm" 
                 className="bg-primary-600 hover:bg-primary-700 text-white"
                 asChild
               >
-                <Link href="/restaurant-explorer">Explore Now</Link>
+                <Link href="/restaurant-explorer">{t.navigation.exploreNow}</Link>
               </Button>
             </div>
           </div>
@@ -192,10 +281,10 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              BiteBase Explorer Blog
+              {t.blogTitle}
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover insights, trends, and expert advice for restaurant discovery and dining experiences
+              {t.blogSubtitle}
             </p>
           </div>
         </div>
@@ -212,7 +301,7 @@ export default function BlogPage() {
               </div>
               <input
                 type="text"
-                placeholder="Search articles..."
+                placeholder={t.searchPlaceholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
@@ -229,7 +318,7 @@ export default function BlogPage() {
                     : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                 }`}
               >
-                All
+                {t.categories.all}
               </button>
               
               {categories.map((category) => (
@@ -242,7 +331,7 @@ export default function BlogPage() {
                       : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                   }`}
                 >
-                  {category}
+                  {getCategoryTranslation(category)}
                 </button>
               ))}
             </div>
@@ -341,7 +430,7 @@ export default function BlogPage() {
                         </div>
                         
                         <span className="text-primary-600 inline-flex items-center text-sm font-medium">
-                          Read More
+                          {t.readMore}
                           <ChevronRight className="h-4 w-4 ml-1" />
                         </span>
                       </div>
@@ -358,25 +447,25 @@ export default function BlogPage() {
       <section className="py-16 bg-primary-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Stay Updated with BiteBase Explorer
+            {t.newsletter.title}
           </h2>
           <p className="text-lg text-gray-600 mb-8">
-            Subscribe to our newsletter for the latest restaurant discoveries, dining trends, and food insights.
+            {t.newsletter.subtitle}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
-              placeholder="Enter your email"
+              placeholder={t.newsletter.emailPlaceholder}
               className="px-4 py-3 flex-grow border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             />
             <Button className="bg-primary-600 hover:bg-primary-700 text-white px-6">
-              Subscribe
+              {t.newsletter.subscribe}
             </Button>
           </div>
           
           <p className="text-sm text-gray-500 mt-4">
-            We'll never share your email. You can unsubscribe at any time.
+            {t.newsletter.disclaimer}
           </p>
         </div>
       </section>
