@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import BiteBaseLogo from "../BiteBaseLogo";
-// import LanguageSwitcher from "../LanguageSwitcher";
-// import { useLanguage } from "../../contexts/LanguageContext";
+import LanguageSwitcher from "../LanguageSwitcher";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 export default function StunningLandingPage() {
   const [scrollY, setScrollY] = useState(0);
@@ -13,38 +13,7 @@ export default function StunningLandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   
-  // Temporary static translations
-  const language = 'en';
-  const t = (key: string) => {
-    const translations: any = {
-      'landing.hero.badge': '🚀 Now in Beta',
-      'landing.hero.title': 'Restaurant Intelligence Platform',
-      'landing.hero.subtitle': 'Discover profitable locations, track competitors, and optimize operations with geospatial analytics and AI-driven insights that boost your bottom line.',
-      'landing.hero.cta': 'Get Started',
-      'landing.hero.watchDemo': 'Watch Demo',
-      'landing.hero.stats.restaurants': 'Restaurants Analyzed',
-      'landing.hero.stats.revenue': 'Average Revenue Increase',
-      'landing.hero.stats.uptime': 'Platform Uptime',
-      'navigation.home': 'Home',
-      'navigation.features': 'Features',
-      'navigation.blog': 'Blog',
-      'navigation.changelog': 'Changelog',
-      'navigation.pricing': 'Pricing',
-      'landing.features.badge': '✨ Powerful Features',
-      'landing.features.title': 'Everything You Need to Succeed',
-      'landing.features.subtitle': 'Comprehensive tools and insights to help your restaurant thrive in a competitive market.',
-      'landing.features.geospatialAnalytics.title': 'Geospatial Analytics',
-      'landing.features.aiInsights.title': 'AI-Powered Insights',
-      'landing.features.businessIntelligence.title': 'Business Intelligence',
-      'landing.testimonials.badge': '💬 Customer Stories',
-      'landing.testimonials.title': 'Trusted by Restaurant Owners',
-      'landing.testimonials.subtitle': 'See how BiteBase is helping restaurants grow and succeed.',
-      'landing.pricing.badge': '💰 Simple Pricing',
-      'landing.pricing.title': 'Choose Your Plan',
-      'landing.pricing.subtitle': 'Start free and scale as you grow. No hidden fees, cancel anytime.'
-    };
-    return translations[key] || key;
-  };
+  const { language, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -570,7 +539,7 @@ export default function StunningLandingPage() {
               fontWeight: '900',
               lineHeight: '1.1',
               marginBottom: '30px',
-              ...(language === 'th' ? {
+              ...((language as 'en' | 'th') === 'th' ? {
                 background: 'linear-gradient(135deg, #74c363 0%, #5fa854 25%, #4a9142 50%, #74c363 75%, #5fa854 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -906,7 +875,7 @@ export default function StunningLandingPage() {
             gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
             gap: '40px'
           }}>
-            {(Array.isArray(t('landing.testimonials.stories')) ? t('landing.testimonials.stories') : []).map((testimonial: any, index: number) => (
+            {(t('landing.testimonials.stories') as unknown as any[] || []).map((testimonial: any, index: number) => (
               <div key={index} style={{
                 background: 'rgba(255, 255, 255, 0.05)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
