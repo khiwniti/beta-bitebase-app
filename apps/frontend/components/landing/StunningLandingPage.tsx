@@ -539,7 +539,7 @@ export default function StunningLandingPage() {
               fontWeight: '900',
               lineHeight: '1.1',
               marginBottom: '30px',
-              ...((language as 'en' | 'th') === 'th' ? {
+              ...(String(language) === 'th' ? {
                 background: 'linear-gradient(135deg, #74c363 0%, #5fa854 25%, #4a9142 50%, #74c363 75%, #5fa854 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
