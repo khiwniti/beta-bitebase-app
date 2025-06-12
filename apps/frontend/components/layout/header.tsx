@@ -1,17 +1,17 @@
 "use client"
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { 
-  Bell, 
-  Search, 
-  Menu, 
+import React, { useState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import {
+  Bell,
+  Search,
+  Menu,
   HelpCircle,
   MessageSquare,
-  Calendar
-} from 'lucide-react'
-import BiteBaseLogo from '../BiteBaseLogo'
+  Calendar,
+} from "lucide-react"
+import BiteBaseLogo from "../BiteBaseLogo"
 import { Button } from "@bitebase/ui"
 
 interface HeaderProps {
@@ -20,14 +20,19 @@ interface HeaderProps {
   restaurantName?: string
 }
 
-export function Header({ onOpenSidebar, userName = 'Maria Rodriguez', restaurantName = 'Bella Vista Bistro' }: HeaderProps) {
+export function Header({
+  onOpenSidebar,
+  userName = "Maria Rodriguez",
+  restaurantName = "Bella Vista Bistro",
+}: HeaderProps) {
   const [searchOpen, setSearchOpen] = useState(false)
   const pathname = usePathname()
-  
+
   // Check if page is dashboard or analytics to show specific header actions
-  const isAnalyticsPage = pathname?.includes('/market-analysis') || pathname?.includes('/place')
-  const isDashboard = pathname === '/dashboard'
-  
+  const isAnalyticsPage =
+    pathname?.includes("/market-analysis") || pathname?.includes("/place")
+  const isDashboard = pathname === "/dashboard"
+
   return (
     <header className="sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
       <div className="h-16 px-4 flex items-center justify-between">
@@ -40,7 +45,7 @@ export function Header({ onOpenSidebar, userName = 'Maria Rodriguez', restaurant
           >
             <Menu className="h-5 w-5" />
           </button>
-          
+
           <div className="flex items-center gap-3">
             <BiteBaseLogo
               size="md"
@@ -52,7 +57,14 @@ export function Header({ onOpenSidebar, userName = 'Maria Rodriguez', restaurant
         </div>
 
         {/* Center section - Search */}
-        <div className={`${searchOpen ? 'flex' : 'hidden md:flex'} flex-1 mx-4 lg:mx-8 max-w-lg`}>
+        <div className={`${searchOpen ? "flex" : "hidden md:flex"} flex-1 mx-4 lg:mx-8 max-w-lg`}>
+          <div className="relative w-full">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <Search className="h-4 w-4 text-gray-400 dark:text-gray-500" />
+            </div>
+            <input
+              type="search"
+              placeholder="Search competitors, locations, insights..."
           <div className="relative w-full">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <Search className="h-4 w-4 text-gray-400 dark:text-gray-500" />
@@ -74,19 +86,19 @@ export function Header({ onOpenSidebar, userName = 'Maria Rodriguez', restaurant
           <button
             onClick={() => setSearchOpen(!searchOpen)}
             className="md:hidden p-2 rounded-lg text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
-            aria-label={searchOpen ? 'Close search' : 'Open search'}
+            aria-label={searchOpen ? "Close search" : "Open search"}
           >
             <Search className="h-5 w-5" />
           </button>
-          
+
           {/* Help button */}
-          <button 
+          <button
             className="p-2 rounded-lg text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
             aria-label="Help and resources"
           >
             <HelpCircle className="h-5 w-5" />
           </button>
-          
+
           {/* Calendar */}
           <Link
             href="/calendar"
@@ -95,7 +107,7 @@ export function Header({ onOpenSidebar, userName = 'Maria Rodriguez', restaurant
           >
             <Calendar className="h-5 w-5" />
           </Link>
-          
+
           {/* Messages */}
           <Link
             href="/messages"
@@ -105,7 +117,7 @@ export function Header({ onOpenSidebar, userName = 'Maria Rodriguez', restaurant
             <MessageSquare className="h-5 w-5" />
             <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-primary-500"></span>
           </Link>
-          
+
           {/* Notifications */}
           <Link
             href="/notifications"
@@ -115,20 +127,18 @@ export function Header({ onOpenSidebar, userName = 'Maria Rodriguez', restaurant
             <Bell className="h-5 w-5" />
             <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-red-500"></span>
           </Link>
-          
+
           {/* Actions button - context-aware */}
           {(isAnalyticsPage || isDashboard) && (
             <div className="hidden md:block">
-              <Button 
+              <Button
                 className="bg-primary-600 hover:bg-primary-700 text-white shadow-sm"
                 size="sm"
               >
-                {isAnalyticsPage ? 'Generate Report' : 'Add Location'}
+                {isAnalyticsPage ? "Generate Report" : "Add Location"}
               </Button>
             </div>
           )}
-          
-
         </div>
       </div>
     </header>

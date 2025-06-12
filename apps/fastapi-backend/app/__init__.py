@@ -1,1 +1,0 @@
-# BiteBase FastAPI Backend
