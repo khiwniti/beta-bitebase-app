@@ -65,9 +65,9 @@ export default function BlogPage() {
     },
     {
       id: 3,
-      title: "Leveraging AI and Machine Learning in Restaurant Operations",
-      slug: "ai-ml-restaurant-operations",
-      excerpt: "Explore how artificial intelligence and machine learning are revolutionizing restaurant operations and customer experiences.",
+      title: "The Art of Food Photography: Capturing the Perfect Dish",
+      slug: "food-photography-perfect-dish",
+      excerpt: "Learn professional techniques for photographing food that will make your dining experiences more memorable and shareable.",
       content: "",
       coverImage: "https://images.unsplash.com/photo-1579165466814-3e9553f2beec?q=80&w=2680&auto=format&fit=crop",
       author: {
@@ -76,14 +76,14 @@ export default function BlogPage() {
       },
       publishedAt: "2024-09-05",
       readingTime: "12 min",
-      tags: ["AI", "machine learning", "technology", "innovation"],
-      category: "Technology"
+      tags: ["food photography", "social media", "dining", "tips"],
+      category: "Food Culture"
     },
     {
       id: 4,
-      title: "Menu Engineering: The Science of Profitable Menu Design",
-      slug: "menu-engineering-profitable-design",
-      excerpt: "Learn how to analyze and design your menu to maximize profitability while enhancing customer satisfaction.",
+      title: "Exploring Global Cuisines: A Foodie's Guide to Authentic Flavors",
+      slug: "exploring-global-cuisines-guide",
+      excerpt: "Discover authentic dishes from around the world and learn how to identify genuine ethnic restaurants in your area.",
       content: "",
       coverImage: "https://images.unsplash.com/photo-1507527825661-f86bc6fa42a8?q=80&w=2574&auto=format&fit=crop",
       author: {
@@ -92,14 +92,14 @@ export default function BlogPage() {
       },
       publishedAt: "2024-08-28",
       readingTime: "9 min",
-      tags: ["menu optimization", "pricing", "psychology"],
-      category: "Menu Strategy"
+      tags: ["global cuisine", "authentic food", "cultural dining", "foodie guide"],
+      category: "Food Culture"
     },
     {
       id: 5,
-      title: "Understanding Restaurant Customer Behavior with Data Analytics",
-      slug: "customer-behavior-data-analytics",
-      excerpt: "Discover how to gather and analyze customer data to improve service, loyalty, and revenue.",
+      title: "The Ultimate Guide to Wine Pairing for Food Lovers",
+      slug: "wine-pairing-guide-food-lovers",
+      excerpt: "Master the art of wine pairing to enhance your dining experiences and discover perfect flavor combinations.",
       content: "",
       coverImage: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2670&auto=format&fit=crop",
       author: {
@@ -108,14 +108,14 @@ export default function BlogPage() {
       },
       publishedAt: "2024-08-22",
       readingTime: "7 min",
-      tags: ["customer insights", "behavior analytics", "loyalty"],
-      category: "Customer Experience"
+      tags: ["wine pairing", "dining experience", "beverages", "food matching"],
+      category: "Dining Guide"
     },
     {
       id: 6,
-      title: "Restaurant Sustainability: Eco-Friendly Practices That Also Save Money",
-      slug: "restaurant-sustainability-eco-practices",
-      excerpt: "Explore sustainable practices for your restaurant that benefit both the environment and your bottom line.",
+      title: "Sustainable Dining: How to Choose Eco-Friendly Restaurants",
+      slug: "sustainable-dining-eco-friendly-restaurants",
+      excerpt: "Learn how to identify and support restaurants that prioritize sustainability and environmental responsibility.",
       content: "",
       coverImage: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=2510&auto=format&fit=crop",
       author: {
@@ -124,7 +124,7 @@ export default function BlogPage() {
       },
       publishedAt: "2024-08-15",
       readingTime: "6 min",
-      tags: ["sustainability", "eco-friendly", "cost savings"],
+      tags: ["sustainable dining", "eco-friendly", "responsible eating", "green restaurants"],
       category: "Sustainability"
     }
   ];
@@ -388,7 +388,7 @@ export default function BlogPage() {
             <div>
               <BiteBaseLogo size="sm" showText={true} />
               <p className="text-gray-600 mt-4">
-                Empowering restaurants with data-driven intelligence for better business decisions.
+                Discover amazing restaurants and enhance your dining experiences with comprehensive restaurant data.
               </p>
             </div>
             
@@ -424,7 +424,7 @@ export default function BlogPage() {
           
           <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col md:flex-row md:items-center md:justify-between">
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} BiteBase Intelligence. All rights reserved.
+              © {new Date().getFullYear()} BiteBase Explorer. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="#" className="text-gray-400 hover:text-gray-500">
