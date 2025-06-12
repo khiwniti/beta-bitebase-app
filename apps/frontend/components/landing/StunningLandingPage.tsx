@@ -3,13 +3,47 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import BiteBaseLogo from "../BiteBaseLogo";
-import LanguageSwitcher from "../LanguageSwitcher";
+import SimpleLanguageSwitcher from "../SimpleLanguageSwitcher";
+// Import translation files directly
+import enMessages from '../../messages/en.json'
+import thMessages from '../../messages/th.json'
+
+const translations = {
+  en: enMessages,
+  th: thMessages
+}
 
 export default function StunningLandingPage() {
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState('en');
+
+  // Translation function
+  const t = (key: string): string => {
+    const keys = key.split('.')
+    let value: any = translations[currentLanguage as 'en' | 'th']
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object' && k in value) {
+        value = value[k]
+      } else {
+        // Fallback to English if key not found
+        value = translations.en
+        for (const fallbackKey of keys) {
+          if (value && typeof value === 'object' && fallbackKey in value) {
+            value = value[fallbackKey]
+          } else {
+            return key // Return key if not found
+          }
+        }
+        break
+      }
+    }
+
+    return typeof value === 'string' ? value : key
+  }
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -19,18 +53,29 @@ export default function StunningLandingPage() {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
+    const handleLanguageChange = (e: CustomEvent) => {
+      setCurrentLanguage(e.detail.language);
+    };
 
-    // Initial check
+    // Initial checks
     handleResize();
+    
+    // Load saved language preference
+    const savedLanguage = localStorage.getItem('preferred-language');
+    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'th')) {
+      setCurrentLanguage(savedLanguage);
+    }
 
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('resize', handleResize);
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
     };
   }, []);
 
@@ -222,17 +267,17 @@ export default function StunningLandingPage() {
               <a href="#features" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none', fontWeight: '500', transition: 'color 0.3s ease' }}
                  onMouseEnter={(e) => e.currentTarget.style.color = '#74c363'}
                  onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>
-                Features
+                {t('navigation.features') || 'Features'}
               </a>
               <Link href="/blog" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none', fontWeight: '500', transition: 'color 0.3s ease' }}
                  onMouseEnter={(e) => e.currentTarget.style.color = '#74c363'}
                  onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>
-                Blog
+                {t('navigation.blog') || 'Blog'}
               </Link>
               <a href="#pricing" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none', fontWeight: '500', transition: 'color 0.3s ease' }}
                  onMouseEnter={(e) => e.currentTarget.style.color = '#74c363'}
                  onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>
-                Pricing
+                {t('navigation.pricing') || 'Pricing'}
               </a>
             </div>
 
@@ -244,7 +289,7 @@ export default function StunningLandingPage() {
               backdropFilter: 'blur(10px)',
               border: '1px solid rgba(255, 255, 255, 0.2)'
             }}>
-              <LanguageSwitcher theme="dark" />
+              <SimpleLanguageSwitcher theme="dark" />
             </div>
 
             {/* Get Started Button */}
@@ -270,7 +315,7 @@ export default function StunningLandingPage() {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = '0 4px 20px rgba(116, 195, 99, 0.3)';
               }}>
-                Get Started
+                {t('landing.hero.cta') || 'Get Started'}
               </button>
             </Link>
           </div>
@@ -285,7 +330,7 @@ export default function StunningLandingPage() {
               backdropFilter: 'blur(10px)',
               border: '1px solid rgba(255, 255, 255, 0.2)'
             }}>
-              <LanguageSwitcher theme="dark" />
+              <SimpleLanguageSwitcher theme="dark" />
             </div>
 
             {/* Mobile Menu Button */}
@@ -499,7 +544,7 @@ export default function StunningLandingPage() {
               animation: 'pulse 2s infinite'
             }} />
             <span style={{ color: '#74c363', fontWeight: '600', fontSize: '14px' }}>
-              AI-Powered Restaurant Intelligence
+              {t('landing.hero.title') || 'AI-Powered Restaurant Intelligence'}
             </span>
           </div>
 
@@ -533,8 +578,7 @@ export default function StunningLandingPage() {
             margin: '0 auto 50px auto',
             animation: 'fadeInUp 1s ease-out 0.4s both'
           }}>
-            Discover profitable locations, track competitors, and optimize operations with 
-            geospatial analytics and AI-driven insights that boost your bottom line.
+            {t('landing.hero.subtitle') || 'Discover profitable locations, track competitors, and optimize operations with geospatial analytics and AI-driven insights that boost your bottom line.'}
           </p>
 
           {/* CTA Buttons */}

@@ -1,6 +1,9 @@
 "use client"
 
 import React, { createContext, useContext, useState, useEffect } from 'react'
+// Import translation files
+import enMessages from '../messages/en.json'
+import thMessages from '../messages/th.json'
 
 type Language = 'en' | 'th'
 
@@ -26,103 +29,27 @@ interface LanguageProviderProps {
 
 // Translation data
 const translations = {
-  en: {
-    initialPrompt: "Hi! I'm your AI restaurant consultant. I'll help you set up your restaurant by gathering information about your concept, target market, and goals. What type of restaurant are you planning to open?",
-    chatNaturally: "Chat naturally about your restaurant concept",
-    readyForResearch: "Ready for market research!",
-    readyForResearchDesc: "I have enough information to provide detailed market analysis and location recommendations.",
-    suggestions: {
-      cuisineType: [
-        "Italian restaurant",
-        "Thai cuisine",
-        "Japanese sushi bar",
-        "Mexican food"
-      ],
-      budget: [
-        "Budget around $200K",
-        "Investment of $500K",
-        "Small budget under $100K",
-        "Large budget over $1M"
-      ],
-      targetAudience: [
-        "Targeting families",
-        "Young professionals",
-        "Tourists and visitors",
-        "Local community"
-      ],
-      location: [
-        "Downtown Bangkok",
-        "Sukhumvit area",
-        "Shopping mall location",
-        "Residential neighborhood"
-      ],
-      diningStyle: [
-        "Fast casual dining",
-        "Fine dining experience",
-        "Cafe style",
-        "Food truck concept"
-      ],
-      additional: [
-        "Tell me about your unique concept",
-        "What makes you different?",
-        "Any special features?",
-        "Timeline for opening?"
-      ]
-    }
-  },
-  th: {
-    initialPrompt: "สวัสดีครับ! ผมเป็นที่ปรึกษาร้านอาหาร AI ผมจะช่วยคุณตั้งร้านอาหารโดยรวบรวมข้อมูลเกี่ยวกับแนวคิด ตลาดเป้าหมาย และเป้าหมายของคุณ คุณวางแผนจะเปิดร้านอาหารประเภทไหนครับ?",
-    chatNaturally: "คุยธรรมชาติเกี่ยวกับแนวคิดร้านอาหารของคุณ",
-    readyForResearch: "พร้อมสำหรับการวิจัยตลาด!",
-    readyForResearchDesc: "ผมมีข้อมูลเพียงพอที่จะให้การวิเคราะห์ตลาดและคำแนะนำทำเลที่ละเอียดแล้ว",
-    suggestions: {
-      cuisineType: [
-        "ร้านอาหารอิตาเลียน",
-        "อาหารไทย",
-        "ซูชิบาร์ญี่ปุ่น",
-        "อาหารเม็กซิกัน"
-      ],
-      budget: [
-        "งบประมาณประมาณ 7 ล้านบาท",
-        "การลงทุน 17 ล้านบาท",
-        "งบประมาณน้อย ต่ำกว่า 3.5 ล้านบาท",
-        "งบประมาณใหญ่ มากกว่า 35 ล้านบาท"
-      ],
-      targetAudience: [
-        "เป้าหมายครอบครัว",
-        "วัยทำงาน",
-        "นักท่องเที่ยวและผู้มาเยือน",
-        "ชุมชนท้องถิ่น"
-      ],
-      location: [
-        "ใจกลางกรุงเทพ",
-        "ย่านสุขุมวิท",
-        "ทำเลในห้างสรรพสินค้า",
-        "ย่านที่อยู่อาศัย"
-      ],
-      diningStyle: [
-        "แฟสต์แคชชวล",
-        "ไฟน์ไดนิ่ง",
-        "สไตล์คาเฟ่",
-        "แนวคิดฟู้ดทรัค"
-      ],
-      additional: [
-        "เล่าให้ฟังเกี่ยวกับแนวคิดพิเศษของคุณ",
-        "อะไรที่ทำให้คุณแตกต่าง?",
-        "มีคุณสมบัติพิเศษอะไรไหม?",
-        "กำหนดเวลาสำหรับการเปิด?"
-      ]
-    }
-  }
+  en: enMessages,
+  th: thMessages
 }
 
 export function LanguageProvider({ children }: LanguageProviderProps) {
-  const [language, setLanguage] = useState<Language>('en')
+  const [language, setLanguageState] = useState<Language>('en')
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+    // Load saved language preference from localStorage
+    const savedLanguage = localStorage.getItem('preferred-language') as Language
+    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'th')) {
+      setLanguageState(savedLanguage)
+    }
   }, [])
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang)
+    localStorage.setItem('preferred-language', lang)
+  }
 
   // Prevent hydration mismatch by not rendering until mounted
   if (!mounted) {

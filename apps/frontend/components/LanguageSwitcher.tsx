@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useEffect } from 'react'
-import { Globe } from 'lucide-react'
+import { useState } from 'react'
+import { useLanguage } from '../contexts/LanguageContext'
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
@@ -9,36 +9,21 @@ const languages = [
 ]
 
 interface LanguageSwitcherProps {
-  currentLocale?: string;
-  onLanguageChange?: (locale: string) => void;
   theme?: 'light' | 'dark';
 }
 
 export default function LanguageSwitcher({ 
-  currentLocale = 'en', 
-  onLanguageChange,
   theme = 'light'
 }: LanguageSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedLocale, setSelectedLocale] = useState(currentLocale)
+  const { language, setLanguage } = useLanguage()
 
-  useEffect(() => {
-    // Load saved language preference from localStorage
-    const savedLocale = localStorage.getItem('preferred-language') || 'en'
-    setSelectedLocale(savedLocale)
-  }, [])
-
-  const handleLanguageChange = (locale: string) => {
-    setSelectedLocale(locale)
-    localStorage.setItem('preferred-language', locale)
+  const handleLanguageChange = (newLocale: 'en' | 'th') => {
     setIsOpen(false)
-    
-    if (onLanguageChange) {
-      onLanguageChange(locale)
-    }
+    setLanguage(newLocale)
   }
 
-  const currentLanguage = languages.find(lang => lang.code === selectedLocale) || languages[0]
+  const currentLanguage = languages.find(lang => lang.code === language) || languages[0]
 
   const buttonStyles = theme === 'dark' 
     ? "flex items-center space-x-2 px-3 py-2 text-sm font-medium text-white hover:text-green-400 hover:bg-white/10 rounded-md transition-colors"
@@ -70,8 +55,8 @@ export default function LanguageSwitcher({
           {/* Dropdown */}
           <div className={dropdownStyles}>
             <div className="py-1">
-              {languages.map((language) => {
-                const isSelected = selectedLocale === language.code
+              {languages.map((lang) => {
+                const isSelected = language === lang.code
                 const itemStyles = theme === 'dark'
                   ? `w-full text-left px-4 py-2 text-sm hover:bg-white/10 flex items-center space-x-3 ${
                       isSelected 
@@ -86,12 +71,12 @@ export default function LanguageSwitcher({
 
                 return (
                   <button
-                    key={language.code}
-                    onClick={() => handleLanguageChange(language.code)}
+                    key={lang.code}
+                    onClick={() => handleLanguageChange(lang.code)}
                     className={itemStyles}
                   >
-                    <span className="text-lg">{language.flag}</span>
-                    <span>{language.name}</span>
+                    <span className="text-lg">{lang.flag}</span>
+                    <span>{lang.name}</span>
                     {isSelected && (
                       <span className={`ml-auto ${theme === 'dark' ? 'text-green-400' : 'text-primary-600'}`}>✓</span>
                     )}
