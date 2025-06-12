@@ -1,0 +1,53 @@
+
+> dev
+> turbo run dev
+
+turbo 2.5.4
+
+• Packages in scope: @bitebase/eslint-config, @bitebase/typescript-config, @bitebase/ui, bitebase-backend-cloudflare, bitebase-frontend
+• Running dev in 5 packages
+• Remote caching disabled
+bitebase-backend-cloudflare:dev: cache bypass, force executing 6436d6eab5edf289
+bitebase-frontend:dev: cache bypass, force executing cd4345e73726a140
+bitebase-backend-cloudflare:dev: yarn run v1.22.22
+bitebase-frontend:dev: yarn run v1.22.22
+bitebase-backend-cloudflare:dev: $ wrangler dev
+bitebase-frontend:dev: $ next dev
+bitebase-frontend:dev:    ▲ Next.js 15.3.3
+bitebase-frontend:dev:    - Local:        http://localhost:3000
+bitebase-frontend:dev:    - Network:      http://10.2.33.142:3000
+bitebase-frontend:dev: 
+bitebase-frontend:dev:  ✓ Starting...
+bitebase-backend-cloudflare:dev: 
+bitebase-backend-cloudflare:dev:  ⛅️ wrangler 3.114.9 (update available 4.19.2)
+bitebase-backend-cloudflare:dev: ----------------------------------------------
+bitebase-backend-cloudflare:dev: 
+bitebase-backend-cloudflare:dev: [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+bitebase-backend-cloudflare:dev: 
+bitebase-backend-cloudflare:dev:   Please update to the latest version to prevent critical errors.
+bitebase-backend-cloudflare:dev:   Run `npm install --save-dev wrangler@4` to update to the latest version.
+bitebase-backend-cloudflare:dev:   After installation, run Wrangler with `npx wrangler`.
+bitebase-backend-cloudflare:dev: 
+bitebase-backend-cloudflare:dev: 
+bitebase-backend-cloudflare:dev: 
+bitebase-backend-cloudflare:dev: [31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mCan't redefine existing key[0m
+bitebase-backend-cloudflare:dev: 
+bitebase-backend-cloudflare:dev:     /workspace/beta-bitebase-app/apps/backend/wrangler.toml:79:20:
+bitebase-backend-cloudflare:dev: [37m      79 │ [env.production.rout[32m[37me]
+bitebase-backend-cloudflare:dev:          ╵                     [32m^[0m
+bitebase-backend-cloudflare:dev: 
+bitebase-backend-cloudflare:dev:   
+bitebase-backend-cloudflare:dev:   If you think this is a bug, please open an issue at: [4mhttps://github.com/cloudflare/workers-sdk/issues/new/choose[0m
+bitebase-backend-cloudflare:dev: 
+bitebase-backend-cloudflare:dev: 
+bitebase-backend-cloudflare:dev: error Command failed with exit code 1.
+bitebase-backend-cloudflare:dev: info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+bitebase-backend-cloudflare:dev: ERROR: command finished with error: command (/workspace/beta-bitebase-app/apps/backend) /usr/local/bin/yarn run dev exited (1)
+bitebase-backend-cloudflare#dev: command (/workspace/beta-bitebase-app/apps/backend) /usr/local/bin/yarn run dev exited (1)
+
+ Tasks:    0 successful, 2 total
+Cached:    0 cached, 2 total
+  Time:    2.074s 
+Failed:    bitebase-backend-cloudflare#dev
+
+ ERROR  run failed: command  exited (1)
