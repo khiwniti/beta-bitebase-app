@@ -433,7 +433,7 @@ export default function StunningLandingPage() {
                   e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
                 }}
               >
-                Features
+                {t('navigation.features')}
               </a>
               <Link 
                 href="/blog" 
@@ -458,7 +458,7 @@ export default function StunningLandingPage() {
                   e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
                 }}
               >
-                Blog
+                {t('navigation.blog')}
               </Link>
               <a 
                 href="#pricing" 
@@ -483,7 +483,7 @@ export default function StunningLandingPage() {
                   e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
                 }}
               >
-                Pricing
+                {t('navigation.pricing')}
               </a>
               <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
                 <button style={{
@@ -728,7 +728,7 @@ export default function StunningLandingPage() {
               backdropFilter: 'blur(10px)'
             }}>
               <span style={{ color: '#74c363', fontWeight: '600', fontSize: '14px' }}>
-                ✨ Features
+                {t('landing.features.badge')}
               </span>
             </div>
             <h2 style={{
@@ -737,7 +737,7 @@ export default function StunningLandingPage() {
               color: 'white',
               marginBottom: '20px'
             }}>
-              Why Choose BiteBase Intelligence
+              {t('landing.features.title')}
             </h2>
             <p style={{
               fontSize: '1.2rem',
@@ -745,8 +745,7 @@ export default function StunningLandingPage() {
               maxWidth: '600px',
               margin: '0 auto'
             }}>
-              Discover how our AI-powered platform helps restaurants optimize operations, 
-              understand markets, and increase profitability.
+              {t('landing.features.subtitle')}
             </p>
           </div>
 
@@ -1006,7 +1005,7 @@ export default function StunningLandingPage() {
               backdropFilter: 'blur(10px)'
             }}>
               <span style={{ color: '#74c363', fontWeight: '600', fontSize: '14px' }}>
-                💰 Pricing Plans
+                {t('landing.pricing.badge')}
               </span>
             </div>
             <h2 style={{
@@ -1015,7 +1014,7 @@ export default function StunningLandingPage() {
               color: 'white',
               marginBottom: '20px'
             }}>
-              Choose Your Plan
+              {t('landing.pricing.title')}
             </h2>
             <p style={{
               fontSize: '1.2rem',
@@ -1023,7 +1022,7 @@ export default function StunningLandingPage() {
               maxWidth: '600px',
               margin: '0 auto'
             }}>
-              Select a plan that fits your needs and start building with BiteBase today!
+              {t('landing.pricing.subtitle')}
             </p>
           </div>
 

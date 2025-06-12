@@ -22,6 +22,7 @@
   "navigation": {
     "home": "Home",
     "explore": "Explore",
+    "features": "Features",
     "blog": "Blog",
     "dashboard": "Dashboard",
     "about": "About",
@@ -63,8 +64,9 @@
       "watchDemo": "Watch Demo"
     },
     "features": {
-      "title": "Powerful Features for Restaurant Success",
-      "subtitle": "Everything you need to make data-driven decisions for your restaurant business",
+      "badge": "✨ Features",
+      "title": "Why Choose BiteBase Intelligence",
+      "subtitle": "Discover how our AI-powered platform helps restaurants optimize operations, understand markets, and increase profitability.",
       "marketAnalysis": {
         "title": "Market Analysis",
         "description": "Deep dive into local market conditions, customer demographics, and spending patterns"
@@ -79,8 +81,9 @@
       }
     },
     "pricing": {
+      "badge": "💰 Pricing Plans",
       "title": "Choose Your Plan",
-      "subtitle": "Start free, scale as you grow",
+      "subtitle": "Select a plan that fits your needs and start building with BiteBase today!",
       "monthly": "Monthly",
       "yearly": "Yearly",
       "save": "Save 20%",
