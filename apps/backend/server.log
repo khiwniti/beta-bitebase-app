@@ -43,3 +43,28 @@ BiteBase API server running on port 12000
 [2025-06-12T11:17:36.117Z] GET /api/v1/ai/history/demo-user
 [2025-06-12T11:17:42.847Z] GET /api/v1/ai/history/demo-user
 [2025-06-12T11:17:49.958Z] GET /api/v1/ai/history/demo-user
+[2025-06-12T11:18:22.514Z] GET /api/health
+✅ Connected to PostgreSQL database
+📊 Query executed {
+  text: 'SELECT NOW() as current_time, version() as version...',
+  duration: 196,
+  rows: 1
+}
+[2025-06-12T11:18:27.270Z] GET /api/health
+📊 Query executed {
+  text: 'SELECT NOW() as current_time, version() as version...',
+  duration: 21,
+  rows: 1
+}
+[2025-06-12T11:18:32.017Z] POST /api/auth/login
+📊 Query executed {
+  text: 'SELECT * FROM users WHERE email = $1...',
+  duration: 21,
+  rows: 1
+}
+[2025-06-12T11:18:36.631Z] POST /api/auth/login
+📊 Query executed {
+  text: 'SELECT * FROM users WHERE email = $1...',
+  duration: 23,
+  rows: 1
+}

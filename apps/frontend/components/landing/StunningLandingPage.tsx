@@ -254,7 +254,7 @@ export default function StunningLandingPage() {
             textDecoration: 'none',
             color: 'white'
           }}>
-            <BiteBaseLogo size="sm" showText={true} variant="white" />
+            <BiteBaseLogo size="sm" showText={false} variant="white" />
           </Link>
 
           {/* Desktop Navigation */}
