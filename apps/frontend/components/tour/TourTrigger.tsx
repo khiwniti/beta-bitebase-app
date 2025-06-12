@@ -94,7 +94,7 @@ export function WelcomeBanner({ onStartTour }: { onStartTour: () => void }) {
             <Play className="w-5 h-5 text-primary-600" />
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900">Welcome to BiteBase Intelligence! 🎉</h3>
+            <h3 className="font-semibold text-gray-900">Welcome to BiteBase! 🎉</h3>
             <p className="text-sm text-gray-600">
               New to our platform? Take a quick tour to discover how AI can transform your restaurant business.
             </p>

@@ -20,7 +20,7 @@ interface TourStep {
 const tourSteps: TourStep[] = [
   {
     id: 'welcome',
-    title: 'Welcome to BiteBase Intelligence! 🍽️',
+    title: 'Welcome to BiteBase! 🍽️',
     description: 'Your AI-powered restaurant business intelligence platform. Let\'s take a quick tour to show you around.',
     target: 'body',
     position: 'bottom',

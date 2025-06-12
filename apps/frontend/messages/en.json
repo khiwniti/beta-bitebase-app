@@ -60,7 +60,7 @@
     "hero": {
       "badge": "AI-Powered Restaurant Intelligence",
       "title": "Transform Your Restaurant Business",
-      "subtitle": "Harness the power of AI to analyze markets, optimize locations, and outperform competitors with BiteBase Intelligence.",
+      "subtitle": "Harness the power of AI to analyze markets, optimize locations, and outperform competitors with BiteBase.",
       "cta": "🚀 Start Free Trial",
       "watchDemo": "▶️ Watch Demo",
       "stats": {
@@ -71,7 +71,7 @@
     },
     "features": {
       "badge": "✨ Features",
-      "title": "Why Choose BiteBase Intelligence",
+      "title": "Why Choose BiteBase",
       "subtitle": "Discover how our AI-powered platform helps restaurants optimize operations, understand markets, and increase profitability.",
       "marketAnalysis": {
         "title": "Market Analysis",
@@ -116,10 +116,10 @@
     "testimonials": {
       "badge": "💬 Customer Success Stories",
       "title": "Trusted by Restaurant Owners",
-      "subtitle": "See how BiteBase Intelligence has transformed restaurants across the globe.",
+      "subtitle": "See how BiteBase has transformed restaurants across the globe.",
       "stories": [
         {
-          "quote": "BiteBase Intelligence helped us identify the perfect location for our second restaurant. The geospatial analytics were spot-on, and we saw a 40% increase in foot traffic compared to our projections.",
+          "quote": "BiteBase helped us identify the perfect location for our second restaurant. The geospatial analytics were spot-on, and we saw a 40% increase in foot traffic compared to our projections.",
           "name": "Maria Rodriguez",
           "title": "Owner, Sabor Latino",
           "location": "Miami, FL",

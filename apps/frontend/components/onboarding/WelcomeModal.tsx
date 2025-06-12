@@ -74,7 +74,7 @@ export function WelcomeModal({ userName = 'there', isOpen, onClose, isFirstTimeU
         <div className="pt-16 px-8 pb-8">
           {currentStep === 0 && (
             <div className="text-center">
-              <h2 className="text-2xl font-bold mb-2">Welcome to BiteBase Intelligence, {userName}!</h2>
+              <h2 className="text-2xl font-bold mb-2">Welcome to BiteBase, {userName}!</h2>
               <p className="text-gray-600 mb-6">
                 Your restaurant market intelligence platform is ready to help you make data-driven decisions.
               </p>
@@ -216,7 +216,7 @@ export function WelcomeModal({ userName = 'there', isOpen, onClose, isFirstTimeU
             <div className="text-center">
               <h2 className="text-2xl font-bold mb-2">Ready to get started?</h2>
               <p className="text-gray-600 mb-6">
-                Choose how you'd like to begin using BiteBase Intelligence.
+                Choose how you'd like to begin using BiteBase.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">

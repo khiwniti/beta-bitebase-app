@@ -452,7 +452,7 @@ export default function EnhancedPricingCards() {
             color: '#64748b',
             marginBottom: '20px'
           }}>
-            Join thousands of successful restaurants using BiteBase Intelligence
+            Join thousands of successful restaurants using BiteBase
           </p>
           <Link href="/dashboard">
             <button style={{

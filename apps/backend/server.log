@@ -33,3 +33,13 @@ BiteBase API server running on port 12000
   duration: 21,
   rows: 1
 }
+[2025-06-12T11:16:39.616Z] GET /api/v1/ai/history/demo-user
+[2025-06-12T11:16:59.792Z] GET /api/v1/ai/history/demo-user
+[2025-06-12T11:17:10.213Z] GET /api/v1/ai/history/demo-user
+[2025-06-12T11:17:14.740Z] GET /api/v1/ai/history/demo-user
+[2025-06-12T11:17:19.577Z] GET /api/v1/ai/history/demo-user
+[2025-06-12T11:17:25.434Z] GET /api/v1/ai/history/demo-user
+[2025-06-12T11:17:31.110Z] GET /api/v1/ai/history/demo-user
+[2025-06-12T11:17:36.117Z] GET /api/v1/ai/history/demo-user
+[2025-06-12T11:17:42.847Z] GET /api/v1/ai/history/demo-user
+[2025-06-12T11:17:49.958Z] GET /api/v1/ai/history/demo-user
