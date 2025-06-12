@@ -381,3 +381,136 @@ async def get_restaurant_analytics(
     except Exception as e:
         logger.error("Failed to get restaurant analytics", error=str(e))
         raise HTTPException(status_code=500, detail="Failed to retrieve analytics")
+
+@router.post("/scrape-and-populate")
+async def scrape_and_populate_restaurants(
+    request: Request,
+    region: str = Query("bangkok", description="Region to scrape (bangkok, chiang_mai, phuket, pattaya)"),
+    category: str = Query("restaurant", description="Category to scrape"),
+    max_pages: int = Query(2, ge=1, le=5, description="Maximum pages to scrape"),
+    current_user_id: str = Depends(get_current_user_id),
+    db: Session = Depends(get_db)
+):
+    """Scrape real restaurant data and populate the database"""
+    try:
+        import sys
+        from pathlib import Path
+        
+        # Add data-pipeline to Python path
+        pipeline_path = Path(__file__).parent.parent.parent.parent.parent.parent / "data-pipeline"
+        sys.path.insert(0, str(pipeline_path))
+        
+        from scrapers.wongnai_scraper import WongnaiScraper
+        from config.settings import WONGNAI_REGIONS
+        
+        # Validate region
+        if region not in WONGNAI_REGIONS:
+            raise HTTPException(status_code=400, detail=f"Invalid region. Available: {list(WONGNAI_REGIONS.keys())}")
+        
+        logger.info("Starting restaurant scraping", region=region, category=category, max_pages=max_pages)
+        
+        # Initialize scraper
+        scraper = WongnaiScraper()
+        restaurant_service = RestaurantService(db)
+        
+        # Scrape restaurant listings
+        scraped_restaurants = scraper.scrape_restaurant_listings(
+            region=region,
+            category=category,
+            max_pages=max_pages
+        )
+        
+        if not scraped_restaurants:
+            return {
+                "status": "warning",
+                "message": "No restaurants found during scraping",
+                "region": region,
+                "category": category,
+                "restaurants_scraped": 0,
+                "restaurants_stored": 0
+            }
+        
+        # Convert scraped data to database format and store
+        stored_restaurants = []
+        for scraped_data in scraped_restaurants:
+            try:
+                # Map scraped data to RestaurantCreate schema
+                restaurant_create = RestaurantCreate(
+                    name=scraped_data.get("name", "Unknown Restaurant"),
+                    address=scraped_data.get("address", ""),
+                    latitude=scraped_data.get("latitude"),
+                    longitude=scraped_data.get("longitude"),
+                    phone=scraped_data.get("phone", ""),
+                    website=scraped_data.get("website", ""),
+                    rating=scraped_data.get("rating"),
+                    price_range=scraped_data.get("price_range", "MODERATE"),
+                    cuisine_type=scraped_data.get("cuisine_type", "Thai"),
+                    opening_hours=scraped_data.get("opening_hours", {}),
+                    description=scraped_data.get("description", ""),
+                    features=scraped_data.get("features", []),
+                    images=scraped_data.get("images", [])
+                )
+                
+                # Create restaurant in database
+                restaurant = restaurant_service.create_restaurant(restaurant_create, current_user_id)
+                stored_restaurants.append(restaurant)
+                
+                logger.info("Restaurant stored", restaurant_id=restaurant.id, name=restaurant.name)
+                
+            except Exception as e:
+                logger.warning("Failed to store scraped restaurant", error=str(e), restaurant_data=scraped_data)
+                continue
+        
+        # Close scraper resources
+        scraper._close_driver()
+        
+        return {
+            "status": "success",
+            "message": f"Successfully scraped and stored {len(stored_restaurants)} restaurants",
+            "region": region,
+            "category": category,
+            "restaurants_scraped": len(scraped_restaurants),
+            "restaurants_stored": len(stored_restaurants),
+            "stored_restaurants": [
+                {
+                    "id": r.id,
+                    "name": r.name,
+                    "rating": r.rating,
+                    "cuisine_type": r.cuisine_type
+                } for r in stored_restaurants[:10]  # Show first 10
+            ]
+        }
+        
+    except ImportError as e:
+        logger.error("Scraping module import failed", error=str(e))
+        raise HTTPException(status_code=500, detail="Scraping system not available")
+    except Exception as e:
+        logger.error("Scraping and population failed", error=str(e))
+        raise HTTPException(status_code=500, detail=f"Failed to scrape and populate restaurants: {str(e)}")
+
+@router.get("/scraped-data/status")
+async def get_scraped_data_status(
+    db: Session = Depends(get_db)
+):
+    """Get status of scraped data in the database"""
+    try:
+        restaurant_service = RestaurantService(db)
+        
+        # Get total counts
+        total_restaurants = restaurant_service.get_total_restaurant_count()
+        
+        # Get counts by region/cuisine
+        cuisine_counts = restaurant_service.get_restaurant_counts_by_cuisine()
+        rating_stats = restaurant_service.get_rating_statistics()
+        
+        return {
+            "status": "success",
+            "total_restaurants": total_restaurants,
+            "cuisine_distribution": cuisine_counts,
+            "rating_statistics": rating_stats,
+            "last_updated": "2025-06-12T06:20:00Z"  # This would be dynamic in production
+        }
+        
+    except Exception as e:
+        logger.error("Failed to get scraped data status", error=str(e))
+        raise HTTPException(status_code=500, detail="Failed to retrieve data status")

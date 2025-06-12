@@ -10,34 +10,47 @@ export interface ApiResponse<T> {
 }
 
 export interface Restaurant {
-  id: string;
-  publicId: string;
+  id: number;
   name: string;
   latitude: number;
   longitude: number;
-  address: string;
-  cuisine: string;
-  price_range: string;
-  rating: number;
-  platform: string;
+  address?: string;
+  cuisine?: string;
+  price_range?: string;
+  rating?: number;
+  review_count?: number;
+  platform?: string;
+  platform_id?: string;
+  user_id?: string;
   phone?: string;
   website?: string;
-  hours?: string;
-  features: string[];
-  images?: string[];
-  wongnai_data?: {
-    publicId: string;
-    isDeliveryAvailable: boolean;
-  };
+  hours?: any; // Can be string or object
+  features?: any; // Can be string or array
+  images?: any; // Can be string or array
+  description?: string;
+  menu_url?: string;
+  delivery_available?: string;
+  takeout_available?: string;
+  reservations_available?: string;
+  created_at?: string;
+  updated_at?: string;
+  // For detailed view
+  reviews?: any[];
+  menu_items?: MenuItem[];
+  avg_rating?: number;
 }
 
 export interface MenuItem {
-  id: string;
+  id: number;
+  restaurant_id: number;
   name: string;
-  description: string;
+  description?: string;
   price: number;
-  image?: string;
-  isAvailable: boolean;
+  category?: string;
+  image_url?: string;
+  is_available?: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface MenuCategory {
@@ -172,7 +185,17 @@ class ApiClient {
       longitude: longitude.toString(),
       radius: radius.toString(),
     });
-    return this.request(`/restaurants/search?${params}`);
+    const response = await this.request<{ restaurants: Restaurant[]; total: number; limit: number; offset: number }>(`/restaurants/search?${params}`);
+    if (response.error) {
+      return {
+        error: response.error,
+        status: response.status,
+      };
+    }
+    return {
+      data: response.data?.restaurants || [],
+      status: response.status,
+    };
   }
 
   // Wongnai integration endpoints
@@ -189,8 +212,8 @@ class ApiClient {
     });
   }
 
-  async getRestaurantMenu(publicId: string): Promise<ApiResponse<RestaurantMenu>> {
-    return this.request(`/restaurants/${publicId}/menu-items`);
+  async getRestaurantMenu(restaurantId: number): Promise<ApiResponse<MenuItem[]>> {
+    return this.request(`/restaurants/${restaurantId}/menu-items`);
   }
 
   async getBatchMenus(publicIds: string[]): Promise<ApiResponse<{
@@ -230,6 +253,46 @@ class ApiClient {
         radius: params.radius || 5,
         platforms: params.platforms || ['wongnai', 'google']
       }),
+    });
+  }
+
+  // Scraped data status
+  async getScrapedDataStatus(): Promise<ApiResponse<{
+    status: string;
+    total_restaurants: number;
+    cuisine_distribution: Record<string, number>;
+    rating_statistics: {
+      average_rating: number;
+      min_rating: number;
+      max_rating: number;
+      rated_restaurants: number;
+    };
+    last_updated: string;
+  }>> {
+    return this.request('/restaurants/scraped-data/status');
+  }
+
+  // Scrape and populate restaurants
+  async scrapeAndPopulateRestaurants(params: {
+    region?: string;
+    category?: string;
+    max_pages?: number;
+  }): Promise<ApiResponse<{
+    status: string;
+    message: string;
+    region: string;
+    category: string;
+    restaurants_scraped: number;
+    restaurants_stored: number;
+    stored_restaurants: Restaurant[];
+  }>> {
+    const queryParams = new URLSearchParams({
+      region: params.region || 'bangkok',
+      category: params.category || 'restaurant',
+      max_pages: (params.max_pages || 2).toString(),
+    });
+    return this.request(`/restaurants/scrape-and-populate?${queryParams}`, {
+      method: 'POST',
     });
   }
 

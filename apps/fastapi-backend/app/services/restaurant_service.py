@@ -383,3 +383,49 @@ class RestaurantService:
             
         except Exception as e:
             logger.error("Failed to update restaurant rating", error=str(e))
+
+    def get_total_restaurant_count(self) -> int:
+        """Get total number of restaurants in the database"""
+        try:
+            return self.db.query(func.count(Restaurant.id)).scalar() or 0
+        except Exception as e:
+            logger.error("Failed to get total restaurant count", error=str(e))
+            return 0
+
+    def get_restaurant_counts_by_cuisine(self) -> Dict[str, int]:
+        """Get restaurant counts grouped by cuisine type"""
+        try:
+            results = self.db.query(
+                Restaurant.cuisine,
+                func.count(Restaurant.id).label('count')
+            ).group_by(Restaurant.cuisine).all()
+            
+            return {cuisine: count for cuisine, count in results}
+        except Exception as e:
+            logger.error("Failed to get cuisine counts", error=str(e))
+            return {}
+
+    def get_rating_statistics(self) -> Dict[str, Any]:
+        """Get rating statistics for all restaurants"""
+        try:
+            stats = self.db.query(
+                func.avg(Restaurant.rating).label('average_rating'),
+                func.min(Restaurant.rating).label('min_rating'),
+                func.max(Restaurant.rating).label('max_rating'),
+                func.count(Restaurant.id).filter(Restaurant.rating.isnot(None)).label('rated_count')
+            ).first()
+            
+            return {
+                "average_rating": float(stats.average_rating) if stats.average_rating else 0.0,
+                "min_rating": float(stats.min_rating) if stats.min_rating else 0.0,
+                "max_rating": float(stats.max_rating) if stats.max_rating else 0.0,
+                "rated_restaurants": stats.rated_count or 0
+            }
+        except Exception as e:
+            logger.error("Failed to get rating statistics", error=str(e))
+            return {
+                "average_rating": 0.0,
+                "min_rating": 0.0,
+                "max_rating": 0.0,
+                "rated_restaurants": 0
+            }

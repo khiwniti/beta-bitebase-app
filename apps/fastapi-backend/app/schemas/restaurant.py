@@ -3,8 +3,9 @@ Restaurant schemas for BiteBase FastAPI Backend
 """
 
 from typing import Optional, List, Dict, Any
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, validator, field_validator
 from datetime import datetime
+import json
 from app.models.restaurant import PriceRange
 
 # Base schemas
@@ -17,9 +18,9 @@ class RestaurantBase(BaseModel):
     price_range: Optional[PriceRange] = None
     phone: Optional[str] = None
     website: Optional[str] = None
-    hours: Optional[str] = None
-    features: Optional[str] = None
-    images: Optional[str] = None
+    hours: Optional[Any] = None  # Can be string or dict
+    features: Optional[Any] = None  # Can be string or list
+    images: Optional[Any] = None  # Can be string or list
     description: Optional[str] = None
     menu_url: Optional[str] = None
     delivery_available: Optional[str] = None
@@ -53,8 +54,38 @@ class Restaurant(RestaurantBase):
     platform: Optional[str] = None
     platform_id: Optional[str] = None
     user_id: Optional[str] = None
-    created_at: datetime
+    created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
+    
+    @field_validator('features', mode='before')
+    @classmethod
+    def parse_features(cls, v):
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except (json.JSONDecodeError, TypeError):
+                return v
+        return v
+    
+    @field_validator('images', mode='before')
+    @classmethod
+    def parse_images(cls, v):
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except (json.JSONDecodeError, TypeError):
+                return v
+        return v
+    
+    @field_validator('hours', mode='before')
+    @classmethod
+    def parse_hours(cls, v):
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except (json.JSONDecodeError, TypeError):
+                return v
+        return v
     
     class Config:
         from_attributes = True
