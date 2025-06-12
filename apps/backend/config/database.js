@@ -2,8 +2,8 @@ const { Pool } = require('pg');
 
 // Database configuration
 const dbConfig = {
-  // Neon.tech PostgreSQL connection string from README
-  connectionString: process.env.DATABASE_URL || 'postgresql://bitebasedb_staging_owner:npg_vzp02ERAaXoQ@ep-damp-tooth-a4orgq86-pooler.us-east-1.aws.neon.tech/bitebasedb_staging?sslmode=require',
+  // Production PostgreSQL connection string
+  connectionString: process.env.DATABASE_URL || 'postgresql://bitebase_db_admin:npg_zNDoLH0XVWB7@ep-odd-moon-a5mh5buz-pooler.us-east-2.aws.neon.tech/beta-bitebase-prod?sslmode=require',
   ssl: {
     rejectUnauthorized: false
   },

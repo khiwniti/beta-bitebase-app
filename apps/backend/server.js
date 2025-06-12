@@ -8,7 +8,7 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { OAuth2Client } = require("google-auth-library");
-const { Database } = require("./config/sqlite-database");
+const { Database } = require("./config/database");
 
 const app = express();
 
@@ -26,42 +26,12 @@ if (GOOGLE_CLIENT_ID && GOOGLE_CLIENT_ID !== "demo-google-client-id") {
   console.log("Google OAuth not configured - using demo mode");
 }
 
-// Initialize admin user in database
-const initializeAdminUser = async () => {
-  try {
-    const adminEmail = "admin@bitebase.app";
-    const adminPassword = "Libralytics1234!*";
-    const hashedPassword = await bcrypt.hash(adminPassword, 10);
-    
-    // Check if admin user already exists
-    let adminUser = await Database.getUserByEmail(adminEmail);
-    
-    if (!adminUser) {
-      // Create admin user in database
-      adminUser = await Database.createUser({
-        uid: "admin-user-001",
-        email: adminEmail,
-        display_name: "BiteBase Admin",
-        account_type: "restaurant"
-      });
-      console.log("Admin user created in database:", adminEmail);
-    } else {
-      console.log("Admin user already exists:", adminEmail);
-    }
-    
-    // Store password hash separately (in production, use proper user auth table)
-    global.adminPasswordHash = hashedPassword;
-    
-  } catch (error) {
-    console.error("Failed to initialize admin user:", error);
-  }
-};
-
-// Initialize database and admin user on startup
+// Initialize server (database is already initialized via init-postgresql.js)
 const initializeServer = async () => {
   try {
-    await Database.initializeSchema();
-    await initializeAdminUser();
+    // Test database connection
+    const health = await Database.healthCheck();
+    console.log("✅ Database connection verified:", health.status);
     console.log("✅ Server initialization complete");
   } catch (error) {
     console.error("❌ Server initialization failed:", error);
@@ -209,27 +179,18 @@ app.post("/api/auth/login", async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // Get password hash (in production, store in proper auth table)
-    let passwordHash;
-    if (email === "admin@bitebase.app") {
-      passwordHash = global.adminPasswordHash;
-    } else {
-      global.userPasswords = global.userPasswords || new Map();
-      passwordHash = global.userPasswords.get(email);
-    }
-
-    if (!passwordHash) {
+    // Verify password using database stored hash
+    if (!user.password_hash) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // Verify password
-    const isValidPassword = await bcrypt.compare(password, passwordHash);
+    const isValidPassword = await bcrypt.compare(password, user.password_hash);
     if (!isValidPassword) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // Determine role
-    const role = email === "admin@bitebase.app" ? "admin" : "user";
+    // Use role from database
+    const role = user.role || "user";
 
     // Generate JWT token
     const token = jwt.sign(
