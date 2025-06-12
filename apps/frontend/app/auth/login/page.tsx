@@ -57,7 +57,7 @@ export default function AuthPage() {
 
   const handleSkipAuth = () => {
     // Set demo cookies to bypass middleware authentication
-    document.cookie = `auth_token=demo-token; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
+    document.cookie = `auth-token=demo-token; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
     document.cookie = `user_role=user; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
     
     // Skip authentication and go directly to dashboard

@@ -21,7 +21,7 @@ export default function StunningLandingPage() {
   const [currentLanguage, setCurrentLanguage] = useState('en');
 
   // Translation function
-  const t = (key: string): string => {
+  const t = (key: string): any => {
     const keys = key.split('.')
     let value: any = translations[currentLanguage as 'en' | 'th']
     
@@ -42,7 +42,7 @@ export default function StunningLandingPage() {
       }
     }
 
-    return typeof value === 'string' ? value : key
+    return value !== undefined ? value : key
   }
 
   useEffect(() => {
@@ -544,7 +544,7 @@ export default function StunningLandingPage() {
               animation: 'pulse 2s infinite'
             }} />
             <span style={{ color: '#74c363', fontWeight: '600', fontSize: '14px' }}>
-              {t('landing.hero.title') || 'AI-Powered Restaurant Intelligence'}
+              {t('landing.hero.badge')}
             </span>
           </div>
 
@@ -556,16 +556,7 @@ export default function StunningLandingPage() {
             marginBottom: '30px',
             animation: 'fadeInUp 1s ease-out 0.2s both'
           }}>
-            <span style={{ color: 'white' }}>Transform Your</span>
-            <br />
-            <span style={{
-              background: 'linear-gradient(135deg, #74c363, #a3e635, #84cc16)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              animation: 'gradientShift 3s ease infinite'
-            }}>
-              Restaurant Business
-            </span>
+            {t('landing.hero.title')}
           </h1>
 
           {/* Subtitle */}
@@ -615,7 +606,7 @@ export default function StunningLandingPage() {
                 e.currentTarget.style.transform = 'translateY(0) scale(1)';
                 e.currentTarget.style.boxShadow = '0 10px 30px rgba(116, 195, 99, 0.4)';
               }}>
-                <span style={{ position: 'relative', zIndex: 1 }}>🚀 Start Free Trial</span>
+                <span style={{ position: 'relative', zIndex: 1 }}>{t('landing.hero.cta')}</span>
               </button>
             </Link>
             
@@ -643,7 +634,7 @@ export default function StunningLandingPage() {
               e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
             }}
             onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
-              ▶️ Watch Demo
+              {t('landing.hero.watchDemo')}
             </button>
           </div>
 
@@ -657,9 +648,9 @@ export default function StunningLandingPage() {
             animation: 'fadeInUp 1s ease-out 0.8s both'
           }}>
             {[
-              { number: '1000+', label: 'Restaurants Served' },
-              { number: '25%', label: 'Average Revenue Increase' },
-              { number: '99.9%', label: 'Uptime Guarantee' }
+              { number: '1000+', label: t('landing.hero.stats.restaurants') },
+              { number: '25%', label: t('landing.hero.stats.revenue') },
+              { number: '99.9%', label: t('landing.hero.stats.uptime') }
             ].map((stat, index) => (
               <div key={index} style={{
                 textAlign: 'center',
@@ -757,33 +748,18 @@ export default function StunningLandingPage() {
             {[
               {
                 icon: '🗺️',
-                title: 'Geospatial Analytics',
-                features: [
-                  'Interactive location intelligence maps',
-                  'Demographic and foot traffic analysis',
-                  'Optimal site selection recommendations',
-                  'Trade area visualization and insights'
-                ]
+                title: t('landing.features.geospatialAnalytics.title'),
+                features: t('landing.features.geospatialAnalytics.features')
               },
               {
                 icon: '🧠',
-                title: 'AI-Powered Insights',
-                features: [
-                  'Intelligent competitor analysis',
-                  'Predictive sales forecasting',
-                  'Automated market research reports',
-                  'Strategic recommendations engine'
-                ]
+                title: t('landing.features.aiInsights.title'),
+                features: t('landing.features.aiInsights.features')
               },
               {
                 icon: '📊',
-                title: 'Business Intelligence',
-                features: [
-                  'Real-time performance dashboards',
-                  'Revenue optimization analytics',
-                  'Customer behavior insights',
-                  'Operational efficiency metrics'
-                ]
+                title: t('landing.features.businessIntelligence.title'),
+                features: t('landing.features.businessIntelligence.features')
               }
             ].map((feature, index) => (
               <div key={index} style={{
@@ -824,7 +800,7 @@ export default function StunningLandingPage() {
                   padding: 0,
                   margin: 0
                 }}>
-                  {feature.features.map((item, i) => (
+                  {(Array.isArray(feature.features) ? feature.features : []).map((item, i) => (
                     <li key={i} style={{
                       color: 'rgba(255, 255, 255, 0.8)',
                       marginBottom: '12px',
@@ -866,7 +842,7 @@ export default function StunningLandingPage() {
               backdropFilter: 'blur(10px)'
             }}>
               <span style={{ color: '#74c363', fontWeight: '600', fontSize: '14px' }}>
-                💬 Customer Success Stories
+                {t('landing.testimonials.badge')}
               </span>
             </div>
             <h2 style={{
@@ -875,7 +851,7 @@ export default function StunningLandingPage() {
               color: 'white',
               marginBottom: '20px'
             }}>
-              Trusted by Restaurant Owners
+              {t('landing.testimonials.title')}
             </h2>
             <p style={{
               fontSize: '1.2rem',
@@ -883,7 +859,7 @@ export default function StunningLandingPage() {
               maxWidth: '600px',
               margin: '0 auto'
             }}>
-              See how BiteBase Intelligence has transformed restaurants across the globe.
+              {t('landing.testimonials.subtitle')}
             </p>
           </div>
 
@@ -892,29 +868,7 @@ export default function StunningLandingPage() {
             gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
             gap: '40px'
           }}>
-            {[
-              {
-                quote: "BiteBase Intelligence helped us identify the perfect location for our second restaurant. The geospatial analytics were spot-on, and we saw a 40% increase in foot traffic compared to our projections.",
-                author: "Maria Rodriguez",
-                title: "Owner, Sabor Latino",
-                location: "Miami, FL",
-                avatar: "👩‍🍳"
-              },
-              {
-                quote: "The AI insights are incredible. We discovered our peak hours were different than we thought, optimized our staffing, and reduced costs by 25% while improving customer satisfaction.",
-                author: "James Chen",
-                title: "Manager, Dragon Palace",
-                location: "San Francisco, CA",
-                avatar: "👨‍💼"
-              },
-              {
-                quote: "The competitor analysis feature is a game-changer. We can see what's working in our market and adapt our strategy accordingly. Our revenue has grown 35% since using BiteBase.",
-                author: "Sarah Johnson",
-                title: "CEO, Fresh & Fast",
-                location: "Austin, TX",
-                avatar: "👩‍💼"
-              }
-            ].map((testimonial, index) => (
+            {(Array.isArray(t('landing.testimonials.stories')) ? t('landing.testimonials.stories') : []).map((testimonial, index) => (
               <div key={index} style={{
                 background: 'rgba(255, 255, 255, 0.05)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -964,7 +918,7 @@ export default function StunningLandingPage() {
                       fontSize: '1.1rem',
                       marginBottom: '5px'
                     }}>
-                      {testimonial.author}
+                      {testimonial.name}
                     </div>
                     <div style={{
                       color: 'rgba(255, 255, 255, 0.7)',
@@ -1254,7 +1208,7 @@ export default function StunningLandingPage() {
             color: 'rgba(255, 255, 255, 0.8)',
             marginBottom: '40px'
           }}>
-            Join thousands of restaurants using BiteBase Intelligence to optimize 
+            Join thousands of restaurants using BiteBase to optimize 
             operations and increase profitability.
           </p>
           <Link href="/dashboard">
@@ -1303,7 +1257,7 @@ export default function StunningLandingPage() {
             color: 'rgba(255, 255, 255, 0.6)',
             fontSize: '14px'
           }}>
-            © 2024 BiteBase Intelligence. All rights reserved.
+            © 2024 BiteBase. All rights reserved.
           </p>
         </div>
       </footer>

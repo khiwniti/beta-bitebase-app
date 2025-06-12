@@ -58,10 +58,16 @@
   },
   "landing": {
     "hero": {
-      "title": "AI-Powered Restaurant Intelligence",
+      "badge": "AI-Powered Restaurant Intelligence",
+      "title": "Transform Your Restaurant Business",
       "subtitle": "Harness the power of AI to analyze markets, optimize locations, and outperform competitors with BiteBase Intelligence.",
-      "cta": "Start Free Analysis",
-      "watchDemo": "Watch Demo"
+      "cta": "🚀 Start Free Trial",
+      "watchDemo": "▶️ Watch Demo",
+      "stats": {
+        "restaurants": "Restaurants Served",
+        "revenue": "Average Revenue Increase", 
+        "uptime": "Uptime Guarantee"
+      }
     },
     "features": {
       "badge": "✨ Features",
@@ -78,7 +84,62 @@
       "competitorTracking": {
         "title": "Competitor Tracking",
         "description": "Monitor competitor performance, pricing strategies, and market positioning in real-time"
+      },
+      "geospatialAnalytics": {
+        "title": "Geospatial Analytics",
+        "features": [
+          "Interactive location intelligence maps",
+          "Demographic and foot traffic analysis", 
+          "Optimal site selection recommendations",
+          "Trade area visualization and insights"
+        ]
+      },
+      "aiInsights": {
+        "title": "AI-Powered Insights",
+        "features": [
+          "Intelligent competitor analysis",
+          "Predictive sales forecasting",
+          "Automated market research reports", 
+          "Strategic recommendations engine"
+        ]
+      },
+      "businessIntelligence": {
+        "title": "Business Intelligence",
+        "features": [
+          "Real-time performance dashboards",
+          "Revenue optimization analytics",
+          "Customer behavior insights",
+          "Operational efficiency metrics"
+        ]
       }
+    },
+    "testimonials": {
+      "badge": "💬 Customer Success Stories",
+      "title": "Trusted by Restaurant Owners",
+      "subtitle": "See how BiteBase Intelligence has transformed restaurants across the globe.",
+      "stories": [
+        {
+          "quote": "BiteBase Intelligence helped us identify the perfect location for our second restaurant. The geospatial analytics were spot-on, and we saw a 40% increase in foot traffic compared to our projections.",
+          "name": "Maria Rodriguez",
+          "title": "Owner, Sabor Latino",
+          "location": "Miami, FL",
+          "avatar": "👩‍🍳"
+        },
+        {
+          "quote": "The AI insights are incredible. We discovered our peak hours were different than we thought, optimized our staffing, and reduced costs by 25% while improving customer satisfaction.",
+          "name": "James Chen", 
+          "title": "Manager, Dragon Palace",
+          "location": "San Francisco, CA",
+          "avatar": "👨‍💼"
+        },
+        {
+          "quote": "The competitor analysis feature is a game-changer. We can see what's working in our market and adapt our strategy accordingly. Our revenue has grown 35% since using BiteBase.",
+          "name": "Sarah Johnson",
+          "title": "CEO, Fresh & Fast", 
+          "location": "Austin, TX",
+          "avatar": "👩‍💼"
+        }
+      ]
     },
     "pricing": {
       "badge": "💰 Pricing Plans",

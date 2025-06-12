@@ -69,7 +69,7 @@ export default function BiteBaseLogo({
         {!imageError ? (
           <Image
             src="/logo.png"
-            alt="BiteBase Intelligence Logo"
+            alt="BiteBase Logo"
             width={iconSize}
             height={iconSize}
             className={`object-contain ${animated ? "transition-transform duration-300 hover:rotate-12" : ""}`}
@@ -109,7 +109,7 @@ export default function BiteBaseLogo({
       <div
         className={`inline-flex ${animated ? "transition-opacity duration-300 hover:opacity-80" : ""}`}
       >
-        <Link href={href} aria-label="BiteBase Intelligence - Home">
+        <Link href={href} aria-label="BiteBase - Home">
           {logoContent}
         </Link>
       </div>
@@ -142,7 +142,7 @@ export function BiteBaseIcon({
       {!imageError ? (
         <Image
           src="/logo.png"
-          alt="BiteBase Intelligence"
+          alt="BiteBase"
           width={iconSize}
           height={iconSize}
           className={`object-contain ${animated ? "transition-transform duration-300 hover:scale-110 hover:rotate-12" : ""}`}

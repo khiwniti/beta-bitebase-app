@@ -1,3 +1,126 @@
 Google OAuth not configured - using demo mode
-BiteBase API server running on port 3000
-Admin user initialized: admin@bitebase.app
+BiteBase API server running on port 12000
+✅ Connected to SQLite database
+📊 Query executed {
+  text: '-- Users table\n      CREATE TABLE IF NOT EXISTS us...',
+  duration: 40,
+  changes: 0
+}
+📊 Query executed {
+  text: '-- Restaurants table\n      CREATE TABLE IF NOT EXI...',
+  duration: 11,
+  changes: 0
+}
+📊 Query executed {
+  text: '-- Market analyses table\n      CREATE TABLE IF NOT...',
+  duration: 11,
+  changes: 0
+}
+📊 Query executed {
+  text: '-- User profiles table\n      CREATE TABLE IF NOT E...',
+  duration: 11,
+  changes: 0
+}
+📊 Query executed {
+  text: '-- AI cache table\n      CREATE TABLE IF NOT EXISTS...',
+  duration: 11,
+  changes: 0
+}
+📊 Query executed {
+  text: '-- Subscriptions table\n      CREATE TABLE IF NOT E...',
+  duration: 8,
+  changes: 0
+}
+📊 Query executed {
+  text: '-- Create indexes\n      CREATE INDEX IF NOT EXISTS...',
+  duration: 11,
+  changes: 0
+}
+📊 Query executed {
+  text: 'CREATE INDEX IF NOT EXISTS idx_restaurants_cuisine...',
+  duration: 16,
+  changes: 0
+}
+📊 Query executed {
+  text: 'CREATE INDEX IF NOT EXISTS idx_restaurants_user ON...',
+  duration: 11,
+  changes: 0
+}
+📊 Query executed {
+  text: 'CREATE INDEX IF NOT EXISTS idx_market_analyses_use...',
+  duration: 13,
+  changes: 0
+}
+📊 Query executed {
+  text: 'CREATE INDEX IF NOT EXISTS idx_market_analyses_loc...',
+  duration: 11,
+  changes: 0
+}
+📊 Query executed {
+  text: 'CREATE INDEX IF NOT EXISTS idx_ai_cache_key ON ai_...',
+  duration: 11,
+  changes: 0
+}
+📊 Query executed {
+  text: 'CREATE INDEX IF NOT EXISTS idx_ai_cache_expires ON...',
+  duration: 12,
+  changes: 0
+}
+📊 Query executed {
+  text: 'CREATE INDEX IF NOT EXISTS idx_subscriptions_user ...',
+  duration: 10,
+  changes: 0
+}
+📊 Query executed {
+  text: 'CREATE INDEX IF NOT EXISTS idx_users_uid ON users(...',
+  duration: 10,
+  changes: 0
+}
+📊 Query executed {
+  text: '-- Insert sample data\n      INSERT OR IGNORE INTO ...',
+  duration: 11,
+  changes: 3
+}
+📊 Query executed {
+  text: 'INSERT OR IGNORE INTO restaurants (name, latitude,...',
+  duration: 11,
+  changes: 5
+}
+📊 Query executed {
+  text: 'INSERT OR IGNORE INTO market_analyses (user_id, lo...',
+  duration: 11,
+  changes: 2
+}
+✅ Database schema initialized
+📊 Query executed {
+  text: 'SELECT * FROM users WHERE email = ?...',
+  duration: 0,
+  rows: 1
+}
+Admin user already exists: admin@bitebase.app
+✅ Server initialization complete
+[2025-06-12T11:07:09.234Z] GET /api/health
+📊 Query executed {
+  text: 'SELECT datetime("now") as current_time, sqlite_ver...',
+  duration: 1,
+  rows: 1
+}
+[2025-06-12T11:07:12.995Z] GET /api/health
+📊 Query executed {
+  text: 'SELECT datetime("now") as current_time, sqlite_ver...',
+  duration: 0,
+  rows: 1
+}
+[2025-06-12T11:07:17.571Z] POST /api/auth/login
+📊 Query executed {
+  text: 'SELECT * FROM users WHERE email = ?...',
+  duration: 0,
+  rows: 1
+}
+[2025-06-12T11:07:21.551Z] POST /api/auth/login
+📊 Query executed {
+  text: 'SELECT * FROM users WHERE email = ?...',
+  duration: 0,
+  rows: 1
+}
+[2025-06-12T11:08:36.541Z] GET /

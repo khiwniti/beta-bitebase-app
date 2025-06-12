@@ -8,6 +8,7 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { OAuth2Client } = require("google-auth-library");
+const { Database } = require("./config/sqlite-database");
 
 const app = express();
 
@@ -25,31 +26,49 @@ if (GOOGLE_CLIENT_ID && GOOGLE_CLIENT_ID !== "demo-google-client-id") {
   console.log("Google OAuth not configured - using demo mode");
 }
 
-// In-memory user storage (in production, this would be a database)
-const users = new Map();
-
-// Initialize admin user
+// Initialize admin user in database
 const initializeAdminUser = async () => {
-  const adminEmail = "admin@bitebase.app";
-  const adminPassword = "Libralytics1234!*";
-  const hashedPassword = await bcrypt.hash(adminPassword, 10);
-  
-  const adminUser = {
-    id: "admin-user-001",
-    email: adminEmail,
-    name: "BiteBase Admin",
-    role: "admin",
-    password: hashedPassword,
-    createdAt: new Date().toISOString(),
-    isDemo: true
-  };
-  
-  users.set(adminEmail, adminUser);
-  console.log("Admin user initialized:", adminEmail);
+  try {
+    const adminEmail = "admin@bitebase.app";
+    const adminPassword = "Libralytics1234!*";
+    const hashedPassword = await bcrypt.hash(adminPassword, 10);
+    
+    // Check if admin user already exists
+    let adminUser = await Database.getUserByEmail(adminEmail);
+    
+    if (!adminUser) {
+      // Create admin user in database
+      adminUser = await Database.createUser({
+        uid: "admin-user-001",
+        email: adminEmail,
+        display_name: "BiteBase Admin",
+        account_type: "restaurant"
+      });
+      console.log("Admin user created in database:", adminEmail);
+    } else {
+      console.log("Admin user already exists:", adminEmail);
+    }
+    
+    // Store password hash separately (in production, use proper user auth table)
+    global.adminPasswordHash = hashedPassword;
+    
+  } catch (error) {
+    console.error("Failed to initialize admin user:", error);
+  }
 };
 
-// Initialize admin user on startup
-initializeAdminUser();
+// Initialize database and admin user on startup
+const initializeServer = async () => {
+  try {
+    await Database.initializeSchema();
+    await initializeAdminUser();
+    console.log("✅ Server initialization complete");
+  } catch (error) {
+    console.error("❌ Server initialization failed:", error);
+  }
+};
+
+initializeServer();
 
 // Middleware
 app.use(cors({
@@ -102,12 +121,23 @@ app.get("/health", (req, res) => {
 });
 
 // API routes
-app.get("/api/health", (req, res) => {
-  res.json({
-    status: "ok",
-    timestamp: new Date().toISOString(),
-    version: "1.0.0"
-  });
+app.get("/api/health", async (req, res) => {
+  try {
+    const dbHealth = await Database.healthCheck();
+    res.json({
+      status: "ok",
+      timestamp: new Date().toISOString(),
+      version: "1.0.0",
+      database: dbHealth
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      timestamp: new Date().toISOString(),
+      version: "1.0.0",
+      database: { status: "unhealthy", error: error.message }
+    });
+  }
 });
 
 // User authentication endpoints
@@ -120,7 +150,8 @@ app.post("/api/auth/register", async (req, res) => {
     }
 
     // Check if user already exists
-    if (users.has(email)) {
+    const existingUser = await Database.getUserByEmail(email);
+    if (existingUser) {
       return res.status(400).json({ error: "User already exists with this email" });
     }
 
@@ -128,26 +159,22 @@ app.post("/api/auth/register", async (req, res) => {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    // Create user object
-    const user = {
-      id: Date.now().toString(),
+    // Create user in database
+    const user = await Database.createUser({
+      uid: Date.now().toString(),
       email,
-      name: `${firstName || ''} ${lastName || ''}`.trim() || email.split('@')[0],
-      firstName: firstName || email.split('@')[0],
-      lastName: lastName || 'User',
-      phone: phone || '',
-      role: "user", // Regular users get 'user' role
-      password: hashedPassword,
-      createdAt: new Date().toISOString(),
-      isDemo: false // Regular users don't get demo data
-    };
+      display_name: `${firstName || ''} ${lastName || ''}`.trim() || email.split('@')[0],
+      account_type: "restaurant",
+      phone: phone || ''
+    });
 
-    // Store user
-    users.set(email, user);
+    // Store password hash separately (in production, use proper user auth table)
+    global.userPasswords = global.userPasswords || new Map();
+    global.userPasswords.set(email, hashedPassword);
 
     // Generate JWT token
     const token = jwt.sign(
-      { userId: user.id, email: user.email, role: user.role },
+      { userId: user.uid, email: user.email, role: "user" },
       JWT_SECRET,
       { expiresIn: "7d" }
     );
@@ -155,10 +182,10 @@ app.post("/api/auth/register", async (req, res) => {
     res.status(201).json({
       message: "User registered successfully",
       user: { 
-        id: user.id, 
+        id: user.uid, 
         email: user.email, 
-        name: user.name,
-        role: user.role
+        name: user.display_name,
+        role: "user"
       },
       token
     });
@@ -176,21 +203,37 @@ app.post("/api/auth/login", async (req, res) => {
       return res.status(400).json({ error: "Email and password are required" });
     }
 
-    // Find user in storage
-    const user = users.get(email);
+    // Find user in database
+    const user = await Database.getUserByEmail(email);
     if (!user) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
+    // Get password hash (in production, store in proper auth table)
+    let passwordHash;
+    if (email === "admin@bitebase.app") {
+      passwordHash = global.adminPasswordHash;
+    } else {
+      global.userPasswords = global.userPasswords || new Map();
+      passwordHash = global.userPasswords.get(email);
+    }
+
+    if (!passwordHash) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
+
     // Verify password
-    const isValidPassword = await bcrypt.compare(password, user.password);
+    const isValidPassword = await bcrypt.compare(password, passwordHash);
     if (!isValidPassword) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
+    // Determine role
+    const role = email === "admin@bitebase.app" ? "admin" : "user";
+
     // Generate JWT token
     const token = jwt.sign(
-      { userId: user.id, email: user.email, role: user.role },
+      { userId: user.uid, email: user.email, role: role },
       JWT_SECRET,
       { expiresIn: "7d" }
     );
@@ -198,10 +241,10 @@ app.post("/api/auth/login", async (req, res) => {
     res.json({
       message: "Login successful",
       user: { 
-        id: user.id, 
+        id: user.uid, 
         email: user.email, 
-        name: user.name,
-        role: user.role
+        name: user.display_name,
+        role: role
       },
       token
     });
