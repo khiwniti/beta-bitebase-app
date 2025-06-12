@@ -99,7 +99,7 @@ export default function AuthPage() {
           <div className="mb-10 flex items-center justify-center">
             <div className="relative">
               <div className="absolute inset-0 bg-white/20 rounded-full blur-lg animate-pulse"></div>
-              <BiteBaseLogo size="lg" variant="white" animated={true} />
+              <BiteBaseLogo size="lg" variant="white" animated={true} showText={false} />
             </div>
           </div>
 
@@ -161,7 +161,7 @@ export default function AuthPage() {
         <div className="w-full max-w-md relative z-10 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 sm:p-10">
           {/* Mobile Logo */}
           <div className="lg:hidden mb-8 flex justify-center">
-            <BiteBaseLogo size="lg" variant="gradient" animated={true} />
+            <BiteBaseLogo size="lg" variant="gradient" animated={true} showText={false} />
           </div>
 
           {/* Tab Switcher */}

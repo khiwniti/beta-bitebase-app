@@ -235,7 +235,7 @@ function BlogPageContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-4">
             <Link href="/" className="flex items-center">
-              <BiteBaseLogo size="sm" showText={true} />
+              <BiteBaseLogo size="sm" showText={false} />
             </Link>
             
             <nav className="hidden md:flex items-center space-x-8">
@@ -466,7 +466,7 @@ function BlogPageContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
-              <BiteBaseLogo size="sm" showText={true} />
+              <BiteBaseLogo size="sm" showText={false} />
               <p className="text-gray-600 mt-4">
                 Discover amazing restaurants and enhance your dining experiences with comprehensive restaurant data.
               </p>

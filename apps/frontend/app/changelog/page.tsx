@@ -15,11 +15,7 @@ function ChangelogLayout({ children }: { children: React.ReactNode }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <Link href="/" className="flex items-center space-x-3">
-              <BiteBaseLogo size="lg" />
-              <div className="flex flex-col">
-                <span className="text-white font-bold text-xl">BiteBase</span>
-                <span className="text-green-400 text-sm">Intelligence</span>
-              </div>
+              <BiteBaseLogo size="lg" showText={false} />
             </Link>
             
             <nav className="hidden md:flex items-center space-x-8">

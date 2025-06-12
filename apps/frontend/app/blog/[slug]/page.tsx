@@ -274,7 +274,7 @@ Ready to start tracking these metrics but not sure where to begin? BiteBase prov
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-4">
             <Link href="/" className="flex items-center">
-              <BiteBaseLogo size="sm" showText={true} />
+              <BiteBaseLogo size="sm" showText={false} />
             </Link>
             
             <nav className="hidden md:flex items-center space-x-8">
@@ -489,7 +489,7 @@ Ready to start tracking these metrics but not sure where to begin? BiteBase prov
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <BiteBaseLogo size="sm" showText={true} />
+              <BiteBaseLogo size="sm" showText={false} />
               <p className="text-gray-600 mt-4">
                 Empowering restaurants with data-driven intelligence for better business decisions.
               </p>

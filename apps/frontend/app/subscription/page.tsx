@@ -165,7 +165,7 @@ export default function SubscriptionPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-6">
             <div className="animate-fadeInUp">
-              <BiteBaseLogo size="sm" className="hover:scale-105 transition-transform" />
+              <BiteBaseLogo size="sm" className="hover:scale-105 transition-transform" showText={false} />
             </div>
             <a href="/auth" className="nav-link-inactive transition-all duration-300 hover:-translate-y-0.5 animate-fadeInUp delay-100">
               ← Back to Registration
