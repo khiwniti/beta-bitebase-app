@@ -13,11 +13,11 @@ interface BiteBaseLogoProps {
 }
 
 const sizeMap = {
-  xs: { icon: 28, text: "text-sm" },
-  sm: { icon: 36, text: "text-base" },
-  md: { icon: 48, text: "text-lg" },
-  lg: { icon: 64, text: "text-xl" },
-  xl: { icon: 80, text: "text-3xl" },
+  xs: { icon: 24, text: "text-sm" },
+  sm: { icon: 32, text: "text-base" },
+  md: { icon: 40, text: "text-lg" },
+  lg: { icon: 52, text: "text-xl" },
+  xl: { icon: 64, text: "text-2xl" },
 };
 
 export default function BiteBaseLogo({
@@ -59,7 +59,7 @@ export default function BiteBaseLogo({
           <Image
             src="/logo.png"
             alt="BiteBase Logo"
-            width={iconSize}
+            width={iconSize * 3.0} // Better visibility for logo
             height={iconSize}
             className={`object-contain ${animated ? "transition-transform duration-300 hover:rotate-12" : ""}`}
             priority
@@ -129,7 +129,7 @@ export function BiteBaseIcon({
         <Image
           src="/logo.png"
           alt="BiteBase"
-          width={iconSize}
+          width={iconSize * 3.0} // Better visibility for logo
           height={iconSize}
           className={`object-contain ${animated ? "transition-transform duration-300 hover:scale-110 hover:rotate-12" : ""}`}
           priority
