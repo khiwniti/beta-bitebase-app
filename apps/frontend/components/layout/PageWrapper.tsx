@@ -142,7 +142,7 @@ export function PageWrapper({
         <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-4 px-6">
           <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between">
             <div className="text-sm text-gray-500 dark:text-gray-400 mb-2 sm:mb-0">
-              <span>© {new Date().getFullYear()} BiteBase Explorer - Restaurant Discovery Platform</span>
+              <span>© {new Date().getFullYear()} FoodFinder Pro - Restaurant Discovery Platform</span>
               </div>
             <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
               <a href="/help" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Help</a>

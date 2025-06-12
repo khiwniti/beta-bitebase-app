@@ -102,10 +102,10 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
     <div className="max-w-7xl mx-auto p-6">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">
-          🇹🇭 Restaurant Explorer
+          🇹🇭 Bangkok Restaurant Finder
         </h1>
         <p className="text-gray-600 mb-6">
-          Discover restaurants in Bangkok with real-time data from Wongnai
+          Discover amazing restaurants in Bangkok with real-time data
         </p>
 
         {/* Search and Filters */}

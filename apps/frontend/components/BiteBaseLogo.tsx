@@ -69,7 +69,7 @@ export default function BiteBaseLogo({
         {!imageError ? (
           <Image
             src="/bitebase-logo-03.png"
-            alt="BiteBase Explorer Logo"
+            alt="FoodFinder Pro Logo"
             width={iconSize}
             height={iconSize}
             className={`object-contain ${animated ? "transition-transform duration-300 hover:rotate-12" : ""}`}
@@ -94,10 +94,10 @@ export default function BiteBaseLogo({
       {showText && (
         <div className="ml-2 flex items-center">
           <span className={`font-bold ${textSize} ${getTextColor()}`}>
-            BiteBase
+            FoodFinder
           </span>
           <span className={`ml-1 text-sm ${getSubtextColor()}`}>
-            Explorer
+            Pro
           </span>
         </div>
       )}
@@ -142,7 +142,7 @@ export function BiteBaseIcon({
       {!imageError ? (
         <Image
           src="/bitebase-logo-03.png"
-          alt="BiteBase Intelligence"
+          alt="FoodFinder Pro"
           width={iconSize}
           height={iconSize}
           className={`object-contain ${animated ? "transition-transform duration-300 hover:scale-110 hover:rotate-12" : ""}`}
