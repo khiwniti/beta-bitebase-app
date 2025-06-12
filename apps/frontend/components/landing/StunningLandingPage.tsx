@@ -1286,9 +1286,46 @@ export default function StunningLandingPage() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            marginBottom: '20px'
+            marginBottom: '20px',
+            gap: '12px'
           }}>
-            <BiteBaseLogo size="lg" showText={true} variant="white" />
+            <div style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: '8px',
+              background: 'linear-gradient(135deg, #74C365, #5BA84A)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '18px',
+              fontWeight: 'bold',
+              color: 'white',
+              boxShadow: '0 4px 12px rgba(116, 195, 101, 0.3)'
+            }}>
+              🍽️
+            </div>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start'
+            }}>
+              <span style={{
+                color: 'white',
+                fontSize: '20px',
+                fontWeight: 'bold',
+                lineHeight: '1.2'
+              }}>
+                BiteBase
+              </span>
+              <span style={{
+                color: '#74C365',
+                fontSize: '14px',
+                fontWeight: '500',
+                lineHeight: '1.2'
+              }}>
+                Intelligence
+              </span>
+            </div>
           </div>
           <p style={{
             color: 'rgba(255, 255, 255, 0.6)',
