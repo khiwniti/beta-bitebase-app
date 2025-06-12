@@ -16,6 +16,32 @@ const JWT_SECRET = process.env.JWT_SECRET || "bitebase-demo-secret-key";
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || "demo-google-client-id";
 const googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
 
+// In-memory user storage (in production, this would be a database)
+const users = new Map();
+
+// Initialize admin user
+const initializeAdminUser = async () => {
+  const adminEmail = "admin@bitebase.app";
+  const adminPassword = "Libralytics1234!*";
+  const hashedPassword = await bcrypt.hash(adminPassword, 10);
+  
+  const adminUser = {
+    id: "admin-user-001",
+    email: adminEmail,
+    name: "BiteBase Admin",
+    role: "admin",
+    password: hashedPassword,
+    createdAt: new Date().toISOString(),
+    isDemo: true
+  };
+  
+  users.set(adminEmail, adminUser);
+  console.log("Admin user initialized:", adminEmail);
+};
+
+// Initialize admin user on startup
+initializeAdminUser();
+
 // Middleware
 app.use(cors({
   origin: [
@@ -78,35 +104,53 @@ app.get("/api/health", (req, res) => {
 // User authentication endpoints
 app.post("/api/auth/register", async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    const { email, password, firstName, lastName, phone } = req.body;
 
-    if (!email || !password || !name) {
-      return res.status(400).json({ error: "Email, password, and name are required" });
+    if (!email || !password) {
+      return res.status(400).json({ error: "Email and password are required" });
+    }
+
+    // Check if user already exists
+    if (users.has(email)) {
+      return res.status(400).json({ error: "User already exists with this email" });
     }
 
     // Hash password
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    // Create user object (in a real app, this would be saved to database)
+    // Create user object
     const user = {
       id: Date.now().toString(),
       email,
-      name,
+      name: `${firstName || ''} ${lastName || ''}`.trim() || email.split('@')[0],
+      firstName: firstName || email.split('@')[0],
+      lastName: lastName || 'User',
+      phone: phone || '',
+      role: "user", // Regular users get 'user' role
       password: hashedPassword,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
+      isDemo: false // Regular users don't get demo data
     };
+
+    // Store user
+    users.set(email, user);
 
     // Generate JWT token
     const token = jwt.sign(
-      { userId: user.id, email: user.email },
+      { userId: user.id, email: user.email, role: user.role },
       JWT_SECRET,
-      { expiresIn: "24h" }
+      { expiresIn: "7d" }
     );
 
     res.status(201).json({
       message: "User registered successfully",
-      user: { id: user.id, email: user.email, name: user.name },
+      user: { 
+        id: user.id, 
+        email: user.email, 
+        name: user.name,
+        role: user.role
+      },
       token
     });
   } catch (error) {
@@ -123,31 +167,33 @@ app.post("/api/auth/login", async (req, res) => {
       return res.status(400).json({ error: "Email and password are required" });
     }
 
-    // In a real app, fetch user from database
-    // For demo purposes, we'll create a mock user
-    const mockUser = {
-      id: "demo-user-id",
-      email: email,
-      name: "Demo User",
-      password: await bcrypt.hash("demo123", 10) // Demo password
-    };
+    // Find user in storage
+    const user = users.get(email);
+    if (!user) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
 
     // Verify password
-    const isValidPassword = await bcrypt.compare(password, mockUser.password);
+    const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
     // Generate JWT token
     const token = jwt.sign(
-      { userId: mockUser.id, email: mockUser.email },
+      { userId: user.id, email: user.email, role: user.role },
       JWT_SECRET,
-      { expiresIn: "24h" }
+      { expiresIn: "7d" }
     );
 
     res.json({
       message: "Login successful",
-      user: { id: mockUser.id, email: mockUser.email, name: mockUser.name },
+      user: { 
+        id: user.id, 
+        email: user.email, 
+        name: user.name,
+        role: user.role
+      },
       token
     });
   } catch (error) {
@@ -201,6 +247,26 @@ app.post("/api/auth/google", async (req, res) => {
   }
 });
 
+// Get current user info
+app.get("/api/auth/me", authenticateToken, (req, res) => {
+  try {
+    const user = users.get(req.user.email);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json({
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      role: user.role
+    });
+  } catch (error) {
+    console.error("Get user error:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 // Protected route example
 app.get("/api/user/profile", authenticateToken, (req, res) => {
   res.json({
@@ -209,59 +275,88 @@ app.get("/api/user/profile", authenticateToken, (req, res) => {
   });
 });
 
-// Restaurant search endpoint (mock data)
-app.get("/api/restaurants/search", (req, res) => {
+// Restaurant search endpoint (role-based data)
+app.get("/api/restaurants/search", authenticateToken, (req, res) => {
   const { query, lat, lng, radius } = req.query;
   
-  // Mock restaurant data
-  const mockRestaurants = [
-    {
-      id: "1",
-      name: "The Local Bistro",
-      cuisine: "International",
-      rating: 4.5,
-      priceRange: "$$",
-      location: { lat: 13.7563, lng: 100.5018 },
-      address: "123 Main St, Bangkok, Thailand",
-      phone: "+66-2-123-4567",
-      hours: "11:00 AM - 10:00 PM"
-    },
-    {
-      id: "2", 
-      name: "Spice Garden",
-      cuisine: "Thai",
-      rating: 4.8,
-      priceRange: "$$$",
-      location: { lat: 13.7563, lng: 100.5018 },
-      address: "456 Sukhumvit Rd, Bangkok, Thailand",
-      phone: "+66-2-987-6543",
-      hours: "12:00 PM - 11:00 PM"
-    }
-  ];
+  // Get user to check role
+  const user = users.get(req.user.email);
+  
+  // Only admin users get demo data
+  if (user && user.role === "admin") {
+    const mockRestaurants = [
+      {
+        id: "1",
+        name: "The Local Bistro",
+        cuisine: "International",
+        rating: 4.5,
+        priceRange: "$$",
+        location: { lat: 13.7563, lng: 100.5018 },
+        address: "123 Main St, Bangkok, Thailand",
+        phone: "+66-2-123-4567",
+        hours: "11:00 AM - 10:00 PM"
+      },
+      {
+        id: "2", 
+        name: "Spice Garden",
+        cuisine: "Thai",
+        rating: 4.8,
+        priceRange: "$$$",
+        location: { lat: 13.7563, lng: 100.5018 },
+        address: "456 Sukhumvit Rd, Bangkok, Thailand",
+        phone: "+66-2-987-6543",
+        hours: "12:00 PM - 11:00 PM"
+      }
+    ];
 
-  res.json({
-    restaurants: mockRestaurants,
-    total: mockRestaurants.length,
-    query: query || "all"
-  });
+    res.json({
+      restaurants: mockRestaurants,
+      total: mockRestaurants.length,
+      query: query || "all"
+    });
+  } else {
+    // Regular users get empty data
+    res.json({
+      restaurants: [],
+      total: 0,
+      query: query || "all",
+      message: "No restaurants found. Start by adding your restaurant data."
+    });
+  }
 });
 
-// AI Assistant endpoint (mock)
+// AI Assistant endpoint (role-based)
 app.post("/api/ai/chat", authenticateToken, (req, res) => {
   const { message, context } = req.body;
   
-  // Mock AI response
-  const mockResponse = {
-    response: `I understand you're asking about: "${message}". Based on your location and preferences, I'd recommend checking out The Local Bistro for great international cuisine or Spice Garden for authentic Thai food. Both have excellent ratings and are nearby!`,
-    suggestions: [
-      "Find restaurants near me",
-      "Show me Thai restaurants",
-      "What's the best rated restaurant?"
-    ],
-    timestamp: new Date().toISOString()
-  };
-
-  res.json(mockResponse);
+  // Get user to check role
+  const user = users.get(req.user.email);
+  
+  if (user && user.role === "admin") {
+    // Admin gets demo AI responses
+    const mockResponse = {
+      response: `I understand you're asking about: "${message}". Based on your location and preferences, I'd recommend checking out The Local Bistro for great international cuisine or Spice Garden for authentic Thai food. Both have excellent ratings and are nearby!`,
+      suggestions: [
+        "Find restaurants near me",
+        "Show me Thai restaurants",
+        "What's the best rated restaurant?"
+      ],
+      timestamp: new Date().toISOString()
+    };
+    res.json(mockResponse);
+  } else {
+    // Regular users get basic response
+    const basicResponse = {
+      response: `Hello! I'm your BiteBase AI assistant. I can help you with restaurant location analysis, market research, and business insights. To get started, please set up your restaurant profile and add your location data.`,
+      suggestions: [
+        "Set up my restaurant profile",
+        "Add location data",
+        "Learn about market analysis"
+      ],
+      timestamp: new Date().toISOString()
+    };
+    res.json(basicResponse);
+  }
 });
 
 // Error handling middleware

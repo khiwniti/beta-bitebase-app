@@ -1,0 +1,7 @@
+BiteBase API server running on port 3000
+Admin user initialized: admin@bitebase.app
+[2025-06-12T10:04:08.890Z] HEAD /health
+[2025-06-12T10:04:13.648Z] POST /api/auth/login
+[2025-06-12T10:04:19.797Z] POST /api/auth/register
+[2025-06-12T10:04:26.955Z] GET /api/restaurants/search
+[2025-06-12T10:04:33.659Z] GET /api/restaurants/search

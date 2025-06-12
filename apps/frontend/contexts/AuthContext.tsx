@@ -45,8 +45,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
   // Backend API base URL
   const API_BASE =
     process.env.NODE_ENV === "production"
-      ? "https://work-1-yneqfrrglgawmjvb.prod-runtime.all-hands.dev/api/v1"
-      : "http://localhost:12000/api/v1";
+      ? "https://work-1-yneqfrrglgawmjvb.prod-runtime.all-hands.dev/api"
+      : "http://localhost:3000/api";
 
   // Check for existing session on mount
   useEffect(() => {
