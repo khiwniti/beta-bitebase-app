@@ -63,14 +63,9 @@ class Settings(BaseSettings):
     AWS_REGION: str = "us-east-1"
     
     # CORS
-    ALLOWED_ORIGINS: List[str] = [
-        "http://localhost:3000",
-        "http://localhost:3001",
-        "https://work-1-yneqfrrglgawmjvb.prod-runtime.all-hands.dev",
-        "https://work-2-yneqfrrglgawmjvb.prod-runtime.all-hands.dev"
-    ]
+    ALLOWED_ORIGINS: str = "http://localhost:3000,http://localhost:3001,https://beta-bitebase-app-7qm5.onrender.com,https://work-1-myaunujxcxqjmitj.prod-runtime.all-hands.dev,https://work-2-myaunujxcxqjmitj.prod-runtime.all-hands.dev"
     
-    ALLOWED_HOSTS: List[str] = ["*"]
+    ALLOWED_HOSTS: str = "*"
     
     # Rate Limiting
     RATE_LIMIT_PER_MINUTE: int = 60
@@ -86,14 +81,14 @@ class Settings(BaseSettings):
     WONGNAI_API_KEY: Optional[str] = None
     YELP_API_KEY: Optional[str] = None
     
-    @field_validator("ALLOWED_ORIGINS", mode="before")
+    @field_validator("ALLOWED_ORIGINS", mode="after")
     @classmethod
     def assemble_cors_origins(cls, v):
         if isinstance(v, str):
             return [i.strip() for i in v.split(",")]
         return v
     
-    @field_validator("ALLOWED_HOSTS", mode="before")
+    @field_validator("ALLOWED_HOSTS", mode="after")
     @classmethod
     def assemble_allowed_hosts(cls, v):
         if isinstance(v, str):
