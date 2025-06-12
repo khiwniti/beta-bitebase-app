@@ -1287,14 +1287,6 @@ export default function StunningLandingPage() {
               }}>
                 BiteBase
               </span>
-              <span style={{
-                color: '#74C365',
-                fontSize: '14px',
-                fontWeight: '500',
-                lineHeight: '1.2'
-              }}>
-                Intelligence
-              </span>
             </div>
           </div>
           <p style={{

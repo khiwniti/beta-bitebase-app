@@ -37,7 +37,7 @@ const translations = {
     landing: {
       hero: {
         badge: "🚀 Now in Beta",
-        title: "Restaurant Intelligence Platform",
+        title: "Restaurant Analytics Platform",
         subtitle: "Discover profitable locations, track competitors, and optimize operations with geospatial analytics and AI-driven insights that boost your bottom line.",
         cta: "Get Started",
         watchDemo: "Watch Demo",

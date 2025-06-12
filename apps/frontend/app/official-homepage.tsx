@@ -98,7 +98,7 @@ export default function OfficialHomePage() {
                   BiteBase Explorer
                 </span>
                 <h1 className="mb-sm" style={{ marginBottom: 'var(--spacing-sm)' }}>
-                  AI-Powered Restaurant Intelligence Platform
+                  AI-Powered Restaurant Analytics Platform
                 </h1>
                 <p className="text-lead mb-lg" style={{ marginBottom: 'var(--spacing-lg)' }}>
                   Transform your restaurant operations with geospatial analytics, competitor insights, 
