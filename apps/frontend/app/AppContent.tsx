@@ -15,7 +15,7 @@ export default function AppContent({
   const [tourCompleted, setTourCompleted] = useState(false)
 
   // Determine if we're on the landing page, auth pages, or blog pages
-  const isPublicPage = pathname === '/' || pathname?.startsWith('/auth') || pathname?.startsWith('/blog') || pathname?.startsWith('/about') || pathname?.startsWith('/contact') || pathname?.startsWith('/privacy') || pathname?.startsWith('/terms') || pathname?.startsWith('/help')
+  const isPublicPage = pathname === '/' || pathname?.startsWith('/auth') || pathname?.startsWith('/blog') || pathname?.startsWith('/about') || pathname?.startsWith('/contact') || pathname?.startsWith('/privacy') || pathname?.startsWith('/terms') || pathname?.startsWith('/help') || pathname?.startsWith('/changelog')
 
   // Check localStorage for tour completion status (client-side only)
   useEffect(() => {

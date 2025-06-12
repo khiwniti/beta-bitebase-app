@@ -7,6 +7,11 @@ const nextConfig = {
     unoptimized: true,
   },
   
+  // Server configuration for development
+  experimental: {
+    serverComponentsExternalPackages: ['firebase', '@firebase/auth', '@firebase/app', '@firebase/firestore']
+  },
+  
   // Production-ready headers for security and CORS
   async headers() {
     return [

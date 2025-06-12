@@ -1,197 +1,170 @@
 npm warn config ignoring workspace config at /workspace/beta-bitebase-app/apps/frontend/.npmrc
 
 > bitebase-frontend@0.1.0 dev
-> next dev --port 12000 --hostname 0.0.0.0
+> next dev
 
    ▲ Next.js 15.3.3
    - Local:        http://localhost:12000
-   - Network:      http://0.0.0.0:12000
+   - Network:      http://10.2.34.43:12000
 
  ✓ Starting...
- ✓ Ready in 1747ms
- ✓ Compiled /middleware in 194ms (108 modules)
+ ⚠ Invalid next.config.js options detected: 
+ ⚠     Unrecognized key(s) in object: 'serverComponentsExternalPackages' at "experimental"
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ ⚠ `experimental.serverComponentsExternalPackages` has been moved to `serverExternalPackages`. Please update your next.config.js file accordingly.
+ ✓ Ready in 1867ms
+ ✓ Compiled /middleware in 278ms (108 modules)
  ○ Compiling / ...
- ✓ Compiled / in 3.5s (1263 modules)
- HEAD / 200 in 4027ms
- ✓ Compiled in 922ms (597 modules)
- GET / 200 in 98ms
- GET / 200 in 81ms
- ⚠ Cross origin request detected from work-1-zgzhpsospszggvmn.prod-runtime.all-hands.dev to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+ ✓ Compiled / in 5.1s (1977 modules)
+ GET / 200 in 6238ms
+ ✓ Compiled in 1236ms (954 modules)
+ GET / 200 in 82ms
+ HEAD / 200 in 73ms
+ HEAD / 200 in 73ms
+ GET / 200 in 71ms
+ GET / 200 in 83ms
+ ⚠ Cross origin request detected from work-1-qostgzzyothkapzr.prod-runtime.all-hands.dev to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- GET / 200 in 79ms
- GET / 200 in 82ms
- GET / 200 in 84ms
- GET / 200 in 82ms
- GET / 200 in 81ms
- GET / 200 in 70ms
- ✓ Compiled in 901ms (1263 modules)
- GET / 200 in 85ms
- ✓ Compiled in 503ms (1263 modules)
- GET / 200 in 43ms
- ✓ Compiled in 452ms (1263 modules)
- GET / 200 in 43ms
- ✓ Compiled in 488ms (1263 modules)
- GET / 200 in 41ms
- ✓ Compiled in 486ms (1263 modules)
- GET / 200 in 44ms
- GET / 200 in 263ms
- GET / 200 in 81ms
- ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 1029ms (1253 modules)
- GET /th/ 404 in 1254ms
- GET /_next/static/css/app/layout.css?v=1749723484448 404 in 26ms
- GET /_next/static/chunks/main-app.js?v=1749723484448 404 in 76ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 50ms
- GET /_next/static/chunks/app/layout.js 404 in 51ms
- GET / 200 in 118ms
- GET / 200 in 75ms
- GET /th/ 404 in 26ms
- GET /_next/static/css/app/layout.css?v=1749723608188 404 in 37ms
- GET /_next/static/chunks/main-app.js?v=1749723608188 404 in 75ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 75ms
- GET /_next/static/chunks/app/layout.js 404 in 74ms
- ✓ Compiled in 283ms (137 modules)
- ✓ Compiled in 92ms (137 modules)
- ✓ Compiled in 53ms (137 modules)
- ⚠ Found a change in next.config.js. Restarting the server to apply the changes...
-   ▲ Next.js 15.3.3
-   - Local:        http://localhost:12000
-   - Network:      http://0.0.0.0:12000
+ ○ Compiling /changelog ...
+ ✓ Compiled /changelog in 1085ms (1982 modules)
+ GET /changelog/ 200 in 1132ms
+ GET /changelog/ 200 in 1467ms
+ GET /changelog/ 200 in 31ms
+ GET / 200 in 138ms
+ GET / 200 in 20ms
+ ✓ Compiled in 1276ms (1996 modules)
+ GET / 200 in 138ms
+ GET / 200 in 23ms
+ GET / 200 in 364ms
+ ⨯ ./app/changelog/page.tsx
+Error:   [31mx[0m Unexpected token `ChangelogLayout`. Expected jsx identifier
+     ,-[[36;1;4m/workspace/beta-bitebase-app/apps/frontend/app/changelog/page.tsx[0m:144:1]
+ [2m141[0m | 
+ [2m142[0m | export default function ChangelogPage() {
+ [2m143[0m |   return (
+ [2m144[0m |     <ChangelogLayout>
+     : [35;1m     ^^^^^^^^^^^^^^^[0m
+ [2m145[0m |       {/* Header */}
+ [2m146[0m |       <header className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700">
+ [2m147[0m |         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     `----
 
- ✓ Starting...
- ✓ Ready in 1596ms
- ⚠ Found a change in next.config.js. Restarting the server to apply the changes...
-   ▲ Next.js 15.3.3
-   - Local:        http://localhost:12000
-   - Network:      http://0.0.0.0:12000
-
- ✓ Starting...
- ✓ Ready in 1524ms
- ○ Compiling /middleware ...
- ✓ Compiled /middleware in 666ms (137 modules)
- ○ Compiling /[locale] ...
- ✓ Compiled /[locale] in 6.5s (1427 modules)
- ✓ Compiled in 1182ms (617 modules)
-Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at LocaleLayout (app/[locale]/layout.tsx:13:12)
-  11 | export default async function LocaleLayout({
-  12 |   children,
-> 13 |   params: { locale }
-     |            ^
-  14 | }: Props) {
-  15 |   // Validate that the incoming `locale` parameter is valid
-  16 |   const locales = ['en', 'th'];
- GET /th/ 200 in 8234ms
- ✓ Compiled in 1993ms (1365 modules)
-Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at LocaleLayout (app/[locale]/layout.tsx:13:12)
-  11 | export default async function LocaleLayout({
-  12 |   children,
-> 13 |   params: { locale }
-     |            ^
-  14 | }: Props) {
-  15 |   // Validate that the incoming `locale` parameter is valid
-  16 |   const locales = ['en', 'th'];
- GET /th/ 200 in 1431ms
- ⨯ ./contexts/LanguageContext.tsx
-Module parse failed: Identifier 'enMessages' has already been declared (18:7)
-| _s(useLanguage, "b9L3QQ+jgeyIrH0NfHrJ8nn7VMU=");
-| // Import translation files
-> import enMessages from '../messages/en.json';
-| import thMessages from '../messages/th.json';
-| // Translation data
+Caused by:
+    Syntax Error
 
 Import trace for requested module:
-./contexts/LanguageContext.tsx
-./app/providers.tsx
-./app/layout.tsx
- ✓ Compiled in 204ms (1365 modules)
- ⚠ Cross origin request detected from work-1-zgzhpsospszggvmn.prod-runtime.all-hands.dev to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
-Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- ✓ Compiled in 167ms (1365 modules)
- ✓ Compiled in 1645ms (1379 modules)
-Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at LocaleLayout (app/[locale]/layout.tsx:13:12)
-  11 | export default async function LocaleLayout({
-  12 |   children,
-> 13 |   params: { locale }
-     |            ^
-  14 | }: Props) {
-  15 |   // Validate that the incoming `locale` parameter is valid
-  16 |   const locales = ['en', 'th'];
- GET /th/ 200 in 158ms
- ✓ Compiled in 720ms (1379 modules)
-Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at LocaleLayout (app/[locale]/layout.tsx:13:12)
-  11 | export default async function LocaleLayout({
-  12 |   children,
-> 13 |   params: { locale }
-     |            ^
-  14 | }: Props) {
-  15 |   // Validate that the incoming `locale` parameter is valid
-  16 |   const locales = ['en', 'th'];
- GET /th/ 200 in 81ms
- ✓ Compiled in 550ms (1379 modules)
-Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at LocaleLayout (app/[locale]/layout.tsx:13:12)
-  11 | export default async function LocaleLayout({
-  12 |   children,
-> 13 |   params: { locale }
-     |            ^
-  14 | }: Props) {
-  15 |   // Validate that the incoming `locale` parameter is valid
-  16 |   const locales = ['en', 'th'];
- GET /th/ 200 in 80ms
- ✓ Compiled in 572ms (1379 modules)
-Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at LocaleLayout (app/[locale]/layout.tsx:13:12)
-  11 | export default async function LocaleLayout({
-  12 |   children,
-> 13 |   params: { locale }
-     |            ^
-  14 | }: Props) {
-  15 |   // Validate that the incoming `locale` parameter is valid
-  16 |   const locales = ['en', 'th'];
- GET /th/ 200 in 76ms
- ✓ Compiled in 523ms (1379 modules)
-Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at LocaleLayout (app/[locale]/layout.tsx:13:12)
-  11 | export default async function LocaleLayout({
-  12 |   children,
-> 13 |   params: { locale }
-     |            ^
-  14 | }: Props) {
-  15 |   // Validate that the incoming `locale` parameter is valid
-  16 |   const locales = ['en', 'th'];
- GET / 404 in 296ms
-Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at LocaleLayout (app/[locale]/layout.tsx:13:12)
-  11 | export default async function LocaleLayout({
-  12 |   children,
-> 13 |   params: { locale }
-     |            ^
-  14 | }: Props) {
-  15 |   // Validate that the incoming `locale` parameter is valid
-  16 |   const locales = ['en', 'th'];
- GET / 404 in 112ms
- ✓ Compiled in 546ms (595 modules)
- ✓ Compiled in 83ms (108 modules)
- ⚠ Found a change in next.config.js. Restarting the server to apply the changes...
-/workspace/beta-bitebase-app/apps/frontend/next.config.js:84
-module.exports = withNextIntl(nextConfig);
-^
+./app/changelog/page.tsx
+ ○ Compiling /_error ...
+ ⨯ ./app/changelog/page.tsx
+Error:   [31mx[0m Unexpected token `ChangelogLayout`. Expected jsx identifier
+     ,-[[36;1;4m/workspace/beta-bitebase-app/apps/frontend/app/changelog/page.tsx[0m:144:1]
+ [2m141[0m | 
+ [2m142[0m | export default function ChangelogPage() {
+ [2m143[0m |   return (
+ [2m144[0m |     <ChangelogLayout>
+     : [35;1m     ^^^^^^^^^^^^^^^[0m
+ [2m145[0m |       {/* Header */}
+ [2m146[0m |       <header className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700">
+ [2m147[0m |         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     `----
 
-ReferenceError: withNextIntl is not defined
-    at Object.<anonymous> (/workspace/beta-bitebase-app/apps/frontend/next.config.js:84:1)
-    at Module._compile (node:internal/modules/cjs/loader:1730:14)
-    at Object..js (node:internal/modules/cjs/loader:1895:10)
-    at Module.load (node:internal/modules/cjs/loader:1465:32)
-    at Function._load (node:internal/modules/cjs/loader:1282:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
-    at cjsLoader (node:internal/modules/esm/translators:266:5)
-    at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:200:7)
-    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+Caused by:
+    Syntax Error
 
-Node.js v22.16.0
-[?25h
+Import trace for requested module:
+./app/changelog/page.tsx
+ GET / 500 in 5126ms
+ GET / 500 in 4836ms
+ GET / 500 in 16ms
+ GET / 500 in 12ms
+ GET / 500 in 11ms
+ ⨯ ./app/changelog/page.tsx
+Error:   [31mx[0m Unexpected token `ChangelogLayout`. Expected jsx identifier
+     ,-[[36;1;4m/workspace/beta-bitebase-app/apps/frontend/app/changelog/page.tsx[0m:144:1]
+ [2m141[0m | 
+ [2m142[0m | export default function ChangelogPage() {
+ [2m143[0m |   return (
+ [2m144[0m |     <ChangelogLayout>
+     : [35;1m     ^^^^^^^^^^^^^^^[0m
+ [2m145[0m |       {/* Header */}
+ [2m146[0m |       <header className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700">
+ [2m147[0m |         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/changelog/page.tsx
+ GET / 500 in 1074ms
+ GET /_next/static/webpack/1919a14a22a9ee2e.webpack.hot-update.json 500 in 1077ms
+ GET /_next/static/webpack/c039d5403f5285ca.webpack.hot-update.json 500 in 364ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 500 in 12ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET / 500 in 12ms
+ GET / 500 in 11ms
+ ⨯ ./app/changelog/page.tsx
+Error:   [31mx[0m Unexpected token `ChangelogLayout`. Expected jsx identifier
+     ,-[[36;1;4m/workspace/beta-bitebase-app/apps/frontend/app/changelog/page.tsx[0m:144:1]
+ [2m141[0m | 
+ [2m142[0m | export default function ChangelogPage() {
+ [2m143[0m |   return (
+ [2m144[0m |     <ChangelogLayout>
+     : [35;1m     ^^^^^^^^^^^^^^^[0m
+ [2m145[0m | 
+ [2m146[0m |       {/* Hero Section */}
+ [2m147[0m |       <section className="relative py-20 overflow-hidden">
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/changelog/page.tsx
+ GET /_next/static/webpack/c039d5403f5285ca.webpack.hot-update.json 500 in 990ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 500 in 24ms
+ ✓ Compiled /_not-found in 2s (2331 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/c039d5403f5285ca.webpack.hot-update.json 404 in 1974ms
+ GET /_next/static/webpack/c039d5403f5285ca.webpack.hot-update.json 404 in 2408ms
+ GET / 200 in 235ms
+ GET / 200 in 242ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 67ms
+ GET / 200 in 88ms
+ GET / 200 in 126ms
+ ✓ Compiled in 1298ms (2345 modules)
+ GET / 200 in 103ms
+ GET / 200 in 13ms
+ GET / 200 in 271ms
+ ✓ Compiled in 803ms (2345 modules)
+ GET / 200 in 68ms
+ GET / 200 in 12ms
+ GET / 200 in 168ms
+ GET /changelog/ 200 in 52ms
+ ✓ Compiled in 869ms (2332 modules)
+ GET /changelog/ 200 in 159ms
+ GET / 200 in 64ms
+ GET /changelog/ 200 in 136ms
+ ✓ Compiled in 872ms (2346 modules)
+ GET /changelog/ 200 in 140ms
+ GET / 200 in 34ms
+ ✓ Compiled in 733ms (2346 modules)
+ GET /changelog/ 200 in 63ms
+ GET / 200 in 28ms
+ GET / 200 in 182ms
+ GET /changelog/ 200 in 204ms
+ GET / 200 in 79ms
+ GET / 200 in 81ms
+ GET / 200 in 83ms
+ GET / 200 in 68ms
+ ✓ Compiled in 1291ms (2346 modules)
+ GET /changelog/ 200 in 103ms
+ GET / 200 in 357ms
+ GET / 200 in 17ms
+ ✓ Compiled in 1252ms (2346 modules)
+ GET /changelog/ 200 in 78ms
+ GET / 200 in 34ms
+ GET / 200 in 251ms

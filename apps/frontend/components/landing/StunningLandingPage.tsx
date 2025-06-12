@@ -2,48 +2,49 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import BiteBaseLogo from "../BiteBaseLogo";
-import SimpleLanguageSwitcher from "../SimpleLanguageSwitcher";
-// Import translation files directly
-import enMessages from '../../messages/en.json'
-import thMessages from '../../messages/th.json'
-
-const translations = {
-  en: enMessages,
-  th: thMessages
-}
+// import LanguageSwitcher from "../LanguageSwitcher";
+// import { useLanguage } from "../../contexts/LanguageContext";
 
 export default function StunningLandingPage() {
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState('en');
-
-  // Translation function
-  const t = (key: string): any => {
-    const keys = key.split('.')
-    let value: any = translations[currentLanguage as 'en' | 'th']
-    
-    for (const k of keys) {
-      if (value && typeof value === 'object' && k in value) {
-        value = value[k]
-      } else {
-        // Fallback to English if key not found
-        value = translations.en
-        for (const fallbackKey of keys) {
-          if (value && typeof value === 'object' && fallbackKey in value) {
-            value = value[fallbackKey]
-          } else {
-            return key // Return key if not found
-          }
-        }
-        break
-      }
-    }
-
-    return value !== undefined ? value : key
-  }
+  
+  // Temporary static translations
+  const language = 'en';
+  const t = (key: string) => {
+    const translations: any = {
+      'landing.hero.badge': '🚀 Now in Beta',
+      'landing.hero.title': 'Restaurant Intelligence Platform',
+      'landing.hero.subtitle': 'Discover profitable locations, track competitors, and optimize operations with geospatial analytics and AI-driven insights that boost your bottom line.',
+      'landing.hero.cta': 'Get Started',
+      'landing.hero.watchDemo': 'Watch Demo',
+      'landing.hero.stats.restaurants': 'Restaurants Analyzed',
+      'landing.hero.stats.revenue': 'Average Revenue Increase',
+      'landing.hero.stats.uptime': 'Platform Uptime',
+      'navigation.home': 'Home',
+      'navigation.features': 'Features',
+      'navigation.blog': 'Blog',
+      'navigation.changelog': 'Changelog',
+      'navigation.pricing': 'Pricing',
+      'landing.features.badge': '✨ Powerful Features',
+      'landing.features.title': 'Everything You Need to Succeed',
+      'landing.features.subtitle': 'Comprehensive tools and insights to help your restaurant thrive in a competitive market.',
+      'landing.features.geospatialAnalytics.title': 'Geospatial Analytics',
+      'landing.features.aiInsights.title': 'AI-Powered Insights',
+      'landing.features.businessIntelligence.title': 'Business Intelligence',
+      'landing.testimonials.badge': '💬 Customer Stories',
+      'landing.testimonials.title': 'Trusted by Restaurant Owners',
+      'landing.testimonials.subtitle': 'See how BiteBase is helping restaurants grow and succeed.',
+      'landing.pricing.badge': '💰 Simple Pricing',
+      'landing.pricing.title': 'Choose Your Plan',
+      'landing.pricing.subtitle': 'Start free and scale as you grow. No hidden fees, cancel anytime.'
+    };
+    return translations[key] || key;
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -53,29 +54,18 @@ export default function StunningLandingPage() {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    const handleLanguageChange = (e: CustomEvent) => {
-      setCurrentLanguage(e.detail.language);
-    };
 
     // Initial checks
     handleResize();
-    
-    // Load saved language preference
-    const savedLanguage = localStorage.getItem('preferred-language');
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'th')) {
-      setCurrentLanguage(savedLanguage);
-    }
 
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('resize', handleResize);
-    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
     };
   }, []);
 
@@ -254,7 +244,7 @@ export default function StunningLandingPage() {
             textDecoration: 'none',
             color: 'white'
           }}>
-            <BiteBaseLogo size="sm" showText={false} variant="white" />
+            <BiteBaseLogo size="xl" showText={false} variant="white" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -274,6 +264,11 @@ export default function StunningLandingPage() {
                  onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>
                 {t('navigation.blog') || 'Blog'}
               </Link>
+              <Link href="/changelog" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none', fontWeight: '500', transition: 'color 0.3s ease' }}
+                 onMouseEnter={(e) => e.currentTarget.style.color = '#74c363'}
+                 onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>
+                {t('navigation.changelog') || 'Changelog'}
+              </Link>
               <a href="#pricing" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'none', fontWeight: '500', transition: 'color 0.3s ease' }}
                  onMouseEnter={(e) => e.currentTarget.style.color = '#74c363'}
                  onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}>
@@ -289,7 +284,7 @@ export default function StunningLandingPage() {
               backdropFilter: 'blur(10px)',
               border: '1px solid rgba(255, 255, 255, 0.2)'
             }}>
-              <SimpleLanguageSwitcher theme="dark" />
+              {/* <LanguageSwitcher theme="dark" /> */}<span style={{ color: "white", fontSize: "14px" }}>{language.toUpperCase()}</span>
             </div>
 
             {/* Get Started Button */}
@@ -330,7 +325,7 @@ export default function StunningLandingPage() {
               backdropFilter: 'blur(10px)',
               border: '1px solid rgba(255, 255, 255, 0.2)'
             }}>
-              <SimpleLanguageSwitcher theme="dark" />
+              {/* <LanguageSwitcher theme="dark" /> */}<span style={{ color: "white", fontSize: "14px" }}>{language.toUpperCase()}</span>
             </div>
 
             {/* Mobile Menu Button */}
@@ -508,145 +503,178 @@ export default function StunningLandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="hero-container" style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
-        padding: '120px 20px 0 20px', // Increased top padding and reduced side padding
-        paddingTop: isMobile ? '100px' : '120px'
-      }}>
-        <div style={{
-          textAlign: 'center',
-          maxWidth: '1000px',
-          transform: `translateY(${scrollY * 0.1}px)`,
-          transition: 'transform 0.1s ease-out'
-        }}>
+      <motion.section 
+        className="hero-container" 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative',
+          padding: '120px 20px 0 20px',
+          paddingTop: isMobile ? '100px' : '120px'
+        }}
+      >
+        <motion.div 
+          style={{
+            textAlign: 'center',
+            maxWidth: '1000px',
+            transform: `translateY(${scrollY * 0.1}px)`,
+            transition: 'transform 0.1s ease-out'
+          }}
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           {/* Animated Badge */}
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            background: 'rgba(116, 195, 99, 0.1)',
-            border: '1px solid rgba(116, 195, 99, 0.3)',
-            borderRadius: '50px',
-            padding: '8px 20px',
-            marginBottom: '30px',
-            animation: 'fadeInUp 1s ease-out',
-            backdropFilter: 'blur(10px)'
-          }}>
-            <div style={{
-              width: '8px',
-              height: '8px',
-              background: '#74c363',
-              borderRadius: '50%',
-              marginRight: '10px',
-              animation: 'pulse 2s infinite'
-            }} />
+          <motion.div 
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              background: 'rgba(116, 195, 99, 0.1)',
+              border: '1px solid rgba(116, 195, 99, 0.3)',
+              borderRadius: '50px',
+              padding: '8px 20px',
+              marginBottom: '30px',
+              backdropFilter: 'blur(10px)'
+            }}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4, type: "spring", stiffness: 200 }}
+            whileHover={{ scale: 1.05 }}
+          >
+            <motion.div 
+              style={{
+                width: '8px',
+                height: '8px',
+                background: '#74c363',
+                borderRadius: '50%',
+                marginRight: '10px'
+              }}
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
             <span style={{ color: '#74c363', fontWeight: '600', fontSize: '14px' }}>
               {t('landing.hero.badge')}
             </span>
-          </div>
+          </motion.div>
 
-          {/* Main Heading with Typewriter Effect */}
-          <h1 className="hero-title" style={{
-            fontSize: 'clamp(3rem, 8vw, 6rem)',
-            fontWeight: '900',
-            lineHeight: '1.1',
-            marginBottom: '30px',
-            ...(currentLanguage === 'th' ? {
-              background: 'linear-gradient(135deg, #74c363 0%, #5fa854 25%, #4a9142 50%, #74c363 75%, #5fa854 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              backgroundSize: '200% 200%',
-              animation: 'fadeInUp 1s ease-out 0.2s both, gradientShift 3s ease-in-out infinite'
-            } : {
-              color: 'white',
-              animation: 'fadeInUp 1s ease-out 0.2s both'
-            })
-          }}>
+          {/* Main Heading with Enhanced Motion */}
+          <motion.h1 
+            className="hero-title" 
+            style={{
+              fontSize: 'clamp(3rem, 8vw, 6rem)',
+              fontWeight: '900',
+              lineHeight: '1.1',
+              marginBottom: '30px',
+              ...(language === 'th' ? {
+                background: 'linear-gradient(135deg, #74c363 0%, #5fa854 25%, #4a9142 50%, #74c363 75%, #5fa854 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                backgroundSize: '200% 200%',
+                animation: 'gradientShift 3s ease-in-out infinite'
+              } : {
+                color: 'white'
+              })
+            }}
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            whileHover={{ scale: 1.02 }}
+          >
             {t('landing.hero.title')}
-          </h1>
+          </motion.h1>
 
-          {/* Subtitle */}
-          <p className="hero-subtitle" style={{
-            fontSize: '1.4rem',
-            color: 'rgba(255, 255, 255, 0.8)',
-            lineHeight: '1.6',
-            marginBottom: '50px',
-            maxWidth: '700px',
-            margin: '0 auto 50px auto',
-            animation: 'fadeInUp 1s ease-out 0.4s both'
-          }}>
+          {/* Subtitle with Stagger Animation */}
+          <motion.p 
+            className="hero-subtitle" 
+            style={{
+              fontSize: '1.4rem',
+              color: 'rgba(255, 255, 255, 0.8)',
+              lineHeight: '1.6',
+              marginBottom: '50px',
+              maxWidth: '700px',
+              margin: '0 auto 50px auto'
+            }}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
             {t('landing.hero.subtitle') || 'Discover profitable locations, track competitors, and optimize operations with geospatial analytics and AI-driven insights that boost your bottom line.'}
-          </p>
+          </motion.p>
 
-          {/* CTA Buttons */}
-          <div style={{
-            display: 'flex',
-            gap: isMobile ? '15px' : '20px',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            animation: 'fadeInUp 1s ease-out 0.6s both',
-            flexDirection: isMobile ? 'column' : 'row',
-            alignItems: 'center'
-          }}>
+          {/* CTA Buttons with Enhanced Motion */}
+          <motion.div 
+            style={{
+              display: 'flex',
+              gap: isMobile ? '15px' : '20px',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              flexDirection: isMobile ? 'column' : 'row',
+              alignItems: 'center'
+            }}
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.0 }}
+          >
             <Link href="/dashboard">
-              <button style={{
-                background: 'linear-gradient(135deg, #74c363, #5fa854)',
+              <motion.button 
+                style={{
+                  background: 'linear-gradient(135deg, #74c363, #5fa854)',
+                  color: 'white',
+                  border: 'none',
+                  padding: isMobile ? '18px 35px' : '20px 40px',
+                  borderRadius: '50px',
+                  fontSize: isMobile ? '16px' : '18px',
+                  fontWeight: '700',
+                  cursor: 'pointer',
+                  boxShadow: '0 10px 30px rgba(116, 195, 99, 0.4)',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  width: isMobile ? '280px' : 'auto'
+                }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -3,
+                  boxShadow: '0 15px 40px rgba(116, 195, 99, 0.6)'
+                }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <span style={{ position: 'relative', zIndex: 1 }}>{t('landing.hero.cta')}</span>
+              </motion.button>
+            </Link>
+            
+            <motion.button 
+              style={{
+                background: 'rgba(255, 255, 255, 0.1)',
                 color: 'white',
-                border: 'none',
-                padding: isMobile ? '18px 35px' : '20px 40px',
+                border: '2px solid rgba(255, 255, 255, 0.3)',
+                padding: isMobile ? '16px 33px' : '18px 38px',
                 borderRadius: '50px',
                 fontSize: isMobile ? '16px' : '18px',
                 fontWeight: '700',
                 cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 10px 30px rgba(116, 195, 99, 0.4)',
-                position: 'relative',
-                overflow: 'hidden',
+                backdropFilter: 'blur(10px)',
                 width: isMobile ? '280px' : 'auto'
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)';
-                e.currentTarget.style.boxShadow = '0 15px 40px rgba(116, 195, 99, 0.6)';
+              whileHover={{ 
+                scale: 1.05, 
+                y: -3,
+                background: 'rgba(255, 255, 255, 0.2)',
+                borderColor: '#74c363'
               }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                e.currentTarget.style.boxShadow = '0 10px 30px rgba(116, 195, 99, 0.4)';
-              }}>
-                <span style={{ position: 'relative', zIndex: 1 }}>{t('landing.hero.cta')}</span>
-              </button>
-            </Link>
-            
-            <button style={{
-              background: 'rgba(255, 255, 255, 0.1)',
-              color: 'white',
-              border: '2px solid rgba(255, 255, 255, 0.3)',
-              padding: isMobile ? '16px 33px' : '18px 38px',
-              borderRadius: '50px',
-              fontSize: isMobile ? '16px' : '18px',
-              fontWeight: '700',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              backdropFilter: 'blur(10px)',
-              width: isMobile ? '280px' : 'auto'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
-              e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.borderColor = '#74c363';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-            }}
-            onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               {t('landing.hero.watchDemo')}
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
 
           {/* Stats */}
           <div style={{
@@ -686,31 +714,31 @@ export default function StunningLandingPage() {
               </div>
             ))}
           </div>
-        </div>
 
-        {/* Scroll Indicator */}
-        <div style={{
-          position: 'absolute',
-          bottom: '40px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          animation: 'bounce 2s infinite'
-        }}>
+          {/* Scroll Indicator */}
           <div style={{
-            width: '2px',
-            height: '30px',
-            background: 'linear-gradient(to bottom, transparent, #74c363)',
-            margin: '0 auto 10px'
-          }} />
-          <div style={{
-            color: 'rgba(255, 255, 255, 0.6)',
-            fontSize: '12px',
-            fontWeight: '500'
+            position: 'absolute',
+            bottom: '40px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            animation: 'bounce 2s infinite'
           }}>
-            Scroll to explore
+            <div style={{
+              width: '2px',
+              height: '30px',
+              background: 'linear-gradient(to bottom, transparent, #74c363)',
+              margin: '0 auto 10px'
+            }} />
+            <div style={{
+              color: 'rgba(255, 255, 255, 0.6)',
+              fontSize: '12px',
+              fontWeight: '500'
+            }}>
+              Scroll to explore
+            </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* Features Section */}
       <section id="features" style={{
@@ -1259,9 +1287,46 @@ export default function StunningLandingPage() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            marginBottom: '20px'
+            marginBottom: '20px',
+            gap: '12px'
           }}>
-            <BiteBaseLogo size="sm" showText={true} variant="white" />
+            <div style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: '8px',
+              background: 'linear-gradient(135deg, #74C365, #5BA84A)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '18px',
+              fontWeight: 'bold',
+              color: 'white',
+              boxShadow: '0 4px 12px rgba(116, 195, 101, 0.3)'
+            }}>
+              🍽️
+            </div>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start'
+            }}>
+              <span style={{
+                color: 'white',
+                fontSize: '20px',
+                fontWeight: 'bold',
+                lineHeight: '1.2'
+              }}>
+                BiteBase
+              </span>
+              <span style={{
+                color: '#74C365',
+                fontSize: '14px',
+                fontWeight: '500',
+                lineHeight: '1.2'
+              }}>
+                Intelligence
+              </span>
+            </div>
           </div>
           <p style={{
             color: 'rgba(255, 255, 255, 0.6)',
