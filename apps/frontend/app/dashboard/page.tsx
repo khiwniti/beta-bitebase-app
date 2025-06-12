@@ -258,7 +258,7 @@ export default function DashboardPage() {
               </div>
               <div className="text-center p-4 sm:p-6 bg-purple-50 dark:bg-purple-900/20 rounded-xl transition-colors sm:col-span-2 lg:col-span-1">
                 <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-purple-600 dark:text-purple-400">
-                  {restaurants.length > 0 ? (restaurants.reduce((sum, r) => sum + r.rating, 0) / restaurants.length).toFixed(1) : '0.0'}
+                  {restaurants.length > 0 ? (restaurants.reduce((sum, r) => sum + (r.rating || 0), 0) / restaurants.length).toFixed(1) : '0.0'}
                 </div>
                 <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 font-medium">Average Rating</div>
               </div>

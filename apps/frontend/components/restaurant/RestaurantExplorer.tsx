@@ -43,7 +43,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
 
   const { restaurants, loading, error, searchWongnai } = useRestaurantSearch();
   const { menu, loading: menuLoading, error: menuError } = useRestaurantMenu(
-    selectedRestaurant?.wongnai_data?.publicId || null
+    selectedRestaurant?.platform_id || null
   );
 
   const cuisines = ['Thai', 'Japanese', 'Korean', 'Chinese', 'Western', 'Italian'];
@@ -228,7 +228,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                       <h3 className="font-semibold text-gray-900">{restaurant.name}</h3>
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                        <span className="text-sm text-gray-600">{restaurant.rating.toFixed(1)}</span>
+                        <span className="text-sm text-gray-600">{(restaurant.rating || 0).toFixed(1)}</span>
                       </div>
                     </div>
                     
@@ -237,7 +237,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                         {restaurant.cuisine}
                       </span>
                       <span className="text-primary-600 font-medium">
-                        {getPriceDisplay(restaurant.price_range)}
+                        {getPriceDisplay(restaurant.price_range || '')}
                       </span>
                     </div>
 
@@ -247,7 +247,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                     </div>
 
                     <div className="flex items-center gap-2">
-                      {restaurant.features.map((feature, index) => (
+                      {(restaurant.features as string[] || []).map((feature: string, index: number) => (
                         <div key={index} className="flex items-center gap-1 text-xs text-gray-500">
                           {getFeatureIcon(feature)}
                           <span className="capitalize">{feature.replace('_', ' ')}</span>
@@ -271,10 +271,10 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                 <div className="space-y-4 mb-6">
                   <div className="flex items-center gap-2">
                     <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                    <span className="font-medium">{selectedRestaurant.rating.toFixed(1)}</span>
+                    <span className="font-medium">{(selectedRestaurant.rating || 0).toFixed(1)}</span>
                     <span className="text-gray-500">• {selectedRestaurant.cuisine}</span>
                     <span className="text-primary-600 font-medium">
-                      {getPriceDisplay(selectedRestaurant.price_range)}
+                      {getPriceDisplay(selectedRestaurant.price_range || '')}
                     </span>
                   </div>
 
@@ -313,7 +313,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                 </div>
 
                 {/* Menu Section */}
-                {selectedRestaurant.wongnai_data?.publicId && (
+                {selectedRestaurant.platform_id && (
                   <div className="border-t pt-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Menu</h3>
                     
@@ -330,42 +330,30 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                       <p className="text-red-600">{menuError}</p>
                     ) : menu ? (
                       <div className="space-y-4">
-                        {menu.delivery_info && (
-                          <div className="bg-primary-50 border border-primary-200 rounded-lg p-4">
-                            <h4 className="font-medium text-primary-800 mb-2">Delivery Information</h4>
-                            <div className="text-sm text-primary-700 space-y-1">
-                              <p>Available: {menu.delivery_info.isAvailable ? 'Yes' : 'No'}</p>
-                              <p>Minimum Order: ฿{menu.delivery_info.minimumOrder}</p>
-                              <p>Delivery Fee: ฿{menu.delivery_info.deliveryFee}</p>
-                              <p>Estimated Time: {menu.delivery_info.estimatedTime}</p>
-                            </div>
-                          </div>
-                        )}
-
                         <div className="space-y-4 max-h-64 overflow-y-auto">
-                          {menu.menu_categories.map((category) => (
-                            <div key={category.id} className="border-b pb-4">
-                              <h4 className="font-medium text-gray-900 mb-2">{category.name}</h4>
-                              <div className="space-y-2">
-                                {category.items.slice(0, 3).map((item) => (
-                                  <div key={item.id} className="flex justify-between items-start">
-                                    <div className="flex-1">
-                                      <p className="font-medium text-sm">{item.name}</p>
-                                      <p className="text-xs text-gray-500 truncate">{item.description}</p>
-                                    </div>
-                                    <span className="text-sm font-medium text-primary-600 ml-2">
-                                      ฿{item.price}
-                                    </span>
-                                  </div>
-                                ))}
-                                {category.items.length > 3 && (
-                                  <p className="text-xs text-gray-500">
-                                    +{category.items.length - 3} more items
-                                  </p>
+                          {menu.slice(0, 10).map((item) => (
+                            <div key={item.id} className="flex justify-between items-start border-b pb-2">
+                              <div className="flex-1">
+                                <p className="font-medium text-sm">{item.name}</p>
+                                {item.description && (
+                                  <p className="text-xs text-gray-500 truncate">{item.description}</p>
+                                )}
+                                {item.category && (
+                                  <span className="text-xs text-primary-600 bg-primary-50 px-2 py-1 rounded-full mt-1 inline-block">
+                                    {item.category}
+                                  </span>
                                 )}
                               </div>
+                              <span className="text-sm font-medium text-primary-600 ml-2">
+                                ฿{item.price}
+                              </span>
                             </div>
                           ))}
+                          {menu.length > 10 && (
+                            <p className="text-xs text-gray-500 text-center">
+                              +{menu.length - 10} more items
+                            </p>
+                          )}
                         </div>
                       </div>
                     ) : (

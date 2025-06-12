@@ -3,7 +3,7 @@
  */
 
 import { useState, useEffect, useCallback } from 'react';
-import { apiClient, Restaurant, RestaurantMenu, MarketAnalysis } from '../lib/api-client';
+import { apiClient, Restaurant, RestaurantMenu, MarketAnalysis, MenuItem } from '../lib/api-client';
 
 export interface UseRestaurantsResult {
   restaurants: Restaurant[];
@@ -13,7 +13,7 @@ export interface UseRestaurantsResult {
 }
 
 export interface UseRestaurantMenuResult {
-  menu: RestaurantMenu | null;
+  menu: MenuItem[] | null;
   loading: boolean;
   error: string | null;
   refetch: () => Promise<void>;
@@ -135,7 +135,7 @@ export function useRestaurantSearch() {
 
 // Hook for fetching restaurant menu
 export function useRestaurantMenu(publicId: string | null): UseRestaurantMenuResult {
-  const [menu, setMenu] = useState<RestaurantMenu | null>(null);
+  const [menu, setMenu] = useState<MenuItem[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -146,7 +146,14 @@ export function useRestaurantMenu(publicId: string | null): UseRestaurantMenuRes
     setError(null);
     
     try {
-      const response = await apiClient.getRestaurantMenu(publicId);
+      const restaurantId = parseInt(publicId, 10);
+      if (isNaN(restaurantId)) {
+        setError('Invalid restaurant ID');
+        setMenu(null);
+        return;
+      }
+      
+      const response = await apiClient.getRestaurantMenu(restaurantId);
       if (response.error) {
         setError(response.error);
         setMenu(null);
