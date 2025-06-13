@@ -1,0 +1,12 @@
+name = "bitebase-api"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[env.production]
+name = "bitebase-api"
+routes = [
+  { pattern = "api.yourdomain.com/*", zone_name = "yourdomain.com" }
+]
+
+[env.staging]
+name = "bitebase-api-staging"
