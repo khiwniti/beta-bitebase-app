@@ -133,9 +133,12 @@ button[class*="green"] {
 }
 
 /* ===== MODAL FIXES ===== */
-/* Fix modal overlap issues */
-.modal-overlay {
-  z-index: 9999 !important;
+/* Fix modal overlap issues with proper z-index hierarchy */
+
+/* Base modal overlay */
+.modal-overlay,
+[class*="fixed"][class*="inset-0"][class*="bg-black"] {
+  z-index: 9000 !important;
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
@@ -144,32 +147,65 @@ button[class*="green"] {
   background: rgba(0, 0, 0, 0.5) !important;
 }
 
+/* Base modal content */
 .modal-content {
-  z-index: 10000 !important;
+  z-index: 9100 !important;
   position: relative !important;
   background: white !important;
   border-radius: var(--bitebase-radius) !important;
   box-shadow: var(--bitebase-shadow-lg) !important;
 }
 
-/* Tour modal specific fixes */
-.tour-modal,
-.web-tour-modal {
-  z-index: 10001 !important;
-}
-
-.tour-overlay {
-  z-index: 10000 !important;
-}
-
-/* Welcome modal */
+/* Welcome modal - highest priority */
+[class*="z-[1000]"],
 .welcome-modal {
-  z-index: 9998 !important;
+  z-index: 9500 !important;
+}
+
+/* Tour modal - second priority */
+.tour-modal,
+.web-tour-modal,
+[class*="z-50"] {
+  z-index: 9400 !important;
+}
+
+/* Tour overlay */
+.tour-overlay,
+[class*="z-40"] {
+  z-index: 9300 !important;
+}
+
+/* Tour progress indicator */
+[class*="z-50"][class*="fixed"][class*="top-4"] {
+  z-index: 9450 !important;
 }
 
 /* Prevent multiple modals from overlapping */
 body.modal-open {
   overflow: hidden !important;
+}
+
+/* Ensure proper stacking context */
+.modal-container {
+  isolation: isolate !important;
+}
+
+/* Fix any remaining z-index conflicts */
+[class*="z-"] {
+  z-index: auto !important;
+}
+
+/* Re-apply correct z-index for specific components */
+.welcome-modal [class*="z-[1000]"] {
+  z-index: 9500 !important;
+}
+
+.tour-component [class*="z-50"] {
+  z-index: 9400 !important;
+}
+
+.tour-component [class*="z-40"] {
+  z-index: 9300 !important;
 }
 
 /* ===== FORM ELEMENTS ===== */
