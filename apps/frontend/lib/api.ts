@@ -1,4 +1,5 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
+// API Configuration - supports both integrated and separate backend deployment
+const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || process.env.NEXT_PUBLIC_API_URL || '/api';
 
 export const api = {
   async get(endpoint: string) {
