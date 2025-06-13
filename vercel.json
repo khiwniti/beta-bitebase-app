@@ -1,18 +1,103 @@
 {
   "version": 2,
+  "name": "bitebase-mcp-app",
   "builds": [
     {
       "src": "apps/frontend/package.json",
       "use": "@vercel/next"
+    },
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "apps/frontend/$1"
+      "dest": "/apps/frontend/$1"
     }
   ],
+  "functions": {
+    "api/**/*.js": {
+      "maxDuration": 30
+    }
+  },
   "env": {
-    "NEXT_PUBLIC_API_URL": "http://YOUR_EC2_PUBLIC_IP:8000"
-  }
+    "NODE_ENV": "production",
+    "MCP_ENABLED": "true",
+    "NEXT_PUBLIC_API_URL": "/api"
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization, X-User-ID, X-Session-ID"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/health",
+      "destination": "/api/health"
+    },
+    {
+      "source": "/api/restaurants/search",
+      "destination": "/api/restaurants/search"
+    },
+    {
+      "source": "/api/restaurants/:id",
+      "destination": "/api/restaurants/[id]"
+    },
+    {
+      "source": "/api/ai/chat",
+      "destination": "/api/ai/chat"
+    },
+    {
+      "source": "/api/ai/recommendations",
+      "destination": "/api/ai/recommendations"
+    },
+    {
+      "source": "/api/analytics/dashboard",
+      "destination": "/api/analytics/dashboard"
+    },
+    {
+      "source": "/api/analytics/track",
+      "destination": "/api/analytics/track"
+    },
+    {
+      "source": "/api/location/geocode",
+      "destination": "/api/location/geocode"
+    },
+    {
+      "source": "/api/location/nearby",
+      "destination": "/api/location/nearby"
+    },
+    {
+      "source": "/api/payments/create-intent",
+      "destination": "/api/payments/create-intent"
+    },
+    {
+      "source": "/api/payments/webhook",
+      "destination": "/api/payments/webhook"
+    },
+    {
+      "source": "/api/notifications/send",
+      "destination": "/api/notifications/send"
+    }
+  ]
 }

@@ -1,0 +1,44 @@
+{
+  "name": "bitebase-mcp-backend",
+  "version": "3.0.0",
+  "description": "BiteBase MCP-Powered Backend for Vercel",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Build complete'",
+    "start": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@vercel/node": "^3.0.0",
+    "axios": "^1.6.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^9.0.2",
+    "openai": "^4.20.1",
+    "stripe": "^14.7.0",
+    "uuid": "^9.0.1",
+    "zod": "^3.22.4",
+    "ws": "^8.14.0",
+    "node-fetch": "^3.3.2",
+    "jose": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "restaurant",
+    "ai",
+    "vercel",
+    "serverless"
+  ],
+  "author": "BiteBase Team",
+  "license": "MIT"
+}
