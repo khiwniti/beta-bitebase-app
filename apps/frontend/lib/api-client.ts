@@ -96,10 +96,10 @@ class ApiClient {
 
   constructor() {
     // Use environment variables or fallback to runtime URLs
-    // FastAPI Backend on localhost:12000 or production URL
-    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12000';
-    // AI Agent is now part of the main FastAPI backend
-    this.agentUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12000';
+    // Mock Data API Server on localhost:12001 for comprehensive testing
+    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001';
+    // AI Agent is now part of the mock data server
+    this.agentUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001';
   }
 
   private async request<T>(
@@ -107,8 +107,8 @@ class ApiClient {
     options: RequestInit = {},
     useAgent = false
   ): Promise<ApiResponse<T>> {
-    // All endpoints now use the same FastAPI backend
-    const url = `${this.baseUrl}/api/v1${endpoint}`;
+    // All endpoints now use the mock data server
+    const url = `${this.baseUrl}/api${endpoint}`;
     
     console.log(`🌐 Making API request to: ${url}`, { method: options.method || 'GET', body: options.body });
     
@@ -149,7 +149,7 @@ class ApiClient {
 
   // Health checks
   async checkBackendHealth(): Promise<ApiResponse<{ status: string; message: string }>> {
-    return this.request('/../health'); // Remove /api/v1 prefix for health endpoint
+    return this.request('/health'); // Health endpoint
   }
 
   async checkAgentHealth(): Promise<ApiResponse<{ status: string; version: string }>> {
@@ -158,15 +158,15 @@ class ApiClient {
 
   // Restaurant data endpoints
   async getAllRestaurants(): Promise<ApiResponse<Restaurant[]>> {
-    const response = await this.request<{ restaurants: Restaurant[]; total: number; limit: number; offset: number }>('/restaurants');
-    if (response.error) {
+    const response = await this.request<{ data: Restaurant[]; pagination: any; success: boolean }>('/restaurants/search');
+    if (response.error || !response.data?.success) {
       return {
-        error: response.error,
+        error: response.error || 'Failed to fetch restaurants',
         status: response.status,
       };
     }
     return {
-      data: response.data?.restaurants || [],
+      data: response.data?.data || [],
       status: response.status,
     };
   }

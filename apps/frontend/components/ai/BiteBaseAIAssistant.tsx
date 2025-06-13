@@ -76,7 +76,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
   const loadChatHistory = async () => {
     try {
       const response = await fetch(
-        `http://localhost:12000/api/v1/ai/history/${userId}?limit=5`,
+        `http://localhost:12001/api/ai/history/${userId}?limit=5`,
       );
       if (response.ok) {
         const data = await response.json();
@@ -112,7 +112,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
                    document.cookie.split('; ').find(row => row.startsWith('auth_token='))?.split('=')[1] ||
                    "demo-token";
 
-      const response = await fetch("http://localhost:12000/api/v1/ai/chat", {
+      const response = await fetch("http://localhost:12001/api/ai/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -134,13 +134,14 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
 
       const data = await response.json();
 
-      // Backend returns AIChatResponse format: { response: string, suggestions?: string[], context?: object }
+      // Mock data server returns: { success: true, data: { response: string, suggestions?: string[], intent: string } }
+      const responseData = data.data || data; // Handle both formats
       return {
-        content: data.response,
+        content: responseData.response || data.response,
         type: "text",
         language: currentLanguage,
-        suggestions: data.suggestions,
-        data: data.context
+        suggestions: responseData.suggestions || data.suggestions,
+        data: responseData.context || data.context || { intent: responseData.intent }
       };
     } catch (error) {
       console.error("AI request failed:", error);
@@ -195,7 +196,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
   // Clear chat history
   const clearChat = async () => {
     try {
-      await fetch(`http://localhost:12000/api/v1/ai/clear/${userId}`, {
+      await fetch(`http://localhost:12001/api/ai/clear/${userId}`, {
         method: "DELETE",
       });
       setMessages([]);
@@ -249,7 +250,10 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
   };
 
   // Format response content with proper styling
-  const formatResponseContent = (content: string) => {
+  const formatResponseContent = (content: string | undefined) => {
+    // Handle undefined content
+    if (!content) return "";
+    
     // Convert markdown-style formatting to HTML
     return content
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
