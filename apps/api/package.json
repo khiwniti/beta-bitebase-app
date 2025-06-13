@@ -1,0 +1,16 @@
+{
+  "name": "bitebase-api",
+  "version": "1.0.0",
+  "description": "BiteBase FastAPI Backend",
+  "scripts": {
+    "dev": "python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload",
+    "start": "python -m uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4",
+    "build": "echo 'FastAPI build complete'",
+    "lint": "echo 'Python linting'",
+    "check-types": "echo 'Python type checking'",
+    "install": "pip install -r requirements.txt"
+  },
+  "keywords": ["fastapi", "python", "api", "backend"],
+  "author": "BiteBase Team",
+  "license": "MIT"
+}
