@@ -76,7 +76,7 @@ export default function FranchisePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-6">
             <div className="flex items-center">
-              <BiteBaseLogo size="md" showText={true} />
+              <BiteBaseLogo size="md" showText={false} />
               <span className="ml-2 text-sm text-gray-500">Franchise</span>
             </div>
             <a href="/auth" className="nav-link-inactive">

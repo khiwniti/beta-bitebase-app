@@ -75,7 +75,7 @@ export default function ModernLandingPage() {
       <nav className={`modern-nav ${scrollY > 50 ? 'shadow-md backdrop-blur-md' : ''}`}>
         <div className="modern-nav-container">
           <Link href="/" className="flex items-center gap-3">
-            <BiteBaseLogo size="lg" showText={true} variant="default" />
+            <BiteBaseLogo size="md" showText={false} variant="default" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -272,7 +272,7 @@ export default function ModernLandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <BiteBaseLogo size="lg" showText={false} variant="white" />
+                <BiteBaseLogo size="md" showText={false} variant="white" />
                 <span className="text-xl font-bold">BiteBase</span>
               </div>
               <p className="text-gray-400">
