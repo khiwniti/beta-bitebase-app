@@ -72,7 +72,7 @@ export default function ModernLandingPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Modern Navigation */}
-      <nav className={`modern-nav ${scrollY > 50 ? 'shadow-md' : ''}`}>
+      <nav className={`modern-nav ${scrollY > 50 ? 'shadow-md backdrop-blur-md' : ''}`}>
         <div className="modern-nav-container">
           <Link href="/" className="flex items-center gap-3">
             <BiteBaseLogo size="lg" showText={true} variant="default" />
@@ -81,26 +81,26 @@ export default function ModernLandingPage() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <div className="modern-nav-links">
-              <a href="#features" className="modern-nav-link">
+              <a href="#features" className="modern-nav-link hover:text-primary-600 transition-colors">
                 {t('navigation.features') || 'Features'}
               </a>
-              <Link href="/blog" className="modern-nav-link">
+              <Link href="/blog" className="modern-nav-link hover:text-primary-600 transition-colors">
                 {t('navigation.blog') || 'Blog'}
               </Link>
-              <Link href="/changelog" className="modern-nav-link">
+              <Link href="/changelog" className="modern-nav-link hover:text-primary-600 transition-colors">
                 {t('navigation.changelog') || 'Changelog'}
               </Link>
-              <a href="#pricing" className="modern-nav-link">
+              <a href="#pricing" className="modern-nav-link hover:text-primary-600 transition-colors">
                 {t('navigation.pricing') || 'Pricing'}
               </a>
             </div>
 
             <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-600 px-3 py-1 bg-gray-100 rounded-full">
+              <span className="text-xs text-gray-500 px-2 py-1 bg-gray-50 rounded-md border border-gray-200">
                 {language.toUpperCase()}
               </span>
               <Link href="/dashboard">
-                <button className="btn-primary">
+                <button className="btn-primary hover:shadow-lg transition-all duration-200">
                   {t('landing.hero.cta') || 'Get Started'}
                 </button>
               </Link>
@@ -109,7 +109,7 @@ export default function ModernLandingPage() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 hover:bg-gray-100 rounded-md transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -148,31 +148,37 @@ export default function ModernLandingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center"
+            className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="modern-hero-title">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-50 border border-primary-200 rounded-full text-sm text-primary-700 mb-8">
+              <span className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></span>
+              Now with AI-powered insights
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 mb-6">
               Restaurant Intelligence
               <br />
-              <span className="text-primary-500">Powered by AI</span>
+              <span className="bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">
+                Powered by AI
+              </span>
             </h1>
-            <p className="modern-hero-subtitle">
+            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
               Transform your restaurant with data-driven insights, smart analytics, 
               and AI-powered recommendations that drive growth and profitability.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/dashboard">
-                <button className="btn-primary text-lg px-8 py-4">
+                <button className="group bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-lg font-medium transition-all duration-200 hover:shadow-xl hover:scale-105 flex items-center gap-2">
                   Start Free Trial
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </button>
               </Link>
-              <button className="btn-secondary text-lg px-8 py-4">
-                Watch Demo
+              <button className="group border border-gray-300 hover:border-gray-400 text-gray-700 px-8 py-4 rounded-lg font-medium transition-all duration-200 hover:shadow-md flex items-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m-6-8h1m4 0h1M9 18h6" />
                 </svg>
+                Watch Demo
               </button>
             </div>
           </motion.div>
@@ -182,12 +188,16 @@ export default function ModernLandingPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
+            className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
           >
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
-                <div className="text-gray-600">{stat.label}</div>
+              <div key={index} className="text-center group">
+                <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+                  {stat.value}
+                </div>
+                <div className="text-gray-500 text-sm font-medium uppercase tracking-wide">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </motion.div>
@@ -195,18 +205,18 @@ export default function ModernLandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="modern-section bg-gray-50">
+      <section id="features" className="py-24 bg-white">
         <div className="modern-container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Everything you need to succeed
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Comprehensive tools and insights to optimize every aspect of your restaurant business.
             </p>
           </div>
 
-          <div className="modern-grid modern-grid-3">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
@@ -214,13 +224,13 @@ export default function ModernLandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="feature-card"
+                className="group p-8 rounded-2xl border border-gray-200 hover:border-primary-200 hover:shadow-lg transition-all duration-300 bg-white"
               >
-                <div className="feature-icon">
+                <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary-200 transition-colors">
                   <span className="text-2xl">{feature.icon}</span>
                 </div>
-                <h3 className="feature-title">{feature.title}</h3>
-                <p className="feature-description">{feature.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -228,23 +238,26 @@ export default function ModernLandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="modern-section">
+      <section className="py-24 bg-gray-50">
         <div className="modern-container">
-          <div className="text-center bg-gradient-to-r from-primary-50 to-primary-100 rounded-2xl p-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <div className="text-center bg-white rounded-3xl p-16 shadow-xl border border-gray-200">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Ready to transform your restaurant?
             </h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
               Join thousands of restaurants already using BiteBase to optimize their operations and increase profits.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/dashboard">
-                <button className="btn-primary text-lg px-8 py-4">
+                <button className="group bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-lg font-medium transition-all duration-200 hover:shadow-xl hover:scale-105 flex items-center gap-2">
                   Start Free Trial
+                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
                 </button>
               </Link>
               <Link href="/contact">
-                <button className="btn-secondary text-lg px-8 py-4">
+                <button className="border border-gray-300 hover:border-gray-400 text-gray-700 px-8 py-4 rounded-lg font-medium transition-all duration-200 hover:shadow-md">
                   Contact Sales
                 </button>
               </Link>

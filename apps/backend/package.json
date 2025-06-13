@@ -5,7 +5,8 @@
   "main": "server-production.js",
   "scripts": {
     "start": "node server-production.js",
-    "dev": "nodemon server-production.js",
+    "dev": "nodemon server-simple.js",
+    "simple": "node server-simple.js",
     "build": "echo 'Production build ready'",
     "test": "echo 'No tests specified'",
     "lint": "echo 'No linting configured'",
