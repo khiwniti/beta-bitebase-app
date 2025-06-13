@@ -84,8 +84,7 @@ export default function ModernChangelog() {
       <nav className="modern-nav shadow-sm">
         <div className="modern-nav-container">
           <Link href="/" className="flex items-center gap-3">
-            <BiteBaseLogo size="lg" showText={false} variant="default" />
-            <span className="text-xl font-bold text-gray-900">BiteBase</span>
+            <BiteBaseLogo size="lg" showText={true} variant="default" />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">

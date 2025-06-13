@@ -1,11 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@bitebase/ui"
-import { Button } from "@bitebase/ui"
-import { ReportViewer } from "@bitebase/ui"
-import { ChartContainer } from "@bitebase/ui"
-import { MetricCard } from "@bitebase/ui"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card"
+import { Button } from "../../components/ui/button"
+
 import { MainLayout } from "../../components/layout/MainLayout"
 
 // Professional Marketing Reports Data

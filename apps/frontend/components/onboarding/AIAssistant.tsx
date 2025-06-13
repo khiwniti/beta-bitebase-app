@@ -1,9 +1,9 @@
 "use client"
 
 import React, { useState, useRef, useEffect } from 'react'
-import { Button } from "@bitebase/ui"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@bitebase/ui"
-import { Input } from "@bitebase/ui"
+import { Button } from "../ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
+import { Input } from "../ui/input"
 import { Bot, Send, User, Sparkles, MessageSquare, CheckCircle, Target, TrendingUp } from 'lucide-react'
 import { useLanguage } from '../../contexts/LanguageContext'
 

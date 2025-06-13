@@ -1,8 +1,8 @@
 "use client"
 
 import React from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@bitebase/ui"
-import { Button } from "@bitebase/ui"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./card"
+import { Button } from "./button"
 import { cn } from '../../lib/utils'
 
 import {

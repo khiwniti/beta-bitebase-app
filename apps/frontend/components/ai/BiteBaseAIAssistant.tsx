@@ -4,19 +4,11 @@
  */
 
 import React, { useState, useRef, useEffect } from "react";
-import {
-  Button,
-  Textarea,
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  Badge,
-} from "@bitebase/ui";
+import { Button } from "../ui/button";
+import { Textarea } from "../ui/textarea";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Badge } from "../ui/badge";
 import {
   Bot,
   Send,

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Button } from "@bitebase/ui"
+import { Button } from "../ui/button"
 import {
   BarChart2,
   MapPin,

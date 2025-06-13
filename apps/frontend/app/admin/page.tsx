@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Button } from "@bitebase/ui";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@bitebase/ui";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@bitebase/ui";
-import { Badge } from "@bitebase/ui";
+import { Button } from "../../components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
+import { Badge } from "../../components/ui/badge";
 import { 
   ChevronUp, 
   ChevronDown, 

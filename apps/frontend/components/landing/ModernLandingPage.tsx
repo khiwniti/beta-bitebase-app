@@ -75,8 +75,7 @@ export default function ModernLandingPage() {
       <nav className={`modern-nav ${scrollY > 50 ? 'shadow-md' : ''}`}>
         <div className="modern-nav-container">
           <Link href="/" className="flex items-center gap-3">
-            <BiteBaseLogo size="lg" showText={false} variant="default" />
-            <span className="text-xl font-bold text-gray-900">BiteBase</span>
+            <BiteBaseLogo size="lg" showText={true} variant="default" />
           </Link>
 
           {/* Desktop Navigation */}

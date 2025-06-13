@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@bitebase/ui";
+import { cn } from "../../lib/utils";
 
 interface GradientHeadingProps {
   children: React.ReactNode;

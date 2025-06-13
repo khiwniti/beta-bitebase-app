@@ -3,8 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent } from "@bitebase/ui";
-import { Button } from "@bitebase/ui";
+import { Card, CardContent } from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
 import { MapPin, Users, Award, TrendingUp, Globe, Heart } from "lucide-react";
 import BiteBaseLogo from "../../components/BiteBaseLogo";
 

@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { Button } from "@bitebase/ui"
-import { Input } from "@bitebase/ui"
-import { Label } from "@bitebase/ui"
+import { Button } from "../../components/ui/button"
+import { Input } from "../../components/ui/input"
+import { Label } from "../../components/ui/label"
 import { MapContainer } from "../../components/geospatial/MapContainer"
 import { RestaurantMarker } from "../../components/geospatial/RestaurantMarker"
 import { AnalysisOverlay } from "../../components/geospatial/AnalysisOverlay"

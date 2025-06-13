@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@bitebase/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { BarChart3, TrendingUp, MapPin, Users, DollarSign } from 'lucide-react';
 
 interface MarketingResearchVisualizerProps {

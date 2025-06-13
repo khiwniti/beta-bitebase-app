@@ -7,9 +7,9 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@bitebase/ui";
-import { Button } from "@bitebase/ui";
-import { Badge } from "@bitebase/ui";
+} from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
+import { Badge } from "../../components/ui/badge";
 import ExternalDataSourceConfig from "../../components/pos/ExternalDataSourceConfig";
 import {
   CreditCard,

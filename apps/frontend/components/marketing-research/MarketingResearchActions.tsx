@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { Button } from '@bitebase/ui';
+import { Button } from '../ui/button';
 import { BarChart2, Users, TrendingUp, LightbulbIcon } from 'lucide-react';
 
 interface MarketingActionButtonProps {

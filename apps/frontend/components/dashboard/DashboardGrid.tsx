@@ -13,7 +13,7 @@ import {
   Calendar,
   Info
 } from 'lucide-react'
-import { Button } from "@bitebase/ui"
+import { Button } from "../ui/button"
 
 interface MetricCardProps {
   title: string

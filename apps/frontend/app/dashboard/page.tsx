@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { Button } from "@bitebase/ui"
+import { Button } from "../../components/ui/button"
 import {
   BarChart2,
   MapPin,

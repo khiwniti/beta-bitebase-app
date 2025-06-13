@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Check, X } from "lucide-react";
-import { Button } from "@bitebase/ui";
-import { Badge } from "@bitebase/ui";
+import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 
 interface PricingPlan {
   id: string;

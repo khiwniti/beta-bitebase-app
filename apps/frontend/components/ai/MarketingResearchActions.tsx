@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@bitebase/ui';
+import { Button } from '../ui/button';
 import { TrendingUp, MapPin, BarChart3, Users, DollarSign } from 'lucide-react';
 
 interface MarketingResearchActionsProps {

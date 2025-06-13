@@ -1,8 +1,8 @@
 "use client"
 
 import React from 'react'
-import { Button } from "@bitebase/ui"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@bitebase/ui"
+import { Button } from "../ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
 import { tourUtils, markUserAsFirstTime, clearUserSessionData } from '../../utils/tourUtils'
 
 /**

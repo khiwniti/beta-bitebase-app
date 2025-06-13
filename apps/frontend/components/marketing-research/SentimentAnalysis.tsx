@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@bitebase/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { SmilePlus, Meh, Frown } from 'lucide-react';
 
 interface SentimentData {

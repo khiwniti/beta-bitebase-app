@@ -3,7 +3,11 @@
  */
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Button, Textarea, Card, CardContent, CardFooter, CardHeader, CardTitle, Avatar, AvatarFallback, AvatarImage, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@bitebase/ui';
+import { Button } from '../ui/button';
+import { Textarea } from '../ui/textarea';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Bot, Send, Trash, User } from 'lucide-react';
 import { 
   MarketingResearchVisualizer,

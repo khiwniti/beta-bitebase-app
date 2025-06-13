@@ -23,7 +23,7 @@ import {
   User,
   LogOut
 } from 'lucide-react'
-import { Button } from "@bitebase/ui"
+import { Button } from "../ui/button"
 import BiteBaseLogo from '../BiteBaseLogo'
 
 interface NavigationItem {

@@ -2,13 +2,13 @@
 
 import React, { useState } from 'react'
 import { MainLayout } from '../../../components/layout/MainLayout'
-import { Button } from "@bitebase/ui"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@bitebase/ui"
-import { Input } from "@bitebase/ui"
-import { Label } from "@bitebase/ui"
-import { Switch } from "@bitebase/ui"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@bitebase/ui"
-import { Badge } from "@bitebase/ui"
+import { Button } from "../../../components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../components/ui/card"
+import { Input } from "../../../components/ui/input"
+import { Label } from "../../../components/ui/label"
+import { Switch } from "../../../components/ui/switch"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/ui/tabs"
+import { Badge } from "../../../components/ui/badge"
 import { 
   Wifi, 
   Settings, 

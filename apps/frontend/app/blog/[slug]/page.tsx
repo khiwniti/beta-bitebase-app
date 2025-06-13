@@ -3,7 +3,7 @@
 import { Suspense, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@bitebase/ui";
+import { Button } from "../../../components/ui/button";
 import { ArrowLeft, Calendar, Clock, Share2, User, Bookmark, Twitter, Facebook, Linkedin, Tag } from "lucide-react";
 import BiteBaseLogo from "../../../components/BiteBaseLogo";
 import BlogInteractions from "../../../components/blog/BlogInteractions";

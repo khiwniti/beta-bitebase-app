@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@bitebase/ui"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@bitebase/ui"
-import { Badge } from "@bitebase/ui"
+import { Button } from "../../components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card"
+import { Badge } from "../../components/ui/badge"
 import { Check, Crown, Star, Zap, ArrowRight, Building2, X } from "lucide-react"
 import BiteBaseLogo from "../../components/BiteBaseLogo"
 import Image from "next/image"
