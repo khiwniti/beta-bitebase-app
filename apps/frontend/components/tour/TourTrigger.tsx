@@ -1,14 +1,14 @@
 "use client"
 
 import React from 'react'
-import { Button } from "@bitebase/ui"
+import { Button } from "../ui/button"
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
   DropdownMenuItem, 
   DropdownMenuTrigger,
   DropdownMenuSeparator 
-} from "@bitebase/ui"
+} from "../ui/dropdown-menu"
 import { HelpCircle, Play, BookOpen, MessageCircle, ExternalLink } from 'lucide-react'
 
 interface TourTriggerProps {

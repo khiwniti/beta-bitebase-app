@@ -1,9 +1,9 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
-import { Button } from "@bitebase/ui"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@bitebase/ui"
-import { Badge } from "@bitebase/ui"
+import { Button } from "../ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
+import { Badge } from "../ui/badge"
 import { X, ArrowRight, ArrowLeft, MapPin, Bot, BarChart3, FileText, Sparkles } from 'lucide-react'
 import { markTourCompleted, markTourSkipped, shouldShowTour, isFirstTimeUser } from '../../utils/tourUtils'
 

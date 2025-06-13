@@ -9,7 +9,7 @@ const nextConfig = {
   
   // Server configuration for development
   experimental: {
-    serverComponentsExternalPackages: ['firebase', '@firebase/auth', '@firebase/app', '@firebase/firestore']
+    // Removed deprecated serverComponentsExternalPackages
   },
   
   // Production-ready headers for security and CORS
