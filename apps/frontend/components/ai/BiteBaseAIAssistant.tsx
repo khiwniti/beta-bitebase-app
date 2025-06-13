@@ -300,16 +300,16 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
         </div>
       </CardHeader>
 
-      <CardContent className="flex-1 overflow-auto p-4 space-y-4">
+      <CardContent className="flex-1 overflow-hidden p-4 space-y-4">
         {messages.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-full text-center text-gray-500">
-            <Bot className="h-12 w-12 mb-4 text-primary" />
-            <p className="text-lg font-medium mb-2">
+          <div className="flex flex-col items-center justify-center h-full text-center text-gray-500 overflow-hidden">
+            <Bot className="h-12 w-12 mb-4 text-primary flex-shrink-0" />
+            <p className="text-lg font-medium mb-2 px-4">
               {currentLanguage === "th"
                 ? "สวัสดีครับ! ผมพร้อมช่วยเหลือคุณ"
                 : "Hello! I'm ready to help you"}
             </p>
-            <p className="text-sm">
+            <p className="text-sm px-4">
               {currentLanguage === "th"
                 ? "ถามเรื่องร้านอาหาร ยอดขาย ลูกค้า หรือการตลาดได้เลยครับ"
                 : "Ask me about your restaurant, sales, customers, or marketing"}
@@ -341,18 +341,19 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
             </div>
           </div>
         ) : (
-          messages.map((message, index) => (
-            <div
-              key={index}
-              className={`flex flex-col ${
-                message.role === "user" ? "items-end" : "items-start"
-              }`}
-            >
+          <div className="h-full overflow-y-auto space-y-4">
+            {messages.map((message, index) => (
               <div
-                className={`flex gap-3 max-w-[85%] ${
-                  message.role === "user" ? "flex-row-reverse" : ""
+                key={index}
+                className={`flex flex-col ${
+                  message.role === "user" ? "items-end" : "items-start"
                 }`}
               >
+                <div
+                  className={`flex gap-3 max-w-[85%] ${
+                    message.role === "user" ? "flex-row-reverse" : ""
+                  }`}
+                >
                 <Avatar className="flex-shrink-0">
                   {message.role === "user" ? (
                     <>
@@ -371,9 +372,9 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
                   )}
                 </Avatar>
 
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 min-w-0 flex-1">
                   <div
-                    className={`rounded-lg px-4 py-3 ${
+                    className={`rounded-lg px-4 py-3 overflow-hidden ${
                       message.role === "user"
                         ? "bg-primary text-primary-foreground"
                         : "bg-gray-100 text-gray-900"
@@ -398,7 +399,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
 
                         {/* Formatted content */}
                         <div
-                          className="prose prose-sm max-w-none"
+                          className="prose prose-sm max-w-none overflow-hidden break-words"
                           dangerouslySetInnerHTML={{
                             __html: formatResponseContent(message.content),
                           }}
@@ -425,7 +426,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
                           )}
                       </div>
                     ) : (
-                      <div className="whitespace-pre-wrap">
+                      <div className="whitespace-pre-wrap break-words overflow-hidden">
                         {message.content}
                       </div>
                     )}
@@ -445,7 +446,8 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
                 </div>
               </div>
             </div>
-          ))
+          ))}
+          </div>
         )}
 
         {isLoading && (
@@ -488,7 +490,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
       </CardContent>
 
       <CardFooter className="p-4 border-t">
-        <form onSubmit={handleSubmit} className="flex w-full gap-2">
+        <form onSubmit={handleSubmit} className="flex w-full gap-2 items-end">
           <Textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -497,7 +499,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
                 ? "ถามเรื่องร้านอาหารของคุณ..."
                 : placeholder
             }
-            className="flex-1 min-h-[60px] resize-none"
+            className="flex-1 min-h-[60px] max-h-[120px] resize-none overflow-y-auto"
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();
@@ -510,7 +512,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
             type="submit"
             size="icon"
             disabled={isLoading || !input.trim()}
-            className="btn-primary"
+            className="btn-primary flex-shrink-0"
           >
             <Send className="h-5 w-5" />
           </Button>

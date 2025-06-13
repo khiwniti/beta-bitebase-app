@@ -515,32 +515,32 @@ export default function DashboardPage() {
         <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
           <div className="p-6">
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[600px]">
                 <thead>
                   <tr className="border-b border-gray-200 dark:border-gray-700">
-                    <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100">Restaurant</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100">Distance</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100">Rating</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100">Price Range</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100">Market Share</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100">Trend</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">Restaurant</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">Distance</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">Rating</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">Price Range</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">Market Share</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">Trend</th>
                   </tr>
                 </thead>
                 <tbody>
                   {sukhumvitCompetitors.map((competitor, index) => (
                     <tr key={index} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                      <td className="py-3 px-4 font-medium text-gray-900 dark:text-gray-100">{competitor.name}</td>
-                      <td className="py-3 px-4 text-gray-600 dark:text-gray-400">{competitor.distance}</td>
+                      <td className="py-3 px-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">{competitor.name}</td>
+                      <td className="py-3 px-4 text-gray-600 dark:text-gray-400 whitespace-nowrap">{competitor.distance}</td>
                       <td className="py-3 px-4">
-                        <div className="flex items-center">
-                          <Star className="w-4 h-4 text-yellow-400 mr-1" />
+                        <div className="flex items-center whitespace-nowrap">
+                          <Star className="w-4 h-4 text-yellow-400 mr-1 flex-shrink-0" />
                           <span className="text-gray-900 dark:text-gray-100">{competitor.rating}</span>
                         </div>
                       </td>
-                      <td className="py-3 px-4 text-gray-600 dark:text-gray-400">{competitor.priceRange}</td>
-                      <td className="py-3 px-4 text-gray-900 dark:text-gray-100">{competitor.marketShare}%</td>
+                      <td className="py-3 px-4 text-gray-600 dark:text-gray-400 whitespace-nowrap">{competitor.priceRange}</td>
+                      <td className="py-3 px-4 text-gray-900 dark:text-gray-100 whitespace-nowrap">{competitor.marketShare}%</td>
                       <td className="py-3 px-4">
-                        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
                           competitor.trend === 'up' ? 'bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-400' :
                           competitor.trend === 'down' ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400' :
                           'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300'
