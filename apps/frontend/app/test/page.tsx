@@ -3,53 +3,140 @@
 import { useState, useEffect } from 'react';
 
 export default function TestPage() {
-  const [healthData, setHealthData] = useState<any>(null);
-  const [toolsData, setToolsData] = useState<any>(null);
-  const [restaurantData, setRestaurantData] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
+  const [results, setResults] = useState<Record<string, any>>({});
+  const [loading, setLoading] = useState<Record<string, boolean>>({});
   const [error, setError] = useState<string | null>(null);
+  const [aiMessage, setAiMessage] = useState('');
 
   const API_BASE = 'https://work-2-piugeprtvkeztpmd.prod-runtime.all-hands.dev';
 
-  const testHealthEndpoint = async () => {
-    setLoading(true);
+  const testEndpoints = [
+    {
+      id: 'health',
+      name: 'Health Check',
+      url: '/api/health',
+      method: 'GET',
+      description: 'Check API server health and database connectivity',
+      color: 'bg-green-600 hover:bg-green-700'
+    },
+    {
+      id: 'mcp-tools',
+      name: 'MCP Tools',
+      url: '/api/mcp/tools',
+      method: 'GET',
+      description: 'List all available MCP tools and servers',
+      color: 'bg-blue-600 hover:bg-blue-700'
+    },
+    {
+      id: 'restaurant-search',
+      name: 'Restaurant Search',
+      url: '/api/restaurants/search?cuisine=Italian&limit=3',
+      method: 'GET',
+      description: 'Search restaurants with comprehensive mock data',
+      color: 'bg-purple-600 hover:bg-purple-700'
+    },
+    {
+      id: 'restaurant-details',
+      name: 'Restaurant Details',
+      url: '/api/restaurants/bella-italia-silom',
+      method: 'GET',
+      description: 'Get detailed restaurant information',
+      color: 'bg-indigo-600 hover:bg-indigo-700'
+    },
+    {
+      id: 'restaurant-analytics',
+      name: 'Restaurant Analytics',
+      url: '/api/restaurants/bella-italia-silom/analytics',
+      method: 'GET',
+      description: 'Get restaurant analytics and insights',
+      color: 'bg-cyan-600 hover:bg-cyan-700'
+    },
+    {
+      id: 'market-analysis',
+      name: 'Market Analysis',
+      url: '/api/market/analysis',
+      method: 'GET',
+      description: 'Get comprehensive market analysis data',
+      color: 'bg-teal-600 hover:bg-teal-700'
+    },
+    {
+      id: 'search-filters',
+      name: 'Search with Filters',
+      url: '/api/restaurants/search?cuisine=Japanese&priceRange=4&rating=4.5&features=delivery',
+      method: 'GET',
+      description: 'Test advanced filtering capabilities',
+      color: 'bg-orange-600 hover:bg-orange-700'
+    },
+    {
+      id: 'ai-chat',
+      name: 'AI Assistant',
+      url: '/api/ai/chat',
+      method: 'POST',
+      body: { message: 'Recommend a good Italian restaurant', context: 'restaurant_search' },
+      description: 'Test AI-powered restaurant recommendations',
+      color: 'bg-pink-600 hover:bg-pink-700'
+    }
+  ];
+
+  const testEndpoint = async (endpoint: typeof testEndpoints[0]) => {
+    setLoading(prev => ({ ...prev, [endpoint.id]: true }));
     setError(null);
+    
     try {
-      const response = await fetch(`${API_BASE}/api/health`);
+      const options: RequestInit = {
+        method: endpoint.method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      
+      if (endpoint.body) {
+        options.body = JSON.stringify(endpoint.body);
+      }
+      
+      const response = await fetch(`${API_BASE}${endpoint.url}`, options);
       const data = await response.json();
-      setHealthData(data);
+      setResults(prev => ({ ...prev, [endpoint.id]: data }));
     } catch (err) {
-      setError(`Health check failed: ${err}`);
+      setError(`${endpoint.name} failed: ${err}`);
     } finally {
-      setLoading(false);
+      setLoading(prev => ({ ...prev, [endpoint.id]: false }));
     }
   };
 
-  const testMCPTools = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(`${API_BASE}/api/mcp/tools`);
-      const data = await response.json();
-      setToolsData(data);
-    } catch (err) {
-      setError(`MCP tools failed: ${err}`);
-    } finally {
-      setLoading(false);
+  const testAllEndpoints = async () => {
+    for (const endpoint of testEndpoints) {
+      await testEndpoint(endpoint);
+      // Small delay between requests
+      await new Promise(resolve => setTimeout(resolve, 300));
     }
   };
 
-  const testRestaurantSearch = async () => {
-    setLoading(true);
+  const testAIChat = async () => {
+    if (!aiMessage.trim()) return;
+    
+    setLoading(prev => ({ ...prev, 'ai-custom': true }));
     setError(null);
+    
     try {
-      const response = await fetch(`${API_BASE}/api/restaurants/search?location=New York&cuisine=Italian&limit=3`);
+      const response = await fetch(`${API_BASE}/api/ai/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          message: aiMessage, 
+          context: 'custom_test',
+          userId: 'test-user'
+        }),
+      });
+      
       const data = await response.json();
-      setRestaurantData(data);
+      setResults(prev => ({ ...prev, 'ai-custom': data }));
     } catch (err) {
-      setError(`Restaurant search failed: ${err}`);
+      setError(`AI Chat failed: ${err}`);
     } finally {
-      setLoading(false);
+      setLoading(prev => ({ ...prev, 'ai-custom': false }));
     }
   };
 

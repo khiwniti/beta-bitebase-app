@@ -4,6 +4,7 @@ const { getRestaurants, trackEvent, testConnection } = require('./api/lib/databa
 const { searchRestaurantsWongnaiStyle, getRestaurantDeliveryMenu } = require('./api/lib/wongnai-integration');
 const WongnaiAPIClient = require('./api/lib/wongnai-api-client');
 const WongnaiRealDataProvider = require('./api/lib/wongnai-real-data');
+const MockDataProvider = require('./api/lib/mock-data-provider');
 
 const server = http.createServer((req, res) => {
   // Enable CORS
@@ -120,8 +121,145 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Restaurant search
+  // COMPREHENSIVE MOCK DATA ENDPOINTS
+  
+  // Restaurant search endpoint (MOCK DATA - COMPREHENSIVE)
   if (path === '/api/restaurants/search' && req.method === 'GET') {
+    const { cuisine, location, limit = 10, page = 1, priceRange, rating, features } = query;
+    
+    try {
+      const mockProvider = new MockDataProvider();
+      const result = mockProvider.getRestaurants({
+        cuisine,
+        location,
+        limit: parseInt(limit),
+        page: parseInt(page),
+        priceRange,
+        rating,
+        features
+      });
+      
+      console.log(`✅ Mock restaurant search: ${result.data.length} results for filters:`, { cuisine, location, priceRange, rating, features });
+      
+      res.writeHead(200);
+      res.end(JSON.stringify({
+        ...result,
+        source: 'mock-data-comprehensive',
+        bitebaseEnhancements: {
+          mcpEnabled: true,
+          aiPowered: true,
+          dataSource: 'mock-comprehensive',
+          searchFilters: { cuisine, location, priceRange, rating, features },
+          enhancedAt: new Date().toISOString()
+        }
+      }));
+    } catch (error) {
+      res.writeHead(500);
+      res.end(JSON.stringify({
+        success: false,
+        error: 'Mock data search failed',
+        message: error.message
+      }));
+    }
+    return;
+  }
+
+  // Restaurant details endpoint (MOCK DATA)
+  if (path.startsWith('/api/restaurants/') && !path.includes('/analytics') && !path.includes('/delivery-menu') && path.split('/').length === 4 && req.method === 'GET') {
+    const publicId = path.split('/')[3];
+    
+    try {
+      const mockProvider = new MockDataProvider();
+      const result = mockProvider.getRestaurant(publicId);
+      
+      console.log(`✅ Mock restaurant details: ${result.data.name}`);
+      
+      res.writeHead(200);
+      res.end(JSON.stringify({
+        ...result,
+        source: 'mock-data-comprehensive',
+        bitebaseEnhancements: {
+          mcpEnabled: true,
+          aiPowered: true,
+          dataSource: 'mock-comprehensive',
+          enhancedAt: new Date().toISOString()
+        }
+      }));
+    } catch (error) {
+      res.writeHead(404);
+      res.end(JSON.stringify({
+        success: false,
+        error: 'Restaurant not found',
+        message: error.message
+      }));
+    }
+    return;
+  }
+
+  // Restaurant analytics endpoint (MOCK DATA)
+  if (path.startsWith('/api/restaurants/') && path.endsWith('/analytics') && req.method === 'GET') {
+    const publicId = path.split('/')[3];
+    
+    try {
+      const mockProvider = new MockDataProvider();
+      const result = mockProvider.getRestaurantAnalytics(publicId);
+      
+      console.log(`✅ Mock restaurant analytics: ${result.data.restaurant.name}`);
+      
+      res.writeHead(200);
+      res.end(JSON.stringify({
+        ...result,
+        source: 'mock-data-comprehensive',
+        bitebaseEnhancements: {
+          mcpEnabled: true,
+          aiPowered: true,
+          dataSource: 'mock-comprehensive',
+          enhancedAt: new Date().toISOString()
+        }
+      }));
+    } catch (error) {
+      res.writeHead(404);
+      res.end(JSON.stringify({
+        success: false,
+        error: 'Restaurant analytics not found',
+        message: error.message
+      }));
+    }
+    return;
+  }
+
+  // Market analysis endpoint (MOCK DATA)
+  if (path === '/api/market/analysis' && req.method === 'GET') {
+    try {
+      const mockProvider = new MockDataProvider();
+      const result = mockProvider.getMarketAnalysis();
+      
+      console.log(`✅ Mock market analysis: ${result.data.overview.totalRestaurants} restaurants analyzed`);
+      
+      res.writeHead(200);
+      res.end(JSON.stringify({
+        ...result,
+        source: 'mock-data-comprehensive',
+        bitebaseEnhancements: {
+          mcpEnabled: true,
+          aiPowered: true,
+          dataSource: 'mock-comprehensive',
+          enhancedAt: new Date().toISOString()
+        }
+      }));
+    } catch (error) {
+      res.writeHead(500);
+      res.end(JSON.stringify({
+        success: false,
+        error: 'Market analysis failed',
+        message: error.message
+      }));
+    }
+    return;
+  }
+
+  // Restaurant search endpoint (LOCAL DATABASE - FALLBACK)
+  if (path === '/api/restaurants/search-db' && req.method === 'GET') {
     const { location, cuisine, priceRange, rating, limit = 10 } = query;
     
     // Use real database
@@ -188,7 +326,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // AI Chat endpoint
+  // AI Chat endpoint (COMPREHENSIVE AI ASSISTANT)
   if (path === '/api/ai/chat' && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => {
@@ -198,30 +336,30 @@ const server = http.createServer((req, res) => {
       try {
         const { message, context, userId } = JSON.parse(body);
         
+        const mockProvider = new MockDataProvider();
+        const aiResponse = mockProvider.getAIResponse(message, context);
+        
+        console.log(`🤖 AI Chat: "${message}" -> ${aiResponse.data.intent}`);
+        
         res.writeHead(200);
         res.end(JSON.stringify({
-          success: true,
-          data: {
-            response: `I understand you're looking for restaurant recommendations! Based on your message "${message}", I can help you find great places to eat. Would you like me to search for specific cuisines or locations?`,
-            suggestions: [
-              'Find Italian restaurants nearby',
-              'Show me highly rated sushi places',
-              'What are the best budget-friendly options?'
-            ],
-            sentiment: {
-              sentiment: 'positive',
-              confidence: 0.85
-            },
-            meta: {
-              timestamp: new Date().toISOString(),
-              via: 'mcp-ai',
-              messageId: `msg_${Date.now()}`
-            }
+          ...aiResponse,
+          source: 'mock-data-comprehensive',
+          bitebaseEnhancements: {
+            mcpEnabled: true,
+            aiPowered: true,
+            dataSource: 'mock-comprehensive',
+            userId: userId,
+            enhancedAt: new Date().toISOString()
           }
         }));
       } catch (error) {
         res.writeHead(400);
-        res.end(JSON.stringify({ error: 'Invalid JSON' }));
+        res.end(JSON.stringify({ 
+          success: false,
+          error: 'Invalid JSON or AI processing failed',
+          message: error.message
+        }));
       }
     });
     return;
@@ -434,27 +572,39 @@ const server = http.createServer((req, res) => {
     available_endpoints: [
       'GET /api/health',
       'GET /api/mcp/tools',
-      'GET /api/restaurants/search',
+      'GET /api/restaurants/search (Mock Data - Comprehensive)',
+      'GET /api/restaurants/{publicId} (Mock Restaurant Details)',
+      'GET /api/restaurants/{publicId}/analytics (Mock Analytics)',
+      'GET /api/market/analysis (Mock Market Analysis)',
+      'POST /api/ai/chat (Comprehensive AI Assistant)',
+      'GET /api/restaurants/search-db (Database Fallback)',
       'GET /api/businesses (Wongnai-style)',
-      'GET /api/restaurants/{publicId} (Restaurant details)',
-      'GET /api/restaurants/{publicId}/delivery-menu',
-      'GET /api/wongnai/publicids (Available publicIds)',
-      'POST /api/ai/chat'
+      'GET /api/restaurants/{publicId}/delivery-menu (Wongnai)',
+      'GET /api/wongnai/publicids (Available publicIds)'
     ]
   }));
 });
 
 const PORT = 12001;
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 MCP API Server with REAL Wongnai Integration running on http://0.0.0.0:${PORT}`);
-  console.log(`📊 Health Check: http://0.0.0.0:${PORT}/api/health`);
+  console.log(`🚀 BiteBase MCP API Server with COMPREHENSIVE MOCK DATA running on http://0.0.0.0:${PORT}`);
+  console.log(`\n📋 COMPREHENSIVE MOCK DATA ENDPOINTS:`);
+  console.log(`🔍 Restaurant Search: http://0.0.0.0:${PORT}/api/restaurants/search`);
+  console.log(`🏪 Restaurant Details: http://0.0.0.0:${PORT}/api/restaurants/{publicId}`);
+  console.log(`📊 Restaurant Analytics: http://0.0.0.0:${PORT}/api/restaurants/{publicId}/analytics`);
+  console.log(`📈 Market Analysis: http://0.0.0.0:${PORT}/api/market/analysis`);
+  console.log(`🤖 AI Assistant: POST http://0.0.0.0:${PORT}/api/ai/chat`);
+  console.log(`\n🔧 SYSTEM ENDPOINTS:`);
+  console.log(`💚 Health Check: http://0.0.0.0:${PORT}/api/health`);
   console.log(`🛠️  MCP Tools: http://0.0.0.0:${PORT}/api/mcp/tools`);
-  console.log(`🔍 Restaurant Search (Local): http://0.0.0.0:${PORT}/api/restaurants/search`);
-  console.log(`🏢 Wongnai Businesses (REAL): http://0.0.0.0:${PORT}/api/businesses`);
-  console.log(`🍽️  Restaurant Details (REAL): http://0.0.0.0:${PORT}/api/restaurants/{publicId}`);
-  console.log(`📋 Delivery Menu (REAL): http://0.0.0.0:${PORT}/api/restaurants/{publicId}/delivery-menu`);
-  console.log(`📝 Available PublicIds: http://0.0.0.0:${PORT}/api/wongnai/publicids`);
-  console.log(`🤖 AI Chat: POST http://0.0.0.0:${PORT}/api/ai/chat`);
-  console.log(`\n🌐 Now using REAL Wongnai data structure with authentic publicIds!`);
-  console.log(`💡 Try: curl "http://0.0.0.0:${PORT}/api/wongnai/publicids" to see available restaurants`);
+  console.log(`\n🌐 WONGNAI INTEGRATION (Real Data):`);
+  console.log(`🏢 Businesses: http://0.0.0.0:${PORT}/api/businesses`);
+  console.log(`📋 Delivery Menu: http://0.0.0.0:${PORT}/api/restaurants/{publicId}/delivery-menu`);
+  console.log(`📝 PublicIds: http://0.0.0.0:${PORT}/api/wongnai/publicids`);
+  console.log(`\n💡 TESTING EXAMPLES:`);
+  console.log(`• curl "http://0.0.0.0:${PORT}/api/restaurants/search?cuisine=Italian"`);
+  console.log(`• curl "http://0.0.0.0:${PORT}/api/restaurants/bella-italia-silom"`);
+  console.log(`• curl "http://0.0.0.0:${PORT}/api/market/analysis"`);
+  console.log(`• curl -X POST "http://0.0.0.0:${PORT}/api/ai/chat" -H "Content-Type: application/json" -d '{"message":"Recommend Italian restaurants"}'`);
+  console.log(`\n🎯 Ready for comprehensive feature testing with realistic mock data!`);
 });
