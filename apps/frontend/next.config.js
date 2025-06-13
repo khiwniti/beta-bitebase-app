@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: false,
   distDir: ".next",
   trailingSlash: true,
+  output: 'standalone',
   images: {
     unoptimized: true,
   },
