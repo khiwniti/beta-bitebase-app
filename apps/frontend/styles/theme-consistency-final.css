@@ -1,0 +1,343 @@
+/* BiteBase Theme Consistency - Final Version */
+/* Applies modern landing page theme across the app while keeping dashboard background light */
+
+:root {
+  /* Landing page theme colors */
+  --bitebase-primary: #00D084;
+  --bitebase-primary-dark: #00B570;
+  --bitebase-primary-light: #1AE896;
+  --bitebase-secondary: #0F172A;
+  --bitebase-accent: #10B981;
+  --bitebase-gradient: linear-gradient(135deg, #00D084 0%, #10B981 100%);
+  --bitebase-dark-gradient: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  
+  /* Consistent spacing */
+  --bitebase-radius: 12px;
+  --bitebase-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --bitebase-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== NAVIGATION & SIDEBAR THEME ===== */
+/* Apply dark theme to sidebar while keeping content light */
+.sidebar, 
+[data-sidebar="true"],
+.bg-white.border-r {
+  background: var(--bitebase-dark-gradient) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+
+/* Sidebar navigation links */
+.sidebar a,
+.sidebar button,
+[data-sidebar="true"] a,
+[data-sidebar="true"] button {
+  color: rgba(255, 255, 255, 0.8) !important;
+  transition: all 0.2s ease !important;
+}
+
+.sidebar a:hover,
+.sidebar button:hover,
+[data-sidebar="true"] a:hover,
+[data-sidebar="true"] button:hover {
+  color: var(--bitebase-primary) !important;
+  background: rgba(0, 208, 132, 0.1) !important;
+}
+
+/* Active navigation items */
+.sidebar a.active,
+.sidebar button.active,
+[data-sidebar="true"] a.active,
+[data-sidebar="true"] button.active,
+.bg-emerald-50 {
+  background: var(--bitebase-gradient) !important;
+  color: white !important;
+}
+
+/* ===== HEADER THEME ===== */
+/* Apply consistent header styling */
+.header,
+.top-bar,
+.bg-white.border-b {
+  background: white !important;
+  border-bottom: 1px solid #E5E7EB !important;
+  box-shadow: var(--bitebase-shadow) !important;
+}
+
+/* ===== BUTTON THEME CONSISTENCY ===== */
+/* Primary buttons use landing page gradient */
+.btn-primary,
+.bg-emerald-500,
+.bg-emerald-600,
+.bg-green-500,
+.bg-green-600,
+button[class*="emerald"],
+button[class*="green"] {
+  background: var(--bitebase-gradient) !important;
+  border: none !important;
+  color: white !important;
+  border-radius: var(--bitebase-radius) !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-primary:hover,
+.bg-emerald-500:hover,
+.bg-emerald-600:hover,
+.bg-green-500:hover,
+.bg-green-600:hover {
+  background: linear-gradient(135deg, #00B570 0%, #0D9F6E 100%) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--bitebase-shadow-lg) !important;
+}
+
+/* Secondary buttons */
+.btn-secondary,
+.bg-gray-100,
+.bg-gray-200 {
+  background: #F9FAFB !important;
+  border: 1px solid #E5E7EB !important;
+  color: #374151 !important;
+  border-radius: var(--bitebase-radius) !important;
+}
+
+.btn-secondary:hover {
+  background: #F3F4F6 !important;
+  border-color: var(--bitebase-primary) !important;
+}
+
+/* ===== CARD THEME ===== */
+/* Keep cards light but with consistent styling */
+.card,
+.bg-white.rounded-lg,
+.bg-white.shadow {
+  background: white !important;
+  border-radius: var(--bitebase-radius) !important;
+  box-shadow: var(--bitebase-shadow) !important;
+  border: 1px solid #F3F4F6 !important;
+}
+
+/* ===== ACCENT COLORS ===== */
+/* Consistent accent colors throughout */
+.text-emerald-500,
+.text-emerald-600,
+.text-green-500,
+.text-green-600 {
+  color: var(--bitebase-primary) !important;
+}
+
+.border-emerald-500,
+.border-emerald-600,
+.border-green-500,
+.border-green-600 {
+  border-color: var(--bitebase-primary) !important;
+}
+
+/* ===== MODAL FIXES ===== */
+/* Fix modal overlap issues */
+.modal-overlay {
+  z-index: 9999 !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
+.modal-content {
+  z-index: 10000 !important;
+  position: relative !important;
+  background: white !important;
+  border-radius: var(--bitebase-radius) !important;
+  box-shadow: var(--bitebase-shadow-lg) !important;
+}
+
+/* Tour modal specific fixes */
+.tour-modal,
+.web-tour-modal {
+  z-index: 10001 !important;
+}
+
+.tour-overlay {
+  z-index: 10000 !important;
+}
+
+/* Welcome modal */
+.welcome-modal {
+  z-index: 9998 !important;
+}
+
+/* Prevent multiple modals from overlapping */
+body.modal-open {
+  overflow: hidden !important;
+}
+
+/* ===== FORM ELEMENTS ===== */
+/* Consistent form styling */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  border: 1px solid #E5E7EB !important;
+  border-radius: var(--bitebase-radius) !important;
+  padding: 0.75rem !important;
+  transition: all 0.2s ease !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--bitebase-primary) !important;
+  box-shadow: 0 0 0 3px rgba(0, 208, 132, 0.1) !important;
+  outline: none !important;
+}
+
+/* ===== STATUS INDICATORS ===== */
+/* Consistent status colors */
+.status-connected,
+.text-green-500 {
+  color: var(--bitebase-primary) !important;
+}
+
+.status-warning,
+.text-yellow-500 {
+  color: #F59E0B !important;
+}
+
+.status-error,
+.text-red-500 {
+  color: #EF4444 !important;
+}
+
+/* ===== LANDING PAGE PRESERVATION ===== */
+/* Ensure landing page keeps its dark theme */
+.landing-page,
+.auth-page,
+[data-page="landing"],
+[data-page="auth"] {
+  background: var(--bitebase-dark-gradient) !important;
+  color: white !important;
+}
+
+.landing-page .card,
+.auth-page .card {
+  background: white !important;
+  color: #374151 !important;
+}
+
+/* ===== RESPONSIVE IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%) !important;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0) !important;
+  }
+  
+  .modal-content {
+    margin: 1rem !important;
+    max-height: calc(100vh - 2rem) !important;
+    overflow-y: auto !important;
+  }
+}
+
+/* ===== ANIMATION ENHANCEMENTS ===== */
+/* Smooth transitions for theme elements */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+}
+
+/* Hover effects for interactive elements */
+.card:hover {
+  box-shadow: var(--bitebase-shadow-lg) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ===== ACCESSIBILITY ===== */
+/* Ensure good contrast ratios */
+.text-gray-500 {
+  color: #6B7280 !important;
+}
+
+.text-gray-600 {
+  color: #4B5563 !important;
+}
+
+.text-gray-700 {
+  color: #374151 !important;
+}
+
+/* Focus indicators */
+button:focus,
+a:focus {
+  outline: 2px solid var(--bitebase-primary) !important;
+  outline-offset: 2px !important;
+}
+
+/* ===== SPECIFIC COMPONENT FIXES ===== */
+/* AI Assistant styling */
+.ai-assistant {
+  border: 1px solid #E5E7EB !important;
+  border-radius: var(--bitebase-radius) !important;
+}
+
+.ai-assistant .header {
+  background: var(--bitebase-gradient) !important;
+  color: white !important;
+}
+
+/* Metrics cards */
+.metric-card {
+  background: white !important;
+  border: 1px solid #F3F4F6 !important;
+  border-radius: var(--bitebase-radius) !important;
+  box-shadow: var(--bitebase-shadow) !important;
+}
+
+/* Chart containers */
+.chart-container {
+  background: white !important;
+  border-radius: var(--bitebase-radius) !important;
+  padding: 1.5rem !important;
+}
+
+/* Table styling */
+table {
+  background: white !important;
+  border-radius: var(--bitebase-radius) !important;
+  overflow: hidden !important;
+}
+
+th {
+  background: #F9FAFB !important;
+  color: #374151 !important;
+  font-weight: 600 !important;
+}
+
+tr:hover {
+  background: #F9FAFB !important;
+}
+
+/* ===== FINAL OVERRIDES ===== */
+/* Ensure dashboard content area stays light */
+.dashboard-content,
+.main-content,
+main {
+  background: #FAFAFA !important;
+  min-height: 100vh !important;
+}
+
+/* Ensure proper spacing */
+.container {
+  padding: 1.5rem !important;
+}
+
+/* Fix any remaining dark backgrounds in dashboard */
+.dashboard .bg-gray-900,
+.dashboard .bg-gray-800,
+.dashboard .bg-black {
+  background: white !important;
+  color: #374151 !important;
+}

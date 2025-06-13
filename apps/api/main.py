@@ -1,9 +1,15 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from pydantic import BaseModel
 import uvicorn
 import os
+import hashlib
+import jwt
+import datetime
+from typing import Optional, Dict, Any
 
 app = FastAPI(
     title="BiteBase API",
@@ -21,6 +27,89 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Security
+security = HTTPBearer()
+SECRET_KEY = "bitebase-secret-key-2025"
+ALGORITHM = "HS256"
+
+# Pydantic models
+class UserRegister(BaseModel):
+    email: str
+    password: str
+    firstName: str
+    lastName: str
+    phone: Optional[str] = ""
+
+class UserLogin(BaseModel):
+    email: str
+    password: str
+
+class User(BaseModel):
+    id: int
+    email: str
+    role: str
+    name: str
+
+# In-memory database (replace with real database in production)
+users_db: Dict[str, Dict[str, Any]] = {
+    "admin@bitebase.app": {
+        "id": 1,
+        "email": "admin@bitebase.app",
+        "password": hashlib.sha256("Libralytics1234!*".encode()).hexdigest(),
+        "role": "admin",
+        "name": "BiteBase Admin",
+        "firstName": "BiteBase",
+        "lastName": "Admin",
+        "phone": "",
+        "created_at": datetime.datetime.now().isoformat()
+    }
+}
+
+# Helper functions
+def hash_password(password: str) -> str:
+    return hashlib.sha256(password.encode()).hexdigest()
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    return hash_password(plain_password) == hashed_password
+
+def create_access_token(data: dict, expires_delta: Optional[datetime.timedelta] = None):
+    to_encode = data.copy()
+    if expires_delta:
+        expire = datetime.datetime.utcnow() + expires_delta
+    else:
+        expire = datetime.datetime.utcnow() + datetime.timedelta(days=7)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    try:
+        payload = jwt.decode(credentials.credentials, SECRET_KEY, algorithms=[ALGORITHM])
+        email: str = payload.get("sub")
+        if email is None:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Could not validate credentials",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+        return email
+    except jwt.PyJWTError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+def get_current_user(email: str = Depends(verify_token)):
+    user = users_db.get(email)
+    if user is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="User not found",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    return user
 
 @app.get("/")
 async def root():
@@ -165,21 +254,145 @@ async def get_menu():
         ]
     }
 
-# Auth endpoints (mock)
+# Auth endpoints
 @app.post("/api/auth/register")
-async def register():
+async def register(user_data: UserRegister):
+    # Check if user already exists
+    if user_data.email in users_db:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Email already registered"
+        )
+    
+    # Create new user
+    user_id = len(users_db) + 1
+    hashed_password = hash_password(user_data.password)
+    
+    new_user = {
+        "id": user_id,
+        "email": user_data.email,
+        "password": hashed_password,
+        "role": "user",
+        "name": f"{user_data.firstName} {user_data.lastName}",
+        "firstName": user_data.firstName,
+        "lastName": user_data.lastName,
+        "phone": user_data.phone,
+        "created_at": datetime.datetime.now().isoformat()
+    }
+    
+    users_db[user_data.email] = new_user
+    
+    # Create access token
+    access_token = create_access_token(data={"sub": user_data.email})
+    
     return {
         "message": "Registration successful",
         "status": "success",
-        "user": {"id": 1, "email": "user@example.com"}
+        "token": access_token,
+        "user": {
+            "id": new_user["id"],
+            "email": new_user["email"],
+            "role": new_user["role"],
+            "name": new_user["name"]
+        }
     }
 
 @app.post("/api/auth/login")
-async def login():
+async def login(user_data: UserLogin):
+    # Check if user exists
+    user = users_db.get(user_data.email)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid email or password"
+        )
+    
+    # Verify password
+    if not verify_password(user_data.password, user["password"]):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid email or password"
+        )
+    
+    # Create access token
+    access_token = create_access_token(data={"sub": user_data.email})
+    
     return {
         "message": "Login successful",
         "status": "success",
-        "token": "jwt-token-here"
+        "token": access_token,
+        "user": {
+            "id": user["id"],
+            "email": user["email"],
+            "role": user["role"],
+            "name": user["name"]
+        }
+    }
+
+@app.get("/api/auth/me")
+async def get_current_user_info(current_user: dict = Depends(get_current_user)):
+    return {
+        "id": current_user["id"],
+        "email": current_user["email"],
+        "role": current_user["role"],
+        "name": current_user["name"]
+    }
+
+# Admin endpoints
+@app.get("/api/admin/users")
+async def get_all_users(current_user: dict = Depends(get_current_user)):
+    if current_user["role"] != "admin":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Admin access required"
+        )
+    
+    users_list = []
+    for email, user in users_db.items():
+        users_list.append({
+            "id": user["id"],
+            "email": user["email"],
+            "role": user["role"],
+            "name": user["name"],
+            "created_at": user["created_at"]
+        })
+    
+    return {"users": users_list}
+
+@app.post("/api/admin/users/{user_id}/role")
+async def update_user_role(user_id: int, role: str, current_user: dict = Depends(get_current_user)):
+    if current_user["role"] != "admin":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Admin access required"
+        )
+    
+    # Find user by ID
+    target_user = None
+    target_email = None
+    for email, user in users_db.items():
+        if user["id"] == user_id:
+            target_user = user
+            target_email = email
+            break
+    
+    if not target_user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+    
+    # Update role
+    users_db[target_email]["role"] = role
+    
+    return {
+        "message": "User role updated successfully",
+        "user": {
+            "id": target_user["id"],
+            "email": target_user["email"],
+            "role": role,
+            "name": target_user["name"]
+        }
     }
 
 # Page endpoints

@@ -12,6 +12,7 @@ import "../styles/bitebase-official-design.css";
 import "../styles/bitebase-design-system.css";
 import "../styles/bitebase-theme.css";
 import "../styles/brand-theme.css";
+import "../styles/theme-consistency-final.css";
 import { useEffect } from "react";
 // import { TempoDevtools } from "tempo-devtools";
 import ErrorBoundary from "../components/ErrorBoundary";

@@ -104,18 +104,37 @@ export function WebTour({ isOpen, onClose, onComplete, isFirstTimeUser = false }
 
   const calculatePosition = (rect: DOMRect, position: string) => {
     const offset = 20
+    const cardWidth = 320 // Approximate card width
+    const cardHeight = 300 // Approximate card height
+    const viewportWidth = window.innerWidth
+    const viewportHeight = window.innerHeight
+    
+    let top = 0
+    let left = 0
+    
     switch (position) {
       case 'top':
-        return { top: rect.top - 200, left: rect.left + rect.width / 2 - 200 }
+        top = Math.max(offset, rect.top - cardHeight - offset)
+        left = Math.max(offset, Math.min(viewportWidth - cardWidth - offset, rect.left + rect.width / 2 - cardWidth / 2))
+        break
       case 'bottom':
-        return { top: rect.bottom + offset, left: rect.left + rect.width / 2 - 200 }
+        top = Math.min(viewportHeight - cardHeight - offset, rect.bottom + offset)
+        left = Math.max(offset, Math.min(viewportWidth - cardWidth - offset, rect.left + rect.width / 2 - cardWidth / 2))
+        break
       case 'left':
-        return { top: rect.top + rect.height / 2 - 100, left: rect.left - 420 }
+        top = Math.max(offset, Math.min(viewportHeight - cardHeight - offset, rect.top + rect.height / 2 - cardHeight / 2))
+        left = Math.max(offset, rect.left - cardWidth - offset)
+        break
       case 'right':
-        return { top: rect.top + rect.height / 2 - 100, left: rect.right + offset }
+        top = Math.max(offset, Math.min(viewportHeight - cardHeight - offset, rect.top + rect.height / 2 - cardHeight / 2))
+        left = Math.min(viewportWidth - cardWidth - offset, rect.right + offset)
+        break
       default:
-        return { top: rect.bottom + offset, left: rect.left }
+        top = Math.min(viewportHeight - cardHeight - offset, rect.bottom + offset)
+        left = Math.max(offset, Math.min(viewportWidth - cardWidth - offset, rect.left))
     }
+    
+    return { top, left }
   }
 
   const nextStep = () => {
@@ -165,22 +184,23 @@ export function WebTour({ isOpen, onClose, onComplete, isFirstTimeUser = false }
 
       {/* Tour Card */}
       <div
-        className="fixed z-50 w-96 pointer-events-auto"
+        className="fixed z-50 w-80 sm:w-96 pointer-events-auto"
         style={{
           top: `${tourPosition.top}px`,
           left: `${tourPosition.left}px`,
-          maxWidth: '400px'
+          maxWidth: '90vw',
+          maxHeight: '80vh'
         }}
       >
-        <Card className="shadow-2xl border-2 border-primary-200 bg-white">
+        <Card className="shadow-2xl border-2 border-primary-200 bg-white overflow-hidden">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <div className="p-2 bg-primary-100 rounded-lg text-primary-600">
+              <div className="flex items-center space-x-2 min-w-0 flex-1">
+                <div className="p-2 bg-primary-100 rounded-lg text-primary-600 flex-shrink-0">
                   {step.icon}
                 </div>
-                <div>
-                  <CardTitle className="text-lg">{step.title}</CardTitle>
+                <div className="min-w-0 flex-1">
+                  <CardTitle className="text-lg truncate">{step.title}</CardTitle>
                   <Badge variant="secondary" className="text-xs">
                     Step {currentStep + 1} of {tourSteps.length}
                   </Badge>
@@ -197,8 +217,8 @@ export function WebTour({ isOpen, onClose, onComplete, isFirstTimeUser = false }
             </div>
           </CardHeader>
 
-          <CardContent className="space-y-4">
-            <CardDescription className="text-sm leading-relaxed">
+          <CardContent className="space-y-4 overflow-hidden">
+            <CardDescription className="text-sm leading-relaxed break-words">
               {step.description}
             </CardDescription>
 
@@ -230,45 +250,45 @@ export function WebTour({ isOpen, onClose, onComplete, isFirstTimeUser = false }
             )}
 
             {/* Navigation */}
-            <div className="flex items-center justify-between pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between pt-2 gap-2">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={prevStep}
                 disabled={currentStep === 0}
-                className="flex items-center space-x-1"
+                className="flex items-center justify-center space-x-1 min-w-0"
               >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Previous</span>
+                <ArrowLeft className="w-4 h-4 flex-shrink-0" />
+                <span className="hidden sm:inline">Previous</span>
               </Button>
 
-              <div className="flex space-x-2">
+              <div className="flex space-x-1 sm:space-x-2 justify-center">
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={skipTour}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-gray-500 hover:text-gray-700 text-xs sm:text-sm px-2 sm:px-3"
                   title="Skip the tour and continue using the dashboard"
                 >
-                  Skip Tour
+                  Skip
                 </Button>
 
                 <Button
                   onClick={nextStep}
                   size="sm"
-                  className="bg-primary-600 hover:bg-primary-700 flex items-center space-x-1"
+                  className="bg-primary-600 hover:bg-primary-700 flex items-center space-x-1 px-2 sm:px-3"
                 >
-                  <span>
-                    {currentStep === tourSteps.length - 1 ? 'Get Started' : 'Next'}
+                  <span className="text-xs sm:text-sm">
+                    {currentStep === tourSteps.length - 1 ? 'Start' : 'Next'}
                   </span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 flex-shrink-0" />
                 </Button>
 
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={onClose}
-                  className="text-gray-400 hover:text-gray-600 p-1"
+                  className="text-gray-400 hover:text-gray-600 p-1 flex-shrink-0"
                   title="Close tour"
                 >
                   ✕

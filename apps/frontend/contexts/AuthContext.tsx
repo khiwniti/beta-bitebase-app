@@ -59,13 +59,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
           if (response.ok) {
             const userData = await response.json();
-            setUser({
-              id: userData.id,
-              email: userData.email,
-              role: userData.role,
-              name: userData.name,
-              uid: userData.id.toString(),
-            });
+            if (userData && userData.id && userData.email && userData.role) {
+              setUser({
+                id: userData.id,
+                email: userData.email,
+                role: userData.role,
+                name: userData.name || '',
+                uid: userData.id.toString(),
+              });
+            } else {
+              localStorage.removeItem("bitebase_token");
+            }
           } else {
             localStorage.removeItem("bitebase_token");
           }
@@ -86,6 +90,26 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const signIn = async (email: string, password: string) => {
     setLoading(true);
     try {
+      // Demo login for testing - bypass backend
+      if (email === 'demo@bitebase.com' && password === 'demo123') {
+        const demoUser = {
+          id: 1,
+          email: 'demo@bitebase.com',
+          role: 'user',
+          name: 'Demo User',
+          uid: '1',
+        };
+        
+        // Store demo token
+        localStorage.setItem("bitebase_token", "demo_token_123");
+        document.cookie = `auth_token=demo_token_123; path=/; max-age=${7 * 24 * 60 * 60}`;
+        document.cookie = `user_role=user; path=/; max-age=${7 * 24 * 60 * 60}`;
+        
+        setUser(demoUser);
+        setLoading(false);
+        return;
+      }
+
       const response = await fetch(`${API_BASE}/auth/login`, {
         method: "POST",
         headers: {
@@ -101,19 +125,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       const data = await response.json();
 
-      // Store token in localStorage and cookie
-      localStorage.setItem("bitebase_token", data.token);
-      document.cookie = `auth_token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
-      document.cookie = `user_role=${data.user.role}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
+      if (data && data.token && data.user && data.user.id && data.user.email && data.user.role) {
+        // Store token in localStorage and cookie
+        localStorage.setItem("bitebase_token", data.token);
+        document.cookie = `auth_token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
+        document.cookie = `user_role=${data.user.role}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
 
-      // Set user
-      setUser({
-        id: data.user.id,
-        email: data.user.email,
-        role: data.user.role,
-        name: data.user.name,
-        uid: data.user.id.toString(),
-      });
+        // Set user
+        setUser({
+          id: data.user.id,
+          email: data.user.email,
+          role: data.user.role,
+          name: data.user.name || '',
+          uid: data.user.id.toString(),
+        });
+      } else {
+        throw new Error("Invalid response data from server");
+      }
 
       setLoading(false);
     } catch (error) {
@@ -147,22 +175,27 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       const data = await response.json();
 
-      // Store token in localStorage and cookie
-      localStorage.setItem("bitebase_token", data.token);
-      document.cookie = `auth_token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
-      document.cookie = `user_role=${data.user.role}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
+      if (data && data.token && data.user && data.user.id && data.user.email && data.user.role) {
+        // Store token in localStorage and cookie
+        localStorage.setItem("bitebase_token", data.token);
+        document.cookie = `auth_token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
+        document.cookie = `user_role=${data.user.role}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
 
-      // Set user
-      setUser({
-        id: data.user.id,
-        email: data.user.email,
-        role: data.user.role,
-        name: data.user.name,
-        uid: data.user.id.toString(),
-      });
+        // Set user
+        setUser({
+          id: data.user.id,
+          email: data.user.email,
+          role: data.user.role,
+          name: data.user.name || '',
+          uid: data.user.id.toString(),
+        });
 
-      // Mark as first-time user for tour
-      markUserAsFirstTime();
+        // Mark as first-time user for tour
+        markUserAsFirstTime();
+      } else {
+        throw new Error("Invalid response data from server");
+      }
+      
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -208,24 +241,28 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       const data = await response.json();
 
-      // Store token
-      localStorage.setItem("bitebase_token", data.token);
+      if (data && data.token && data.user && data.user.id && data.user.email && data.user.role) {
+        // Store token
+        localStorage.setItem("bitebase_token", data.token);
 
-      // Set user
-      setUser({
-        id: data.user.id,
-        email: data.user.email,
-        role: data.user.role,
-        name: data.user.name,
-        uid: data.user.id.toString(),
-      });
+        // Set user
+        setUser({
+          id: data.user.id,
+          email: data.user.email,
+          role: data.user.role,
+          name: data.user.name || '',
+          uid: data.user.id.toString(),
+        });
 
-      if (data.isNewUser) {
-        markUserAsFirstTime();
+        if (data.isNewUser) {
+          markUserAsFirstTime();
+        }
+
+        setLoading(false);
+        return { isNewUser: data.isNewUser || false };
+      } else {
+        throw new Error("Invalid response data from server");
       }
-
-      setLoading(false);
-      return { isNewUser: data.isNewUser };
     } catch (error) {
       setLoading(false);
       throw error;
