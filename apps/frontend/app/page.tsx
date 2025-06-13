@@ -1,10 +1,10 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
-import ModernLandingPage from "../components/landing/ModernLandingPage"
+import BetaInspiredLandingPage from "../components/landing/BetaInspiredLandingPage"
 
 function HomePageContent() {
-  return <ModernLandingPage />
+  return <BetaInspiredLandingPage />
 }
 
 export default function HomePage() {
