@@ -83,20 +83,20 @@ export function MetricCard({
 
   return (
     <div className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden ${className}`}>
-      <div className="p-3 sm:p-4 lg:p-6 h-full flex flex-col">
+      <div className="p-4 sm:p-5 lg:p-6 h-full flex flex-col min-h-[140px]">
         {/* Header */}
-        <div className="flex items-start justify-between mb-3 sm:mb-4 min-h-0">
-          <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-            <div className="p-1.5 sm:p-2 bg-gray-100 dark:bg-gray-700 rounded-lg flex-shrink-0">
-              <div className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center">
+        <div className="flex items-start justify-between mb-4 min-h-0">
+          <div className="flex items-center gap-3 min-w-0 flex-1">
+            <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg flex-shrink-0">
+              <div className="w-5 h-5 flex items-center justify-center text-gray-600 dark:text-gray-300">
                 {icon}
               </div>
             </div>
             <div className="min-w-0 flex-1">
-              <h3 className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 truncate leading-tight">{title}</h3>
-              <div className="flex items-center gap-1.5 sm:gap-2 mt-1">
+              <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 truncate leading-tight mb-1">{title}</h3>
+              <div className="flex items-center gap-2">
                 {getStatusIndicator()}
-                <span className="text-xs text-gray-500 dark:text-gray-400 capitalize truncate">{status}</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400 capitalize">{status}</span>
               </div>
             </div>
           </div>
@@ -107,31 +107,31 @@ export function MetricCard({
         </div>
 
         {/* Value */}
-        <div className="flex-1 min-h-0 mb-3 sm:mb-4 lg:mb-6">
+        <div className="flex-1 min-h-0 mb-4">
           {loading ? (
-            <div className="space-y-2 sm:space-y-3">
-              <div className="h-6 sm:h-8 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-              <div className="h-3 sm:h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-3/4" />
+            <div className="space-y-3">
+              <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+              <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-3/4" />
             </div>
           ) : status === 'connected' ? (
-            <div className="space-y-1 sm:space-y-2">
-              <div className="text-lg sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-gray-100 break-words leading-tight overflow-hidden">{value}</div>
+            <div className="space-y-2">
+              <div className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-gray-100 leading-tight break-words">{value}</div>
               {change && (
-                <div className={`flex items-center gap-1.5 sm:gap-2 flex-wrap ${getTrendColor()}`}>
-                  <div className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0">
+                <div className={`flex items-center gap-2 flex-wrap ${getTrendColor()}`}>
+                  <div className="w-4 h-4 flex-shrink-0">
                     {getTrendIcon()}
                   </div>
-                  <span className="text-xs sm:text-sm font-medium whitespace-nowrap">
+                  <span className="text-sm font-medium">
                     {change.value > 0 ? '+' : ''}{change.value}%
                   </span>
-                  <span className="text-xs text-gray-500 dark:text-gray-400 truncate">{change.period}</span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">{change.period}</span>
                 </div>
               )}
             </div>
           ) : (
-            <div className="space-y-1 sm:space-y-2">
-              <div className="text-lg sm:text-2xl font-bold text-gray-400 dark:text-gray-500">--</div>
-              <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed overflow-hidden">
+            <div className="space-y-2">
+              <div className="text-2xl font-bold text-gray-400 dark:text-gray-500">--</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
                 {description || 'No data available'}
               </div>
             </div>
@@ -412,7 +412,7 @@ interface DashboardGridProps {
 
 export function DashboardGrid({ children, className = '' }: DashboardGridProps) {
   return (
-    <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 auto-rows-fr ${className}`}>
+    <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6 auto-rows-fr ${className}`}>
       {children}
     </div>
   )

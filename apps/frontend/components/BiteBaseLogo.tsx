@@ -66,16 +66,33 @@ export default function BiteBaseLogo({
             onError={() => setImageError(true)}
           />
         ) : (
-          // Fallback SVG logo if image fails to load
+          // Enhanced SVG logo with proper BiteBase branding
           <div
-            className={`flex items-center justify-center rounded-lg bg-gradient-to-br from-primary-500 to-accent-red-600 text-white font-bold ${animated ? "transition-transform duration-300 hover:rotate-12" : ""}`}
+            className={`flex items-center justify-center rounded-xl bg-gradient-to-br from-[#74C365] to-[#5fa854] text-white font-bold shadow-lg ${animated ? "transition-transform duration-300 hover:rotate-12" : ""}`}
             style={{
               width: `${iconSize}px`,
               height: `${iconSize}px`,
-              fontSize: `${iconSize * 0.4}px`,
             }}
           >
-            B
+            <svg
+              width={iconSize * 0.6}
+              height={iconSize * 0.6}
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="text-white"
+            >
+              <path
+                d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"
+                fill="currentColor"
+              />
+              <circle cx="12" cy="12" r="2" fill="currentColor" opacity="0.8"/>
+              <path
+                d="M8 12C8 10.9 8.9 10 10 10H14C15.1 10 16 10.9 16 12V14C16 15.1 15.1 16 14 16H10C8.9 16 8 15.1 8 14V12Z"
+                fill="currentColor"
+                opacity="0.6"
+              />
+            </svg>
           </div>
         )}
       </div>
@@ -136,16 +153,33 @@ export function BiteBaseIcon({
           onError={() => setImageError(true)}
         />
       ) : (
-        // Fallback SVG icon
+        // Enhanced SVG icon with proper BiteBase branding
         <div
-          className={`flex items-center justify-center rounded-lg bg-gradient-to-br from-primary-500 to-accent-red-600 text-white font-bold ${animated ? "transition-transform duration-300 hover:scale-110 hover:rotate-12" : ""}`}
+          className={`flex items-center justify-center rounded-xl bg-gradient-to-br from-[#74C365] to-[#5fa854] text-white font-bold shadow-lg ${animated ? "transition-transform duration-300 hover:scale-110 hover:rotate-12" : ""}`}
           style={{
             width: `${iconSize}px`,
             height: `${iconSize}px`,
-            fontSize: `${iconSize * 0.4}px`,
           }}
         >
-          B
+          <svg
+            width={iconSize * 0.6}
+            height={iconSize * 0.6}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="text-white"
+          >
+            <path
+              d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"
+              fill="currentColor"
+            />
+            <circle cx="12" cy="12" r="2" fill="currentColor" opacity="0.8"/>
+            <path
+              d="M8 12C8 10.9 8.9 10 10 10H14C15.1 10 16 10.9 16 12V14C16 15.1 15.1 16 14 16H10C8.9 16 8 15.1 8 14V12Z"
+              fill="currentColor"
+              opacity="0.6"
+            />
+          </svg>
         </div>
       )}
     </div>
@@ -167,14 +201,31 @@ export function BiteBaseLogoLoading({
   return (
     <div className={`flex items-center ${className}`}>
       <div
-        className="flex items-center justify-center rounded-lg bg-gradient-to-br from-primary-500 to-accent-red-600 text-white font-bold animate-pulse"
+        className="flex items-center justify-center rounded-xl bg-gradient-to-br from-[#74C365] to-[#5fa854] text-white font-bold shadow-lg animate-pulse"
         style={{
           width: `${iconSize}px`,
           height: `${iconSize}px`,
-          fontSize: `${iconSize * 0.4}px`,
         }}
       >
-        B
+        <svg
+          width={iconSize * 0.6}
+          height={iconSize * 0.6}
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="text-white"
+        >
+          <path
+            d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"
+            fill="currentColor"
+          />
+          <circle cx="12" cy="12" r="2" fill="currentColor" opacity="0.8"/>
+          <path
+            d="M8 12C8 10.9 8.9 10 10 10H14C15.1 10 16 10.9 16 12V14C16 15.1 15.1 16 14 16H10C8.9 16 8 15.1 8 14V12Z"
+            fill="currentColor"
+            opacity="0.6"
+          />
+        </svg>
       </div>
       <div className="ml-2 flex items-center">
         <div className="h-4 bg-gray-300 rounded animate-pulse w-20"></div>

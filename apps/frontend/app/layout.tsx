@@ -7,12 +7,7 @@ import { Providers } from "./providers";
 // import PageWrapper from '../components/layout/PageWrapper'
 import AppContent from "./AppContent"; // Import the new component
 import "./globals.css";
-import "../styles/modern-vercel-theme.css";
-import "../styles/bitebase-official-design.css";
-import "../styles/bitebase-design-system.css";
-import "../styles/bitebase-theme.css";
-import "../styles/brand-theme.css";
-import "../styles/theme-consistency-final.css";
+import "../styles/consolidated-theme.css";
 import { useEffect } from "react";
 // import { TempoDevtools } from "tempo-devtools";
 import ErrorBoundary from "../components/ErrorBoundary";
