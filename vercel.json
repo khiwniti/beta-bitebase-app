@@ -56,6 +56,10 @@
       "destination": "/api/health"
     },
     {
+      "source": "/api/init-database",
+      "destination": "/api/init-database"
+    },
+    {
       "source": "/api/restaurants/search",
       "destination": "/api/restaurants/search"
     },
@@ -64,40 +68,12 @@
       "destination": "/api/restaurants/[id]"
     },
     {
-      "source": "/api/ai/chat",
-      "destination": "/api/ai/chat"
-    },
-    {
-      "source": "/api/ai/recommendations",
-      "destination": "/api/ai/recommendations"
-    },
-    {
       "source": "/api/analytics/dashboard",
       "destination": "/api/analytics/dashboard"
     },
     {
       "source": "/api/analytics/track",
       "destination": "/api/analytics/track"
-    },
-    {
-      "source": "/api/location/geocode",
-      "destination": "/api/location/geocode"
-    },
-    {
-      "source": "/api/location/nearby",
-      "destination": "/api/location/nearby"
-    },
-    {
-      "source": "/api/payments/create-intent",
-      "destination": "/api/payments/create-intent"
-    },
-    {
-      "source": "/api/payments/webhook",
-      "destination": "/api/payments/webhook"
-    },
-    {
-      "source": "/api/notifications/send",
-      "destination": "/api/notifications/send"
     }
   ]
 }

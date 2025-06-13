@@ -1,16 +1,15 @@
 /**
- * Analytics Dashboard API using MCP
+ * Analytics Dashboard API using Database
  */
 
-import { getMCPClient } from '../lib/mcp-client.js';
+const { pool, trackEvent } = require('../lib/database.js');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const mcpClient = getMCPClient();
     const { 
       timeframe = '7d',
       metrics = 'all',
@@ -18,69 +17,90 @@ export default async function handler(req, res) {
       restaurantId 
     } = req.query;
 
-    // Get analytics dashboard data via MCP
-    const dashboardResult = await mcpClient.executeTool('get_analytics_dashboard', {
-      timeframe,
-      metrics: metrics === 'all' ? [
-        'page_views',
-        'restaurant_searches',
-        'recommendations_requested',
-        'user_registrations',
-        'ai_chat_sessions',
-        'conversion_rate'
-      ] : metrics.split(','),
-      filters: {
-        userId: userId || undefined,
-        restaurantId: restaurantId || undefined
-      }
-    });
+    const client = await pool.connect();
+    
+    try {
+      // Calculate date range based on timeframe
+      const now = new Date();
+      const timeframeDays = timeframe === '1d' ? 1 : timeframe === '7d' ? 7 : timeframe === '30d' ? 30 : 7;
+      const startDate = new Date(now.getTime() - (timeframeDays * 24 * 60 * 60 * 1000));
 
-    if (!dashboardResult.success) {
-      return res.status(500).json({
-        error: 'Dashboard data failed',
-        details: dashboardResult.error
-      });
-    }
+      // Get analytics metrics from database
+      const analyticsMetrics = {};
 
-    // Generate insights from the data
-    const insightsResult = await mcpClient.executeTool('generate_insights', {
-      dataSource: 'analytics_dashboard',
-      analysisType: 'trend_analysis',
-      parameters: {
-        timeframe,
-        metrics: dashboardResult.data.metrics
-      }
-    });
+      // Total restaurants
+      const restaurantCountResult = await client.query(
+        'SELECT COUNT(*) as total FROM restaurants WHERE is_active = true'
+      );
+      analyticsMetrics.totalRestaurants = parseInt(restaurantCountResult.rows[0].total);
 
-    // Track dashboard view
-    await mcpClient.executeTool('track_event', {
-      userId: req.headers['x-user-id'] || 'anonymous',
-      event: 'dashboard_viewed',
-      properties: {
-        timeframe,
-        metricsRequested: metrics,
-        hasFilters: !!(userId || restaurantId)
-      },
-      timestamp: new Date().toISOString()
-    });
+      // Total users
+      const userCountResult = await client.query(
+        'SELECT COUNT(*) as total FROM users WHERE is_active = true'
+      );
+      analyticsMetrics.totalUsers = parseInt(userCountResult.rows[0].total);
 
-    res.status(200).json({
-      success: true,
-      data: {
-        metrics: dashboardResult.data.metrics || {},
-        insights: insightsResult.success ? insightsResult.data : null,
-        timeframe,
-        filters: {
-          userId,
-          restaurantId
+      // Recent searches
+      const searchCountResult = await client.query(
+        'SELECT COUNT(*) as total FROM analytics_events WHERE event_type = $1 AND created_at >= $2',
+        ['restaurant_search', startDate]
+      );
+      analyticsMetrics.recentSearches = parseInt(searchCountResult.rows[0].total);
+
+      // Recent views
+      const viewCountResult = await client.query(
+        'SELECT COUNT(*) as total FROM analytics_events WHERE event_type = $1 AND created_at >= $2',
+        ['restaurant_view', startDate]
+      );
+      analyticsMetrics.recentViews = parseInt(viewCountResult.rows[0].total);
+
+      // Popular cuisines
+      const cuisineResult = await client.query(
+        'SELECT cuisine, COUNT(*) as count FROM restaurants WHERE is_active = true GROUP BY cuisine ORDER BY count DESC LIMIT 5'
+      );
+      analyticsMetrics.popularCuisines = cuisineResult.rows;
+
+      // Recent activity
+      const activityResult = await client.query(
+        'SELECT event_type, COUNT(*) as count, DATE(created_at) as date FROM analytics_events WHERE created_at >= $1 GROUP BY event_type, DATE(created_at) ORDER BY date DESC LIMIT 10',
+        [startDate]
+      );
+      analyticsMetrics.recentActivity = activityResult.rows;
+
+      // Track dashboard view
+      await trackEvent({
+        userId: req.headers['x-user-id'] || null,
+        eventType: 'dashboard_viewed',
+        eventData: {
+          timeframe,
+          metricsRequested: metrics,
+          hasFilters: !!(userId || restaurantId)
         },
-        meta: {
-          timestamp: new Date().toISOString(),
-          via: 'mcp-analytics',
-          dataPoints: Object.keys(dashboardResult.data.metrics || {}).length
+        sessionId: req.headers['x-session-id'] || null,
+        ipAddress: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+        userAgent: req.headers['user-agent']
+      });
+
+      res.status(200).json({
+        success: true,
+        data: {
+          metrics: analyticsMetrics,
+          timeframe,
+          filters: {
+            userId,
+            restaurantId
+          },
+          meta: {
+            timestamp: new Date().toISOString(),
+            via: 'database',
+            dataPoints: Object.keys(analyticsMetrics).length
+          }
         }
-      }
-    });
+      });
+
+    } finally {
+      client.release();
+    }
 
   } catch (error) {
     console.error('Analytics dashboard error:', error);

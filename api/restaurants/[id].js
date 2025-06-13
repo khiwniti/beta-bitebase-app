@@ -1,10 +1,10 @@
 /**
- * Restaurant Details API using MCP
+ * Restaurant Details API using Database
  */
 
-import { getMCPClient } from '../lib/mcp-client.js';
+const { pool, trackEvent } = require('../lib/database.js');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const { id } = req.query;
 
   if (!id) {
@@ -12,92 +12,59 @@ export default async function handler(req, res) {
   }
 
   try {
-    const mcpClient = getMCPClient();
+    const client = await pool.connect();
 
     switch (req.method) {
       case 'GET':
-        // Get restaurant details via MCP
-        const detailsResult = await mcpClient.executeTool('get_restaurant_details', {
-          restaurantId: id
-        });
+        try {
+          // Get restaurant details from database
+          const restaurantResult = await client.query(
+            'SELECT * FROM restaurants WHERE id = $1 AND is_active = true',
+            [id]
+          );
 
-        if (!detailsResult.success) {
-          return res.status(404).json({
-            error: 'Restaurant not found',
-            details: detailsResult.error
-          });
-        }
-
-        // Get similar restaurants
-        const similarResult = await mcpClient.executeTool('get_similar_restaurants', {
-          restaurantId: id,
-          limit: 5
-        });
-
-        // Track view event
-        await mcpClient.executeTool('track_event', {
-          userId: req.headers['x-user-id'] || 'anonymous',
-          event: 'restaurant_view',
-          properties: {
-            restaurantId: id,
-            timestamp: new Date().toISOString()
+          if (restaurantResult.rows.length === 0) {
+            return res.status(404).json({
+              error: 'Restaurant not found'
+            });
           }
-        });
 
-        res.status(200).json({
-          success: true,
-          data: {
-            restaurant: detailsResult.data,
-            similar: similarResult.success ? similarResult.data : [],
-            meta: {
-              viewedAt: new Date().toISOString(),
-              via: 'mcp'
+          const restaurant = restaurantResult.rows[0];
+
+          // Get similar restaurants (same cuisine, different restaurant)
+          const similarResult = await client.query(
+            'SELECT * FROM restaurants WHERE cuisine = $1 AND id != $2 AND is_active = true ORDER BY rating DESC LIMIT 5',
+            [restaurant.cuisine, id]
+          );
+
+          // Track view event
+          await trackEvent({
+            userId: req.headers['x-user-id'] || null,
+            eventType: 'restaurant_view',
+            eventData: {
+              restaurantId: id,
+              restaurantName: restaurant.name,
+              cuisine: restaurant.cuisine
+            },
+            sessionId: req.headers['x-session-id'] || null,
+            ipAddress: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+            userAgent: req.headers['user-agent']
+          });
+
+          res.status(200).json({
+            success: true,
+            data: {
+              restaurant: restaurant,
+              similar: similarResult.rows,
+              meta: {
+                viewedAt: new Date().toISOString(),
+                via: 'database'
+              }
             }
-          }
-        });
-        break;
-
-      case 'PUT':
-        // Update restaurant (admin only)
-        const updateData = req.body;
-        
-        const updateResult = await mcpClient.executeTool('update_record', {
-          table: 'restaurants',
-          id: id,
-          data: updateData
-        });
-
-        if (!updateResult.success) {
-          return res.status(500).json({
-            error: 'Update failed',
-            details: updateResult.error
           });
+        } finally {
+          client.release();
         }
-
-        res.status(200).json({
-          success: true,
-          data: updateResult.data
-        });
-        break;
-
-      case 'DELETE':
-        // Delete restaurant (admin only)
-        const deleteResult = await mcpClient.executeTool('delete_record', {
-          table: 'restaurants',
-          id: id
-        });
-
-        if (!deleteResult.success) {
-          return res.status(500).json({
-            error: 'Delete failed',
-            details: deleteResult.error
-          });
-        }
-
-        res.status(200).json({
-          success: true,
-          message: 'Restaurant deleted successfully'
-        });
         break;
 
       default:

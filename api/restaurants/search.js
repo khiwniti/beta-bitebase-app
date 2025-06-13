@@ -1,17 +1,15 @@
 /**
- * Restaurant Search API using MCP
+ * Restaurant Search API using Database
  */
 
-import { getMCPClient } from '../lib/mcp-client.js';
+const { getRestaurants, trackEvent } = require('../lib/database.js');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const mcpClient = getMCPClient();
-    
     const {
       location,
       cuisine,
@@ -22,68 +20,44 @@ export default async function handler(req, res) {
       offset = 0
     } = req.query;
 
-    if (!location) {
-      return res.status(400).json({
-        error: 'Location parameter is required'
-      });
-    }
+    // Build search filters
+    const filters = {};
+    if (cuisine) filters.cuisine = cuisine;
+    if (location) filters.location = location;
+    if (priceRange) filters.priceRange = priceRange;
+    if (rating) filters.minRating = parseFloat(rating);
+    if (limit) filters.limit = parseInt(limit);
 
-    // Execute restaurant search via MCP
-    const searchResult = await mcpClient.executeTool('search_restaurants', {
-      location,
-      cuisine,
-      priceRange,
-      rating: rating ? parseFloat(rating) : undefined,
-      features: features ? features.split(',') : undefined
-    });
-
-    if (!searchResult.success) {
-      return res.status(500).json({
-        error: 'Search failed',
-        details: searchResult.error
-      });
-    }
-
-    // Also get AI-powered recommendations
-    const recommendationResult = await mcpClient.executeTool('generate_recommendations', {
-      userId: req.headers['x-user-id'] || 'anonymous',
-      location,
-      preferences: {
-        cuisine,
-        priceRange,
-        rating
-      },
-      context: {
-        searchQuery: true,
-        timestamp: new Date().toISOString()
-      }
-    });
+    // Search restaurants in database
+    const restaurants = await getRestaurants(filters);
 
     // Track search event
-    await mcpClient.executeTool('track_event', {
-      userId: req.headers['x-user-id'] || 'anonymous',
-      event: 'restaurant_search',
-      properties: {
+    await trackEvent({
+      userId: req.headers['x-user-id'] || null,
+      eventType: 'restaurant_search',
+      eventData: {
         location,
         cuisine,
         priceRange,
-        resultsCount: searchResult.data.restaurants?.length || 0
+        rating,
+        resultsCount: restaurants.length
       },
-      timestamp: new Date().toISOString()
+      sessionId: req.headers['x-session-id'] || null,
+      ipAddress: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+      userAgent: req.headers['user-agent']
     });
 
     res.status(200).json({
       success: true,
       data: {
-        restaurants: searchResult.data.restaurants || [],
-        recommendations: recommendationResult.success ? recommendationResult.data.recommendations : [],
-        total: searchResult.data.total || 0,
-        location: searchResult.data.location,
+        restaurants: restaurants,
+        total: restaurants.length,
         filters: {
           cuisine,
           priceRange,
           rating,
-          features
+          features,
+          location
         },
         pagination: {
           limit: parseInt(limit),
@@ -91,8 +65,7 @@ export default async function handler(req, res) {
         }
       },
       meta: {
-        searchVia: 'mcp',
-        servers: ['search', 'recommendation', 'analytics'],
+        searchVia: 'database',
         timestamp: new Date().toISOString()
       }
     });

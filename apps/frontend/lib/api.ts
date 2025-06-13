@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 export const api = {
   async get(endpoint: string) {
@@ -36,12 +36,15 @@ export const api = {
 
 // API endpoints
 export const apiEndpoints = {
-  restaurants: '/api/restaurants',
-  menu: '/api/menu',
   health: '/health',
-  auth: {
-    login: '/api/auth/login',
-    register: '/api/auth/register'
+  initDatabase: '/init-database',
+  restaurants: {
+    search: '/restaurants/search',
+    details: (id: string) => `/restaurants/${id}`
+  },
+  analytics: {
+    dashboard: '/analytics/dashboard',
+    track: '/analytics/track'
   }
 };
 
@@ -54,5 +57,52 @@ export const testApiConnection = async () => {
   } catch (error) {
     console.error('❌ API Connection failed:', error);
     return false;
+  }
+};
+
+// Initialize database
+export const initializeDatabase = async () => {
+  try {
+    const response = await api.post('/init-database', {});
+    console.log('✅ Database initialization:', response);
+    return response;
+  } catch (error) {
+    console.error('❌ Database initialization failed:', error);
+    throw error;
+  }
+};
+
+// Search restaurants
+export const searchRestaurants = async (params: {
+  location?: string;
+  cuisine?: string;
+  priceRange?: string;
+  rating?: number;
+  limit?: number;
+}) => {
+  try {
+    const queryParams = new URLSearchParams();
+    Object.entries(params).forEach(([key, value]) => {
+      if (value !== undefined && value !== null) {
+        queryParams.append(key, value.toString());
+      }
+    });
+    
+    const response = await api.get(`/restaurants/search?${queryParams.toString()}`);
+    return response;
+  } catch (error) {
+    console.error('❌ Restaurant search failed:', error);
+    throw error;
+  }
+};
+
+// Get analytics dashboard
+export const getAnalyticsDashboard = async (timeframe: string = '7d') => {
+  try {
+    const response = await api.get(`/analytics/dashboard?timeframe=${timeframe}`);
+    return response;
+  } catch (error) {
+    console.error('❌ Analytics dashboard failed:', error);
+    throw error;
   }
 };
