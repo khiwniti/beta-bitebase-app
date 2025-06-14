@@ -252,12 +252,12 @@ export default function DashboardPage() {
           {restaurantsLoading || locationLoading ? (
             <div className="flex items-center justify-center py-8">
               <RefreshCw className="w-6 h-6 animate-spin text-gray-400 mr-2" />
-              <span className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">Loading restaurant data...</span>
+              <span className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">Loading restaurant data...</span>
             </div>
           ) : restaurantsError ? (
             <div className="text-center py-8">
-              <p className="text-red-600 dark:text-red-400 mb-4 text-sm sm:text-base">{restaurantsError}</p>
-              <Button variant="outline" onClick={() => window.location.reload()} className="text-sm">
+              <p className="text-red-600 dark:text-red-400 mb-4 text-xs sm:text-sm">{restaurantsError}</p>
+              <Button variant="outline" onClick={() => window.location.reload()} className="text-xs">
                 <RefreshCw className="w-4 h-4 mr-2" />
                 Retry
               </Button>
@@ -265,24 +265,24 @@ export default function DashboardPage() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               <div className="text-center p-4 sm:p-6 bg-primary-50 dark:bg-primary-900/20 rounded-xl transition-colors">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-600 dark:text-primary-400">{restaurants.length}</div>
-                <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 font-medium">Total Restaurants</div>
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary-600 dark:text-primary-400">{restaurants.length}</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-medium">Total Restaurants</div>
               </div>
               <div className="text-center p-4 sm:p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl transition-colors">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600 dark:text-blue-400">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">
                   {restaurants.filter(r => r.platform === 'wongnai').length}
                 </div>
-                <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 font-medium">Wongnai Restaurants</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-medium">Wongnai Restaurants</div>
               </div>
               <div className="text-center p-4 sm:p-6 bg-green-50 dark:bg-green-900/20 rounded-xl transition-colors">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600 dark:text-green-400">{nearbyRestaurants.length}</div>
-                <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 font-medium">Nearby Restaurants</div>
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">{nearbyRestaurants.length}</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-medium">Nearby Restaurants</div>
               </div>
               <div className="text-center p-4 sm:p-6 bg-purple-50 dark:bg-purple-900/20 rounded-xl transition-colors">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-purple-600 dark:text-purple-400">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">
                   {nearbyRestaurants.length > 0 ? (nearbyRestaurants.reduce((sum, r) => sum + (r.rating || 0), 0) / nearbyRestaurants.length).toFixed(1) : '0.0'}
                 </div>
-                <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 font-medium">Average Rating</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-medium">Average Rating</div>
               </div>
             </div>
           )}

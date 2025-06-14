@@ -79,7 +79,7 @@ export default function AuthPage() {
         <div className="flex mb-8 bg-gray-50 dark:bg-gray-700 rounded-xl p-1">
           <button
             onClick={() => setIsLogin(true)}
-            className={`flex-1 py-3 text-sm font-semibold rounded-lg transition-all duration-200 ${
+            className={`flex-1 py-2.5 text-xs font-semibold rounded-lg transition-all duration-200 ${
               isLogin 
                 ? 'bg-white dark:bg-gray-600 text-blue-600 dark:text-blue-400 shadow-md' 
                 : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
@@ -89,7 +89,7 @@ export default function AuthPage() {
           </button>
           <button
             onClick={() => setIsLogin(false)}
-            className={`flex-1 py-3 text-sm font-semibold rounded-lg transition-all duration-200 ${
+            className={`flex-1 py-2.5 text-xs font-semibold rounded-lg transition-all duration-200 ${
               !isLogin 
                 ? 'bg-white dark:bg-gray-600 text-blue-600 dark:text-blue-400 shadow-md' 
                 : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
@@ -101,10 +101,10 @@ export default function AuthPage() {
 
         {/* Form Header */}
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
             {isLogin ? 'Welcome back' : 'Get started'}
           </h2>
-          <p className="text-gray-500 dark:text-gray-400 text-base">
+          <p className="text-gray-500 dark:text-gray-400 text-xs">
             {isLogin 
               ? 'Sign in to access your dashboard' 
               : 'Create your account to get started'}
@@ -118,7 +118,7 @@ export default function AuthPage() {
               <svg className="w-5 h-5 mr-3 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span className="text-sm font-medium">{error}</span>
+              <span className="text-xs font-medium">{error}</span>
             </div>
           </div>
         )}
@@ -127,7 +127,7 @@ export default function AuthPage() {
         <form onSubmit={handleAuth} className="space-y-5">
           {!isLogin && (
             <div>
-              <label htmlFor="name" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
+              <label htmlFor="name" className="block text-xs font-semibold text-gray-800 dark:text-gray-200 mb-2">
                 Full Name
               </label>
               <input
@@ -138,14 +138,14 @@ export default function AuthPage() {
                 required={!isLogin}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="block w-full px-4 py-3.5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600 transition-all duration-200"
+                className="block w-full px-3 py-2.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600 transition-all duration-200"
                 placeholder="Enter your full name"
               />
             </div>
           )}
 
           <div>
-            <label htmlFor="email" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
+            <label htmlFor="email" className="block text-xs font-semibold text-gray-800 dark:text-gray-200 mb-2">
               Email Address
             </label>
             <input
@@ -156,20 +156,20 @@ export default function AuthPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="block w-full px-4 py-3.5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600 transition-all duration-200"
+              className="block w-full px-3 py-2.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600 transition-all duration-200"
               placeholder="name@company.com"
             />
           </div>
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label htmlFor="password" className="block text-sm font-semibold text-gray-800 dark:text-gray-200">
+              <label htmlFor="password" className="block text-xs font-semibold text-gray-800 dark:text-gray-200">
                 Password
               </label>
               {isLogin && (
                 <Link
                   href="/reset-password"
-                  className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors"
+                  className="text-xs font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors"
                 >
                   Forgot password?
                 </Link>
@@ -183,7 +183,7 @@ export default function AuthPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="block w-full px-4 py-3.5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600 transition-all duration-200"
+              className="block w-full px-3 py-2.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600 transition-all duration-200"
               placeholder={isLogin ? "••••••••" : "Create a secure password"}
             />
           </div>
@@ -192,7 +192,7 @@ export default function AuthPage() {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full justify-center py-3.5 px-5 text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full justify-center py-2.5 px-4 text-xs font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="flex items-center justify-center">
@@ -215,7 +215,7 @@ export default function AuthPage() {
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-200 dark:border-gray-700"></div>
             </div>
-            <div className="relative flex justify-center text-sm">
+            <div className="relative flex justify-center text-xs">
               <span className="px-4 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
                 Or continue with
               </span>
@@ -226,7 +226,7 @@ export default function AuthPage() {
             <button
               onClick={handleGoogleSignIn}
               disabled={loading}
-              className="w-full flex items-center justify-center px-4 py-3.5 border border-gray-200 dark:border-gray-600 rounded-xl shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-xl shadow-sm text-xs font-medium text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -256,7 +256,7 @@ export default function AuthPage() {
           <Button
             onClick={() => router.push('/dashboard')}
             variant="outline"
-            className="w-full py-3 text-sm font-medium text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200"
+            className="w-full py-2 text-xs font-medium text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200"
           >
             Skip to Dashboard (Demo)
           </Button>
