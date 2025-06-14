@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 interface BiteBaseLogoProps {
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
   className?: string;
   showText?: boolean;
   variant?: "default" | "white" | "dark" | "gradient";
@@ -18,6 +18,8 @@ const sizeMap = {
   md: { icon: 36, text: "text-lg" },
   lg: { icon: 44, text: "text-xl" },
   xl: { icon: 56, text: "text-2xl" },
+  "2xl": { icon: 72, text: "text-3xl" },
+  "3xl": { icon: 96, text: "text-4xl" },
 };
 
 export default function BiteBaseLogo({

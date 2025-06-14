@@ -43,7 +43,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [mounted, setMounted] = useState(false);
 
   // Backend API base URL
-  const API_BASE = "http://localhost:12000/api";
+  const API_BASE = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://api.bitebase.app';
 
   // Check for existing session on mount
   useEffect(() => {
@@ -110,7 +110,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         return;
       }
 
-      const response = await fetch(`${API_BASE}/auth/login`, {
+      const response = await fetch(`${API_BASE}/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -125,22 +125,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       const data = await response.json();
 
-      if (data && data.token && data.user && data.user.id && data.user.email && data.user.role) {
+      if (data && data.success && data.data && data.data.session && data.data.user) {
+        const { user, session } = data.data;
         // Store token in localStorage and cookie
-        localStorage.setItem("bitebase_token", data.token);
-        document.cookie = `auth_token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
-        document.cookie = `user_role=${data.user.role}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
+        localStorage.setItem("bitebase_token", session.token);
+        document.cookie = `auth_token=${session.token}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
+        document.cookie = `user_role=${user.role}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
 
         // Set user
         setUser({
-          id: data.user.id,
-          email: data.user.email,
-          role: data.user.role,
-          name: data.user.name || '',
-          uid: data.user.id.toString(),
+          id: user.id,
+          email: user.email,
+          role: user.role,
+          name: `${user.first_name} ${user.last_name}`.trim(),
+          uid: user.id.toString(),
         });
       } else {
-        throw new Error("Invalid response data from server");
+        throw new Error(data.message || "Invalid response data from server");
       }
 
       setLoading(false);
@@ -153,7 +154,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const signUp = async (email: string, password: string, userData?: any) => {
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE}/auth/register`, {
+      const response = await fetch(`${API_BASE}/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -161,9 +162,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
         body: JSON.stringify({
           email,
           password,
-          firstName:
+          first_name:
             userData?.firstName || userData?.name || email.split("@")[0],
-          lastName: userData?.lastName || "User",
+          last_name: userData?.lastName || "User",
           phone: userData?.phone || "",
         }),
       });
@@ -175,25 +176,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       const data = await response.json();
 
-      if (data && data.token && data.user && data.user.id && data.user.email && data.user.role) {
-        // Store token in localStorage and cookie
-        localStorage.setItem("bitebase_token", data.token);
-        document.cookie = `auth_token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
-        document.cookie = `user_role=${data.user.role}; path=/; max-age=${7 * 24 * 60 * 60}`; // 7 days
-
-        // Set user
-        setUser({
-          id: data.user.id,
-          email: data.user.email,
-          role: data.user.role,
-          name: data.user.name || '',
-          uid: data.user.id.toString(),
-        });
-
+      if (data && data.success && data.data && data.data.user) {
+        const { user } = data.data;
+        
+        // For user creation, we need to log them in separately since we don't return a session token
+        // Let's automatically sign them in after successful registration
+        await signIn(email, password);
+        
         // Mark as first-time user for tour
         markUserAsFirstTime();
       } else {
-        throw new Error("Invalid response data from server");
+        throw new Error(data.message || "Invalid response data from server");
       }
       
       setLoading(false);
