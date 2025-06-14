@@ -23,7 +23,7 @@ export default function PromotionPage() {
           <div className="flex justify-between items-center mb-4">
             <div>
               <p className="text-sm font-medium text-gray-500">Active Campaigns</p>
-              <h3 className="text-2xl font-bold mt-1">4</h3>
+              <h3 className="text-base font-bold mt-1">4</h3>
               <p className="text-sm mt-2 flex items-center text-primary">
                 ↑ 1 vs last month
               </p>
@@ -57,7 +57,7 @@ export default function PromotionPage() {
           <div className="flex justify-between items-center mb-4">
             <div>
               <p className="text-sm font-medium text-gray-500">Marketing ROI</p>
-              <h3 className="text-2xl font-bold mt-1">3.2x</h3>
+              <h3 className="text-base font-bold mt-1">3.2x</h3>
               <p className="text-sm mt-2 flex items-center text-primary">
                 ↑ 0.4x vs last quarter
               </p>
@@ -80,7 +80,7 @@ export default function PromotionPage() {
           <div className="flex justify-between items-center mb-4">
             <div>
               <p className="text-sm font-medium text-gray-500">Customer Acquisition</p>
-              <h3 className="text-2xl font-bold mt-1">$18.50</h3>
+              <h3 className="text-base font-bold mt-1">$18.50</h3>
               <p className="text-sm mt-2 flex items-center text-primary">
                 ↓ $2.30 vs last quarter
               </p>
@@ -116,7 +116,7 @@ export default function PromotionPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Campaign Management</h3>
+              <h3 className="text-base font-medium">Campaign Management</h3>
               <p className="text-sm text-gray-500">Create and manage marketing campaigns</p>
             </div>
           </div>
@@ -134,7 +134,7 @@ export default function PromotionPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Social Media</h3>
+              <h3 className="text-base font-medium">Social Media</h3>
               <p className="text-sm text-gray-500">Manage social media marketing</p>
             </div>
           </div>
@@ -152,7 +152,7 @@ export default function PromotionPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Loyalty Program</h3>
+              <h3 className="text-base font-medium">Loyalty Program</h3>
               <p className="text-sm text-gray-500">Manage customer loyalty programs</p>
             </div>
           </div>
@@ -174,7 +174,7 @@ export default function PromotionPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Email Marketing</h3>
+              <h3 className="text-base font-medium">Email Marketing</h3>
               <p className="text-sm text-gray-500">Create and manage email campaigns</p>
             </div>
           </div>
@@ -193,7 +193,7 @@ export default function PromotionPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Local Advertising</h3>
+              <h3 className="text-base font-medium">Local Advertising</h3>
               <p className="text-sm text-gray-500">Manage local advertising campaigns</p>
             </div>
           </div>
@@ -202,7 +202,7 @@ export default function PromotionPage() {
 
       {/* Campaign Performance */}
       <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
-        <h3 className="text-lg font-medium mb-4">Campaign Performance</h3>
+        <h3 className="text-base font-medium mb-4">Campaign Performance</h3>
         <div className="space-y-4">
           <div className="flex items-start p-3 rounded-lg hover:bg-gray-50 transition-all">
             <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center mr-3 text-primary">

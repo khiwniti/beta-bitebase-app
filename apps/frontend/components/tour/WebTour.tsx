@@ -200,7 +200,7 @@ export function WebTour({ isOpen, onClose, onComplete, isFirstTimeUser = false }
                   {step.icon}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <CardTitle className="text-lg truncate">{step.title}</CardTitle>
+                  <CardTitle className="text-base truncate">{step.title}</CardTitle>
                   <Badge variant="secondary" className="text-xs">
                     Step {currentStep + 1} of {tourSteps.length}
                   </Badge>

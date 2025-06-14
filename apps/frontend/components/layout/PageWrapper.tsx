@@ -91,7 +91,7 @@ export function PageWrapper({
               <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
           <div>
                   {pageTitle && (
-                    <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{pageTitle}</h1>
+                    <h1 className="text-base md:text-base font-bold text-gray-900 dark:text-white">{pageTitle}</h1>
                   )}
                   {pageDescription && (
                     <p className="mt-2 text-gray-600 dark:text-gray-400 max-w-3xl">{pageDescription}</p>

@@ -50,7 +50,7 @@ export default function ServiceHealthDashboard() {
   return (
     <div className="bg-white rounded-lg shadow-sm border p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
+        <h2 className="text-base font-semibold text-gray-900 flex items-center gap-2">
           <Activity className="w-5 h-5" />
           Service Health
         </h2>

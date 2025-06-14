@@ -199,7 +199,7 @@ export default function CampaignManagementPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Campaign Management</h1>
+          <h1 className="text-base font-bold text-gray-900 dark:text-white">Campaign Management</h1>
           <p className="text-gray-600 dark:text-gray-400 mt-1">
             Monitor and manage all your marketing campaigns and projects
           </p>
@@ -223,7 +223,7 @@ export default function CampaignManagementPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Total Campaigns</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                <p className="text-base font-bold text-gray-900 dark:text-white">
                   {campaignStats.totalCampaigns}
                 </p>
               </div>
@@ -237,7 +237,7 @@ export default function CampaignManagementPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Active</p>
-                <p className="text-2xl font-bold text-primary-600 dark:text-primary-400">
+                <p className="text-base font-bold text-primary-600 dark:text-primary-400">
                   {campaignStats.activeCampaigns}
                 </p>
               </div>
@@ -251,7 +251,7 @@ export default function CampaignManagementPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Total Budget</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                <p className="text-base font-bold text-gray-900 dark:text-white">
                   ฿{(campaignStats.totalBudget / 1000).toFixed(0)}K
                 </p>
               </div>
@@ -265,7 +265,7 @@ export default function CampaignManagementPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Spent</p>
-                <p className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                <p className="text-base font-bold text-orange-600 dark:text-orange-400">
                   ฿{(campaignStats.totalSpent / 1000).toFixed(0)}K
                 </p>
               </div>
@@ -279,7 +279,7 @@ export default function CampaignManagementPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Revenue</p>
-                <p className="text-2xl font-bold text-primary-600 dark:text-primary-400">
+                <p className="text-base font-bold text-primary-600 dark:text-primary-400">
                   ฿{(campaignStats.totalRevenue / 1000).toFixed(0)}K
                 </p>
               </div>
@@ -293,7 +293,7 @@ export default function CampaignManagementPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Avg ROI</p>
-                <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                <p className="text-base font-bold text-blue-600 dark:text-blue-400">
                   {campaignStats.averageROI}%
                 </p>
               </div>
@@ -355,7 +355,7 @@ export default function CampaignManagementPage() {
                   <div className="flex items-center gap-3 mb-2">
                     <div className="flex items-center gap-2">
                       {getTypeIcon(campaign.type)}
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      <h3 className="text-base font-semibold text-gray-900 dark:text-white">
                         {campaign.name}
                       </h3>
                     </div>
@@ -384,7 +384,7 @@ export default function CampaignManagementPage() {
                 {/* Campaign Metrics */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
                   <div className="text-center">
-                    <div className="text-lg font-bold text-gray-900 dark:text-white">
+                    <div className="text-base font-bold text-gray-900 dark:text-white">
                       ฿{(campaign.budget / 1000).toFixed(0)}K
                     </div>
                     <div className="text-xs text-gray-500 dark:text-gray-400">Budget</div>
@@ -394,7 +394,7 @@ export default function CampaignManagementPage() {
                   </div>
                   
                   <div className="text-center">
-                    <div className="text-lg font-bold text-primary-600 dark:text-primary-400">
+                    <div className="text-base font-bold text-primary-600 dark:text-primary-400">
                       ฿{(campaign.revenue / 1000).toFixed(0)}K
                     </div>
                     <div className="text-xs text-gray-500 dark:text-gray-400">Revenue</div>
@@ -404,7 +404,7 @@ export default function CampaignManagementPage() {
                   </div>
                   
                   <div className="text-center">
-                    <div className="text-lg font-bold text-blue-600 dark:text-blue-400">
+                    <div className="text-base font-bold text-blue-600 dark:text-blue-400">
                       {campaign.roi > 0 ? `${campaign.roi}%` : '-'}
                     </div>
                     <div className="text-xs text-gray-500 dark:text-gray-400">ROI</div>
@@ -414,7 +414,7 @@ export default function CampaignManagementPage() {
                   </div>
                   
                   <div className="text-center">
-                    <div className="text-lg font-bold text-purple-600 dark:text-purple-400">
+                    <div className="text-base font-bold text-purple-600 dark:text-purple-400">
                       {campaign.impressions > 0 ? `${(campaign.impressions / 1000).toFixed(1)}K` : '-'}
                     </div>
                     <div className="text-xs text-gray-500 dark:text-gray-400">Impressions</div>

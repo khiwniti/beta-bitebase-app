@@ -145,7 +145,7 @@ export default function PaymentForm({
           {planName && (
             <div className="space-y-2">
               <div className="font-semibold">{planName}</div>
-              <div className="text-2xl font-bold">
+              <div className="text-base font-bold">
                 {formatAmount(amount, currency)}
               </div>
               {planFeatures && (

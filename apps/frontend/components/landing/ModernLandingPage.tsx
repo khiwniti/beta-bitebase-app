@@ -154,14 +154,14 @@ export default function ModernLandingPage() {
               <span className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></span>
               Now with AI-powered insights
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 mb-6">
+            <h1 className="text-base md:text-base font-bold tracking-tight text-gray-900 mb-6">
               Restaurant Intelligence
               <br />
               <span className="bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">
                 Powered by AI
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base md:text-base text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
               Transform your restaurant with data-driven insights, smart analytics, 
               and AI-powered recommendations that drive growth and profitability.
             </p>
@@ -192,7 +192,7 @@ export default function ModernLandingPage() {
           >
             {stats.map((stat, index) => (
               <div key={index} className="text-center group">
-                <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+                <div className="text-base md:text-base font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
                   {stat.value}
                 </div>
                 <div className="text-gray-500 text-sm font-medium uppercase tracking-wide">
@@ -208,10 +208,10 @@ export default function ModernLandingPage() {
       <section id="features" className="py-24 bg-white">
         <div className="modern-container">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-base md:text-base font-bold text-gray-900 mb-6">
               Everything you need to succeed
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Comprehensive tools and insights to optimize every aspect of your restaurant business.
             </p>
           </div>
@@ -227,9 +227,9 @@ export default function ModernLandingPage() {
                 className="group p-8 rounded-2xl border border-gray-200 hover:border-primary-200 hover:shadow-lg transition-all duration-300 bg-white"
               >
                 <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary-200 transition-colors">
-                  <span className="text-2xl">{feature.icon}</span>
+                  <span className="text-base">{feature.icon}</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
+                <h3 className="text-base font-semibold text-gray-900 mb-3">{feature.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
@@ -241,10 +241,10 @@ export default function ModernLandingPage() {
       <section className="py-24 bg-gray-50">
         <div className="modern-container">
           <div className="text-center bg-white rounded-3xl p-16 shadow-xl border border-gray-200">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-base md:text-base font-bold text-gray-900 mb-6">
               Ready to transform your restaurant?
             </h2>
-            <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
               Join thousands of restaurants already using BiteBase to optimize their operations and increase profits.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -273,7 +273,7 @@ export default function ModernLandingPage() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <BiteBaseLogo size="md" showText={false} variant="white" />
-                <span className="text-xl font-bold">BiteBase</span>
+                <span className="text-base font-bold">BiteBase</span>
               </div>
               <p className="text-gray-400">
                 AI-powered restaurant intelligence platform helping businesses grow and succeed.

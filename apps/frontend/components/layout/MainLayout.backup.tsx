@@ -305,7 +305,7 @@ export function MainLayout({
                 {/* Page Title in Header */}
                 {pageTitle && (
                   <div className={`hidden md:block border-l pl-4 ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-                    <h1 className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{pageTitle}</h1>
+                    <h1 className={`text-base font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{pageTitle}</h1>
                     {pageDescription && (
                       <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>{pageDescription}</p>
                     )}
@@ -834,7 +834,7 @@ export function MainLayout({
                         {!showNavbar && (pageTitle || pageDescription) && (
                           <div className="mb-6">
                             {pageTitle && (
-                              <h1 className={`text-2xl font-bold leading-7 sm:text-3xl sm:truncate ${
+                              <h1 className={`text-base font-bold leading-7 sm:text-base sm:truncate ${
                                 darkMode ? 'text-white' : 'text-gray-900'
                               }`}>
                                 {pageTitle}
@@ -1062,7 +1062,7 @@ export function MainLayout({
                 {(pageTitle || pageDescription) && (
                   <div className="mb-6">
                     {pageTitle && (
-                      <h1 className={`text-2xl font-bold leading-7 sm:text-3xl sm:truncate ${
+                      <h1 className={`text-base font-bold leading-7 sm:text-base sm:truncate ${
                         darkMode ? 'text-white' : 'text-gray-900'
                       }`}>
                         {pageTitle}

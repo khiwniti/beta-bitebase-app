@@ -160,7 +160,7 @@ export default function POSIntegrationPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-base font-bold text-gray-900 dark:text-white">
             POS Integration
           </h1>
           <p className="text-gray-600 dark:text-gray-400 mt-1">
@@ -185,7 +185,7 @@ export default function POSIntegrationPage() {
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="text-2xl">{connectedPOS.logo}</div>
+                <div className="text-base">{connectedPOS.logo}</div>
                 <div>
                   <CardTitle className="text-primary-800 dark:text-primary-200">
                     {connectedPOS.name} Connected
@@ -208,7 +208,7 @@ export default function POSIntegrationPage() {
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary-800 dark:text-primary-200">
+                <div className="text-base font-bold text-primary-800 dark:text-primary-200">
                   {integrationStats.totalTransactions.toLocaleString()}
                 </div>
                 <div className="text-sm text-primary-600 dark:text-primary-400">
@@ -216,7 +216,7 @@ export default function POSIntegrationPage() {
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary-800 dark:text-primary-200">
+                <div className="text-base font-bold text-primary-800 dark:text-primary-200">
                   ฿{integrationStats.dailyRevenue.toLocaleString()}
                 </div>
                 <div className="text-sm text-primary-600 dark:text-primary-400">
@@ -224,7 +224,7 @@ export default function POSIntegrationPage() {
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary-800 dark:text-primary-200">
+                <div className="text-base font-bold text-primary-800 dark:text-primary-200">
                   ฿{integrationStats.averageOrderValue}
                 </div>
                 <div className="text-sm text-primary-600 dark:text-primary-400">
@@ -232,7 +232,7 @@ export default function POSIntegrationPage() {
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary-800 dark:text-primary-200">
+                <div className="text-base font-bold text-primary-800 dark:text-primary-200">
                   {integrationStats.peakHours}
                 </div>
                 <div className="text-sm text-primary-600 dark:text-primary-400">
@@ -249,7 +249,7 @@ export default function POSIntegrationPage() {
         <Card>
           <CardHeader className="text-center">
             <BarChart3 className="w-8 h-8 mx-auto text-blue-600 dark:text-blue-400" />
-            <CardTitle className="text-lg">Real-time Analytics</CardTitle>
+            <CardTitle className="text-base">Real-time Analytics</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
@@ -262,7 +262,7 @@ export default function POSIntegrationPage() {
         <Card>
           <CardHeader className="text-center">
             <Zap className="w-8 h-8 mx-auto text-yellow-600 dark:text-yellow-400" />
-            <CardTitle className="text-lg">Automated Reporting</CardTitle>
+            <CardTitle className="text-base">Automated Reporting</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
@@ -275,7 +275,7 @@ export default function POSIntegrationPage() {
         <Card>
           <CardHeader className="text-center">
             <Shield className="w-8 h-8 mx-auto text-primary-600 dark:text-primary-400" />
-            <CardTitle className="text-lg">Secure Integration</CardTitle>
+            <CardTitle className="text-base">Secure Integration</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
@@ -309,7 +309,7 @@ export default function POSIntegrationPage() {
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="text-2xl">{pos.logo}</div>
+                      <div className="text-base">{pos.logo}</div>
                       <div>
                         <CardTitle className="text-base">{pos.name}</CardTitle>
                         <div className="text-sm text-gray-500 dark:text-gray-400">

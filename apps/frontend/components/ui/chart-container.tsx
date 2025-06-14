@@ -90,7 +90,7 @@ export function ChartContainer({
         <CardContent>
           <div className="h-64 flex items-center justify-center text-red-500">
             <div className="text-center">
-              <div className="text-lg font-medium mb-2">Failed to load chart</div>
+              <div className="text-base font-medium mb-2">Failed to load chart</div>
               <div className="text-sm">{error}</div>
               {actions?.onRefresh && (
                 <Button
@@ -119,7 +119,7 @@ export function ChartContainer({
               {getChartIcon()}
             </div>
             <div>
-              <CardTitle className="text-lg font-semibold">{title}</CardTitle>
+              <CardTitle className="text-base font-semibold">{title}</CardTitle>
               {subtitle && (
                 <p className="text-sm text-gray-500 mt-1">{subtitle}</p>
               )}

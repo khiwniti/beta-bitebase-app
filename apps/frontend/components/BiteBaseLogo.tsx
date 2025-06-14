@@ -15,11 +15,11 @@ interface BiteBaseLogoProps {
 const sizeMap = {
   xs: { icon: 20, text: "text-sm" },
   sm: { icon: 28, text: "text-base" },
-  md: { icon: 36, text: "text-lg" },
-  lg: { icon: 44, text: "text-xl" },
-  xl: { icon: 56, text: "text-2xl" },
-  "2xl": { icon: 72, text: "text-3xl" },
-  "3xl": { icon: 96, text: "text-4xl" },
+  md: { icon: 36, text: "text-base" },
+  lg: { icon: 44, text: "text-base" },
+  xl: { icon: 56, text: "text-base" },
+  "2xl": { icon: 72, text: "text-base" },
+  "3xl": { icon: 96, text: "text-base" },
 };
 
 export default function BiteBaseLogo({

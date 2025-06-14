@@ -282,7 +282,7 @@ export default function ReportsPage() {
   return (
     <div className="p-6 max-w-7xl mx-auto">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Marketing Reports</h1>
+        <h1 className="text-base font-bold text-gray-900 mb-2">Marketing Reports</h1>
         <p className="text-gray-600">Professional marketing analysis and strategic insights for restaurant growth</p>
       </div>
 
@@ -307,7 +307,7 @@ export default function ReportsPage() {
         {/* Report Selection */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
           <div className="p-6 border-b border-gray-200">
-            <h2 className="text-xl font-semibold">Professional Marketing Reports</h2>
+            <h2 className="text-base font-semibold">Professional Marketing Reports</h2>
             <p className="text-gray-600 mt-1">Select a report to view detailed analysis and strategic recommendations</p>
           </div>
           <div className="p-6">
@@ -324,7 +324,7 @@ export default function ReportsPage() {
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
-                      <h3 className="font-semibold text-lg mb-1">{report.title}</h3>
+                      <h3 className="font-semibold text-base mb-1">{report.title}</h3>
                       <div className="flex items-center space-x-2 mb-2">
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                           {report.type}
@@ -358,7 +358,7 @@ export default function ReportsPage() {
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">{currentReport.title}</h2>
+                  <h2 className="text-base font-bold text-gray-900 mb-2">{currentReport.title}</h2>
                   <div className="flex items-center space-x-4 text-sm text-gray-600">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
                       {currentReport.type}
@@ -394,14 +394,14 @@ export default function ReportsPage() {
                         {index + 1}
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-4">{section.title}</h3>
+                        <h3 className="text-base font-semibold text-gray-900 mb-4">{section.title}</h3>
                         <p className="text-gray-700 mb-6 leading-relaxed">{section.content}</p>
                         
                         {/* Metrics Grid */}
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                           {section.metrics.map((metric, metricIndex) => (
                             <div key={metricIndex} className="bg-gray-50 rounded-lg p-4">
-                              <div className="text-2xl font-bold text-gray-900 mb-1">{metric.value}</div>
+                              <div className="text-base font-bold text-gray-900 mb-1">{metric.value}</div>
                               <div className="text-sm text-gray-600">{metric.label}</div>
                             </div>
                           ))}
@@ -435,7 +435,7 @@ export default function ReportsPage() {
         {/* Report Templates */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
           <div className="p-6 border-b border-gray-200">
-            <h2 className="text-xl font-semibold">Generate New Report</h2>
+            <h2 className="text-base font-semibold">Generate New Report</h2>
             <p className="text-gray-600 mt-1">Choose from professional marketing report templates</p>
           </div>
           <div className="p-6">
@@ -446,7 +446,7 @@ export default function ReportsPage() {
                   onClick={() => handleGenerateReport(key)}
                   className="p-4 border border-gray-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-all duration-200 text-left"
                 >
-                  <div className="text-2xl mb-2">
+                  <div className="text-base mb-2">
                     {key === 'market-penetration' && '🎯'}
                     {key === 'brand-positioning' && '🏷️'}
                     {key === 'digital-marketing' && '📱'}
@@ -465,7 +465,7 @@ export default function ReportsPage() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-primary-600">5</div>
+              <div className="text-base font-bold text-primary-600">5</div>
               <div className="ml-3">
                 <div className="text-sm font-medium text-gray-900">Professional Reports</div>
                 <div className="text-xs text-gray-600">Available Templates</div>
@@ -474,7 +474,7 @@ export default function ReportsPage() {
           </div>
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-blue-600">20+</div>
+              <div className="text-base font-bold text-blue-600">20+</div>
               <div className="ml-3">
                 <div className="text-sm font-medium text-gray-900">Analysis Sections</div>
                 <div className="text-xs text-gray-600">Comprehensive Coverage</div>
@@ -483,7 +483,7 @@ export default function ReportsPage() {
           </div>
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-purple-600">80+</div>
+              <div className="text-base font-bold text-purple-600">80+</div>
               <div className="ml-3">
                 <div className="text-sm font-medium text-gray-900">Key Metrics</div>
                 <div className="text-xs text-gray-600">Data-Driven Insights</div>
@@ -492,7 +492,7 @@ export default function ReportsPage() {
           </div>
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-orange-600">100%</div>
+              <div className="text-base font-bold text-orange-600">100%</div>
               <div className="ml-3">
                 <div className="text-sm font-medium text-gray-900">Professional Quality</div>
                 <div className="text-xs text-gray-600">Industry Standards</div>

@@ -33,7 +33,7 @@ export default function ProductPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Product Dashboard</h3>
+              <h3 className="text-base font-medium">Product Dashboard</h3>
               <p className="text-sm text-gray-500">Complete product management dashboard</p>
             </div>
           </div>
@@ -54,7 +54,7 @@ export default function ProductPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Menu Categories</h3>
+              <h3 className="text-base font-medium">Menu Categories</h3>
               <p className="text-sm text-gray-500">Organize and manage your menu categories</p>
             </div>
           </div>
@@ -74,7 +74,7 @@ export default function ProductPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Menu Performance</h3>
+              <h3 className="text-base font-medium">Menu Performance</h3>
               <p className="text-sm text-gray-500">Analyze sales and popularity of menu items</p>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default function ProductPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Ingredient Analysis</h3>
+              <h3 className="text-base font-medium">Ingredient Analysis</h3>
               <p className="text-sm text-gray-500">Track ingredient costs and availability</p>
             </div>
           </div>
@@ -120,7 +120,7 @@ export default function ProductPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Seasonal Menu Planning</h3>
+              <h3 className="text-base font-medium">Seasonal Menu Planning</h3>
               <p className="text-sm text-gray-500">Plan seasonal menus and special offerings</p>
             </div>
           </div>
@@ -142,7 +142,7 @@ export default function ProductPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">POS Integration</h3>
+              <h3 className="text-base font-medium">POS Integration</h3>
               <p className="text-sm text-gray-500">Connect and sync with your Point of Sale system</p>
             </div>
           </div>
@@ -151,7 +151,7 @@ export default function ProductPage() {
 
       {/* Recent Activity */}
       <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
-        <h3 className="text-lg font-medium mb-4">Recent Menu Changes</h3>
+        <h3 className="text-base font-medium mb-4">Recent Menu Changes</h3>
         <div className="space-y-4">
           <div className="flex items-start p-3 rounded-lg hover:bg-gray-50 transition-all">
             <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center mr-3 text-primary">

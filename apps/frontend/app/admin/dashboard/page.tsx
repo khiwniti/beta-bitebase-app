@@ -130,7 +130,7 @@ const AdminDashboard: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+          <h1 className="text-base font-bold text-gray-900">Admin Dashboard</h1>
           <p className="text-gray-600 mt-2">Monitor your BiteBase platform performance and metrics</p>
         </div>
 
@@ -173,7 +173,7 @@ const AdminDashboard: React.FC = () => {
                   <Users className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{metrics?.users.total.toLocaleString()}</div>
+                  <div className="text-base font-bold">{metrics?.users.total.toLocaleString()}</div>
                   <p className="text-xs text-muted-foreground">
                     +{metrics?.users.newThisMonth} this month
                   </p>
@@ -186,7 +186,7 @@ const AdminDashboard: React.FC = () => {
                   <DollarSign className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{formatCurrency(metrics?.revenue.mrr || 0)}</div>
+                  <div className="text-base font-bold">{formatCurrency(metrics?.revenue.mrr || 0)}</div>
                   <p className="text-xs text-muted-foreground">
                     +{formatPercentage(metrics?.revenue.growth || 0)} from last month
                   </p>
@@ -199,7 +199,7 @@ const AdminDashboard: React.FC = () => {
                   <Activity className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{metrics?.users.active.toLocaleString()}</div>
+                  <div className="text-base font-bold">{metrics?.users.active.toLocaleString()}</div>
                   <p className="text-xs text-muted-foreground">
                     {formatPercentage((metrics?.users.active || 0) / (metrics?.users.total || 1))} of total
                   </p>
@@ -212,7 +212,7 @@ const AdminDashboard: React.FC = () => {
                   <Server className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold capitalize">{systemHealth?.status || 'Unknown'}</div>
+                  <div className="text-base font-bold capitalize">{systemHealth?.status || 'Unknown'}</div>
                   <p className="text-xs text-muted-foreground">
                     {systemHealth?.metrics?.uptime ? `${Math.floor(systemHealth.metrics.uptime / 3600)}h uptime` : 'N/A'}
                   </p>
@@ -315,7 +315,7 @@ const AdminDashboard: React.FC = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">{metrics?.users.newThisMonth}</div>
+                  <div className="text-base font-bold">{metrics?.users.newThisMonth}</div>
                   <p className="text-sm text-muted-foreground">This month</p>
                 </CardContent>
               </Card>
@@ -328,7 +328,7 @@ const AdminDashboard: React.FC = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">{formatPercentage(metrics?.users.churnRate || 0)}</div>
+                  <div className="text-base font-bold">{formatPercentage(metrics?.users.churnRate || 0)}</div>
                   <p className="text-sm text-muted-foreground">Monthly churn</p>
                 </CardContent>
               </Card>
@@ -341,7 +341,7 @@ const AdminDashboard: React.FC = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">{metrics?.users.active}</div>
+                  <div className="text-base font-bold">{metrics?.users.active}</div>
                   <p className="text-sm text-muted-foreground">Last 30 days</p>
                 </CardContent>
               </Card>
@@ -359,7 +359,7 @@ const AdminDashboard: React.FC = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">{formatCurrency(metrics?.revenue.mrr || 0)}</div>
+                  <div className="text-base font-bold">{formatCurrency(metrics?.revenue.mrr || 0)}</div>
                   <p className="text-sm text-muted-foreground">Monthly Recurring Revenue</p>
                 </CardContent>
               </Card>
@@ -372,7 +372,7 @@ const AdminDashboard: React.FC = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">{formatCurrency(metrics?.revenue.arr || 0)}</div>
+                  <div className="text-base font-bold">{formatCurrency(metrics?.revenue.arr || 0)}</div>
                   <p className="text-sm text-muted-foreground">Annual Recurring Revenue</p>
                 </CardContent>
               </Card>
@@ -385,7 +385,7 @@ const AdminDashboard: React.FC = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">{formatPercentage(metrics?.revenue.growth || 0)}</div>
+                  <div className="text-base font-bold">{formatPercentage(metrics?.revenue.growth || 0)}</div>
                   <p className="text-sm text-muted-foreground">Month over month</p>
                 </CardContent>
               </Card>
@@ -448,7 +448,7 @@ const AdminDashboard: React.FC = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">12</div>
+                  <div className="text-base font-bold">12</div>
                   <p className="text-sm text-muted-foreground">Active campaigns</p>
                 </CardContent>
               </Card>
@@ -461,7 +461,7 @@ const AdminDashboard: React.FC = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">156</div>
+                  <div className="text-base font-bold">156</div>
                   <p className="text-sm text-muted-foreground">This month</p>
                 </CardContent>
               </Card>
@@ -474,7 +474,7 @@ const AdminDashboard: React.FC = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">2.4K</div>
+                  <div className="text-base font-bold">2.4K</div>
                   <p className="text-sm text-muted-foreground">This month</p>
                 </CardContent>
               </Card>

@@ -129,7 +129,7 @@ export default function RestaurantSettingsPage() {
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-base font-bold text-gray-900 dark:text-white mb-2">
             {isFirstTime ? 'Welcome to BiteBase!' : 'Restaurant Settings'}
           </h1>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -145,13 +145,13 @@ export default function RestaurantSettingsPage() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-xl">Setup Progress</CardTitle>
+                <CardTitle className="text-base">Setup Progress</CardTitle>
                 <CardDescription>
                   {requiredStepsCompleted}/{totalRequiredSteps} required steps completed
                 </CardDescription>
               </div>
               <div className="text-right">
-                <div className="text-3xl font-bold text-primary-600 dark:text-primary-400">
+                <div className="text-base font-bold text-primary-600 dark:text-primary-400">
                   {completionPercentage}%
                 </div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">Complete</div>
@@ -233,7 +233,7 @@ export default function RestaurantSettingsPage() {
                       
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-1">
-                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                          <h3 className="text-base font-semibold text-gray-900 dark:text-white">
                             {step.title}
                           </h3>
                           {step.required && (

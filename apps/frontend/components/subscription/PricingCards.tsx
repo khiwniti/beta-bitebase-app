@@ -129,10 +129,10 @@ export default function PricingCards() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-neutral-900 font-display mb-4">
+          <h2 className="text-base font-bold text-neutral-900 font-display mb-4">
             Choose Your Plan
           </h2>
-          <p className="text-xl text-neutral-600 mb-8">
+          <p className="text-base text-neutral-600 mb-8">
             Select a plan that fits your needs and start building with BiteBase today!
           </p>
           
@@ -187,7 +187,7 @@ export default function PricingCards() {
                 <div className="flex justify-center mb-4">
                   {getIcon(plan.id)}
                 </div>
-                <CardTitle className="text-2xl font-bold text-neutral-900 font-display">
+                <CardTitle className="text-base font-bold text-neutral-900 font-display">
                   {plan.name}
                 </CardTitle>
                 <p className="text-neutral-600 text-sm mt-2">

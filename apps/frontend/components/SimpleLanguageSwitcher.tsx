@@ -53,7 +53,7 @@ export default function SimpleLanguageSwitcher({
         onClick={() => setIsOpen(!isOpen)}
         className={buttonStyles}
       >
-        <span className="text-lg">{currentLang.flag}</span>
+        <span className="text-base">{currentLang.flag}</span>
         <span>{currentLang.name}</span>
         <svg 
           className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
@@ -89,7 +89,7 @@ export default function SimpleLanguageSwitcher({
                   onClick={() => handleLanguageChange(lang.code)}
                   className={itemStyles}
                 >
-                  <span className="text-lg">{lang.flag}</span>
+                  <span className="text-base">{lang.flag}</span>
                   <span>{lang.name}</span>
                   {isSelected && (
                     <span className={`ml-auto ${theme === 'dark' ? 'text-green-400' : 'text-primary-600'}`}>✓</span>

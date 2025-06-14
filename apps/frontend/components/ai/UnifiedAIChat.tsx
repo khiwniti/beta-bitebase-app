@@ -195,7 +195,7 @@ export const UnifiedAIChat: React.FC<UnifiedAIChatProps> = ({
     <Card className={`flex flex-col h-full ${className}`}>
       <CardHeader className="px-4 py-3 border-b">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg font-medium text-primary">{title}</CardTitle>
+          <CardTitle className="text-base font-medium text-primary">{title}</CardTitle>
 
           {showProviderSelector && availableProviders.length > 1 && (
             <Select value={activeProvider} onValueChange={handleProviderChange}>

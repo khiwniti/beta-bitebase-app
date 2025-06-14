@@ -44,7 +44,7 @@ export default function FranchisePage() {
             <div className="w-16 h-16 bg-bitebase-green/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle className="w-8 h-8 text-bitebase-green" />
             </div>
-            <h2 className="text-2xl font-bold text-accent mb-4">Thank You!</h2>
+            <h2 className="text-base font-bold text-accent mb-4">Thank You!</h2>
             <p className="text-gray-600 mb-6">
               Your franchise inquiry has been submitted successfully. Our enterprise team will contact you within 24 hours.
             </p>
@@ -92,10 +92,10 @@ export default function FranchisePage() {
           <span className="inline-block px-4 py-2 rounded-full border border-primary text-primary font-semibold mb-6">
             🏢 Enterprise Solutions
           </span>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-base font-bold text-gray-900 mb-4">
             Franchise Partnership Program
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base text-gray-600 max-w-3xl mx-auto">
             Scale your restaurant empire with BiteBase. Our enterprise solutions are designed for multi-location operations and franchise businesses.
           </p>
         </div>
@@ -104,7 +104,7 @@ export default function FranchisePage() {
           {/* Contact Form */}
           <Card className="border-0 shadow-xl animate-fadeInUp delay-200">
             <CardHeader>
-              <CardTitle className="text-2xl text-gray-900">Get Started Today</CardTitle>
+              <CardTitle className="text-base text-gray-900">Get Started Today</CardTitle>
               <CardDescription>
                 Tell us about your franchise business and we'll create a custom solution for you.
               </CardDescription>
@@ -287,7 +287,7 @@ export default function FranchisePage() {
 
         {/* Success Stories */}
         <div className="mt-16">
-          <h2 className="text-2xl font-bold text-accent text-center mb-8">
+          <h2 className="text-base font-bold text-accent text-center mb-8">
             Trusted by Leading Franchise Brands
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
@@ -298,7 +298,7 @@ export default function FranchisePage() {
                 <p className="text-gray-600 text-sm mb-4">
                   "Increased new location success rate by 87% using BiteBase market analysis"
                 </p>
-                <p className="text-2xl font-bold text-primary">50+ Locations</p>
+                <p className="text-base font-bold text-primary">50+ Locations</p>
               </CardContent>
             </Card>
             <Card className="border-0 shadow-md">
@@ -308,7 +308,7 @@ export default function FranchisePage() {
                 <p className="text-gray-600 text-sm mb-4">
                   "Reduced expansion costs by 40% with data-driven location selection"
                 </p>
-                <p className="text-2xl font-bold text-secondary">25+ Locations</p>
+                <p className="text-base font-bold text-secondary">25+ Locations</p>
               </CardContent>
             </Card>
             <Card className="border-0 shadow-md">
@@ -318,7 +318,7 @@ export default function FranchisePage() {
                 <p className="text-gray-600 text-sm mb-4">
                   "Optimized menu pricing across all locations, boosting profit margins"
                 </p>
-                <p className="text-2xl font-bold text-warning">100+ Locations</p>
+                <p className="text-base font-bold text-warning">100+ Locations</p>
               </CardContent>
             </Card>
           </div>

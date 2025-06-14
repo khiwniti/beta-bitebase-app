@@ -126,7 +126,7 @@ export default function ModernChangelog() {
               <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
               Latest updates
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-6">
+            <h1 className="text-base md:text-base font-bold tracking-tight text-gray-900 mb-6">
               Changelog
             </h1>
             <p className="text-base text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -209,7 +209,7 @@ export default function ModernChangelog() {
                 </span>
               </div>
               
-              <h2 className="text-xl font-bold text-gray-900 mb-4">
+              <h2 className="text-base font-bold text-gray-900 mb-4">
                 <Link href={`/changelog/${entry.id}`} className="hover:text-emerald-600 transition-colors">
                   {entry.title}
                 </Link>
@@ -239,8 +239,8 @@ export default function ModernChangelog() {
             animate={{ opacity: 1 }}
             className="text-center py-12"
           >
-            <div className="text-gray-400 text-6xl mb-4">🔍</div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No entries found</h3>
+            <div className="text-gray-400 text-base mb-4">🔍</div>
+            <h3 className="text-base font-semibold text-gray-900 mb-2">No entries found</h3>
             <p className="text-gray-600">Try adjusting your search terms or filters.</p>
           </motion.div>
         )}

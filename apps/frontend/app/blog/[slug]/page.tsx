@@ -248,10 +248,10 @@ Ready to start tracking these metrics but not sure where to begin? BiteBase prov
     // This is a very simplified markdown renderer for demonstration
     // In a real application, you would use a library like react-markdown
     const formattedContent = content
-      .replace(/^# (.*$)/gm, '<h1 class="text-3xl font-bold my-6">$1</h1>')
-      .replace(/^## (.*$)/gm, '<h2 class="text-2xl font-bold mt-8 mb-4">$1</h2>')
-      .replace(/^### (.*$)/gm, '<h3 class="text-xl font-semibold mt-6 mb-3">$1</h3>')
-      .replace(/^#### (.*$)/gm, '<h4 class="text-lg font-semibold mt-4 mb-2">$1</h4>')
+      .replace(/^# (.*$)/gm, '<h1 class="text-base font-bold my-6">$1</h1>')
+      .replace(/^## (.*$)/gm, '<h2 class="text-base font-bold mt-8 mb-4">$1</h2>')
+      .replace(/^### (.*$)/gm, '<h3 class="text-base font-semibold mt-6 mb-3">$1</h3>')
+      .replace(/^#### (.*$)/gm, '<h4 class="text-base font-semibold mt-4 mb-2">$1</h4>')
       .replace(/\*\*(.*)\*\*/gm, '<strong>$1</strong>')
       .replace(/\*(.*)\*/gm, '<em>$1</em>')
       .replace(/\n\n/gm, '</p><p class="mb-4">')
@@ -333,7 +333,7 @@ Ready to start tracking these metrics but not sure where to begin? BiteBase prov
       <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 bg-white rounded-lg shadow">
         {/* Article Header */}
         <header className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-base md:text-base font-bold text-gray-900 mb-4">
             {post.title}
           </h1>
           
@@ -407,7 +407,7 @@ Ready to start tracking these metrics but not sure where to begin? BiteBase prov
               />
             </div>
             <div className="text-center sm:text-left">
-              <h3 className="text-lg font-bold text-gray-900">{post.author.name}</h3>
+              <h3 className="text-base font-bold text-gray-900">{post.author.name}</h3>
               <p className="text-sm text-gray-600">{post.author.title}</p>
               <p className="mt-3 text-gray-700">
                 Alex specializes in restaurant analytics and has helped over 100 restaurants improve their operations through data-driven strategies. With 15 years of experience in the industry, he brings practical insights to help restaurant owners thrive.
@@ -428,7 +428,7 @@ Ready to start tracking these metrics but not sure where to begin? BiteBase prov
       {/* Related Posts */}
       <section className="bg-white border-t border-gray-200 py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Articles</h2>
+          <h2 className="text-base font-bold text-gray-900 mb-6">Related Articles</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {post.relatedPosts.map((relatedPost) => (
@@ -442,7 +442,7 @@ Ready to start tracking these metrics but not sure where to begin? BiteBase prov
                       className="object-cover transition-transform group-hover:scale-105"
                     />
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary-600">
+                  <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-primary-600">
                     {relatedPost.title}
                   </h3>
                   <p className="text-sm text-gray-600 line-clamp-2">
@@ -458,10 +458,10 @@ Ready to start tracking these metrics but not sure where to begin? BiteBase prov
       {/* CTA Section */}
       <section className="bg-primary-50 py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          <h2 className="text-base font-bold text-gray-900 mb-4">
             Ready to Transform Your Restaurant with Data?
           </h2>
-          <p className="text-lg text-gray-600 mb-8">
+          <p className="text-base text-gray-600 mb-8">
             BiteBase helps restaurant owners make better decisions with powerful analytics and insights.
           </p>
           
