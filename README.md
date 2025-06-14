@@ -1,366 +1,210 @@
-# 🍽️ BiteBase - Restaurant Discovery Platform
+# BiteBase - Geospatial Restaurant SaaS Platform
 
-A modern restaurant discovery platform built with Next.js, Cloudflare Workers, and AI-powered recommendations.
+A modern, full-stack SaaS platform for restaurant discovery and management with advanced geospatial capabilities.
+
+## 🚀 Features
+
+- **Geospatial Restaurant Discovery**: Advanced location-based search and mapping
+- **Real-time Analytics**: Comprehensive dashboard with business insights
+- **Multi-tenant SaaS**: Secure user management and subscription handling
+- **AI-Powered Recommendations**: Smart restaurant suggestions
+- **Mobile-First Design**: Responsive UI optimized for all devices
+- **Stripe Integration**: Secure payment processing
+- **Firebase Authentication**: Robust user authentication system
 
 ## 🏗️ Architecture
 
-**BiteBase** uses a modern hybrid deployment strategy:
+### Frontend (Next.js 15)
+- **Framework**: Next.js 15 with App Router
+- **Styling**: Tailwind CSS with Radix UI components
+- **State Management**: React Query for server state
+- **Maps**: Leaflet with React Leaflet
+- **Charts**: Recharts for analytics visualization
+- **Authentication**: Firebase Auth integration
 
-- **Backend**: Cloudflare Workers (Global edge deployment)
-- **Frontend**: Vercel (Optimized Next.js hosting)
-- **Database**: Cloudflare D1 (Serverless SQLite)
-- **Storage**: Cloudflare R2 (File uploads)
-- **Cache**: Cloudflare KV (Session & data caching)
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    BiteBase Architecture                    │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ┌─────────────────┐         ┌─────────────────┐           │
-│  │   Frontend      │         │    Backend      │           │
-│  │   (Vercel)      │◄────────┤ (Cloudflare)    │           │
-│  │                 │         │                 │           │
-│  │ • Next.js       │         │ • Hono API      │           │
-│  │ • React UI      │         │ • D1 Database   │           │
-│  │ • Maps/Charts   │         │ • KV Storage    │           │
-│  │ • AI Chat       │         │ • R2 Files      │           │
-│  └─────────────────┘         └─────────────────┘           │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
-
-## 🚀 Quick Start
-
-### Option 1: Automated Setup (Recommended)
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/khiwniti/beta-bitebase-app.git
-cd beta-bitebase-app
-
-# 2. Run the setup script
-./setup-cloudflare.sh
-
-# 3. Set your secrets
-cd apps/backend
-wrangler secret put JWT_SECRET
-wrangler secret put OPENAI_API_KEY
-wrangler secret put STRIPE_SECRET_KEY
-
-# 4. Deploy everything
-./deploy-cloudflare.sh --production
-
-# 5. Test the deployment
-./test-system-integration.sh --production
-```
-
-### Option 2: Manual Setup
-
-#### Prerequisites
-- Node.js 18+
-- Cloudflare account
-- Vercel account
-- Wrangler CLI: `npm install -g wrangler`
-- Vercel CLI: `npm install -g vercel`
-
-#### Installation
-
-1. **Clone and install dependencies:**
-```bash
-git clone https://github.com/khiwniti/beta-bitebase-app.git
-cd beta-bitebase-app
-
-# Backend
-cd apps/backend
-npm install
-
-# Frontend
-cd ../frontend
-npm install
-cd ../..
-```
-
-2. **Setup Cloudflare resources:**
-```bash
-cd apps/backend
-
-# Login to Cloudflare
-wrangler login
-
-# Create D1 database
-wrangler d1 create bitebase-production
-
-# Create KV namespaces
-wrangler kv:namespace create CACHE
-wrangler kv:namespace create SESSIONS
-
-# Create R2 bucket
-wrangler r2 bucket create bitebase-uploads
-
-# Update wrangler.toml with the generated IDs
-```
-
-3. **Configure environment variables:**
-```bash
-# Backend secrets
-wrangler secret put JWT_SECRET
-wrangler secret put OPENAI_API_KEY
-wrangler secret put STRIPE_SECRET_KEY
-
-# Frontend environment
-cd ../frontend
-cp .env.example .env.local
-# Edit .env.local with your values
-```
-
-4. **Deploy:**
-```bash
-# Deploy backend
-cd apps/backend
-wrangler deploy --env production
-
-# Deploy frontend
-cd ../frontend
-vercel login
-vercel --prod
-```
-
-## 🧪 Testing System Integration
-
-Ensure all components work together properly:
-
-```bash
-# Test local development
-./test-system-integration.sh --local
-
-# Test production deployment
-./test-system-integration.sh --production
-
-# Test specific URLs
-./test-system-integration.sh \
-  --backend-url https://your-worker.workers.dev \
-  --frontend-url https://your-app.vercel.app
-```
+### Backend (Vercel Serverless + FastAPI)
+- **API**: Vercel serverless functions for core services
+- **Alternative**: FastAPI (Python) for complex operations
+- **Database**: PostgreSQL with geospatial extensions
+- **Payments**: Stripe for subscription billing
+- **Authentication**: Firebase Auth integration
 
 ## 📁 Project Structure
 
 ```
 beta-bitebase-app/
 ├── apps/
-│   ├── backend/                           # Cloudflare Workers Backend
-│   │   ├── cloudflare-worker-enhanced.js  # Main worker file
-│   │   ├── wrangler.toml                  # Cloudflare configuration
-│   │   ├── database/                      # Database schema
-│   │   └── package.json                   # Backend dependencies
-│   └── frontend/                          # Vercel Frontend
-│       ├── vercel.json                    # Vercel configuration
-│       ├── .env.example                   # Environment template
-│       └── package.json                   # Frontend dependencies
-├── deploy-cloudflare.sh                   # Automated deployment
-├── setup-cloudflare.sh                    # Initial setup
-├── test-system-integration.sh             # Integration testing
-├── CLOUDFLARE_DEPLOYMENT_GUIDE.md         # Detailed guide
-└── CLOUDFLARE_DEPLOYMENT_SUMMARY.md       # Quick reference
+│   ├── frontend/          # Next.js frontend application
+│   ├── api/              # FastAPI backend services  
+│   └── backend/          # Node.js production backend
+├── api/                  # Vercel serverless functions
+├── database/            # Database schemas and migrations
+└── turbo.json          # Turborepo configuration
 ```
 
-## 🛠️ Tech Stack
+## 🛠️ Development Setup
 
-### Frontend (Vercel)
-- **Next.js 14** - React framework with App Router
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Utility-first styling
-- **Radix UI** - Accessible component library
-- **React Hook Form** - Form handling
-- **SWR** - Data fetching and caching
+### Prerequisites
+- Node.js 18+
+- Python 3.9+ (for FastAPI backend)
+- PostgreSQL 14+
 
-### Backend (Cloudflare Workers)
-- **Hono** - Fast web framework for Workers
-- **D1 Database** - Serverless SQLite
-- **KV Storage** - Edge caching and sessions
-- **R2 Storage** - File uploads and assets
-- **Workers AI** - Built-in AI capabilities
+### Quick Start
 
-### Services & APIs
-- **OpenAI GPT** - AI recommendations and chat
-- **Google Maps** - Location and mapping services
-- **Stripe** - Payment processing
-- **Google OAuth** - Authentication
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/khiwniti/beta-bitebase-app.git
+   cd beta-bitebase-app
+   ```
 
-## 🌟 Features
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-- 🔍 **Restaurant Discovery** - Location-based search with filters
-- 🤖 **AI Assistant** - Personalized recommendations and chat
-- 📍 **Maps Integration** - Interactive maps with restaurant locations
-- 💳 **Secure Payments** - Stripe integration for reservations
-- 👤 **User Profiles** - Preferences and dining history
-- 📱 **Responsive Design** - Mobile-first, works on all devices
-- 🔐 **JWT Authentication** - Secure user sessions
-- ⚡ **Edge Performance** - Global CDN and edge computing
-- 🔄 **Real-time Updates** - Live data synchronization
+3. **Environment setup**
+   ```bash
+   # Copy environment files
+   cp apps/frontend/.env.example apps/frontend/.env.local
+   cp apps/api/.env.example apps/api/.env
+   ```
 
-## 🚀 Deployment Options
+4. **Start development servers**
+   ```bash
+   # Start all services with Turborepo
+   npm run dev
 
-### Production Deployment
+   # Or start individual services
+   npm run dev:frontend  # Frontend on http://localhost:3000
+   npm run dev:api      # API on http://localhost:8000
+   npm run dev:backend  # Backend on http://localhost:5000
+   ```
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+The application is configured for Vercel deployment with:
+- Frontend: Next.js app in `apps/frontend/`
+- Backend: Serverless functions in `api/`
 
 ```bash
-# Full production deployment
-./deploy-cloudflare.sh --production
-
-# Backend only
-./deploy-cloudflare.sh --backend-only --production
-
-# Frontend only
-./deploy-cloudflare.sh --frontend-only --production
+# Deploy to Vercel
+vercel --prod
 ```
-
-### Staging Deployment
-
-```bash
-# Deploy to staging environment
-./deploy-cloudflare.sh
-
-# Test staging deployment
-./test-system-integration.sh --backend-url https://staging-worker.workers.dev
-```
-
-### Local Development
-
-```bash
-# Start backend (Cloudflare Workers)
-cd apps/backend
-wrangler dev --local
-
-# Start frontend (Next.js)
-cd apps/frontend
-npm run dev
-
-# Test local integration
-./test-system-integration.sh --local
-```
-
-## 🔧 Configuration
 
 ### Environment Variables
 
-#### Backend (Cloudflare Secrets)
-```bash
-JWT_SECRET=your-super-secret-jwt-key-min-32-chars
-OPENAI_API_KEY=sk-your-openai-api-key
-STRIPE_SECRET_KEY=sk_live_or_sk_test_your-stripe-secret
-GOOGLE_CLIENT_ID=your-google-oauth-client-id
-```
-
 #### Frontend (.env.local)
 ```env
-NEXT_PUBLIC_API_URL=https://your-worker.workers.dev
-NEXT_PUBLIC_SITE_URL=https://your-app.vercel.app
-NEXT_PUBLIC_GOOGLE_CLIENT_ID=your-google-oauth-client-id
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_or_pk_test_your-stripe-key
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your-google-maps-api-key
-NEXT_PUBLIC_ENABLE_AI_FEATURES=true
-NEXT_PUBLIC_ENABLE_ANALYTICS=true
+NEXT_PUBLIC_API_URL=/api
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
 ```
 
-## 📖 Documentation
+#### API (.env)
+```env
+DATABASE_URL=postgresql://user:password@host:port/database
+STRIPE_SECRET_KEY=sk_live_...
+OPENAI_API_KEY=sk-xxx
+```
 
-- [**Deployment Guide**](CLOUDFLARE_DEPLOYMENT_GUIDE.md) - Comprehensive deployment instructions
-- [**Deployment Summary**](CLOUDFLARE_DEPLOYMENT_SUMMARY.md) - Quick reference guide
-- [**API Documentation**](apps/backend/README.md) - Backend API reference
-- [**Frontend Guide**](apps/frontend/README.md) - Frontend development guide
+## 📊 Core Features
 
-## 🔧 Troubleshooting
+### Restaurant Management
+- Geospatial search with radius filtering
+- Category and cuisine type filtering
+- Interactive map with restaurant markers
+- Real-time analytics dashboard
 
-### Common Issues
+### User Management
+- Firebase authentication integration
+- Role-based access control (Admin/User)
+- Subscription management with Stripe
+- Mobile-responsive tour system
 
-#### Worker Deployment Fails
+### Analytics & Insights
+- Real-time visitor analytics
+- Geographic distribution insights
+- User engagement tracking
+- Revenue and subscription metrics
+
+## 🔧 API Endpoints
+
+### Core Endpoints
+- `GET /api/health` - Health check
+- `GET /api/restaurants/search` - Geospatial restaurant search
+- `GET /api/analytics/dashboard` - Dashboard metrics
+- `POST /api/analytics/track` - Track user events
+
+## 🎨 Recent Updates
+
+### Font Size Optimization
+- Systematic font size reduction (text-lg → text-base, etc.)
+- Improved visual hierarchy and readability
+- Mobile-first responsive design
+
+### Mobile Tour Responsiveness
+- Bottom-positioned tour cards on mobile
+- Touch-friendly interface with larger buttons
+- Dynamic sizing based on screen size
+- Improved accessibility and UX
+
+### Enhanced Middleware
+- Comprehensive security headers
+- CORS configuration for API endpoints
+- Role-based route protection
+- Improved authentication flow
+
+## 🧪 Testing
+
 ```bash
-wrangler validate
-wrangler deploy --verbose
+# Build all packages
+npm run build
+
+# Lint code
+npm run lint
+
+# Format code
+npm run format
+
+# Type checking
+npm run check-types
 ```
 
-#### Database Connection Issues
-```bash
-wrangler d1 list
-wrangler d1 execute bitebase-production --command="SELECT 1"
-```
+## 🔒 Security
 
-#### CORS Errors
-- Check allowed origins in worker configuration
-- Verify frontend URL in environment variables
+- **Authentication**: Firebase Auth with JWT tokens
+- **Authorization**: Role-based access control
+- **Security Headers**: Comprehensive security headers via middleware
+- **CORS**: Properly configured cross-origin requests
+- **Rate Limiting**: API protection and abuse prevention
 
-#### Authentication Issues
-- Verify JWT secret: `wrangler secret list`
-- Check token format and expiration
+## 📱 Mobile Optimization
 
-### Debug Commands
-
-```bash
-# Real-time logs
-wrangler tail --format pretty
-
-# Test locally
-wrangler dev --local
-
-# Database queries
-wrangler d1 execute bitebase-production --command="YOUR_SQL"
-
-# KV operations
-wrangler kv:key list --binding CACHE
-```
+- **Responsive Design**: Mobile-first approach
+- **Touch Targets**: Minimum 44px touch targets
+- **Tour System**: Mobile-optimized guided tours
+- **Performance**: Optimized for mobile networks
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Make your changes
-4. Test integration: `./test-system-integration.sh --local`
-5. Commit changes: `git commit -m 'Add amazing feature'`
-6. Push to branch: `git push origin feature/amazing-feature`
-7. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## 🆘 Support
 
-### Documentation
-- [Cloudflare Workers Docs](https://developers.cloudflare.com/workers/)
-- [Vercel Documentation](https://vercel.com/docs)
-- [Hono Framework](https://hono.dev/)
-- [Next.js Documentation](https://nextjs.org/docs)
-
-### Community
-- [Cloudflare Discord](https://discord.gg/cloudflaredev)
-- [Vercel Discord](https://discord.gg/vercel)
-
-### Contact
-- Email: support@bitebase.app
-- Issues: [GitHub Issues](https://github.com/khiwniti/beta-bitebase-app/issues)
+- **Issues**: [GitHub Issues](https://github.com/khiwniti/beta-bitebase-app/issues)
+- **Email**: support@bitebase.app
 
 ---
 
-## 🎉 Ready to Deploy!
-
-Your BiteBase application is configured for modern, scalable deployment:
-
-✅ **Global Edge Backend** with Cloudflare Workers  
-✅ **Optimized Frontend** with Vercel  
-✅ **Serverless Database** with D1  
-✅ **Edge Caching** with KV  
-✅ **File Storage** with R2  
-✅ **Automated Deployment** scripts  
-✅ **Integration Testing** tools  
-
-**Quick Deploy:**
-```bash
-./deploy-cloudflare.sh --production
-```
-
-**Test Integration:**
-```bash
-./test-system-integration.sh --production
-```
-
-Happy coding! 🚀☁️
+Built with ❤️ using Next.js, Vercel, and modern web technologies
