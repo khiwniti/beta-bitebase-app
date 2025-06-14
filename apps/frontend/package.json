@@ -5,9 +5,9 @@
   "description": "BiteBase Frontend - Geospatial SaaS Platform",
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "next dev -p 12000 -H 0.0.0.0",
     "lint": "next lint",
-    "start": "next start",
+    "start": "next start -p 12000 -H 0.0.0.0",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {

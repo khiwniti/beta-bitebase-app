@@ -11,7 +11,7 @@ export default function middleware(request: NextRequest) {
 
   if (isProtectedRoute) {
     // Check for authentication token
-    const token = request.cookies.get('auth-token')?.value
+    const token = request.cookies.get('auth_token')?.value
     
     if (!token) {
       // Redirect to auth page
