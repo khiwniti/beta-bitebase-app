@@ -251,6 +251,17 @@ export default function AuthPage() {
           </div>
         </div>
 
+        {/* Skip to Dashboard Button */}
+        <div className="mt-6 text-center">
+          <Button
+            onClick={() => router.push('/dashboard')}
+            variant="outline"
+            className="w-full py-3 text-sm font-medium text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200"
+          >
+            Skip to Dashboard (Demo)
+          </Button>
+        </div>
+
         {/* Terms and Privacy */}
         <div className="mt-8 text-center text-xs text-gray-500 dark:text-gray-400">
           By continuing, you agree to our{' '}

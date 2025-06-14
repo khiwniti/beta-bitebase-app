@@ -289,6 +289,141 @@ export function useRealDataFetcher() {
   };
 }
 
+// Hook for real-time location-based restaurant data
+export function useLocationBasedRestaurants() {
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
+
+  // Get user's current location
+  const getCurrentLocation = useCallback(() => {
+    if (!navigator.geolocation) {
+      setError('Geolocation is not supported by this browser');
+      return;
+    }
+
+    setLoading(true);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const location = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        setUserLocation(location);
+        fetchNearbyRestaurants(location.lat, location.lng);
+      },
+      (error) => {
+        console.error('Error getting location:', error);
+        // Default to Bangkok center if location access denied
+        const bangkokCenter = { lat: 13.7563, lng: 100.5018 };
+        setUserLocation(bangkokCenter);
+        fetchNearbyRestaurants(bangkokCenter.lat, bangkokCenter.lng);
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 300000 }
+    );
+  }, []);
+
+  // Fetch nearby restaurants from Wongnai
+  const fetchNearbyRestaurants = useCallback(async (lat: number, lng: number, radius: number = 5) => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      // Try to fetch from Wongnai API first
+      const wongnaiResponse = await apiClient.searchWongnaiRestaurants({
+        latitude: lat,
+        longitude: lng,
+        limit: 50
+      });
+
+      if (wongnaiResponse.data?.restaurants) {
+        setRestaurants(wongnaiResponse.data.restaurants);
+      } else {
+        // Fallback to general restaurant search
+        const generalResponse = await apiClient.searchRestaurantsByLocation(lat, lng, radius);
+        setRestaurants(generalResponse.data || []);
+      }
+    } catch (err) {
+      console.error('Error fetching restaurants:', err);
+      setError('Failed to fetch nearby restaurants');
+      // Load some demo data as fallback
+      setRestaurants(getDemoRestaurants(lat, lng));
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  // Demo restaurants for fallback
+  const getDemoRestaurants = (lat: number, lng: number): Restaurant[] => [
+    {
+      id: 1,
+      name: "Gaggan Anand",
+      cuisine: "Progressive Indian",
+      rating: 4.8,
+      price_range: "฿฿฿฿",
+      latitude: lat + 0.001,
+      longitude: lng + 0.001,
+      address: "68/1 Soi Langsuan, Ploenchit Rd",
+      phone: "+66 2 652 1700",
+      platform: "wongnai",
+      public_id: "gaggan-anand-bangkok",
+      image_url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400",
+      description: "World-renowned progressive Indian cuisine",
+      opening_hours: "18:00-23:00",
+      website: "https://www.gaggan.com"
+    },
+    {
+      id: 2,
+      name: "Sorn",
+      cuisine: "Southern Thai",
+      rating: 4.7,
+      price_range: "฿฿฿฿",
+      latitude: lat - 0.002,
+      longitude: lng + 0.003,
+      address: "56 Sukhumvit Soi 26",
+      phone: "+66 2 663 3710",
+      platform: "wongnai",
+      public_id: "sorn-bangkok",
+      image_url: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400",
+      description: "Authentic Southern Thai flavors",
+      opening_hours: "18:00-22:00",
+      website: "https://www.sornbangkok.com"
+    },
+    {
+      id: 3,
+      name: "Le Du",
+      cuisine: "Modern Thai",
+      rating: 4.6,
+      price_range: "฿฿฿",
+      latitude: lat + 0.003,
+      longitude: lng - 0.001,
+      address: "399/3 Silom Rd, Silom",
+      phone: "+66 2 919 9918",
+      platform: "wongnai",
+      public_id: "le-du-bangkok",
+      image_url: "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400",
+      description: "Contemporary Thai cuisine with local ingredients",
+      opening_hours: "18:00-23:00",
+      website: "https://www.ledubkk.com"
+    }
+  ];
+
+  // Auto-fetch on mount
+  useEffect(() => {
+    getCurrentLocation();
+  }, [getCurrentLocation]);
+
+  return {
+    restaurants,
+    loading,
+    error,
+    userLocation,
+    refetch: getCurrentLocation,
+    fetchNearbyRestaurants
+  };
+}
+
 // Hook for service health checks
 export function useServiceHealth() {
   const [backendHealth, setBackendHealth] = useState<{ status: string; message: string } | null>(null);

@@ -35,7 +35,8 @@ import { ChartContainer, SimpleLineChart, SimpleBarChart } from "../../component
 import { tourUtils } from "../../utils/tourUtils"
 import BiteBaseAIAssistant from "../../components/ai/BiteBaseAIAssistant"
 import ServiceHealthDashboard from "../../components/admin/ServiceHealthDashboard"
-import { useRestaurants } from "../../hooks/useRestaurantData"
+import { useRestaurants, useLocationBasedRestaurants } from "../../hooks/useRestaurantData"
+import RestaurantMap from "../../components/dashboard/RestaurantMap"
 
 // Realistic data for Bella Vista Bistro - Mediterranean restaurant in Bangkok
 const bellaVistaMetrics = {
@@ -155,6 +156,7 @@ export default function DashboardPage() {
   const { user } = useAuth()
   const router = useRouter()
   const { restaurants, loading: restaurantsLoading, error: restaurantsError } = useRestaurants()
+  const { restaurants: nearbyRestaurants, loading: locationLoading } = useLocationBasedRestaurants()
 
   useEffect(() => {
     // Simulate loading time
@@ -219,6 +221,22 @@ export default function DashboardPage() {
         </div>
       )}
 
+      {/* Real-Time Restaurant Map */}
+      <DashboardSection 
+        title="Live Restaurant Map" 
+        description="Real-time restaurant data from Wongnai with location-based discovery"
+        actions={
+          <Button variant="outline" size="sm" onClick={() => router.push('/restaurant-explorer')}>
+            <Map className="w-4 h-4 mr-2" />
+            Full Explorer
+          </Button>
+        }
+      >
+        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4 sm:p-6 overflow-hidden">
+          <RestaurantMap />
+        </div>
+      </DashboardSection>
+
       {/* Real Restaurant Data Overview */}
       <DashboardSection 
         title="Live Restaurant Data" 
@@ -231,7 +249,7 @@ export default function DashboardPage() {
         }
       >
         <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4 sm:p-6 overflow-hidden">
-          {restaurantsLoading ? (
+          {restaurantsLoading || locationLoading ? (
             <div className="flex items-center justify-center py-8">
               <RefreshCw className="w-6 h-6 animate-spin text-gray-400 mr-2" />
               <span className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">Loading restaurant data...</span>
@@ -245,7 +263,7 @@ export default function DashboardPage() {
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               <div className="text-center p-4 sm:p-6 bg-primary-50 dark:bg-primary-900/20 rounded-xl transition-colors">
                 <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-600 dark:text-primary-400">{restaurants.length}</div>
                 <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 font-medium">Total Restaurants</div>
@@ -256,9 +274,13 @@ export default function DashboardPage() {
                 </div>
                 <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 font-medium">Wongnai Restaurants</div>
               </div>
-              <div className="text-center p-4 sm:p-6 bg-purple-50 dark:bg-purple-900/20 rounded-xl transition-colors sm:col-span-2 lg:col-span-1">
+              <div className="text-center p-4 sm:p-6 bg-green-50 dark:bg-green-900/20 rounded-xl transition-colors">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600 dark:text-green-400">{nearbyRestaurants.length}</div>
+                <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 font-medium">Nearby Restaurants</div>
+              </div>
+              <div className="text-center p-4 sm:p-6 bg-purple-50 dark:bg-purple-900/20 rounded-xl transition-colors">
                 <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-purple-600 dark:text-purple-400">
-                  {restaurants.length > 0 ? (restaurants.reduce((sum, r) => sum + (r.rating || 0), 0) / restaurants.length).toFixed(1) : '0.0'}
+                  {nearbyRestaurants.length > 0 ? (nearbyRestaurants.reduce((sum, r) => sum + (r.rating || 0), 0) / nearbyRestaurants.length).toFixed(1) : '0.0'}
                 </div>
                 <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 font-medium">Average Rating</div>
               </div>

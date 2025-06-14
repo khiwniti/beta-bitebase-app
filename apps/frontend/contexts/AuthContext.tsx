@@ -277,6 +277,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
       // Clear user session data on logout
       clearUserSessionData();
       setLoading(false);
+
+      // Redirect to auth page after logout
+      if (typeof window !== 'undefined') {
+        window.location.href = '/auth';
+      }
     } catch (error) {
       setLoading(false);
       throw error;

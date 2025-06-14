@@ -19,9 +19,10 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['JetBrains Mono', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['JetBrains Mono', 'Inter', 'system-ui', 'sans-serif'],
+        body: ['JetBrains Mono', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
       },
       colors: {
         // BiteBase Brand Colors - Following Brand Guidelines V1 2024
