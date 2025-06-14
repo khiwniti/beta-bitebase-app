@@ -135,12 +135,12 @@ export default function UserTestPage() {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-6xl mx-auto px-4">
         <div className="bg-white rounded-lg shadow-lg p-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">
+          <h1 className="text-base font-bold text-gray-900 mb-8">
             🧪 User Management API Test Suite
           </h1>
 
           <div className="mb-8 p-4 bg-blue-50 rounded-lg">
-            <h2 className="text-lg font-semibold mb-4">Test Configuration</h2>
+            <h2 className="text-base font-semibold mb-4">Test Configuration</h2>
             <p className="text-sm text-gray-600 mb-4">
               API Base URL: <code className="bg-gray-100 px-2 py-1 rounded">{API_BASE}</code>
             </p>
@@ -197,7 +197,7 @@ export default function UserTestPage() {
             {/* Health Check Test */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <div className="flex justify-between items-center mb-3">
-                <h3 className="text-lg font-semibold">🏥 Health Check</h3>
+                <h3 className="text-base font-semibold">🏥 Health Check</h3>
                 <button
                   onClick={() => runTest('health', testHealthCheck)}
                   disabled={loading.health}
@@ -212,7 +212,7 @@ export default function UserTestPage() {
             {/* Get Users Test */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <div className="flex justify-between items-center mb-3">
-                <h3 className="text-lg font-semibold">👥 Get All Users</h3>
+                <h3 className="text-base font-semibold">👥 Get All Users</h3>
                 <button
                   onClick={() => runTest('getUsers', testGetUsers)}
                   disabled={loading.getUsers}
@@ -227,7 +227,7 @@ export default function UserTestPage() {
             {/* Create User Test */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <div className="flex justify-between items-center mb-3">
-                <h3 className="text-lg font-semibold">➕ Create User</h3>
+                <h3 className="text-base font-semibold">➕ Create User</h3>
                 <button
                   onClick={() => runTest('createUser', testCreateUser)}
                   disabled={loading.createUser}
@@ -242,7 +242,7 @@ export default function UserTestPage() {
             {/* Login User Test */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <div className="flex justify-between items-center mb-3">
-                <h3 className="text-lg font-semibold">🔐 User Login</h3>
+                <h3 className="text-base font-semibold">🔐 User Login</h3>
                 <button
                   onClick={() => runTest('loginUser', testLoginUser)}
                   disabled={loading.loginUser}
@@ -257,7 +257,7 @@ export default function UserTestPage() {
             {/* Get User by ID Test */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <div className="flex justify-between items-center mb-3">
-                <h3 className="text-lg font-semibold">🔍 Get User by ID</h3>
+                <h3 className="text-base font-semibold">🔍 Get User by ID</h3>
                 <button
                   onClick={() => runTest('getUserById', testGetUserById)}
                   disabled={loading.getUserById}
@@ -272,7 +272,7 @@ export default function UserTestPage() {
             {/* Run All Tests */}
             <div className="bg-gray-50 p-4 rounded-lg">
               <div className="flex justify-between items-center mb-3">
-                <h3 className="text-lg font-semibold">🚀 Run All Tests</h3>
+                <h3 className="text-base font-semibold">🚀 Run All Tests</h3>
                 <button
                   onClick={async () => {
                     await runTest('health', testHealthCheck);
@@ -294,7 +294,7 @@ export default function UserTestPage() {
           </div>
 
           <div className="mt-8 p-4 bg-yellow-50 rounded-lg">
-            <h3 className="text-lg font-semibold mb-2">📝 Test Notes</h3>
+            <h3 className="text-base font-semibold mb-2">📝 Test Notes</h3>
             <ul className="text-sm text-gray-700 space-y-1">
               <li>• <strong>Health Check</strong>: Verifies API connectivity and database status</li>
               <li>• <strong>Get Users</strong>: Lists all users with pagination</li>

@@ -181,8 +181,8 @@ export default function SubscriptionPage() {
             <span className="inline-block px-4 py-2 rounded-full border border-primary-500 text-primary-500 font-semibold mb-4 hover:rotate-3 transition-transform animate-pulse">
               Pricing Plans
             </span>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Choose Your <span className="text-primary-600">Plan</span></h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-base font-bold text-gray-900 mb-4">Choose Your <span className="text-primary-600">Plan</span></h2>
+            <p className="text-base text-gray-600 max-w-2xl mx-auto">
               Select a plan that fits your needs and start building with BiteBase today!
             </p>
           </div>
@@ -253,18 +253,18 @@ export default function SubscriptionPage() {
                           />
                         </div>
                       ) : (
-                        <div className="text-4xl">{plan.icon}</div>
+                        <div className="text-base">{plan.icon}</div>
                       )}
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h2>
+                    <h2 className="text-base font-bold text-gray-900 mb-2">{plan.name}</h2>
                     <p className="text-gray-600 mb-6">{plan.description}</p>
                   </div>
 
                   {/* Price */}
                   <div className="text-center mb-8">
-                    <div className="text-3xl font-extrabold text-gray-900">
+                    <div className="text-base font-extrabold text-gray-900">
                       US${getCurrentPrice(plan)}
-                      <span className="text-lg font-normal text-gray-600 ml-1">
+                      <span className="text-base font-normal text-gray-600 ml-1">
                         per {plan.period}
                       </span>
                     </div>
@@ -315,7 +315,7 @@ export default function SubscriptionPage() {
           <div className="mt-16 bg-gradient-to-r from-primary-50 to-primary-100 rounded-xl p-8 text-center">
             <div className="max-w-3xl mx-auto">
               <Building2 className="w-16 h-16 text-primary mx-auto mb-4" />
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="text-base font-bold text-gray-900 mb-4">
                 Need a Franchise Solution?
               </h2>
               <p className="text-gray-600 mb-6">
@@ -341,7 +341,7 @@ export default function SubscriptionPage() {
 
           {/* Features Comparison */}
           <div className="mt-16">
-            <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
+            <h2 className="text-base font-bold text-gray-900 text-center mb-8">
               All Plans Include
             </h2>
             <div className="grid gap-6 md:grid-cols-3">

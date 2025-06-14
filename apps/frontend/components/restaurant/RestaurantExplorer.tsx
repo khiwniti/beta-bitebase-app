@@ -101,7 +101,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
   return (
     <div className="max-w-7xl mx-auto p-6">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
+        <h1 className="text-base font-bold text-gray-900 mb-4">
           🇹🇭 Bangkok Restaurant Finder
         </h1>
         <p className="text-gray-600 mb-6">
@@ -200,7 +200,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Restaurant List */}
           <div className="space-y-4">
-            <h2 className="text-xl font-semibold text-gray-900">
+            <h2 className="text-base font-semibold text-gray-900">
               Found {restaurants.length} restaurants
             </h2>
             
@@ -264,7 +264,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
           <div className="bg-white rounded-lg shadow-sm border p-6">
             {selectedRestaurant ? (
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                <h2 className="text-base font-bold text-gray-900 mb-4">
                   {selectedRestaurant.name}
                 </h2>
 
@@ -315,7 +315,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                 {/* Menu Section */}
                 {selectedRestaurant.platform_id && (
                   <div className="border-t pt-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Menu</h3>
+                    <h3 className="text-base font-semibold text-gray-900 mb-4">Menu</h3>
                     
                     {menuLoading ? (
                       <div className="animate-pulse space-y-4">

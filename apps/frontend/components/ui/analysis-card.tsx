@@ -22,7 +22,7 @@ export function AnalysisCard({
       className
     )}>
       <div className="flex flex-col space-y-1.5 p-6 pb-4">
-        <h3 className="font-semibold text-lg tracking-tight">{title}</h3>
+        <h3 className="font-semibold text-base tracking-tight">{title}</h3>
         {description && (
           <p className="text-sm text-gray-500">{description}</p>
         )}

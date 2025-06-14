@@ -83,7 +83,7 @@ export default function PlacePage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Location Map</h3>
+              <h3 className="text-base font-medium">Location Map</h3>
               <p className="text-sm text-gray-500">Interactive map of your locations and competitors</p>
             </div>
           </div>
@@ -104,7 +104,7 @@ export default function PlacePage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Demographic Analysis</h3>
+              <h3 className="text-base font-medium">Demographic Analysis</h3>
               <p className="text-sm text-gray-500">Analyze customer demographics by location</p>
             </div>
           </div>
@@ -126,7 +126,7 @@ export default function PlacePage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Foot Traffic Analysis</h3>
+              <h3 className="text-base font-medium">Foot Traffic Analysis</h3>
               <p className="text-sm text-gray-500">Track customer traffic patterns</p>
             </div>
           </div>
@@ -150,7 +150,7 @@ export default function PlacePage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Competitor Locations</h3>
+              <h3 className="text-base font-medium">Competitor Locations</h3>
               <p className="text-sm text-gray-500">Map and analyze competitor locations</p>
             </div>
           </div>
@@ -169,7 +169,7 @@ export default function PlacePage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Site Selection</h3>
+              <h3 className="text-base font-medium">Site Selection</h3>
               <p className="text-sm text-gray-500">Find and evaluate new potential locations</p>
             </div>
           </div>
@@ -178,7 +178,7 @@ export default function PlacePage() {
 
       {/* Location Insights */}
       <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
-        <h3 className="text-lg font-medium mb-4">Location Insights</h3>
+        <h3 className="text-base font-medium mb-4">Location Insights</h3>
         <div className="space-y-4">
           <div className="flex items-start p-3 rounded-lg hover:bg-gray-50 transition-all">
             <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center mr-3 text-primary">

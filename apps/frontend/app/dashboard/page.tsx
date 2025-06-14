@@ -265,21 +265,21 @@ export default function DashboardPage() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               <div className="text-center p-4 sm:p-6 bg-primary-50 dark:bg-primary-900/20 rounded-xl transition-colors">
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary-600 dark:text-primary-400">{restaurants.length}</div>
+                <div className="text-base sm:text-base lg:text-base font-bold text-primary-600 dark:text-primary-400">{restaurants.length}</div>
                 <div className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-medium">Total Restaurants</div>
               </div>
               <div className="text-center p-4 sm:p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl transition-colors">
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">
+                <div className="text-base sm:text-base lg:text-base font-bold text-blue-600 dark:text-blue-400">
                   {restaurants.filter(r => r.platform === 'wongnai').length}
                 </div>
                 <div className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-medium">Wongnai Restaurants</div>
               </div>
               <div className="text-center p-4 sm:p-6 bg-green-50 dark:bg-green-900/20 rounded-xl transition-colors">
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">{nearbyRestaurants.length}</div>
+                <div className="text-base sm:text-base lg:text-base font-bold text-green-600 dark:text-green-400">{nearbyRestaurants.length}</div>
                 <div className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-medium">Nearby Restaurants</div>
               </div>
               <div className="text-center p-4 sm:p-6 bg-purple-50 dark:bg-purple-900/20 rounded-xl transition-colors">
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">
+                <div className="text-base sm:text-base lg:text-base font-bold text-purple-600 dark:text-purple-400">
                   {nearbyRestaurants.length > 0 ? (nearbyRestaurants.reduce((sum, r) => sum + (r.rating || 0), 0) / nearbyRestaurants.length).toFixed(1) : '0.0'}
                 </div>
                 <div className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-medium">Average Rating</div>
@@ -382,7 +382,7 @@ export default function DashboardPage() {
         {/* Quick Actions Sidebar */}
         <div className="space-y-4 sm:space-y-6 order-1 xl:order-2 xl:col-span-1">
           <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4 sm:p-6">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Quick Actions</h3>
+            <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">Quick Actions</h3>
             <div className="space-y-3">
               <Button
                 onClick={() => router.push('/market-analysis')}
@@ -414,7 +414,7 @@ export default function DashboardPage() {
           </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4 sm:p-6">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">AI Insights</h3>
+            <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">AI Insights</h3>
             <div className="space-y-3">
               {bellaVistaInsights.map((insight) => (
                 <InsightCard

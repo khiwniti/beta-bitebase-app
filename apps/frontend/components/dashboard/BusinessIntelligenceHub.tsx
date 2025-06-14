@@ -217,7 +217,7 @@ export default function BusinessIntelligenceHub({
   return (
     <div className={cn("space-y-6", className)}>
       <div className="flex justify-between">
-        <h2 className="text-2xl font-semibold text-gray-900">Business Intelligence</h2>
+        <h2 className="text-base font-semibold text-gray-900">Business Intelligence</h2>
       </div>
 
       <Tabs defaultValue="overview" value={activeTab} onValueChange={setActiveTab}>
@@ -249,7 +249,7 @@ export default function BusinessIntelligenceHub({
                   </div>
                 </CardHeader>
                 <CardContent className="pb-2">
-                  <div className="text-2xl font-bold">{metric.value}</div>
+                  <div className="text-base font-bold">{metric.value}</div>
                   {metric.change !== undefined && (
                     <div className={`text-xs font-medium flex items-center ${metric.change > 0 ? 'text-primary-600' : 'text-red-600'}`}>
                       {metric.change > 0 ? '↑' : '↓'} {Math.abs(metric.change)}%
@@ -279,7 +279,7 @@ export default function BusinessIntelligenceHub({
               <Card className="shadow-sm h-full flex flex-col">
                 <CardHeader>
                   <div className="flex justify-between items-center">
-                    <CardTitle className="text-lg">Top Insights</CardTitle>
+                    <CardTitle className="text-base">Top Insights</CardTitle>
                     <span className="text-xs font-medium px-2 py-1 rounded-full bg-primary-100 text-primary-800">
                       {insights.length} New
                     </span>
@@ -360,7 +360,7 @@ export default function BusinessIntelligenceHub({
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-xl font-bold">Dinner (6-9pm)</div>
+                  <div className="text-base font-bold">Dinner (6-9pm)</div>
                   <div className="text-sm text-gray-600 mt-1">Weekends show 32% higher traffic</div>
                 </CardContent>
               </Card>
@@ -375,7 +375,7 @@ export default function BusinessIntelligenceHub({
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-xl font-bold">$27.50</div>
+                  <div className="text-base font-bold">$27.50</div>
                   <div className="text-xs text-primary-600 font-medium">↑ 3.2% from last month</div>
                 </CardContent>
               </Card>
@@ -390,7 +390,7 @@ export default function BusinessIntelligenceHub({
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-xl font-bold">42%</div>
+                  <div className="text-base font-bold">42%</div>
                   <div className="text-xs text-primary-600 font-medium">↑ 5.7% from last month</div>
                 </CardContent>
               </Card>

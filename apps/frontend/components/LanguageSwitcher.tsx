@@ -40,7 +40,7 @@ export default function LanguageSwitcher({
         className={buttonStyles}
         aria-label="Change language"
       >
-        <span className="text-lg">{currentLanguage.flag}</span>
+        <span className="text-base">{currentLanguage.flag}</span>
         <span className="hidden sm:inline">{currentLanguage.name}</span>
       </button>
 
@@ -75,7 +75,7 @@ export default function LanguageSwitcher({
                     onClick={() => handleLanguageChange(lang.code)}
                     className={itemStyles}
                   >
-                    <span className="text-lg">{lang.flag}</span>
+                    <span className="text-base">{lang.flag}</span>
                     <span>{lang.name}</span>
                     {isSelected && (
                       <span className={`ml-auto ${theme === 'dark' ? 'text-green-400' : 'text-primary-600'}`}>✓</span>

@@ -67,7 +67,7 @@ export default function MarketInsightPanel({
         <div className="flex items-center justify-center h-full p-8">
           <div className="text-center">
             <Loader2 className="h-10 w-10 animate-spin mx-auto text-primary-600 mb-4" />
-            <h3 className="text-lg font-medium text-gray-900">Analyzing market data...</h3>
+            <h3 className="text-base font-medium text-gray-900">Analyzing market data...</h3>
             <p className="text-sm text-gray-500 mt-2">This may take a few moments</p>
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function MarketInsightPanel({
       {/* Header */}
       <div className="px-6 py-4 border-b border-gray-100">
         <div className="flex justify-between items-center">
-          <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+          <h2 className="text-base font-semibold text-gray-900 flex items-center gap-2">
             <MapPin className="h-4 w-4 text-primary-600" />
             {locationName}
           </h2>
@@ -256,7 +256,7 @@ export default function MarketInsightPanel({
                   <div className="flex items-start justify-between">
                     <div>
                       <p className="text-sm text-gray-500">{metric.label}</p>
-                      <p className="text-2xl font-semibold mt-1">
+                      <p className="text-base font-semibold mt-1">
                         {typeof metric.value === 'number' && !Number.isInteger(metric.value)
                           ? metric.value.toFixed(1)
                           : metric.value}

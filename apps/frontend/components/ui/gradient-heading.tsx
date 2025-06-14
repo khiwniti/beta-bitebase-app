@@ -18,12 +18,12 @@ export function GradientHeading({
     <Component
       className={cn(
         "bg-gradient-to-r from-primary to-primary-400 bg-clip-text text-transparent font-bold",
-        as === "h1" && "text-4xl md:text-5xl lg:text-6xl",
-        as === "h2" && "text-3xl md:text-4xl lg:text-5xl",
-        as === "h3" && "text-2xl md:text-3xl",
-        as === "h4" && "text-xl md:text-2xl",
-        as === "h5" && "text-lg md:text-xl",
-        as === "h6" && "text-base md:text-lg",
+        as === "h1" && "text-base md:text-base lg:text-base",
+        as === "h2" && "text-base md:text-base lg:text-base",
+        as === "h3" && "text-base md:text-base",
+        as === "h4" && "text-base md:text-base",
+        as === "h5" && "text-base md:text-base",
+        as === "h6" && "text-base md:text-base",
         className
       )}
     >

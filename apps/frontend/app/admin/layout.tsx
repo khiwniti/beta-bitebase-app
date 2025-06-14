@@ -41,7 +41,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Access Denied</h1>
+          <h1 className="text-base font-bold text-gray-900 mb-4">Access Denied</h1>
           <p className="text-gray-600">You don't have permission to access this area.</p>
         </div>
       </div>
@@ -54,7 +54,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         {/* Admin Sidebar */}
         <div className="w-64 bg-white shadow-sm border-r border-gray-200">
           <div className="p-6">
-            <h2 className="text-lg font-semibold text-gray-900">Admin Panel</h2>
+            <h2 className="text-base font-semibold text-gray-900">Admin Panel</h2>
             <p className="text-sm text-gray-600">BiteBase</p>
             <p className="text-xs text-emerald-600 mt-2">Welcome, {user?.name}</p>
           </div>

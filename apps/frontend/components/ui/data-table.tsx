@@ -122,7 +122,7 @@ export function DataTable({
         <div className="p-4 border-b">
           <div className="flex items-center justify-between flex-wrap gap-3">
             <div>
-              {title && <h3 className="text-lg font-medium">{title}</h3>}
+              {title && <h3 className="text-base font-medium">{title}</h3>}
               {description && <p className="text-sm text-gray-500 mt-1">{description}</p>}
             </div>
             <div className="flex items-center space-x-2">

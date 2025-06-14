@@ -672,7 +672,7 @@ export function MainLayout({
                 {(pageTitle || pageDescription) && (
                   <div className="mb-6">
                     {pageTitle && (
-                  <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{pageTitle}</h1>
+                  <h1 className="text-base md:text-base font-bold text-gray-900 dark:text-white">{pageTitle}</h1>
                     )}
                     {pageDescription && (
                   <p className="mt-2 text-gray-600 dark:text-gray-400">{pageDescription}</p>

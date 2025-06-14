@@ -153,8 +153,8 @@ export default function TestPage() {
     <div className="min-h-screen bg-gray-900 text-white p-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">🧪 BiteBase Comprehensive Testing Dashboard</h1>
-          <p className="text-gray-300 text-lg">Testing all features with realistic mock data and AI assistant</p>
+          <h1 className="text-base font-bold mb-4">🧪 BiteBase Comprehensive Testing Dashboard</h1>
+          <p className="text-gray-300 text-base">Testing all features with realistic mock data and AI assistant</p>
           <div className="mt-4 space-x-4">
             <button
               onClick={testAllEndpoints}
@@ -167,7 +167,7 @@ export default function TestPage() {
 
         {/* AI Chat Section */}
         <div className="bg-gray-800 rounded-lg p-6 mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-pink-400">🤖 AI Assistant Testing</h2>
+          <h2 className="text-base font-semibold mb-4 text-pink-400">🤖 AI Assistant Testing</h2>
           <div className="flex gap-4 mb-4">
             <input
               type="text"
@@ -246,7 +246,7 @@ export default function TestPage() {
             return (
               <div key={endpoint.id} className="bg-gray-800 rounded-lg p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-xl font-semibold text-blue-400">{endpoint.name}</h2>
+                  <h2 className="text-base font-semibold text-blue-400">{endpoint.name}</h2>
                   {result && (
                     <span className={`px-2 py-1 rounded text-xs font-medium ${
                       getDataSource(result) === 'mock-data-comprehensive' ? 'bg-green-900 text-green-200' :
@@ -344,7 +344,7 @@ export default function TestPage() {
 
         {/* Feature Status */}
         <div className="mt-8 bg-gray-800 rounded-lg p-6">
-          <h2 className="text-2xl font-semibold mb-4 text-yellow-400">🎯 Feature Testing Status</h2>
+          <h2 className="text-base font-semibold mb-4 text-yellow-400">🎯 Feature Testing Status</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-green-900 rounded p-4">
               <h3 className="font-semibold text-green-200 mb-2">✅ Mock Data System</h3>

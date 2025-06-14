@@ -158,7 +158,7 @@ export default function AdminDashboard() {
     <div className="p-6 max-w-7xl mx-auto">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+          <h1 className="text-base font-bold text-gray-900">Admin Dashboard</h1>
           <p className="text-gray-600">Manage your platform content, SEO, and features</p>
         </div>
         <div className="flex items-center gap-2">
@@ -180,7 +180,7 @@ export default function AdminDashboard() {
             <CardTitle className="text-sm font-medium text-gray-500">Total Users</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{users.totalCount}</div>
+            <div className="text-base font-bold">{users.totalCount}</div>
             <p className="text-xs text-green-600 flex items-center mt-1">
               <ChevronUp className="h-3 w-3 mr-1" /> 12% from last month
             </p>
@@ -192,7 +192,7 @@ export default function AdminDashboard() {
             <CardTitle className="text-sm font-medium text-gray-500">Active Subscriptions</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{users.activeSubscriptions}</div>
+            <div className="text-base font-bold">{users.activeSubscriptions}</div>
             <p className="text-xs text-green-600 flex items-center mt-1">
               <ChevronUp className="h-3 w-3 mr-1" /> 8% from last month
             </p>
@@ -204,7 +204,7 @@ export default function AdminDashboard() {
             <CardTitle className="text-sm font-medium text-gray-500">Trial Users</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{users.trialUsers}</div>
+            <div className="text-base font-bold">{users.trialUsers}</div>
             <p className="text-xs text-red-600 flex items-center mt-1">
               <ChevronDown className="h-3 w-3 mr-1" /> 3% from last month
             </p>
@@ -216,7 +216,7 @@ export default function AdminDashboard() {
             <CardTitle className="text-sm font-medium text-gray-500">Admin Users</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{users.adminUsers}</div>
+            <div className="text-base font-bold">{users.adminUsers}</div>
             <p className="text-xs text-gray-500 mt-1">No change</p>
           </CardContent>
         </Card>
@@ -246,7 +246,7 @@ export default function AdminDashboard() {
         {/* SEO & Content Tab */}
         <TabsContent value="seo">
           <div className="mb-6 flex justify-between items-center">
-            <h2 className="text-lg font-semibold">Blog & Content Management</h2>
+            <h2 className="text-base font-semibold">Blog & Content Management</h2>
             <div className="flex items-center gap-2">
               <Button 
                 variant="outline" 
@@ -366,7 +366,7 @@ export default function AdminDashboard() {
         {/* Feature Boosts Tab */}
         <TabsContent value="boosts">
           <div className="mb-6 flex justify-between items-center">
-            <h2 className="text-lg font-semibold">Feature Boost Management</h2>
+            <h2 className="text-base font-semibold">Feature Boost Management</h2>
             <Button size="sm" className="bg-primary-600 hover:bg-primary-700 text-white">
               <Plus className="h-4 w-4 mr-2" />
               New Boost
@@ -379,7 +379,7 @@ export default function AdminDashboard() {
                 <CardContent className="p-6">
                   <div className="flex justify-between">
                     <div>
-                      <h3 className="text-lg font-semibold">{boost.name}</h3>
+                      <h3 className="text-base font-semibold">{boost.name}</h3>
                       <p className="text-gray-500 mt-1">{boost.description}</p>
                       <div className="mt-4 flex gap-6">
                         <div>
@@ -426,14 +426,14 @@ export default function AdminDashboard() {
         {/* Placeholder for other tabs */}
         <TabsContent value="analytics">
           <div className="p-8 text-center">
-            <h3 className="text-lg font-medium mb-2">Analytics Dashboard</h3>
+            <h3 className="text-base font-medium mb-2">Analytics Dashboard</h3>
             <p className="text-gray-500">Advanced analytics features coming soon</p>
           </div>
         </TabsContent>
         
         <TabsContent value="messages">
           <div className="p-8 text-center">
-            <h3 className="text-lg font-medium mb-2">Support Messages</h3>
+            <h3 className="text-base font-medium mb-2">Support Messages</h3>
             <p className="text-gray-500">Support messaging system coming soon</p>
           </div>
         </TabsContent>

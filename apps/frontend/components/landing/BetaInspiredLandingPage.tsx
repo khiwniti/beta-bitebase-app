@@ -157,7 +157,7 @@ export default function BetaInspiredLandingPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+            className="text-base md:text-base font-bold mb-6 leading-tight"
           >
             Restaurant Intelligence
             <br />
@@ -171,7 +171,7 @@ export default function BetaInspiredLandingPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"
+            className="text-base md:text-base text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"
           >
             Discover profitable locations, track competitors, and optimize operations with 
             geospatial analytics and AI-driven insights that boost your bottom line.
@@ -184,10 +184,10 @@ export default function BetaInspiredLandingPage() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
-            <Link href="/auth" className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-lg shadow-green-500/25">
+            <Link href="/auth" className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-base transition-all hover:scale-105 shadow-lg shadow-green-500/25">
               Get Started
             </Link>
-            <button className="border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105">
+            <button className="border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white px-8 py-4 rounded-full font-semibold text-base transition-all hover:scale-105">
               Watch Demo
             </button>
           </motion.div>
@@ -200,15 +200,15 @@ export default function BetaInspiredLandingPage() {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
           >
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-green-400 mb-2">1000+</div>
+              <div className="text-base md:text-base font-bold text-green-400 mb-2">1000+</div>
               <div className="text-slate-400">Restaurants Analyzed</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-green-400 mb-2">25%</div>
+              <div className="text-base md:text-base font-bold text-green-400 mb-2">25%</div>
               <div className="text-slate-400">Average Revenue Increase</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-green-400 mb-2">99.9%</div>
+              <div className="text-base md:text-base font-bold text-green-400 mb-2">99.9%</div>
               <div className="text-slate-400">Platform Uptime</div>
             </div>
           </motion.div>
@@ -241,10 +241,10 @@ export default function BetaInspiredLandingPage() {
               <span className="text-green-400">✨</span>
               <span className="text-green-400 font-medium">Powerful Features</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-base md:text-base font-bold mb-6">
               Everything You Need to Succeed
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            <p className="text-base text-slate-300 max-w-3xl mx-auto">
               Comprehensive tools and insights to help your restaurant thrive in a competitive market.
             </p>
           </div>
@@ -257,8 +257,8 @@ export default function BetaInspiredLandingPage() {
               transition={{ duration: 0.6 }}
               className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 hover:border-green-500/30 transition-all hover:scale-105"
             >
-              <div className="text-4xl mb-4">🗺️</div>
-              <h3 className="text-2xl font-bold mb-4">Geospatial Analytics</h3>
+              <div className="text-base mb-4">🗺️</div>
+              <h3 className="text-base font-bold mb-4">Geospatial Analytics</h3>
               <ul className="space-y-2 text-slate-300">
                 <li>• Location intelligence mapping</li>
                 <li>• Trade area analysis</li>
@@ -273,8 +273,8 @@ export default function BetaInspiredLandingPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 hover:border-green-500/30 transition-all hover:scale-105"
             >
-              <div className="text-4xl mb-4">🧠</div>
-              <h3 className="text-2xl font-bold mb-4">AI-Powered Insights</h3>
+              <div className="text-base mb-4">🧠</div>
+              <h3 className="text-base font-bold mb-4">AI-Powered Insights</h3>
               <ul className="space-y-2 text-slate-300">
                 <li>• Predictive analytics</li>
                 <li>• Market trend analysis</li>
@@ -289,8 +289,8 @@ export default function BetaInspiredLandingPage() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 hover:border-green-500/30 transition-all hover:scale-105"
             >
-              <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-2xl font-bold mb-4">Business Intelligence</h3>
+              <div className="text-base mb-4">📊</div>
+              <h3 className="text-base font-bold mb-4">Business Intelligence</h3>
               <ul className="space-y-2 text-slate-300">
                 <li>• Real-time dashboards</li>
                 <li>• Performance metrics</li>
@@ -309,16 +309,16 @@ export default function BetaInspiredLandingPage() {
             <span className="text-green-400">💬</span>
             <span className="text-green-400 font-medium">Customer Stories</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-base md:text-base font-bold mb-6">
             Trusted by Restaurant Owners
           </h2>
-          <p className="text-xl text-slate-300 mb-16">
+          <p className="text-base text-slate-300 mb-16">
             See how BiteBase is helping restaurants grow and succeed.
           </p>
           
           {/* Testimonial placeholder */}
           <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 max-w-4xl mx-auto">
-            <p className="text-lg text-slate-300 mb-6 italic">
+            <p className="text-base text-slate-300 mb-6 italic">
               "BiteBase helped us identify the perfect location for our second restaurant. 
               The AI insights were spot-on and we've seen a 30% increase in revenue since opening."
             </p>
@@ -344,10 +344,10 @@ export default function BetaInspiredLandingPage() {
               <span className="text-green-400">💰</span>
               <span className="text-green-400 font-medium">Simple Pricing</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-base md:text-base font-bold mb-6">
               Choose Your Plan
             </h2>
-            <p className="text-xl text-slate-300">
+            <p className="text-base text-slate-300">
               Start free and scale as you grow. No hidden fees, cancel anytime.
             </p>
           </div>
@@ -356,10 +356,10 @@ export default function BetaInspiredLandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Free Plan */}
             <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-2">Free</h3>
+              <h3 className="text-base font-bold mb-2">Free</h3>
               <p className="text-slate-400 mb-6">Basic analytics and insights for small businesses</p>
               <div className="mb-6">
-                <span className="text-4xl font-bold">$0</span>
+                <span className="text-base font-bold">$0</span>
                 <span className="text-slate-400">/month</span>
               </div>
               <ul className="space-y-3 mb-8 text-sm">
@@ -390,10 +390,10 @@ export default function BetaInspiredLandingPage() {
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-1 rounded-full text-sm font-medium">
                 Most Popular
               </div>
-              <h3 className="text-2xl font-bold mb-2">Growth</h3>
+              <h3 className="text-base font-bold mb-2">Growth</h3>
               <p className="text-slate-400 mb-6">For independent restaurants looking to optimize</p>
               <div className="mb-6">
-                <span className="text-4xl font-bold">$14.99</span>
+                <span className="text-base font-bold">$14.99</span>
                 <span className="text-slate-400">/month</span>
               </div>
               <ul className="space-y-3 mb-8 text-sm">
@@ -421,10 +421,10 @@ export default function BetaInspiredLandingPage() {
 
             {/* Pro Plan */}
             <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-2">Pro</h3>
+              <h3 className="text-base font-bold mb-2">Pro</h3>
               <p className="text-slate-400 mb-6">Ideal for restaurants expanding to multiple locations</p>
               <div className="mb-6">
-                <span className="text-4xl font-bold">$109</span>
+                <span className="text-base font-bold">$109</span>
                 <span className="text-slate-400">/month</span>
               </div>
               <ul className="space-y-3 mb-8 text-sm">
@@ -452,10 +452,10 @@ export default function BetaInspiredLandingPage() {
 
             {/* Enterprise Plan */}
             <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-2">Enterprise</h3>
+              <h3 className="text-base font-bold mb-2">Enterprise</h3>
               <p className="text-slate-400 mb-6">Custom solutions for restaurant chains and franchises</p>
               <div className="mb-6">
-                <span className="text-4xl font-bold">$599</span>
+                <span className="text-base font-bold">$599</span>
                 <span className="text-slate-400">/month</span>
               </div>
               <ul className="space-y-3 mb-8 text-sm">
@@ -487,13 +487,13 @@ export default function BetaInspiredLandingPage() {
       {/* CTA Section */}
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-slate-800/30">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-base md:text-base font-bold mb-6">
             Ready to Transform Your Restaurant?
           </h2>
-          <p className="text-xl text-slate-300 mb-8">
+          <p className="text-base text-slate-300 mb-8">
             Join thousands of restaurants using BiteBase to optimize operations and increase profitability.
           </p>
-          <Link href="/auth" className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-lg shadow-green-500/25">
+          <Link href="/auth" className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-base transition-all hover:scale-105 shadow-lg shadow-green-500/25">
             <span>🚀</span>
             Start Your Free Trial Today
           </Link>
@@ -504,9 +504,9 @@ export default function BetaInspiredLandingPage() {
       <footer className="relative py-16 px-4 sm:px-6 lg:px-8 border-t border-slate-700/50">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="text-2xl">🍽️</div>
+            <div className="text-base">🍽️</div>
             <div>
-              <div className="font-bold text-xl">BiteBase</div>
+              <div className="font-bold text-base">BiteBase</div>
               <div className="text-slate-400">Intelligence</div>
             </div>
           </div>

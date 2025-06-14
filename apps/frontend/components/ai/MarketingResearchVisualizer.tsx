@@ -54,7 +54,7 @@ const MarketingResearchVisualizer: React.FC<MarketingResearchVisualizerProps> = 
                   <TrendingUp className="h-5 w-5 text-primary-600" />
                   <span className="font-medium text-primary-800">Growth Rate</span>
                 </div>
-                <p className="text-2xl font-bold text-primary-600">+12.5%</p>
+                <p className="text-base font-bold text-primary-600">+12.5%</p>
                 <p className="text-sm text-primary-600">vs last quarter</p>
               </div>
               <div className="bg-accent-red-50 p-4 rounded-lg border border-accent-red-200">
@@ -62,7 +62,7 @@ const MarketingResearchVisualizer: React.FC<MarketingResearchVisualizerProps> = 
                   <Users className="h-5 w-5 text-accent-red-600" />
                   <span className="font-medium text-accent-red-800">Market Size</span>
                 </div>
-                <p className="text-2xl font-bold text-accent-red-600">2.4M</p>
+                <p className="text-base font-bold text-accent-red-600">2.4M</p>
                 <p className="text-sm text-accent-red-600">potential customers</p>
               </div>
               <div className="bg-accent-saffron-50 p-4 rounded-lg border border-accent-saffron-200">
@@ -70,7 +70,7 @@ const MarketingResearchVisualizer: React.FC<MarketingResearchVisualizerProps> = 
                   <DollarSign className="h-5 w-5 text-accent-saffron-600" />
                   <span className="font-medium text-accent-saffron-800">Revenue Potential</span>
                 </div>
-                <p className="text-2xl font-bold text-accent-saffron-600">$1.2M</p>
+                <p className="text-base font-bold text-accent-saffron-600">$1.2M</p>
                 <p className="text-sm text-accent-saffron-600">annual projection</p>
               </div>
             </div>

@@ -269,7 +269,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Bot className="h-5 w-5 text-primary" />
-            <CardTitle className="text-lg font-medium text-primary">
+            <CardTitle className="text-base font-medium text-primary">
               {title}
             </CardTitle>
           </div>
@@ -304,7 +304,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
         {messages.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center text-gray-500 overflow-hidden">
             <Bot className="h-12 w-12 mb-4 text-primary flex-shrink-0" />
-            <p className="text-lg font-medium mb-2 px-4">
+            <p className="text-base font-medium mb-2 px-4">
               {currentLanguage === "th"
                 ? "สวัสดีครับ! ผมพร้อมช่วยเหลือคุณ"
                 : "Hello! I'm ready to help you"}

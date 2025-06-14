@@ -51,7 +51,7 @@ export function MetricCard({
             </div>
           ) : (
             <div className="space-y-2">
-              <div className="text-2xl font-bold">
+              <div className="text-base font-bold">
                 {formattedValue ?? '--'}
               </div>
               {(change !== undefined && change !== null) && (

@@ -46,7 +46,7 @@ export default function ApiTestPage() {
 
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-8">BiteBase API Integration Test</h1>
+      <h1 className="text-base font-bold mb-8">BiteBase API Integration Test</h1>
       
       <div className="space-y-4 mb-8">
         <button
@@ -69,7 +69,7 @@ export default function ApiTestPage() {
       <div className="grid gap-6">
         {Object.entries(results).map(([testName, result]: [string, any]) => (
           <div key={testName} className="border rounded-lg p-4">
-            <h3 className="text-xl font-semibold mb-2 flex items-center">
+            <h3 className="text-base font-semibold mb-2 flex items-center">
               {result.success ? '✅' : '❌'} {testName}
             </h3>
             

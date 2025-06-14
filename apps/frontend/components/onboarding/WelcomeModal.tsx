@@ -64,7 +64,7 @@ export function WelcomeModal({ userName = 'there', isOpen, onClose, isFirstTimeU
             <X size={20} />
           </button>
           <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 bg-white rounded-full p-2 border-4 border-white">
-            <div className="bg-primary text-white h-16 w-16 rounded-full flex items-center justify-center text-2xl font-bold">
+            <div className="bg-primary text-white h-16 w-16 rounded-full flex items-center justify-center text-base font-bold">
               B
             </div>
           </div>
@@ -74,7 +74,7 @@ export function WelcomeModal({ userName = 'there', isOpen, onClose, isFirstTimeU
         <div className="pt-16 px-8 pb-8">
           {currentStep === 0 && (
             <div className="text-center">
-              <h2 className="text-2xl font-bold mb-2">Welcome to BiteBase, {userName}!</h2>
+              <h2 className="text-base font-bold mb-2">Welcome to BiteBase, {userName}!</h2>
               <p className="text-gray-600 mb-6">
                 Your restaurant market intelligence platform is ready to help you make data-driven decisions.
               </p>
@@ -115,7 +115,7 @@ export function WelcomeModal({ userName = 'there', isOpen, onClose, isFirstTimeU
 
           {currentStep === 1 && (
             <div>
-              <h2 className="text-2xl font-bold mb-2 text-center">The 4P Framework</h2>
+              <h2 className="text-base font-bold mb-2 text-center">The 4P Framework</h2>
               <p className="text-gray-600 mb-6 text-center">
                 BiteBase is organized around the 4P marketing framework to help you optimize every aspect of your restaurant.
               </p>
@@ -214,7 +214,7 @@ export function WelcomeModal({ userName = 'there', isOpen, onClose, isFirstTimeU
 
           {currentStep === 2 && (
             <div className="text-center">
-              <h2 className="text-2xl font-bold mb-2">Ready to get started?</h2>
+              <h2 className="text-base font-bold mb-2">Ready to get started?</h2>
               <p className="text-gray-600 mb-6">
                 Choose how you'd like to begin using BiteBase.
               </p>
@@ -229,7 +229,7 @@ export function WelcomeModal({ userName = 'there', isOpen, onClose, isFirstTimeU
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
                   </div>
-                  <h3 className="font-medium text-lg mb-2">Complete Setup</h3>
+                  <h3 className="font-medium text-base mb-2">Complete Setup</h3>
                   <p className="text-sm text-gray-500">
                     Go through our guided setup process to configure your restaurant profile.
                   </p>
@@ -244,7 +244,7 @@ export function WelcomeModal({ userName = 'there', isOpen, onClose, isFirstTimeU
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                     </svg>
                   </div>
-                  <h3 className="font-medium text-lg mb-2">Explore Dashboard</h3>
+                  <h3 className="font-medium text-base mb-2">Explore Dashboard</h3>
                   <p className="text-sm text-gray-500">
                     Skip setup for now and start exploring the dashboard.
                   </p>

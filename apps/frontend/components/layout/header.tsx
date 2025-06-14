@@ -20,7 +20,7 @@ export default function Header({ onOpenSidebar, userName, restaurantName }: Head
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <div className="text-lg font-semibold text-gray-900">
+        <div className="text-base font-semibold text-gray-900">
           {restaurantName || "BiteBase"}
         </div>
       </div>

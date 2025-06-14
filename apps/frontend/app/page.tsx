@@ -27,7 +27,7 @@ export default function HomePage() {
           
           {/* Loading Text */}
           <div className="space-y-2">
-            <h2 className="text-2xl font-bold text-white">Loading BiteBase</h2>
+            <h2 className="text-base font-bold text-white">Loading BiteBase</h2>
             <p className="text-slate-400">Preparing your restaurant intelligence platform...</p>
           </div>
           

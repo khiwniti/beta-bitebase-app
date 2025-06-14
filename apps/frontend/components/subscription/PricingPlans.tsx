@@ -222,18 +222,18 @@ export default function PricingPlans({
                       />
                     </div>
                   ) : (
-                    <div className="w-16 h-16 flex items-center justify-center rounded-full bg-primary-100 text-primary-600 text-2xl">
+                    <div className="w-16 h-16 flex items-center justify-center rounded-full bg-primary-100 text-primary-600 text-base">
                       {plan.icon}
                     </div>
                   )}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">{plan.name}</h3>
+                <h3 className="text-base font-bold text-gray-900">{plan.name}</h3>
               </div>
 
               {/* Plan Pricing */}
               <div className="text-center mb-8">
                 <div className="flex items-center justify-center">
-                  <span className="text-4xl font-bold text-gray-900">
+                  <span className="text-base font-bold text-gray-900">
                     ${getCurrentPrice(plan)}
                   </span>
                   {getCurrentPrice(plan) > 0 && (

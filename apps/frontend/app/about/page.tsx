@@ -89,10 +89,10 @@ export default function AboutPage() {
       <section className="bg-gradient-to-b from-primary-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-base md:text-base font-bold text-gray-900 mb-6">
               About BiteBase
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base text-gray-600 max-w-3xl mx-auto">
               We're on a mission to empower restaurant owners with the data and insights they need to build successful, profitable businesses in an increasingly competitive market.
             </p>
           </div>
@@ -104,11 +104,11 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
-              <p className="text-lg text-gray-600 mb-6">
+              <h2 className="text-base font-bold text-gray-900 mb-6">Our Mission</h2>
+              <p className="text-base text-gray-600 mb-6">
                 The restaurant industry is one of the most challenging businesses to succeed in, with high failure rates and razor-thin margins. We believe that data-driven decision making can change that.
               </p>
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-base text-gray-600 mb-6">
                 BiteBase was founded by restaurant owners who experienced firsthand the challenges of running a successful restaurant. We combine deep industry knowledge with cutting-edge technology to provide actionable insights that drive real results.
               </p>
               <div className="flex items-center space-x-4">
@@ -133,8 +133,8 @@ export default function AboutPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Impact</h2>
-            <p className="text-lg text-gray-600">
+            <h2 className="text-base font-bold text-gray-900 mb-4">Our Impact</h2>
+            <p className="text-base text-gray-600">
               Numbers that showcase the difference we're making in the restaurant industry
             </p>
           </div>
@@ -145,7 +145,7 @@ export default function AboutPage() {
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
                   <stat.icon className="h-8 w-8 text-primary-600" />
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
+                <div className="text-base font-bold text-gray-900 mb-2">{stat.value}</div>
                 <div className="text-gray-600">{stat.label}</div>
               </div>
             ))}
@@ -157,8 +157,8 @@ export default function AboutPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
-            <p className="text-lg text-gray-600">
+            <h2 className="text-base font-bold text-gray-900 mb-4">Meet Our Team</h2>
+            <p className="text-base text-gray-600">
               The passionate people behind BiteBase
             </p>
           </div>
@@ -175,7 +175,7 @@ export default function AboutPage() {
                       className="rounded-full object-cover"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
+                  <h3 className="text-base font-bold text-gray-900 mb-1">{member.name}</h3>
                   <p className="text-primary-600 font-medium mb-3">{member.role}</p>
                   <p className="text-gray-600 text-sm">{member.bio}</p>
                 </CardContent>
@@ -189,8 +189,8 @@ export default function AboutPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Values</h2>
-            <p className="text-lg text-gray-600">
+            <h2 className="text-base font-bold text-gray-900 mb-4">Our Values</h2>
+            <p className="text-base text-gray-600">
               The principles that guide everything we do
             </p>
           </div>
@@ -200,7 +200,7 @@ export default function AboutPage() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
                 <Users className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Customer First</h3>
+              <h3 className="text-base font-bold text-gray-900 mb-3">Customer First</h3>
               <p className="text-gray-600">
                 Every decision we make is guided by what's best for our restaurant partners and their success.
               </p>
@@ -210,7 +210,7 @@ export default function AboutPage() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
                 <TrendingUp className="h-8 w-8 text-green-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Data-Driven</h3>
+              <h3 className="text-base font-bold text-gray-900 mb-3">Data-Driven</h3>
               <p className="text-gray-600">
                 We believe in the power of data to transform businesses and make better decisions.
               </p>
@@ -220,7 +220,7 @@ export default function AboutPage() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full mb-4">
                 <Heart className="h-8 w-8 text-purple-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Passion</h3>
+              <h3 className="text-base font-bold text-gray-900 mb-3">Passion</h3>
               <p className="text-gray-600">
                 We're passionate about the restaurant industry and helping businesses thrive.
               </p>
@@ -232,10 +232,10 @@ export default function AboutPage() {
       {/* CTA Section */}
       <section className="py-16 bg-primary-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
+          <h2 className="text-base font-bold text-white mb-4">
             Ready to Transform Your Restaurant?
           </h2>
-          <p className="text-xl text-primary-100 mb-8">
+          <p className="text-base text-primary-100 mb-8">
             Join thousands of restaurant owners who trust BiteBase to grow their business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -270,7 +270,7 @@ export default function AboutPage() {
             </div>
             
             <div>
-              <h3 className="text-lg font-semibold mb-4">Product</h3>
+              <h3 className="text-base font-semibold mb-4">Product</h3>
               <ul className="space-y-2 text-gray-400">
                 <li><Link href="/dashboard" className="hover:text-white">Dashboard</Link></li>
                 <li><Link href="/restaurant-explorer" className="hover:text-white">Restaurant Explorer</Link></li>
@@ -280,7 +280,7 @@ export default function AboutPage() {
             </div>
             
             <div>
-              <h3 className="text-lg font-semibold mb-4">Company</h3>
+              <h3 className="text-base font-semibold mb-4">Company</h3>
               <ul className="space-y-2 text-gray-400">
                 <li><Link href="/about" className="hover:text-white">About</Link></li>
                 <li><Link href="/blog" className="hover:text-white">Blog</Link></li>
@@ -290,7 +290,7 @@ export default function AboutPage() {
             </div>
             
             <div>
-              <h3 className="text-lg font-semibold mb-4">Legal</h3>
+              <h3 className="text-base font-semibold mb-4">Legal</h3>
               <ul className="space-y-2 text-gray-400">
                 <li><Link href="/privacy" className="hover:text-white">Privacy Policy</Link></li>
                 <li><Link href="/terms" className="hover:text-white">Terms of Service</Link></li>

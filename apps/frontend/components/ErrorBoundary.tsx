@@ -56,7 +56,7 @@ class ErrorBoundary extends Component<Props, State> {
               </svg>
             </div>
             <div className="mt-4 text-center">
-              <h3 className="text-lg font-medium text-gray-900">
+              <h3 className="text-base font-medium text-gray-900">
                 Something went wrong
               </h3>
               <p className="mt-2 text-sm text-gray-500">

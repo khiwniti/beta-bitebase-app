@@ -231,7 +231,7 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
   return (
     <div className="p-6 max-w-7xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">SEO Optimization Suite</h1>
+        <h1 className="text-base font-bold text-gray-900">SEO Optimization Suite</h1>
         <p className="text-gray-600">Optimize your content strategy with AI-assisted SEO tools</p>
       </div>
       
@@ -567,13 +567,13 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
                       {isGenerating ? (
                         <div>
                           <RefreshCw className="h-12 w-12 mx-auto mb-4 animate-spin text-primary-500" />
-                          <p className="text-lg font-medium">Creating SEO-optimized content...</p>
+                          <p className="text-base font-medium">Creating SEO-optimized content...</p>
                           <p className="text-sm mt-2">This may take a few moments</p>
                         </div>
                       ) : (
                         <div>
                           <BookOpen className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-                          <p className="text-lg font-medium">No content generated yet</p>
+                          <p className="text-base font-medium">No content generated yet</p>
                           <p className="text-sm mt-2">Enter a topic and click "Generate Content"</p>
                         </div>
                       )}
@@ -589,7 +589,7 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
         <TabsContent value="seo-analyzer">
           <div className="p-8 text-center">
             <Info className="h-12 w-12 mx-auto mb-4 text-primary-500" />
-            <h3 className="text-lg font-medium mb-2">SEO Analyzer Coming Soon</h3>
+            <h3 className="text-base font-medium mb-2">SEO Analyzer Coming Soon</h3>
             <p className="text-gray-500 max-w-md mx-auto">
               Our advanced SEO analysis tools will be available in the next update. Stay tuned for powerful content optimization features!
             </p>
