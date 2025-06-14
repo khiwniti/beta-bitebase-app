@@ -87,26 +87,26 @@ export function WelcomeBanner({ onStartTour }: { onStartTour: () => void }) {
   if (!isVisible) return null
   
   return (
-    <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-primary-200 rounded-lg p-4 mb-6">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-3">
-          <div className="p-2 bg-primary-100 rounded-lg">
-            <Play className="w-5 h-5 text-primary-600" />
+    <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-primary-200 rounded-lg p-3 sm:p-4 mb-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
+        <div className="flex items-center space-x-3 flex-1">
+          <div className="p-2 bg-primary-100 rounded-lg flex-shrink-0">
+            <Play className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" />
           </div>
-          <div>
-            <h3 className="font-semibold text-gray-900">Welcome to BiteBase! 🎉</h3>
-            <p className="text-sm text-gray-600">
+          <div className="min-w-0 flex-1">
+            <h3 className="font-semibold text-gray-900 text-sm sm:text-base">Welcome to BiteBase! 🎉</h3>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
               New to our platform? Take a quick tour to discover how AI can transform your restaurant business.
             </p>
           </div>
         </div>
         
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 w-full sm:w-auto">
           <Button
             variant="outline"
             size="sm"
             onClick={dismissBanner}
-            className="text-gray-600"
+            className="text-gray-600 flex-1 sm:flex-none h-9 sm:h-auto"
           >
             Maybe Later
           </Button>
@@ -116,7 +116,7 @@ export function WelcomeBanner({ onStartTour }: { onStartTour: () => void }) {
               dismissBanner()
             }}
             size="sm"
-            className="bg-primary-600 hover:bg-primary-700"
+            className="bg-primary-600 hover:bg-primary-700 flex-1 sm:flex-none h-9 sm:h-auto"
           >
             Start Tour
           </Button>
@@ -152,15 +152,15 @@ export function FeatureSpotlight() {
   ]
   
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
       {features.map((feature, index) => (
         <div
           key={index}
-          className="p-4 bg-white rounded-lg border border-gray-200 hover:border-primary-300 hover:shadow-md transition-all duration-200"
+          className="p-3 sm:p-4 bg-white rounded-lg border border-gray-200 hover:border-primary-300 hover:shadow-md transition-all duration-200"
         >
-          <div className="text-base mb-2">{feature.icon}</div>
-          <h4 className="font-semibold text-gray-900 mb-1">{feature.title}</h4>
-          <p className="text-sm text-gray-600">{feature.description}</p>
+          <div className="text-lg sm:text-xl mb-2">{feature.icon}</div>
+          <h4 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{feature.title}</h4>
+          <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{feature.description}</p>
         </div>
       ))}
     </div>
@@ -201,23 +201,25 @@ export function QuickStartGuide({ onStartTour }: { onStartTour: () => void }) {
   ]
   
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h3 className="text-base font-semibold text-gray-900 mb-4">Quick Start Guide</h3>
-      <div className="space-y-4">
+    <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6">
+      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">Quick Start Guide</h3>
+      <div className="space-y-3 sm:space-y-4">
         {steps.map((step) => (
-          <div key={step.number} className="flex items-center space-x-4">
-            <div className="flex-shrink-0 w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-semibold">
-              {step.number}
-            </div>
-            <div className="flex-1">
-              <h4 className="font-medium text-gray-900">{step.title}</h4>
-              <p className="text-sm text-gray-600">{step.description}</p>
+          <div key={step.number} className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
+            <div className="flex items-center space-x-3 flex-1">
+              <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold">
+                {step.number}
+              </div>
+              <div className="flex-1 min-w-0">
+                <h4 className="font-medium text-gray-900 text-sm sm:text-base">{step.title}</h4>
+                <p className="text-xs sm:text-sm text-gray-600">{step.description}</p>
+              </div>
             </div>
             <Button
               variant="outline"
               size="sm"
               onClick={step.onClick}
-              className="hover:border-primary-500 hover:text-primary-600"
+              className="hover:border-primary-500 hover:text-primary-600 w-full sm:w-auto h-9 sm:h-auto"
             >
               {step.action}
             </Button>
