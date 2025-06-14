@@ -63,7 +63,7 @@ export function PageWrapper({
           mobileOpen={mobileSidebarOpen}
           setMobileOpen={setMobileSidebarOpen}
           userName={userName}
-          restaurantName={restaurantName}
+          restaurantName={restaurantName || undefined}
         />
       )}
 
@@ -72,7 +72,7 @@ export function PageWrapper({
         {/* Header */}
         <Header 
           onOpenSidebar={() => setMobileSidebarOpen(true)}
-          restaurantName={restaurantName}
+          restaurantName={restaurantName || undefined}
           userName={userName}
         />
 
