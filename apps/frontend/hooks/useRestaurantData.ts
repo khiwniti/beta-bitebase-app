@@ -367,10 +367,9 @@ export function useLocationBasedRestaurants() {
       address: "68/1 Soi Langsuan, Ploenchit Rd",
       phone: "+66 2 652 1700",
       platform: "wongnai",
-      public_id: "gaggan-anand-bangkok",
-      image_url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400",
+      images: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400",
       description: "World-renowned progressive Indian cuisine",
-      opening_hours: "18:00-23:00",
+      hours: "18:00-23:00",
       website: "https://www.gaggan.com"
     },
     {
@@ -384,10 +383,9 @@ export function useLocationBasedRestaurants() {
       address: "56 Sukhumvit Soi 26",
       phone: "+66 2 663 3710",
       platform: "wongnai",
-      public_id: "sorn-bangkok",
-      image_url: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400",
+      images: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400",
       description: "Authentic Southern Thai flavors",
-      opening_hours: "18:00-22:00",
+      hours: "18:00-22:00",
       website: "https://www.sornbangkok.com"
     },
     {
@@ -401,10 +399,9 @@ export function useLocationBasedRestaurants() {
       address: "399/3 Silom Rd, Silom",
       phone: "+66 2 919 9918",
       platform: "wongnai",
-      public_id: "le-du-bangkok",
-      image_url: "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400",
+      images: "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400",
       description: "Contemporary Thai cuisine with local ingredients",
-      opening_hours: "18:00-23:00",
+      hours: "18:00-23:00",
       website: "https://www.ledubkk.com"
     }
   ];

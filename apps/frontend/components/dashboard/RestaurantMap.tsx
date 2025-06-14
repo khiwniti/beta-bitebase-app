@@ -16,9 +16,9 @@ interface Restaurant {
   address?: string;
   phone?: string;
   platform?: string;
-  image_url?: string;
+  images?: any;
   description?: string;
-  opening_hours?: string;
+  hours?: any;
   website?: string;
 }
 
@@ -187,9 +187,9 @@ export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
                 onClick={() => setSelectedRestaurant(restaurant)}
               >
                 <div className="flex items-start space-x-3">
-                  {restaurant.image_url && (
+                  {restaurant.images && (
                     <img
-                      src={restaurant.image_url}
+                      src={typeof restaurant.images === 'string' ? restaurant.images : restaurant.images[0]}
                       alt={restaurant.name}
                       className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
                     />
@@ -278,11 +278,11 @@ export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
                 </div>
               )}
 
-              {selectedRestaurant.opening_hours && (
+              {selectedRestaurant.hours && (
                 <div className="flex items-center">
                   <Clock className="w-4 h-4 text-gray-400 mr-2" />
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {selectedRestaurant.opening_hours}
+                    {typeof selectedRestaurant.hours === 'string' ? selectedRestaurant.hours : 'See website for hours'}
                   </span>
                 </div>
               )}

@@ -17,7 +17,7 @@ interface ChangelogEntry {
 const changelogEntries: ChangelogEntry[] = [
   {
     id: "1",
-    date: "Jun 13, 2025",
+    date: "Dec 13, 2024",
     title: "🎨 Modern Auth Page Redesign",
     description: "Complete redesign of the authentication page with a centered layout, modern blue color scheme, and improved user experience. Removed the left sidebar for a cleaner, more focused design that works beautifully on all devices.",
     type: "feature",
@@ -25,7 +25,7 @@ const changelogEntries: ChangelogEntry[] = [
   },
   {
     id: "2", 
-    date: "Jun 12, 2025",
+    date: "Dec 12, 2024",
     title: "Enhanced AI Analytics Dashboard",
     description: "We've completely redesigned our analytics dashboard with new AI-powered insights, real-time data visualization, and customizable widgets. The new dashboard provides deeper insights into customer behavior, sales patterns, and operational efficiency.",
     type: "feature",
@@ -33,28 +33,28 @@ const changelogEntries: ChangelogEntry[] = [
   },
   {
     id: "3",
-    date: "Jun 10, 2025",
+    date: "Jun 10, 2024",
     title: "Improved POS Integration Performance",
     description: "Significantly improved the performance and reliability of our POS integrations. Data synchronization is now 3x faster with better error handling and automatic retry mechanisms.",
     type: "improvement"
   },
   {
     id: "4",
-    date: "Jun 8, 2025", 
+    date: "Jun 8, 2024", 
     title: "New Market Analysis Features",
     description: "Added comprehensive market analysis tools including competitor tracking, local market trends, and demographic insights. These features help restaurant owners make data-driven decisions about menu pricing, marketing strategies, and expansion opportunities.",
     type: "feature"
   },
   {
     id: "5",
-    date: "Jun 5, 2025",
+    date: "Jun 5, 2024",
     title: "Fixed Menu Optimization Algorithm",
     description: "Resolved an issue where the menu optimization algorithm wasn't properly accounting for seasonal variations in ingredient costs. The algorithm now provides more accurate pricing recommendations.",
     type: "fix"
   },
   {
     id: "6",
-    date: "May 1, 2025",
+    date: "May 1, 2024",
     title: "🚀 BiteBase Platform Launch",
     description: "Official launch of the BiteBase Restaurant Intelligence Platform! Starting our journey to help restaurants make data-driven decisions with geospatial analytics, AI-powered insights, and comprehensive market analysis tools.",
     type: "feature"
@@ -89,37 +89,41 @@ export default function ModernChangelog() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="modern-nav shadow-sm">
-        <div className="modern-nav-container">
-          <Link href="/" className="flex items-center gap-3">
-            <BiteBaseLogo size="md" showText={false} variant="default" />
-          </Link>
-
-          <div className="hidden md:flex items-center gap-8">
-            <div className="modern-nav-links">
-              <Link href="/" className="modern-nav-link">Home</Link>
-              <Link href="/blog" className="modern-nav-link">Blog</Link>
-              <Link href="/changelog" className="modern-nav-link active">Changelog</Link>
-              <Link href="/docs" className="modern-nav-link">Docs</Link>
-            </div>
-
-            <Link href="/dashboard">
-              <button className="btn-primary">Dashboard</button>
+      <nav className="border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <Link href="/" className="flex items-center gap-3">
+              <BiteBaseLogo size="md" showText={false} variant="default" />
             </Link>
+
+            <div className="hidden md:flex items-center gap-8">
+              <div className="flex items-center gap-6">
+                <Link href="/" className="text-gray-600 hover:text-gray-900 transition-colors">Home</Link>
+                <Link href="/blog" className="text-gray-600 hover:text-gray-900 transition-colors">Blog</Link>
+                <Link href="/changelog" className="text-gray-900 font-medium">Changelog</Link>
+                <Link href="/docs" className="text-gray-600 hover:text-gray-900 transition-colors">Docs</Link>
+              </div>
+
+              <Link href="/dashboard">
+                <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg transition-colors">
+                  Dashboard
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
 
       {/* Header */}
-      <div className="changelog-container">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center max-w-4xl mx-auto mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-50 border border-primary-200 rounded-full text-sm text-primary-700 mb-8">
-              <span className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-200 rounded-full text-sm text-emerald-700 mb-8">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
               Latest updates
             </div>
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-gray-900 mb-6">
@@ -171,7 +175,7 @@ export default function ModernChangelog() {
                 placeholder="Search updates..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white shadow-sm"
+                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white shadow-sm"
               />
             </div>
             <select
@@ -196,17 +200,17 @@ export default function ModernChangelog() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="changelog-entry"
+              className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="flex items-center gap-3 mb-4">
-                <time className="changelog-date">{entry.date}</time>
+                <time className="text-sm text-gray-500 font-medium">{entry.date}</time>
                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${typeColors[entry.type]}`}>
                   {typeIcons[entry.type]} {entry.type.charAt(0).toUpperCase() + entry.type.slice(1)}
                 </span>
               </div>
               
-              <h2 className="changelog-entry-title">
-                <Link href={`/changelog/${entry.id}`} className="hover:text-primary-600 transition-colors">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                <Link href={`/changelog/${entry.id}`} className="hover:text-emerald-600 transition-colors">
                   {entry.title}
                 </Link>
               </h2>
@@ -221,8 +225,8 @@ export default function ModernChangelog() {
                 </div>
               )}
               
-              <div className="changelog-entry-content">
-                <p>{entry.description}</p>
+              <div className="prose prose-gray max-w-none">
+                <p className="text-gray-600 leading-relaxed">{entry.description}</p>
               </div>
             </motion.article>
           ))}
@@ -249,7 +253,7 @@ export default function ModernChangelog() {
             transition={{ delay: 0.5 }}
             className="text-center mt-12"
           >
-            <button className="btn-secondary">
+            <button className="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors">
               Load More Entries
             </button>
           </motion.div>
@@ -258,7 +262,7 @@ export default function ModernChangelog() {
 
       {/* Footer */}
       <footer className="bg-gray-50 border-t border-gray-200 mt-20">
-        <div className="modern-container py-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
               <BiteBaseLogo size="md" showText={false} variant="default" />

@@ -14,10 +14,10 @@ export default function middleware(request: NextRequest) {
     const token = request.cookies.get('auth-token')?.value
     
     if (!token) {
-      // Redirect to login
-      const loginUrl = new URL('/auth/login', request.url)
-      loginUrl.searchParams.set('redirect', pathname)
-      return NextResponse.redirect(loginUrl)
+      // Redirect to auth page
+      const authUrl = new URL('/auth', request.url)
+      authUrl.searchParams.set('redirect', pathname)
+      return NextResponse.redirect(authUrl)
     }
   }
 
