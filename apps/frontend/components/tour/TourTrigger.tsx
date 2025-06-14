@@ -158,7 +158,7 @@ export function FeatureSpotlight() {
           key={index}
           className="p-3 sm:p-4 bg-white rounded-lg border border-gray-200 hover:border-primary-300 hover:shadow-md transition-all duration-200"
         >
-          <div className="text-lg sm:text-xl mb-2">{feature.icon}</div>
+          <div className="text-base sm:text-lg mb-2">{feature.icon}</div>
           <h4 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{feature.title}</h4>
           <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{feature.description}</p>
         </div>
@@ -202,7 +202,7 @@ export function QuickStartGuide({ onStartTour }: { onStartTour: () => void }) {
   
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6">
-      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">Quick Start Guide</h3>
+      <h3 className="text-base font-semibold text-gray-900 mb-4">Quick Start Guide</h3>
       <div className="space-y-3 sm:space-y-4">
         {steps.map((step) => (
           <div key={step.number} className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
