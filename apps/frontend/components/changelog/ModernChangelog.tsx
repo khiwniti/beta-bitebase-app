@@ -17,39 +17,47 @@ interface ChangelogEntry {
 const changelogEntries: ChangelogEntry[] = [
   {
     id: "1",
-    date: "Jun 12, 2024",
+    date: "Jun 13, 2025",
+    title: "🎨 Modern Auth Page Redesign",
+    description: "Complete redesign of the authentication page with a centered layout, modern blue color scheme, and improved user experience. Removed the left sidebar for a cleaner, more focused design that works beautifully on all devices.",
+    type: "feature",
+    image: "/images/changelog/auth-redesign.png"
+  },
+  {
+    id: "2", 
+    date: "Jun 12, 2025",
     title: "Enhanced AI Analytics Dashboard",
     description: "We've completely redesigned our analytics dashboard with new AI-powered insights, real-time data visualization, and customizable widgets. The new dashboard provides deeper insights into customer behavior, sales patterns, and operational efficiency.",
     type: "feature",
     image: "/images/changelog/dashboard-update.png"
   },
   {
-    id: "2", 
-    date: "Jun 10, 2024",
+    id: "3",
+    date: "Jun 10, 2025",
     title: "Improved POS Integration Performance",
     description: "Significantly improved the performance and reliability of our POS integrations. Data synchronization is now 3x faster with better error handling and automatic retry mechanisms.",
     type: "improvement"
   },
   {
-    id: "3",
-    date: "Jun 8, 2024", 
+    id: "4",
+    date: "Jun 8, 2025", 
     title: "New Market Analysis Features",
     description: "Added comprehensive market analysis tools including competitor tracking, local market trends, and demographic insights. These features help restaurant owners make data-driven decisions about menu pricing, marketing strategies, and expansion opportunities.",
     type: "feature"
   },
   {
-    id: "4",
-    date: "Jun 5, 2024",
+    id: "5",
+    date: "Jun 5, 2025",
     title: "Fixed Menu Optimization Algorithm",
     description: "Resolved an issue where the menu optimization algorithm wasn't properly accounting for seasonal variations in ingredient costs. The algorithm now provides more accurate pricing recommendations.",
     type: "fix"
   },
   {
-    id: "5",
-    date: "Jun 3, 2024",
-    title: "Mobile App Performance Improvements",
-    description: "Optimized mobile app performance with faster loading times, improved offline capabilities, and better battery efficiency. The app now loads 40% faster on average.",
-    type: "improvement"
+    id: "6",
+    date: "May 1, 2025",
+    title: "🚀 BiteBase Platform Launch",
+    description: "Official launch of the BiteBase Restaurant Intelligence Platform! Starting our journey to help restaurants make data-driven decisions with geospatial analytics, AI-powered insights, and comprehensive market analysis tools.",
+    type: "feature"
   }
 ];
 

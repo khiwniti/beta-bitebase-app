@@ -19,7 +19,7 @@ interface PageWrapperProps {
     active?: boolean
   }[]
   headerActions?: React.ReactNode
-  restaurantName?: string
+  restaurantName?: string | null
   userName?: string
 }
 
@@ -31,8 +31,8 @@ export function PageWrapper({
   showSidebar = true,
   navItems,
   headerActions,
-  restaurantName = "Bella Vista Bistro",
-  userName = "Maria Rodriguez"
+  restaurantName = null,
+  userName = "Restaurant Manager"
 }: PageWrapperProps) {
   const pathname = usePathname()
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
