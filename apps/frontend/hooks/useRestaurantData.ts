@@ -109,15 +109,20 @@ export function useRestaurantSearch() {
     setError(null);
     
     try {
-      const response = await apiClient.searchWongnaiRestaurants(params);
+      // Use the regular search endpoint since we don't have a separate Wongnai endpoint
+      const response = await apiClient.searchRestaurantsByLocation(
+        params.latitude || 13.7563, 
+        params.longitude || 100.5018, 
+        5
+      );
       if (response.error) {
         setError(response.error);
         setRestaurants([]);
       } else {
-        setRestaurants(response.data?.restaurants || []);
+        setRestaurants(response.data || []);
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to search Wongnai restaurants');
+      setError(err instanceof Error ? err.message : 'Failed to search restaurants');
       setRestaurants([]);
     } finally {
       setLoading(false);

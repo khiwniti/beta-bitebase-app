@@ -107,8 +107,8 @@ class ApiClient {
     options: RequestInit = {},
     useAgent = false
   ): Promise<ApiResponse<T>> {
-    // All endpoints now use the mock data server
-    const url = `${this.baseUrl}/api${endpoint}`;
+    // Connect directly to backend without /api prefix
+    const url = `${this.baseUrl}${endpoint}`;
     
     console.log(`🌐 Making API request to: ${url}`, { method: options.method || 'GET', body: options.body });
     
@@ -158,7 +158,7 @@ class ApiClient {
 
   // Restaurant data endpoints
   async getAllRestaurants(): Promise<ApiResponse<Restaurant[]>> {
-    const response = await this.request<{ data: Restaurant[]; pagination: any; success: boolean }>('/restaurants/search');
+    const response = await this.request<{ data: { restaurants: Restaurant[]; total: number; pagination: any }; success: boolean }>('/restaurants/search');
     if (response.error || !response.data?.success) {
       return {
         error: response.error || 'Failed to fetch restaurants',
@@ -166,7 +166,7 @@ class ApiClient {
       };
     }
     return {
-      data: response.data?.data || [],
+      data: response.data?.data?.restaurants || [],
       status: response.status,
     };
   }
@@ -185,15 +185,15 @@ class ApiClient {
       longitude: longitude.toString(),
       radius: radius.toString(),
     });
-    const response = await this.request<{ restaurants: Restaurant[]; total: number; limit: number; offset: number }>(`/restaurants/search?${params}`);
-    if (response.error) {
+    const response = await this.request<{ data: { restaurants: Restaurant[]; total: number; pagination: any }; success: boolean }>(`/restaurants/search?${params}`);
+    if (response.error || !response.data?.success) {
       return {
-        error: response.error,
+        error: response.error || 'Failed to search restaurants',
         status: response.status,
       };
     }
     return {
-      data: response.data?.restaurants || [],
+      data: response.data?.data?.restaurants || [],
       status: response.status,
     };
   }
