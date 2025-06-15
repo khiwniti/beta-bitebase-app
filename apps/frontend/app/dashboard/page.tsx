@@ -39,7 +39,6 @@ import { tourUtils } from "../../utils/tourUtils"
 import BiteBaseAIAssistant from "../../components/ai/BiteBaseAIAssistant"
 import ServiceHealthDashboard from "../../components/admin/ServiceHealthDashboard"
 import { useRestaurants, useLocationBasedRestaurants } from "../../hooks/useRestaurantData"
-import RestaurantMap from "../../components/dashboard/RestaurantMap"
 import UnifiedMapComponent from "../../components/map/UnifiedMapComponent"
 import RestaurantScoring from "../../components/scoring/RestaurantScoring"
 
@@ -465,10 +464,10 @@ export default function DashboardPage() {
                     // Handle insight action based on type
                     if (insight.type === 'opportunity') {
                       router.push('/market-analysis')
-                    } else if (insight.type === 'warning') {
-                      router.push('/price')
+                    } else if (insight.type === 'info') {
+                      router.push('/reports')
                     } else {
-                      router.push('/product')
+                      router.push('/dashboard')
                     }
                   }}
                 />
