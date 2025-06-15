@@ -2,7 +2,6 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { markUserAsFirstTime, clearUserSessionData } from "../utils/tourUtils";
-import { GoogleAuth } from "google-auth-library";
 
 // Custom User interface to match our backend
 interface User {

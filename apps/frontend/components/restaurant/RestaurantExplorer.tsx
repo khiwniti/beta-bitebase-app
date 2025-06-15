@@ -228,7 +228,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                       <h3 className="font-semibold text-gray-900">{restaurant.name}</h3>
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                        <span className="text-sm text-gray-600">{parseFloat(restaurant.rating || '0').toFixed(1)}</span>
+                        <span className="text-sm text-gray-600">{parseFloat(String(restaurant.rating || '0')).toFixed(1)}</span>
                       </div>
                     </div>
                     
@@ -271,7 +271,7 @@ export default function RestaurantExplorer({ initialLocation }: RestaurantExplor
                 <div className="space-y-4 mb-6">
                   <div className="flex items-center gap-2">
                     <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                    <span className="font-medium">{parseFloat(selectedRestaurant.rating || '0').toFixed(1)}</span>
+                    <span className="font-medium">{parseFloat(String(selectedRestaurant.rating || '0')).toFixed(1)}</span>
                     <span className="text-gray-500">• {selectedRestaurant.cuisine}</span>
                     <span className="text-primary-600 font-medium">
                       {getPriceDisplay(selectedRestaurant.price_range || '')}

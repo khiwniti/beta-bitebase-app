@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
-import { useAuth } from '../contexts/AuthContext'
+// import { useAuth } from '../contexts/AuthContext'
 import PageWrapper from '../components/layout/PageWrapper'
 
 export default function AppContent({
@@ -11,11 +11,17 @@ export default function AppContent({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
-  const { user, loading } = useAuth() // This will now be called within AuthProvider
+  // const { user, loading } = useAuth() // This will now be called within AuthProvider
+  const user = {
+    restaurantName: 'Mock Restaurant',
+    displayName: 'Mock User',
+    email: 'mock@example.com'
+  };
+  const loading = false;
   const [tourCompleted, setTourCompleted] = useState(false)
 
   // Determine if we're on the landing page, auth pages, or blog pages
-  const isPublicPage = pathname === '/' || pathname?.startsWith('/auth') || pathname?.startsWith('/blog') || pathname?.startsWith('/about') || pathname?.startsWith('/contact') || pathname?.startsWith('/privacy') || pathname?.startsWith('/terms') || pathname?.startsWith('/help') || pathname?.startsWith('/changelog')
+  const isPublicPage = true; //pathname === '/' || pathname?.startsWith('/auth') || pathname?.startsWith('/blog') || pathname?.startsWith('/about') || pathname?.startsWith('/contact') || pathname?.startsWith('/privacy') || pathname?.startsWith('/terms') || pathname?.startsWith('/help') || pathname?.startsWith('/changelog')
 
   // Check localStorage for tour completion status (client-side only)
   useEffect(() => {
@@ -81,19 +87,19 @@ export default function AppContent({
 
   const pageInfo = getPageInfo()
 
-  if (loading && !isPublicPage) {
-    // You might want a more sophisticated loading state here, 
-    // especially if PageWrapper itself has styles that shouldn't flash.
-    // For now, a simple loading indicator.
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-10 h-10 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mb-4 mx-auto"></div>
-          <p className="text-gray-600">Authenticating...</p>
-        </div>
-      </div>
-    );
-  }
+  // if (loading && !isPublicPage) {
+  //   // You might want a more sophisticated loading state here, 
+  //   // especially if PageWrapper itself has styles that shouldn't flash.
+  //   // For now, a simple loading indicator.
+  //   return (
+  //     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+  //       <div className="text-center">
+  //         <div className="w-10 h-10 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mb-4 mx-auto"></div>
+  //         <p className="text-gray-600">Authenticating...</p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <>

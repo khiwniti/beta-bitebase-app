@@ -175,8 +175,8 @@ export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
           {/* User Location Marker */}
           {userLocation && (
             <Marker
-              longitude={userLocation.lng}
-              latitude={userLocation.lat}
+              longitude={userLocation!.lng}
+              latitude={userLocation!.lat}
               anchor="bottom"
             >
               <div className="relative">
@@ -213,35 +213,28 @@ export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
           {/* Popup for selected restaurant */}
           {popupInfo && (
             <Popup
-              anchor="top"
-              longitude={popupInfo.longitude!}
-              latitude={popupInfo.latitude!}
-              onClose={() => setPopupInfo(null)}
-              closeButton={true}
+              longitude={popupInfo!.longitude}
+              latitude={popupInfo!.latitude}
+              anchor="bottom"
               closeOnClick={false}
+              onClose={() => setPopupInfo(null)}
               className="restaurant-popup"
             >
-              <div className="p-3 max-w-xs">
-                <h3 className="font-semibold text-gray-900 mb-1">{popupInfo.name}</h3>
-                <p className="text-sm text-gray-600 mb-2">{popupInfo.cuisine}</p>
-                <div className="flex items-center space-x-2 text-xs">
-                  {popupInfo.rating && (
-                    <div className="flex items-center">
-                      <Star className="w-3 h-3 text-yellow-400 fill-current mr-1" />
-                      <span>{popupInfo.rating}</span>
+              <div className="p-2">
+                <h3 className="font-semibold text-base">{popupInfo!.name}</h3>
+                <p className="text-sm text-gray-600">{popupInfo!.address}</p>
+                {popupInfo!.rating && (
+                  <div className="flex items-center mt-1">
+                    <div className="text-yellow-500">
+                      {Array(Math.round(popupInfo!.rating))
+                        .fill(0)
+                        .map((_, i) => (
+                          <span key={i}>★</span>
+                        ))}
                     </div>
-                  )}
-                  {popupInfo.price_range && (
-                    <span className="text-gray-500">{popupInfo.price_range}</span>
-                  )}
-                </div>
-                <Button
-                  onClick={() => setSelectedRestaurant(popupInfo)}
-                  size="sm"
-                  className="w-full mt-2"
-                >
-                  View Details
-                </Button>
+                    <span className="ml-1 text-sm text-gray-600">{popupInfo!.rating}</span>
+                  </div>
+                )}
               </div>
             </Popup>
           )}

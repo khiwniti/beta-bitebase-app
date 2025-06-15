@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import BiteBaseLogo from "../BiteBaseLogo";
-import LanguageSwitcher from "../LanguageSwitcher";
+import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useLanguage } from "../../contexts/LanguageContext";
 
 export default function StunningLandingPage() {

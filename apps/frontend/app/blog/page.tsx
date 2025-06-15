@@ -7,7 +7,7 @@ import { Card, CardContent } from "../../components/ui/card";
 import { Button } from "../../components/ui/button";
 import { Search, Clock, ChevronRight, Tag, Calendar } from "lucide-react";
 import BiteBaseLogo from "../../components/BiteBaseLogo";
-import LanguageSwitcher from "../../components/LanguageSwitcher";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useLanguage } from "../../contexts/LanguageContext";
 
 // Force dynamic rendering to avoid SSG issues with context

@@ -143,7 +143,7 @@ class ExternalApiClient {
       latitude: latitude.toString(),
       longitude: longitude.toString(),
       radius: radius.toString(),
-      limit
+      limit: limit.toString()
     };
     
     const searchParams = new URLSearchParams(params);
