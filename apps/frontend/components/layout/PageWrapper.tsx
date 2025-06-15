@@ -46,7 +46,7 @@ export function PageWrapper({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex">
+    <div className="h-screen bg-gray-50 dark:bg-gray-950 flex overflow-hidden">
       {/* Tour integration with proper props */}
       <WebTour 
         isOpen={isTourOpen}
@@ -57,7 +57,7 @@ export function PageWrapper({
 
       {/* Sidebar - Fixed height with independent scrolling */}
       {showSidebar && (
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 h-full">
           <Sidebar 
             collapsed={sidebarCollapsed}
             toggleCollapsed={toggleSidebar}
@@ -70,7 +70,7 @@ export function PageWrapper({
       )}
 
       {/* Main content area - Independent scrolling */}
-      <div className="flex-1 flex flex-col min-h-screen">
+      <div className="flex-1 flex flex-col h-full overflow-hidden">
         {/* Header - Fixed at top */}
         <div className="flex-shrink-0">
           <Header 

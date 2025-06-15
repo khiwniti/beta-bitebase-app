@@ -251,7 +251,7 @@ export function Sidebar({
       
       {/* Sidebar container */}
       <div 
-        className={`fixed inset-y-0 left-0 z-50 lg:relative transform transition-all duration-300 ease-in-out
+        className={`fixed inset-y-0 left-0 z-50 lg:relative lg:h-full transform transition-all duration-300 ease-in-out
           ${mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
           ${collapsed ? 'w-20' : 'w-72'}
           bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col
