@@ -157,10 +157,7 @@ export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
 
   // Render Mapbox map if token is available
   const renderMapboxMap = () => {
-    // Temporarily use simple map until Mapbox is properly configured
-    return renderSimpleMap();
-    
-    if (!MAPBOX_TOKEN) {
+    if (!MAPBOX_TOKEN || MAPBOX_TOKEN === 'your-mapbox-token-here') {
       return renderSimpleMap();
     }
 

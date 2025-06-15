@@ -36,7 +36,6 @@ import {
 } from "../../components/dashboard/DashboardGrid"
 import { ChartContainer, SimpleLineChart, SimpleBarChart } from "../../components/ui/chart-container"
 import { tourUtils } from "../../utils/tourUtils"
-import BiteBaseAIAssistant from "../../components/ai/BiteBaseAIAssistant"
 import ServiceHealthDashboard from "../../components/admin/ServiceHealthDashboard"
 import { useRestaurants, useLocationBasedRestaurants } from "../../hooks/useRestaurantData"
 import RestaurantMap from "../../components/dashboard/RestaurantMap"
@@ -392,27 +391,16 @@ export default function DashboardPage() {
         )}
       </DashboardSection>
 
-      {/* Main Content Grid - 2 Sidebar Layout */}
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-        {/* BiteBase AI Assistant */}
-        <div data-tour="ai-chat" className="order-2 xl:order-1 xl:col-span-2">
-          <BiteBaseAIAssistant
-            userId={user?.uid || 'demo-user'}
-            title="BiteBase AI Assistant"
-            placeholder="Ask about your restaurant, sales, customers, or marketing..."
-            defaultLanguage="en"
-            className="h-[400px] sm:h-[500px] lg:h-[600px]"
-          />
-        </div>
-
-        {/* Quick Actions Sidebar */}
-        <div className="space-y-4 sm:space-y-6 order-1 xl:order-2 xl:col-span-1">
+      {/* Quick Actions and Insights Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+        {/* Quick Actions */}
+        <div className="space-y-4 sm:space-y-6">
           <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4 sm:p-6">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Quick Actions</h3>
+            <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">Quick Actions</h3>
             <div className="space-y-3">
               <Button
                 onClick={() => router.push('/market-analysis')}
-                className="w-full justify-start btn-primary text-sm sm:text-base min-h-[44px] touch-manipulation"
+                className="w-full justify-start btn-primary text-xs sm:text-sm min-h-[44px] touch-manipulation"
                 data-tour="map-analysis"
               >
                 <Map className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
@@ -421,7 +409,7 @@ export default function DashboardPage() {
               <Button
                 onClick={() => router.push('/restaurant-setup')}
                 variant="outline"
-                className="w-full justify-start text-sm sm:text-base min-h-[44px] touch-manipulation"
+                className="w-full justify-start text-xs sm:text-sm min-h-[44px] touch-manipulation"
                 data-tour="restaurant-setup"
               >
                 <Plus className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
@@ -430,7 +418,7 @@ export default function DashboardPage() {
               <Button
                 onClick={() => router.push('/reports')}
                 variant="outline"
-                className="w-full justify-start text-sm sm:text-base min-h-[44px] touch-manipulation"
+                className="w-full justify-start text-xs sm:text-sm min-h-[44px] touch-manipulation"
                 data-tour="reports"
               >
                 <FileText className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
@@ -438,9 +426,12 @@ export default function DashboardPage() {
               </Button>
             </div>
           </div>
+        </div>
 
+        {/* AI Insights */}
+        <div className="space-y-4 sm:space-y-6">
           <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4 sm:p-6">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">AI Insights</h3>
+            <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">AI Insights</h3>
             <div className="space-y-3">
               {realTimeMetrics && getRealTimeInsights(parseInt(realTimeMetrics.totalRestaurants.value) || 0).map((insight) => (
                 <InsightCard
@@ -456,10 +447,10 @@ export default function DashboardPage() {
                     // Handle insight action based on type
                     if (insight.type === 'opportunity') {
                       router.push('/market-analysis')
-                    } else if (insight.type === 'warning') {
-                      router.push('/price')
+                    } else if (insight.type === 'info') {
+                      router.push('/reports')
                     } else {
-                      router.push('/product')
+                      router.push('/dashboard')
                     }
                   }}
                 />

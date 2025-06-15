@@ -55,29 +55,33 @@ export function PageWrapper({
         isFirstTimeUser={isFirstTimeUser}
       />
 
-      {/* Sidebar */}
+      {/* Sidebar - Fixed height with independent scrolling */}
       {showSidebar && (
-        <Sidebar 
-          collapsed={sidebarCollapsed}
-          toggleCollapsed={toggleSidebar}
-          mobileOpen={mobileSidebarOpen}
-          setMobileOpen={setMobileSidebarOpen}
-          userName={userName}
-          restaurantName={restaurantName || undefined}
-        />
+        <div className="flex-shrink-0">
+          <Sidebar 
+            collapsed={sidebarCollapsed}
+            toggleCollapsed={toggleSidebar}
+            mobileOpen={mobileSidebarOpen}
+            setMobileOpen={setMobileSidebarOpen}
+            userName={userName}
+            restaurantName={restaurantName || undefined}
+          />
+        </div>
       )}
 
-      {/* Main content */}
-      <div className="flex-1 flex flex-col relative overflow-hidden">
-        {/* Header */}
-        <Header 
-          onOpenSidebar={() => setMobileSidebarOpen(true)}
-          restaurantName={restaurantName || undefined}
-          userName={userName}
-        />
+      {/* Main content area - Independent scrolling */}
+      <div className="flex-1 flex flex-col min-h-screen">
+        {/* Header - Fixed at top */}
+        <div className="flex-shrink-0">
+          <Header 
+            onOpenSidebar={() => setMobileSidebarOpen(true)}
+            restaurantName={restaurantName || undefined}
+            userName={userName}
+          />
+        </div>
 
-        {/* Main content */}
-        <main className="flex-1 overflow-auto">
+        {/* Main content - Scrollable independently */}
+        <main className="flex-1 overflow-y-auto">
           <div className="container max-w-7xl mx-auto px-4 py-6">
             {/* Welcome Banner */}
             {showWelcomeBanner && (
@@ -91,10 +95,10 @@ export function PageWrapper({
               <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
           <div>
                   {pageTitle && (
-                    <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{pageTitle}</h1>
+                    <h1 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">{pageTitle}</h1>
                   )}
                   {pageDescription && (
-                    <p className="mt-2 text-gray-600 dark:text-gray-400 max-w-3xl">{pageDescription}</p>
+                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 max-w-3xl">{pageDescription}</p>
             )}
           </div>
           
@@ -138,23 +142,23 @@ export function PageWrapper({
           </div>
         </main>
         
-        {/* Footer */}
-        <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-4 px-6">
-          <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between">
-            <div className="text-sm text-gray-500 dark:text-gray-400 mb-2 sm:mb-0">
-              <span>© {new Date().getFullYear()} BiteBase - Restaurant Discovery Platform</span>
+        {/* Footer - Fixed at bottom */}
+        <div className="flex-shrink-0">
+          <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-4 px-6">
+            <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between">
+              <div className="text-sm text-gray-500 dark:text-gray-400 mb-2 sm:mb-0">
+                <span>© {new Date().getFullYear()} BiteBase - Restaurant Discovery Platform</span>
               </div>
-            <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
-              <a href="/help" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Help</a>
-              <a href="/privacy" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Privacy</a>
-              <a href="/terms" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Terms</a>
-              <span className="text-gray-400 dark:text-gray-600">v1.3.0</span>
+              <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+                <a href="/help" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Help</a>
+                <a href="/privacy" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Privacy</a>
+                <a href="/terms" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Terms</a>
+                <span className="text-gray-400 dark:text-gray-600">v1.3.0</span>
+              </div>
             </div>
+          </footer>
         </div>
-        </footer>
       </div>
-
-
     </div>
   )
 }

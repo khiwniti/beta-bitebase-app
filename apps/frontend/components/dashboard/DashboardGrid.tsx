@@ -93,7 +93,7 @@ export function MetricCard({
               </div>
             </div>
             <div className="min-w-0 flex-1">
-              <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 truncate leading-tight mb-1">{title}</h3>
+              <h3 className="text-xs font-medium text-gray-600 dark:text-gray-400 truncate leading-tight mb-1">{title}</h3>
               <div className="flex items-center gap-2">
                 {getStatusIndicator()}
                 <span className="text-xs text-gray-500 dark:text-gray-400 capitalize">{status}</span>
@@ -115,13 +115,13 @@ export function MetricCard({
             </div>
           ) : status === 'connected' ? (
             <div className="space-y-2">
-              <div className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-gray-100 leading-tight break-words">{value}</div>
+              <div className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-gray-100 leading-tight break-words">{value}</div>
               {change && (
                 <div className={`flex items-center gap-2 flex-wrap ${getTrendColor()}`}>
                   <div className="w-4 h-4 flex-shrink-0">
                     {getTrendIcon()}
                   </div>
-                  <span className="text-sm font-medium">
+                  <span className="text-xs font-medium">
                     {change.value > 0 ? '+' : ''}{change.value}%
                   </span>
                   <span className="text-xs text-gray-500 dark:text-gray-400">{change.period}</span>
