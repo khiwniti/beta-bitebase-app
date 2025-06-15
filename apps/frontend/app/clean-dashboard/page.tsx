@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { apiClient, Restaurant } from '../../lib/api-client';
+import { MAPBOX_TOKEN } from '../../lib/mapbox';
 
 // Dynamically import map component
 const CleanMapComponent = dynamic(
@@ -190,7 +191,7 @@ export default function CleanDashboardPage() {
               <h4 className="font-medium text-blue-900 mb-2">Environment</h4>
               <div className="text-sm text-blue-800 space-y-1">
                 <div>API: {process.env.NEXT_PUBLIC_API_URL || 'localhost:12001'}</div>
-                <div>Maps: {process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN ? '✅' : '❌'}</div>
+                <div>Maps: {MAPBOX_TOKEN ? '✅' : '❌'}</div>
                 <div>Mode: {process.env.NODE_ENV || 'development'}</div>
               </div>
             </div>

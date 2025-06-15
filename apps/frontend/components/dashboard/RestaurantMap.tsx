@@ -6,6 +6,7 @@ import { Button } from '../ui/button';
 import { useLocationBasedRestaurants } from '../../hooks/useRestaurantData';
 import Map, { Marker, Popup } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { MAPBOX_TOKEN } from '../../lib/mapbox';
 
 interface Restaurant {
   id: number;
@@ -50,7 +51,7 @@ export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
     }
   }, [userLocation]);
 
-  const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
+  // Using MAPBOX_TOKEN from mapbox utility
 
   // Fallback to simple map if no Mapbox token
   const renderSimpleMap = () => {

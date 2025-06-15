@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { apiClient } from '../../lib/api-client';
+import { MAPBOX_TOKEN } from '../../lib/mapbox';
 
 // Dynamically import map component to avoid SSR issues
 const ProductionMapComponent = dynamic(
@@ -100,7 +101,7 @@ export default function MapTestPage() {
                 <strong>API URL:</strong> {process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001'}
               </div>
               <div>
-                <strong>Mapbox Token:</strong> {process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN ? '✅ Configured' : '❌ Missing'}
+                <strong>Mapbox Token:</strong> {MAPBOX_TOKEN ? '✅ Configured' : '❌ Missing'}
               </div>
               <div>
                 <strong>Environment:</strong> {process.env.NODE_ENV || 'development'}

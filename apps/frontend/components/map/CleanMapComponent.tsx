@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { apiClient, Restaurant } from '../../lib/api-client';
+import { getMapboxTileUrl } from '../../lib/mapbox';
 
 // Dynamically import Leaflet components to avoid SSR issues
 const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
@@ -141,7 +142,7 @@ export default function CleanMapComponent({
         className="rounded-lg"
       >
         <TileLayer
-          url={`https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`}
+          url={getMapboxTileUrl('streets')}
           attribution='&copy; <a href="https://www.mapbox.com/">Mapbox</a>'
           tileSize={512}
           zoomOffset={-1}
