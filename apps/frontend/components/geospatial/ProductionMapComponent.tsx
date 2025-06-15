@@ -82,37 +82,27 @@ export default function ProductionMapComponent({
     })
   }, [])
 
-  // Fetch real restaurant data from our deployed API
+  // Fetch real restaurant data from backend API
   const fetchRestaurants = useCallback(async (lat: number, lng: number, radius: number) => {
     setLoading(true)
     setError(null)
-    
+
     try {
-      console.log('🔍 Fetching restaurants for:', { lat, lng, radius })
-      
-      // Use the correct API client to fetch real restaurant data
       const { apiClient } = await import('../../lib/api-client')
-      
-      console.log('📡 API Client loaded, making request...')
-      
+
       const response = await apiClient.fetchRealRestaurantData({
         latitude: lat,
         longitude: lng,
         radius: radius,
         platforms: ['wongnai', 'google']
       })
-      
-      console.log('📊 API Response:', response)
-      
-      if (response.data) {
-        console.log('✅ Successfully loaded restaurants:', response.data.all_restaurants?.length)
-        setRestaurants(response.data.all_restaurants || [])
+
+      if (response.data?.all_restaurants) {
+        setRestaurants(response.data.all_restaurants)
       } else {
-        console.error('❌ API Error:', response.error)
         throw new Error(response.error || 'Failed to fetch restaurant data')
       }
     } catch (err) {
-      console.error('💥 Error fetching restaurants:', err)
       setError(`Failed to load restaurant data: ${err instanceof Error ? err.message : 'Unknown error'}`)
       setRestaurants([])
     } finally {

@@ -107,19 +107,21 @@ export function useRestaurantSearch() {
   }) => {
     setLoading(true);
     setError(null);
-    
+
     try {
-      // Use the regular search endpoint since we don't have a separate Wongnai endpoint
-      const response = await apiClient.searchRestaurantsByLocation(
-        params.latitude || 13.7563, 
-        params.longitude || 100.5018, 
-        5
-      );
+      const response = await apiClient.searchWongnaiRestaurants({
+        latitude: params.latitude || 13.7563,
+        longitude: params.longitude || 100.5018,
+        query: params.query,
+        cuisine: params.cuisine,
+        limit: params.limit || 10
+      });
+
       if (response.error) {
         setError(response.error);
         setRestaurants([]);
       } else {
-        setRestaurants(response.data || []);
+        setRestaurants(response.data?.restaurants || []);
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to search restaurants');
@@ -329,30 +331,29 @@ export function useLocationBasedRestaurants() {
     );
   }, []);
 
-  // Fetch nearby restaurants from Wongnai
+  // Fetch nearby restaurants using real data endpoint
   const fetchNearbyRestaurants = useCallback(async (lat: number, lng: number, radius: number = 5) => {
     setLoading(true);
     setError(null);
-    
+
     try {
-      // Try to fetch from Wongnai API first
-      const wongnaiResponse = await apiClient.searchWongnaiRestaurants({
+      // Use the real restaurant data endpoint
+      const response = await apiClient.fetchRealRestaurantData({
         latitude: lat,
         longitude: lng,
-        limit: 50
+        radius: radius,
+        platforms: ['wongnai', 'google']
       });
 
-      if (wongnaiResponse.data?.restaurants) {
-        setRestaurants(wongnaiResponse.data.restaurants);
+      if (response.data?.all_restaurants) {
+        setRestaurants(response.data.all_restaurants);
       } else {
-        // Fallback to general restaurant search
-        const generalResponse = await apiClient.searchRestaurantsByLocation(lat, lng, radius);
-        setRestaurants(generalResponse.data || []);
+        throw new Error(response.error || 'Failed to fetch restaurant data');
       }
     } catch (err) {
       console.error('Error fetching restaurants:', err);
       setError('Failed to fetch nearby restaurants');
-      // Load some demo data as fallback
+      // Load demo data as fallback
       setRestaurants(getDemoRestaurants(lat, lng));
     } finally {
       setLoading(false);

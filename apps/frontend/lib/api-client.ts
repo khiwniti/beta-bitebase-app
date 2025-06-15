@@ -95,22 +95,17 @@ class ApiClient {
   private agentUrl: string;
 
   constructor() {
-    // Use local backend for development
+    // Clean API URL configuration
     this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001';
-    // AI Agent is part of the local backend
-    this.agentUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001';
+    this.agentUrl = this.baseUrl; // Unified backend
   }
 
   private async request<T>(
-    endpoint: string, 
-    options: RequestInit = {},
-    useAgent = false
+    endpoint: string,
+    options: RequestInit = {}
   ): Promise<ApiResponse<T>> {
-    // Connect directly to backend without /api prefix
     const url = `${this.baseUrl}${endpoint}`;
-    
-    console.log(`🌐 Making API request to: ${url}`, { method: options.method || 'GET', body: options.body });
-    
+
     try {
       const response = await fetch(url, {
         headers: {
@@ -120,25 +115,20 @@ class ApiClient {
         ...options,
       });
 
-      console.log(`📡 Response status: ${response.status} ${response.statusText}`);
-
       const data = await response.json();
 
       if (!response.ok) {
-        console.error(`❌ API Error: ${response.status}`, data);
         return {
           error: data.message || `HTTP ${response.status}`,
           status: response.status,
         };
       }
 
-      console.log(`✅ API Success:`, data);
       return {
         data,
         status: response.status,
       };
     } catch (error) {
-      console.error(`💥 Network Error:`, error);
       return {
         error: error instanceof Error ? error.message : 'Network error',
         status: 0,
