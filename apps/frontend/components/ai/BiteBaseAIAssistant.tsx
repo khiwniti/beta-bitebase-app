@@ -76,7 +76,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
   const loadChatHistory = async () => {
     try {
       const response = await fetch(
-        `http://localhost:12001/api/ai/history/${userId}?limit=5`,
+        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001'}/api/ai/history/${userId}?limit=5`,
       );
       if (response.ok) {
         const data = await response.json();
@@ -112,7 +112,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
                    document.cookie.split('; ').find(row => row.startsWith('auth_token='))?.split('=')[1] ||
                    "demo-token";
 
-      const response = await fetch("http://localhost:12001/api/ai/chat", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001'}/api/ai/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -120,6 +120,7 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
         },
         body: JSON.stringify({
           message,
+          conversation_id: `conv_${userId}_${Date.now()}`,
           context: {
             language: currentLanguage,
             timestamp: new Date().toISOString(),
@@ -134,14 +135,22 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
 
       const data = await response.json();
 
-      // Mock data server returns: { success: true, data: { response: string, suggestions?: string[], intent: string } }
-      const responseData = data.data || data; // Handle both formats
+      // Backend returns: { success: true, data: { response: string, conversation_id: string, timestamp: string } }
+      if (!data.success) {
+        throw new Error(data.error || 'AI request failed');
+      }
+
+      const responseData = data.data || data;
       return {
-        content: responseData.response || data.response,
+        content: responseData.response || data.response || "I'm sorry, I couldn't generate a response.",
         type: "text",
         language: currentLanguage,
-        suggestions: responseData.suggestions || data.suggestions,
-        data: responseData.context || data.context || { intent: responseData.intent }
+        suggestions: responseData.suggestions || [],
+        data: {
+          conversation_id: responseData.conversation_id,
+          timestamp: responseData.timestamp,
+          intent: "general_help"
+        }
       };
     } catch (error) {
       console.error("AI request failed:", error);
@@ -252,15 +261,27 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
   // Format response content with proper styling
   const formatResponseContent = (content: string | undefined) => {
     // Handle undefined content
-    if (!content) return "";
-    
-    // Convert markdown-style formatting to HTML
-    return content
+    if (!content) return "No response available.";
+
+    // Convert markdown-style formatting to HTML with better structure
+    let formatted = content
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
       .replace(/\*(.*?)\*/g, "<em>$1</em>")
-      .replace(/^• (.+)$/gm, "<li>$1</li>")
-      .replace(/^(\d+)\. (.+)$/gm, "<li><strong>$1.</strong> $2</li>")
-      .replace(/\n/g, "<br />");
+      .replace(/^• (.+)$/gm, "<li class='ml-4 mb-1'>$1</li>")
+      .replace(/^(\d+)\. (.+)$/gm, "<li class='ml-4 mb-1'><strong>$1.</strong> $2</li>")
+      .replace(/📈|📊|👥|💰|🎯|🍝|🏆|📱|⚠️|💡|🎯/g, "<span class='text-lg'>$&</span>")
+      .replace(/\n\n/g, "<br/><br/>")
+      .replace(/\n/g, "<br/>");
+
+    // Wrap lists in proper ul tags
+    formatted = formatted.replace(/(<li[^>]*>.*?<\/li>)/gs, (match) => {
+      if (!match.includes('<ul>')) {
+        return `<ul class="list-none space-y-1 my-2">${match}</ul>`;
+      }
+      return match;
+    });
+
+    return formatted;
   };
 
   return (
@@ -374,11 +395,12 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
 
                 <div className="flex flex-col gap-2 min-w-0 flex-1">
                   <div
-                    className={`rounded-lg px-4 py-3 overflow-hidden ${
+                    className={`rounded-lg px-4 py-3 max-w-full ${
                       message.role === "user"
                         ? "bg-primary text-primary-foreground"
                         : "bg-gray-100 text-gray-900"
                     }`}
+                    style={{ wordBreak: 'break-word' }}
                   >
                     {message.role === "assistant" && message.response ? (
                       <div>
@@ -399,7 +421,8 @@ const BiteBaseAIAssistant: React.FC<BiteBaseAIAssistantProps> = ({
 
                         {/* Formatted content */}
                         <div
-                          className="prose prose-sm max-w-none overflow-hidden break-words"
+                          className="prose prose-sm max-w-none break-words text-sm leading-relaxed"
+                          style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                           dangerouslySetInnerHTML={{
                             __html: formatResponseContent(message.content),
                           }}

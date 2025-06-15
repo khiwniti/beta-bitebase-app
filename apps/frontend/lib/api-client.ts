@@ -95,10 +95,10 @@ class ApiClient {
   private agentUrl: string;
 
   constructor() {
-    // Use external BiteBase API
-    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.bitebase.app';
-    // AI Agent is now part of the external API server
-    this.agentUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.bitebase.app';
+    // Use local backend for development
+    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001';
+    // AI Agent is part of the local backend
+    this.agentUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001';
   }
 
   private async request<T>(

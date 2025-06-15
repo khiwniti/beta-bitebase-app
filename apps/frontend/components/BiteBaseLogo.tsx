@@ -61,7 +61,7 @@ export default function BiteBaseLogo({
           <Image
             src="/logo.png"
             alt="BiteBase Logo"
-            width={iconSize * 2.2} // Better visibility for logo
+            width={iconSize * 3.2} // Better visibility for logo
             height={iconSize}
             className={`object-contain ${animated ? "transition-transform duration-300 hover:rotate-12" : ""}`}
             priority
