@@ -148,7 +148,7 @@ export function PageWrapper({
               <a href="/help" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Help</a>
               <a href="/privacy" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Privacy</a>
               <a href="/terms" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Terms</a>
-              <span className="text-gray-400 dark:text-gray-600">v1.2.0</span>
+              <span className="text-gray-400 dark:text-gray-600">v1.3.0</span>
             </div>
         </div>
         </footer>
