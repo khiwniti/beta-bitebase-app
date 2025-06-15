@@ -4,6 +4,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MapPin, Star, Clock, Phone, ExternalLink, RefreshCw } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useLocationBasedRestaurants } from '../../hooks/useRestaurantData';
+import Map, { Marker, Popup } from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 interface Restaurant {
   id: number;
@@ -29,9 +31,28 @@ interface RestaurantMapProps {
 export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
   const { restaurants, loading, error, userLocation, refetch } = useLocationBasedRestaurants();
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
-  const mapRef = useRef<HTMLDivElement>(null);
+  const [popupInfo, setPopupInfo] = useState<Restaurant | null>(null);
+  const [viewState, setViewState] = useState({
+    longitude: 100.5018, // Default to Bangkok
+    latitude: 13.7563,
+    zoom: 12
+  });
 
-  // Simple map visualization using CSS positioning
+  // Update map center when user location is available
+  useEffect(() => {
+    if (userLocation) {
+      setViewState(prev => ({
+        ...prev,
+        longitude: userLocation.lng,
+        latitude: userLocation.lat,
+        zoom: 14
+      }));
+    }
+  }, [userLocation]);
+
+  const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
+
+  // Fallback to simple map if no Mapbox token
   const renderSimpleMap = () => {
     if (!userLocation) return null;
 
@@ -44,7 +65,6 @@ export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
 
     return (
       <div 
-        ref={mapRef}
         className="relative w-full h-96 bg-gradient-to-br from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
         style={{ minHeight: '400px' }}
       >
@@ -134,6 +154,126 @@ export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
     );
   };
 
+  // Render Mapbox map if token is available
+  const renderMapboxMap = () => {
+    // Temporarily use simple map until Mapbox is properly configured
+    return renderSimpleMap();
+    
+    if (!MAPBOX_TOKEN) {
+      return renderSimpleMap();
+    }
+
+    return (
+      <div className="relative w-full h-96 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
+        <Map
+          {...viewState}
+          onMove={evt => setViewState(evt.viewState)}
+          style={{ width: '100%', height: '100%' }}
+          mapStyle="mapbox://styles/mapbox/streets-v12"
+          mapboxAccessToken={MAPBOX_TOKEN}
+        >
+          {/* User Location Marker */}
+          {userLocation && (
+            <Marker
+              longitude={userLocation.lng}
+              latitude={userLocation.lat}
+              anchor="bottom"
+            >
+              <div className="relative">
+                <div className="w-4 h-4 bg-blue-500 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
+                <div className="absolute -top-1 -left-1 w-6 h-6 bg-blue-500/30 rounded-full animate-ping"></div>
+              </div>
+            </Marker>
+          )}
+
+          {/* Restaurant Markers */}
+          {restaurants.map((restaurant) => {
+            if (!restaurant.latitude || !restaurant.longitude) return null;
+
+            return (
+              <Marker
+                key={restaurant.id}
+                longitude={restaurant.longitude}
+                latitude={restaurant.latitude}
+                anchor="bottom"
+                onClick={e => {
+                  e.originalEvent.stopPropagation();
+                  setPopupInfo(restaurant);
+                }}
+              >
+                <div className="cursor-pointer transform hover:scale-110 transition-transform">
+                  <div className="w-6 h-6 bg-red-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                  </div>
+                </div>
+              </Marker>
+            );
+          })}
+
+          {/* Popup for selected restaurant */}
+          {popupInfo && (
+            <Popup
+              anchor="top"
+              longitude={popupInfo.longitude!}
+              latitude={popupInfo.latitude!}
+              onClose={() => setPopupInfo(null)}
+              closeButton={true}
+              closeOnClick={false}
+              className="restaurant-popup"
+            >
+              <div className="p-3 max-w-xs">
+                <h3 className="font-semibold text-gray-900 mb-1">{popupInfo.name}</h3>
+                <p className="text-sm text-gray-600 mb-2">{popupInfo.cuisine}</p>
+                <div className="flex items-center space-x-2 text-xs">
+                  {popupInfo.rating && (
+                    <div className="flex items-center">
+                      <Star className="w-3 h-3 text-yellow-400 fill-current mr-1" />
+                      <span>{popupInfo.rating}</span>
+                    </div>
+                  )}
+                  {popupInfo.price_range && (
+                    <span className="text-gray-500">{popupInfo.price_range}</span>
+                  )}
+                </div>
+                <Button
+                  onClick={() => setSelectedRestaurant(popupInfo)}
+                  size="sm"
+                  className="w-full mt-2"
+                >
+                  View Details
+                </Button>
+              </div>
+            </Popup>
+          )}
+        </Map>
+
+        {/* Map Controls */}
+        <div className="absolute top-4 right-4 z-10">
+          <Button
+            onClick={refetch}
+            variant="outline"
+            size="sm"
+            className="bg-white/90 backdrop-blur-sm"
+            disabled={loading}
+          >
+            <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+            Refresh
+          </Button>
+        </div>
+
+        {/* Loading Overlay */}
+        {loading && (
+          <div className="absolute inset-0 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm flex items-center justify-center z-20">
+            <div className="text-center">
+              <RefreshCw className="w-8 h-8 animate-spin text-blue-500 mx-auto mb-2" />
+              <p className="text-sm text-gray-600 dark:text-gray-400">Loading restaurants...</p>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className={`space-y-4 ${className}`}>
       {/* Map Header */}
@@ -162,7 +302,7 @@ export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Map */}
         <div className="lg:col-span-2">
-          {renderSimpleMap()}
+          {renderMapboxMap()}
         </div>
 
         {/* Restaurant List */}

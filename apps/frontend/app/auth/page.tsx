@@ -254,7 +254,11 @@ export default function AuthPage() {
         {/* Skip to Dashboard Button */}
         <div className="mt-6 text-center">
           <Button
-            onClick={() => router.push('/dashboard')}
+            onClick={() => {
+              // Set a demo auth token in cookies
+              document.cookie = 'auth_token=demo-token; path=/; max-age=86400'; // 24 hours
+              router.push('/dashboard');
+            }}
             variant="outline"
             className="w-full py-2 text-xs font-medium text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200"
           >
