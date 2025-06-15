@@ -60,7 +60,7 @@ const FloatingChatbot: React.FC<ChatbotProps> = ({ className = '' }) => {
           {/* Header */}
           <div className="bg-amber-600 text-white px-4 py-3 flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="bg-white p-2 ml-1 rounded-full animate-bounce flex-shrink-0 flex items-center justify-center">
+              <div className="bg-white p-2 ml-3 rounded-full animate-bounce flex-shrink-0 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-600" aria-hidden="true">
                   <path d="M12 8V4H8"></path>
                   <rect width="16" height="12" x="4" y="8" rx="2"></rect>
