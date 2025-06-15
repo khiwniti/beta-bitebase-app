@@ -14,9 +14,9 @@ export default function AppContent({
   const pathname = usePathname()
   // const { user, loading } = useAuth() // This will now be called within AuthProvider
   const user = {
-    restaurantName: 'Mock Restaurant',
-    displayName: 'Mock User',
-    email: 'mock@example.com'
+    restaurantName: 'BiteBase Intelligence',
+    displayName: 'Restaurant Manager',
+    email: 'manager@bitebase.app'
   };
   const loading = false;
   const [tourCompleted, setTourCompleted] = useState(false)
