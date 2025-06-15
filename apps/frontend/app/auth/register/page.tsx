@@ -99,12 +99,12 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md mb-8 text-center">
+    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md mb-6 text-center">
         <Link href="/">
-          <BiteBaseLogo size="lg" className="mx-auto" showText={false} />
+          <BiteBaseLogo size="md" className="mx-auto" showText={false} />
         </Link>
-        <h2 className="mt-6 text-3xl font-bold text-gray-900">
+        <h2 className="mt-4 text-2xl font-bold text-gray-900">
           Create your account
         </h2>
         <p className="mt-2 text-sm text-gray-600">
@@ -114,74 +114,74 @@ export default function RegisterPage() {
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <Card className="shadow-lg border-0">
-          <CardHeader className="pb-4">
-            <CardTitle>Sign Up</CardTitle>
-            <CardDescription>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-lg">Sign Up</CardTitle>
+            <CardDescription className="text-sm">
               Enter your information to create an account
             </CardDescription>
           </CardHeader>
           <CardContent>
             {registrationError && (
-              <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-800 rounded-md text-sm">
+              <div className="mb-3 p-2.5 bg-red-50 border border-red-200 text-red-800 rounded-md text-xs">
                 {registrationError}
               </div>
             )}
             
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName">First Name</Label>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <Label htmlFor="firstName" className="text-xs">First Name</Label>
                   <Input
                     id="firstName"
                     placeholder="John"
                     {...register("firstName")}
-                    className={errors.firstName ? "border-red-500" : ""}
+                    className={`text-sm ${errors.firstName ? "border-red-500" : ""}`}
                     disabled={isLoading}
                   />
                   {errors.firstName && (
-                    <p className="text-red-500 text-xs mt-1">
+                    <p className="text-red-500 text-xs mt-0.5">
                       {errors.firstName.message}
                     </p>
                   )}
                 </div>
                 
-                <div className="space-y-2">
-                  <Label htmlFor="lastName">Last Name</Label>
+                <div className="space-y-1.5">
+                  <Label htmlFor="lastName" className="text-xs">Last Name</Label>
                   <Input
                     id="lastName"
                     placeholder="Doe"
                     {...register("lastName")}
-                    className={errors.lastName ? "border-red-500" : ""}
+                    className={`text-sm ${errors.lastName ? "border-red-500" : ""}`}
                     disabled={isLoading}
                   />
                   {errors.lastName && (
-                    <p className="text-red-500 text-xs mt-1">
+                    <p className="text-red-500 text-xs mt-0.5">
                       {errors.lastName.message}
                     </p>
                   )}
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
+              <div className="space-y-1.5">
+                <Label htmlFor="email" className="text-xs">Email Address</Label>
                 <Input
                   id="email"
                   placeholder="john.doe@example.com"
                   type="email"
                   autoComplete="email"
                   {...register("email")}
-                  className={errors.email ? "border-red-500" : ""}
+                  className={`text-sm ${errors.email ? "border-red-500" : ""}`}
                   disabled={isLoading}
                 />
                 {errors.email && (
-                  <p className="text-red-500 text-xs mt-1">
+                  <p className="text-red-500 text-xs mt-0.5">
                     {errors.email.message}
                   </p>
                 )}
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+              <div className="space-y-1.5">
+                <Label htmlFor="password" className="text-xs">Password</Label>
                 <div className="relative">
                   <Input
                     id="password"
@@ -189,7 +189,7 @@ export default function RegisterPage() {
                     type={showPassword ? "text" : "password"}
                     autoComplete="new-password"
                     {...register("password")}
-                    className={errors.password ? "border-red-500 pr-10" : "pr-10"}
+                    className={`text-sm ${errors.password ? "border-red-500 pr-10" : "pr-10"}`}
                     disabled={isLoading}
                   />
                   <button
@@ -198,48 +198,48 @@ export default function RegisterPage() {
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? (
-                      <EyeOff className="h-5 w-5" />
+                      <EyeOff className="h-4 w-4" />
                     ) : (
-                      <Eye className="h-5 w-5" />
+                      <Eye className="h-4 w-4" />
                     )}
                   </button>
                 </div>
                 {errors.password && (
-                  <p className="text-red-500 text-xs mt-1">
+                  <p className="text-red-500 text-xs mt-0.5">
                     {errors.password.message}
                   </p>
                 )}
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-gray-500 mt-0.5">
                   Password must be at least 8 characters with one uppercase letter and one number.
                 </p>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="restaurantName">Restaurant Name</Label>
+              <div className="space-y-1.5">
+                <Label htmlFor="restaurantName" className="text-xs">Restaurant Name</Label>
                 <Input
                   id="restaurantName"
                   placeholder="Your Restaurant"
                   {...register("restaurantName")}
-                  className={errors.restaurantName ? "border-red-500" : ""}
+                  className={`text-sm ${errors.restaurantName ? "border-red-500" : ""}`}
                   disabled={isLoading}
                 />
                 {errors.restaurantName && (
-                  <p className="text-red-500 text-xs mt-1">
+                  <p className="text-red-500 text-xs mt-0.5">
                     {errors.restaurantName.message}
                   </p>
                 )}
               </div>
 
-              <div className="space-y-3 pt-2">
+              <div className="space-y-2 pt-1">
                 <div className="flex items-start">
-                  <div className="flex items-center h-5">
+                  <div className="flex items-center h-4">
                     <Checkbox
                       id="acceptTerms"
                       {...register("acceptTerms")}
                       disabled={isLoading}
                     />
                   </div>
-                  <div className="ml-3 text-sm">
+                  <div className="ml-2 text-xs">
                     <Label
                       htmlFor="acceptTerms"
                       className={`font-medium ${
@@ -262,7 +262,7 @@ export default function RegisterPage() {
                       </Link>
                     </Label>
                     {errors.acceptTerms && (
-                      <p className="text-red-500 text-xs mt-1">
+                      <p className="text-red-500 text-xs mt-0.5">
                         {errors.acceptTerms.message}
                       </p>
                     )}
@@ -270,14 +270,14 @@ export default function RegisterPage() {
                 </div>
 
                 <div className="flex items-start">
-                  <div className="flex items-center h-5">
+                  <div className="flex items-center h-4">
                     <Checkbox
                       id="acceptMarketing"
                       {...register("acceptMarketing")}
                       disabled={isLoading}
                     />
                   </div>
-                  <div className="ml-3 text-sm">
+                  <div className="ml-2 text-xs">
                     <Label htmlFor="acceptMarketing" className="font-medium text-gray-700">
                       I'd like to receive product updates and marketing communications
                     </Label>
@@ -287,7 +287,7 @@ export default function RegisterPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-primary-600 hover:bg-primary-700 text-white"
+                className="w-full bg-primary-600 hover:bg-primary-700 text-white text-sm py-2"
                 disabled={isLoading}
               >
                 {isLoading ? (
@@ -304,8 +304,8 @@ export default function RegisterPage() {
               </Button>
             </form>
           </CardContent>
-          <CardFooter className="flex justify-center border-t pt-6">
-            <p className="text-sm text-gray-600">
+          <CardFooter className="flex justify-center border-t pt-4">
+            <p className="text-xs text-gray-600">
               Already have an account?{" "}
               <Link
                 href="/auth/login"

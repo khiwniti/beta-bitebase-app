@@ -69,17 +69,17 @@ export default function AuthPage() {
       </div>
 
       {/* Centered Auth Form */}
-      <div className="w-full max-w-md relative z-10 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 sm:p-10 mx-4">
+      <div className="w-full max-w-md relative z-10 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 sm:p-7 mx-4">
         {/* Logo */}
-        <div className="mb-8 flex justify-center">
-          <BiteBaseLogo size="2xl" variant="gradient" animated={true} showText={false} />
+        <div className="mb-6 flex justify-center">
+          <BiteBaseLogo size="xl" variant="gradient" animated={true} showText={false} />
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex mb-8 bg-gray-50 dark:bg-gray-700 rounded-xl p-1">
+        <div className="flex mb-6 bg-gray-50 dark:bg-gray-700 rounded-xl p-1">
           <button
             onClick={() => setIsLogin(true)}
-            className={`flex-1 py-2.5 text-xs font-semibold rounded-lg transition-all duration-200 ${
+            className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all duration-200 ${
               isLogin 
                 ? 'bg-white dark:bg-gray-600 text-blue-600 dark:text-blue-400 shadow-md' 
                 : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
@@ -89,7 +89,7 @@ export default function AuthPage() {
           </button>
           <button
             onClick={() => setIsLogin(false)}
-            className={`flex-1 py-2.5 text-xs font-semibold rounded-lg transition-all duration-200 ${
+            className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all duration-200 ${
               !isLogin 
                 ? 'bg-white dark:bg-gray-600 text-blue-600 dark:text-blue-400 shadow-md' 
                 : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
@@ -100,8 +100,8 @@ export default function AuthPage() {
         </div>
 
         {/* Form Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+        <div className="text-center mb-6">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
             {isLogin ? 'Welcome back' : 'Get started'}
           </h2>
           <p className="text-gray-500 dark:text-gray-400 text-xs">
@@ -113,9 +113,9 @@ export default function AuthPage() {
 
         {/* Error Display */}
         {error && (
-          <div className="mb-6 bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 text-red-800 dark:text-red-300 p-4 rounded-lg">
+          <div className="mb-4 bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 text-red-800 dark:text-red-300 p-3 rounded-lg">
             <div className="flex items-center">
-              <svg className="w-5 h-5 mr-3 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span className="text-xs font-medium">{error}</span>
@@ -124,10 +124,10 @@ export default function AuthPage() {
         )}
 
         {/* Auth Form */}
-        <form onSubmit={handleAuth} className="space-y-5">
+        <form onSubmit={handleAuth} className="space-y-4">
           {!isLogin && (
             <div>
-              <label htmlFor="name" className="block text-xs font-semibold text-gray-800 dark:text-gray-200 mb-2">
+              <label htmlFor="name" className="block text-xs font-semibold text-gray-800 dark:text-gray-200 mb-1.5">
                 Full Name
               </label>
               <input
@@ -138,14 +138,14 @@ export default function AuthPage() {
                 required={!isLogin}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="block w-full px-3 py-2.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600 transition-all duration-200"
+                className="block w-full px-3 py-2 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600 transition-all duration-200"
                 placeholder="Enter your full name"
               />
             </div>
           )}
 
           <div>
-            <label htmlFor="email" className="block text-xs font-semibold text-gray-800 dark:text-gray-200 mb-2">
+            <label htmlFor="email" className="block text-xs font-semibold text-gray-800 dark:text-gray-200 mb-1.5">
               Email Address
             </label>
             <input
@@ -156,13 +156,13 @@ export default function AuthPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="block w-full px-3 py-2.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600 transition-all duration-200"
+              className="block w-full px-3 py-2 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600 transition-all duration-200"
               placeholder="name@company.com"
             />
           </div>
 
           <div>
-            <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center justify-between mb-1.5">
               <label htmlFor="password" className="block text-xs font-semibold text-gray-800 dark:text-gray-200">
                 Password
               </label>
@@ -183,16 +183,16 @@ export default function AuthPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="block w-full px-3 py-2.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600 transition-all duration-200"
+              className="block w-full px-3 py-2 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-600 transition-all duration-200"
               placeholder={isLogin ? "••••••••" : "Create a secure password"}
             />
           </div>
 
-          <div className="pt-4">
+          <div className="pt-3">
             <Button
               type="submit"
               disabled={loading}
-              className="w-full justify-center py-2.5 px-4 text-xs font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full justify-center py-2 px-4 text-xs font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="flex items-center justify-center">
@@ -210,7 +210,7 @@ export default function AuthPage() {
         </form>
 
         {/* Social Sign-in */}
-        <div className="mt-8">
+        <div className="mt-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-200 dark:border-gray-700"></div>
@@ -222,13 +222,13 @@ export default function AuthPage() {
             </div>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-4">
             <button
               onClick={handleGoogleSignIn}
               disabled={loading}
-              className="w-full flex items-center justify-center px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-xl shadow-sm text-xs font-medium text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-xl shadow-sm text-xs font-medium text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
                   fill="#4285F4"
@@ -252,7 +252,7 @@ export default function AuthPage() {
         </div>
 
         {/* Skip to Dashboard Button */}
-        <div className="mt-6 text-center">
+        <div className="mt-4 text-center">
           <Button
             onClick={() => {
               // Set a demo auth token in cookies
@@ -260,14 +260,14 @@ export default function AuthPage() {
               router.push('/dashboard');
             }}
             variant="outline"
-            className="w-full py-2 text-xs font-medium text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200"
+            className="w-full py-1.5 text-xs font-medium text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200"
           >
             Skip to Dashboard (Demo)
           </Button>
         </div>
 
         {/* Terms and Privacy */}
-        <div className="mt-8 text-center text-xs text-gray-500 dark:text-gray-400">
+        <div className="mt-5 text-center text-xs text-gray-500 dark:text-gray-400">
           By continuing, you agree to our{' '}
           <Link href="/terms" className="text-blue-600 dark:text-blue-400 hover:underline">
             Terms of Service
