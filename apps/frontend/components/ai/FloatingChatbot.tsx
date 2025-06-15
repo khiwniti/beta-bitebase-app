@@ -176,10 +176,10 @@ const FloatingChatbot: React.FC<ChatbotProps> = ({ className = '' }) => {
       {/* Floating Toggle Button */}
       <Button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 w-14 h-14 rounded-full bg-amber-600 hover:bg-amber-700 text-white shadow-xl z-50 transition-all duration-300 hover:scale-110 flex items-center justify-center p-0 ${className}`}
+        className={`fixed bottom-6 right-6 w-16 h-16 rounded-full bg-amber-600 hover:bg-amber-700 text-white shadow-xl z-50 transition-all duration-300 hover:scale-110 flex items-center justify-center p-0 ${className}`}
         size="lg"
       >
-        {isOpen ? <X className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}
+        {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
       </Button>
 
       {/* Chat Container */}
@@ -238,8 +238,8 @@ const FloatingChatbot: React.FC<ChatbotProps> = ({ className = '' }) => {
                 >
                   {message.type === 'bot' && (
                     <div className="flex items-center mb-2">
-                      <div className="bg-amber-100 p-1 rounded-full mr-2 flex-shrink-0">
-                        <Bot className="w-3 h-3 text-amber-600" />
+                      <div className="bg-amber-100 p-1.5 rounded-full mr-2 flex-shrink-0">
+                        <Bot className="w-3.5 h-3.5 text-amber-600" />
                       </div>
                       <span className="text-xs font-semibold text-amber-800">BiteBase AI</span>
                     </div>
