@@ -95,11 +95,10 @@ class ApiClient {
   private agentUrl: string;
 
   constructor() {
-    // Use environment variables or fallback to runtime URLs
-    // Backend API Server on localhost:12001 for production
-    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001';
-    // AI Agent is now part of the backend server
-    this.agentUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001';
+    // Use external BiteBase API
+    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.bitebase.app';
+    // AI Agent is now part of the external API server
+    this.agentUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.bitebase.app';
   }
 
   private async request<T>(

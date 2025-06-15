@@ -1,5 +1,5 @@
-// API Configuration - supports both integrated and separate backend deployment
-const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://api.bitebase.app';
+// API Configuration - uses external BiteBase API
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.bitebase.app';
 
 export const api = {
   async get(endpoint: string) {
