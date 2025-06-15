@@ -29,7 +29,12 @@
   "env": {
     "NODE_ENV": "production",
     "MCP_ENABLED": "true",
-    "NEXT_PUBLIC_API_URL": "/api"
+    "NEXT_PUBLIC_API_URL": "/api",
+    "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN": "pk.eyJ1Ijoia2hpd25pdGkiLCJhIjoiY205eDFwMzl0MHY1YzJscjB3bm4xcnh5ZyJ9.ANGVE0tiA9NslBn8ft_9fQ",
+    "NEXT_PUBLIC_MAPBOX_TOKEN": "pk.eyJ1Ijoia2hpd25pdGkiLCJhIjoiY205eDFwMzl0MHY1YzJscjB3bm4xcnh5ZyJ9.ANGVE0tiA9NslBn8ft_9fQ",
+    "NEXT_PUBLIC_ENABLE_AI_FEATURES": "true",
+    "NEXT_PUBLIC_ENABLE_ANALYTICS": "true",
+    "NEXT_PUBLIC_DEBUG_MODE": "false"
   },
   "headers": [
     {
