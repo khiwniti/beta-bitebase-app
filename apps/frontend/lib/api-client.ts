@@ -96,9 +96,9 @@ class ApiClient {
 
   constructor() {
     // Use environment variables or fallback to runtime URLs
-    // Mock Data API Server on localhost:12001 for comprehensive testing
+    // Backend API Server on localhost:12001 for production
     this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001';
-    // AI Agent is now part of the mock data server
+    // AI Agent is now part of the backend server
     this.agentUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001';
   }
 

@@ -1,57 +1,29 @@
 {
-  "name": "bitebase-backend-production",
-  "version": "2.0.0",
-  "description": "BiteBase Production Backend API with SaaS Features",
-  "main": "server-production.js",
+  "name": "bitebase-backend-express",
+  "version": "1.0.0",
+  "description": "BiteBase Express.js Backend API for Vercel",
+  "main": "index.js",
   "scripts": {
-    "start": "node server-production.js",
-    "dev": "nodemon server-simple.js",
-    "simple": "node server-simple.js",
-    "build": "echo 'Production build ready'",
-    "test": "echo 'No tests specified'",
-    "lint": "echo 'No linting configured'",
-    "db:migrate": "psql $DATABASE_URL -f ../../database/production-schema.sql"
+    "start": "node index.js",
+    "dev": "node index.js",
+    "build": "echo 'Build complete'"
   },
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5",
-    "helmet": "^7.1.0",
-    "compression": "^1.7.4",
-    "express-rate-limit": "^7.1.5",
-    "express-validator": "^7.0.1",
-    "express-mongo-sanitize": "^2.2.0",
-    "hpp": "^0.2.3",
-    "xss": "^1.0.14",
-    "validator": "^13.11.0",
-    "dotenv": "^16.3.1",
-    "jsonwebtoken": "^9.0.2",
-    "bcrypt": "^5.1.1",
-    "pg": "^8.11.3",
-    "redis": "^4.6.10",
-    "axios": "^1.5.0",
-    "stripe": "^14.7.0",
-    "@sendgrid/mail": "^8.1.0",
-    "openai": "^4.20.1",
-    "winston": "^3.11.0",
-    "morgan": "^1.10.0",
-    "uuid": "^9.0.1",
-    "crypto": "^1.0.1"
+    "pg": "^8.16.0",
+    "uuid": "^9.0.1"
   },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
+  "engines": {
+    "node": ">=18.0.0"
   },
   "keywords": [
-    "restaurant",
+    "express",
     "api",
-    "backend",
-    "saas",
-    "production",
-    "bitebase"
+    "restaurant",
+    "postgresql",
+    "vercel"
   ],
   "author": "BiteBase Team",
-  "license": "MIT",
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
-  }
+  "license": "MIT"
 }

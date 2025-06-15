@@ -161,6 +161,14 @@ async def get_restaurants():
                 "cuisine": "Italian",
                 "rating": 4.5,
                 "location": "Downtown",
+                "latitude": 13.7563,
+                "longitude": 100.5018,
+                "address": "123 Downtown Street, Bangkok",
+                "price_range": "$$",
+                "review_count": 245,
+                "platform": "bitebase",
+                "phone": "+66-2-123-4567",
+                "website": "https://bella-italia.com",
                 "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400",
                 "description": "Authentic Italian cuisine in the heart of downtown"
             },
@@ -170,6 +178,14 @@ async def get_restaurants():
                 "cuisine": "American",
                 "rating": 4.2,
                 "location": "Mall District",
+                "latitude": 13.7463,
+                "longitude": 100.5318,
+                "address": "456 Mall District, Bangkok",
+                "price_range": "$",
+                "review_count": 189,
+                "platform": "bitebase",
+                "phone": "+66-2-234-5678",
+                "website": "https://burger-palace.com",
                 "image": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400",
                 "description": "Gourmet burgers and classic American fare"
             },
@@ -179,10 +195,135 @@ async def get_restaurants():
                 "cuisine": "Japanese",
                 "rating": 4.8,
                 "location": "City Center",
+                "latitude": 13.7663,
+                "longitude": 100.5218,
+                "address": "789 City Center, Bangkok",
+                "price_range": "$$$",
+                "review_count": 312,
+                "platform": "bitebase",
+                "phone": "+66-2-345-6789",
+                "website": "https://sushi-zen.com",
                 "image": "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=400",
                 "description": "Fresh sushi and traditional Japanese dishes"
             }
         ]
+    }
+
+@app.get("/restaurants/search")
+async def search_restaurants(
+    latitude: Optional[float] = None,
+    longitude: Optional[float] = None,
+    radius: Optional[float] = 5,
+    cuisine: Optional[str] = None,
+    limit: Optional[int] = 10
+):
+    # Mock restaurant data with geospatial information
+    restaurants = [
+        {
+            "id": 1,
+            "name": "Bella Italia",
+            "cuisine": "Italian",
+            "rating": 4.5,
+            "location": "Downtown",
+            "latitude": 13.7563,
+            "longitude": 100.5018,
+            "address": "123 Downtown Street, Bangkok",
+            "price_range": "$$",
+            "review_count": 245,
+            "platform": "bitebase",
+            "phone": "+66-2-123-4567",
+            "website": "https://bella-italia.com",
+            "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400",
+            "description": "Authentic Italian cuisine in the heart of downtown"
+        },
+        {
+            "id": 2,
+            "name": "Burger Palace",
+            "cuisine": "American",
+            "rating": 4.2,
+            "location": "Mall District",
+            "latitude": 13.7463,
+            "longitude": 100.5318,
+            "address": "456 Mall District, Bangkok",
+            "price_range": "$",
+            "review_count": 189,
+            "platform": "bitebase",
+            "phone": "+66-2-234-5678",
+            "website": "https://burger-palace.com",
+            "image": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400",
+            "description": "Gourmet burgers and classic American fare"
+        },
+        {
+            "id": 3,
+            "name": "Sushi Zen",
+            "cuisine": "Japanese",
+            "rating": 4.8,
+            "location": "City Center",
+            "latitude": 13.7663,
+            "longitude": 100.5218,
+            "address": "789 City Center, Bangkok",
+            "price_range": "$$$",
+            "review_count": 312,
+            "platform": "bitebase",
+            "phone": "+66-2-345-6789",
+            "website": "https://sushi-zen.com",
+            "image": "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=400",
+            "description": "Fresh sushi and traditional Japanese dishes"
+        },
+        {
+            "id": 4,
+            "name": "Thai Garden",
+            "cuisine": "Thai",
+            "rating": 4.6,
+            "location": "Sukhumvit",
+            "latitude": 13.7363,
+            "longitude": 100.5618,
+            "address": "321 Sukhumvit Road, Bangkok",
+            "price_range": "$$",
+            "review_count": 198,
+            "platform": "bitebase",
+            "phone": "+66-2-456-7890",
+            "website": "https://thai-garden.com",
+            "image": "https://images.unsplash.com/photo-1559847844-d721426d6edc?w=400",
+            "description": "Traditional Thai cuisine with modern presentation"
+        },
+        {
+            "id": 5,
+            "name": "Coffee Corner",
+            "cuisine": "Cafe",
+            "rating": 4.3,
+            "location": "Silom",
+            "latitude": 13.7263,
+            "longitude": 100.5418,
+            "address": "654 Silom Road, Bangkok",
+            "price_range": "$",
+            "review_count": 156,
+            "platform": "bitebase",
+            "phone": "+66-2-567-8901",
+            "website": "https://coffee-corner.com",
+            "image": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400",
+            "description": "Artisan coffee and fresh pastries"
+        }
+    ]
+    
+    # Filter by cuisine if specified
+    if cuisine:
+        restaurants = [r for r in restaurants if r["cuisine"].lower() == cuisine.lower()]
+    
+    # Limit results
+    restaurants = restaurants[:limit]
+    
+    return {
+        "success": True,
+        "data": {
+            "restaurants": restaurants,
+            "total": len(restaurants),
+            "pagination": {
+                "page": 1,
+                "limit": limit,
+                "total_pages": 1
+            }
+        }
     }
 
 @app.get("/api/restaurants/{restaurant_id}")
@@ -420,5 +561,136 @@ async def reset_password():
         "content": "Enter your email to reset password"
     }
 
+# AI endpoints
+@app.get("/ai")
+async def ai_status():
+    return {
+        "status": "healthy",
+        "service": "bitebase-ai",
+        "version": "1.0.0",
+        "models": ["restaurant-recommendation", "market-analysis", "customer-insights"],
+        "capabilities": ["recommendations", "analytics", "insights"]
+    }
+
+@app.post("/ai/market-research")
+async def market_research(params: dict):
+    # Mock AI market research response
+    location = params.get("location", "Bangkok")
+    business_type = params.get("business_type", "restaurant")
+    
+    return {
+        "research_id": f"research_{location.lower()}_{business_type}",
+        "location": location,
+        "business_type": business_type,
+        "analysis": {
+            "market_size": "Large - High demand for dining options",
+            "competition_level": "Moderate - 150+ restaurants in 5km radius",
+            "target_demographics": "Young professionals, tourists, families",
+            "recommended_strategies": [
+                "Focus on unique cuisine offerings",
+                "Implement delivery services",
+                "Create social media presence",
+                "Offer competitive pricing"
+            ],
+            "risk_factors": [
+                "High competition",
+                "Rising rent costs",
+                "Seasonal demand fluctuations"
+            ],
+            "success_probability": "75% - Good location with proper execution"
+        },
+        "recommendations": [
+            "Consider fusion cuisine to stand out",
+            "Partner with delivery platforms",
+            "Focus on customer experience",
+            "Monitor competitor pricing"
+        ],
+        "created_at": datetime.datetime.now().isoformat()
+    }
+
+@app.post("/ai/market-analysis")
+async def market_analysis(params: dict):
+    # Mock AI market analysis response
+    location = params.get("location", "Bangkok")
+    cuisine_type = params.get("cuisine_type", "All")
+    radius_km = params.get("radius_km", 5)
+    
+    return {
+        "analysis_id": f"analysis_{location.lower()}_{cuisine_type.lower()}",
+        "location": location,
+        "cuisine_type": cuisine_type,
+        "radius_km": radius_km,
+        "results": {
+            "total_restaurants": 127,
+            "avg_rating": 4.2,
+            "price_distribution": {
+                "$": 45,
+                "$$": 52,
+                "$$$": 25,
+                "$$$$": 5
+            },
+            "cuisine_distribution": {
+                "Thai": 35,
+                "Italian": 20,
+                "Japanese": 18,
+                "American": 15,
+                "Chinese": 12,
+                "Indian": 10,
+                "Other": 17
+            },
+            "market_insights": [
+                "Thai cuisine dominates the market",
+                "Premium dining options are limited",
+                "High demand for delivery services",
+                "Growing interest in fusion cuisine"
+            ],
+            "opportunities": [
+                "Premium dining segment underserved",
+                "Healthy food options in demand",
+                "Late-night dining options limited",
+                "Vegetarian/vegan options growing"
+            ]
+        },
+        "created_at": datetime.datetime.now().isoformat()
+    }
+
+@app.post("/ai/recommendations")
+async def ai_recommendations(params: dict):
+    # Mock AI recommendations
+    preferences = params.get("preferences", {})
+    location = preferences.get("location", "Bangkok")
+    cuisine = preferences.get("cuisine", "Any")
+    
+    return {
+        "recommendations": [
+            {
+                "restaurant_id": 1,
+                "name": "Bella Italia",
+                "match_score": 0.95,
+                "reasons": ["Highly rated", "Great Italian cuisine", "Good location"],
+                "estimated_wait": "15-20 minutes"
+            },
+            {
+                "restaurant_id": 3,
+                "name": "Sushi Zen",
+                "match_score": 0.88,
+                "reasons": ["Premium quality", "Fresh ingredients", "Excellent service"],
+                "estimated_wait": "10-15 minutes"
+            },
+            {
+                "restaurant_id": 4,
+                "name": "Thai Garden",
+                "match_score": 0.82,
+                "reasons": ["Authentic Thai flavors", "Good value", "Local favorite"],
+                "estimated_wait": "20-25 minutes"
+            }
+        ],
+        "metadata": {
+            "model_used": "restaurant-recommendation-v1",
+            "response_time": "0.3s",
+            "confidence": 0.91
+        }
+    }
+
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run(app, host="0.0.0.0", port=12001, reload=True)
