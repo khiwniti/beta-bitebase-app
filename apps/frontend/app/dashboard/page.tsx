@@ -40,6 +40,8 @@ import BiteBaseAIAssistant from "../../components/ai/BiteBaseAIAssistant"
 import ServiceHealthDashboard from "../../components/admin/ServiceHealthDashboard"
 import { useRestaurants, useLocationBasedRestaurants } from "../../hooks/useRestaurantData"
 import RestaurantMap from "../../components/dashboard/RestaurantMap"
+import UnifiedMapComponent from "../../components/map/UnifiedMapComponent"
+import RestaurantScoring from "../../components/scoring/RestaurantScoring"
 
 // Real-time metrics that will be fetched from API
 const getRealTimeMetrics = (restaurantCount: number, avgRating: number) => ({
@@ -257,7 +259,14 @@ export default function DashboardPage() {
         }
       >
         <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4 sm:p-6 overflow-hidden">
-          <RestaurantMap />
+          <UnifiedMapComponent
+            center={[13.7563, 100.5018]}
+            zoom={13}
+            height="h-96"
+            showControls={true}
+            showRestaurantList={true}
+            compact={false}
+          />
         </div>
       </DashboardSection>
 
@@ -466,6 +475,14 @@ export default function DashboardPage() {
               ))}
             </div>
           </div>
+
+          {/* Restaurant Scoring - Compact View */}
+          <RestaurantScoring 
+            restaurantId="demo-restaurant"
+            compact={true}
+            showRecommendations={false}
+            className="w-full"
+          />
         </div>
       </div>
 

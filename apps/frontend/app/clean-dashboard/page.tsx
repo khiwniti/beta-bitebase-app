@@ -5,9 +5,9 @@ import dynamic from 'next/dynamic';
 import { apiClient, Restaurant } from '../../lib/api-client';
 import { MAPBOX_TOKEN } from '../../lib/mapbox';
 
-// Dynamically import map component
-const CleanMapComponent = dynamic(
-  () => import('../../components/map/CleanMapComponent'),
+// Dynamically import unified map component
+const UnifiedMapComponent = dynamic(
+  () => import('../../components/map/UnifiedMapComponent'),
   { 
     ssr: false,
     loading: () => (
@@ -86,11 +86,15 @@ export default function CleanDashboardPage() {
                 </div>
               </div>
               
-              <CleanMapComponent
+              <UnifiedMapComponent
                 center={[13.7563, 100.5018]}
                 zoom={13}
-                className="w-full h-96"
+                className="w-full"
+                height="h-96"
                 onRestaurantSelect={handleRestaurantSelect}
+                showControls={true}
+                showRestaurantList={false}
+                compact={false}
               />
               
               <div className="mt-4 text-sm text-gray-600">

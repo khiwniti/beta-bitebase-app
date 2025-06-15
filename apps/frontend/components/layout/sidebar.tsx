@@ -44,11 +44,18 @@ const navigation: NavigationSection[] = [
   {
     name: "Overview",
     items: [
-  {
-    name: "Dashboard",
-    href: "/dashboard",
+      {
+        name: "Dashboard",
+        href: "/dashboard",
         icon: LayoutDashboard,
         description: "Restaurant performance metrics"
+      },
+      {
+        name: "Restaurant Score",
+        href: "/scoring",
+        icon: Star,
+        description: "Performance scoring & analytics",
+        badge: "New"
       }
     ]
   },
