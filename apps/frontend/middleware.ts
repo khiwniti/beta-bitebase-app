@@ -1,32 +1,17 @@
-import { NextRequest, NextResponse } from 'next/server'
+import createMiddleware from 'next-intl/middleware';
 
-export default function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
+export default createMiddleware({
+  // A list of all locales that are supported
+  locales: ['en', 'th'],
 
-  // Protected routes that require authentication
-  const protectedRoutes = ['/dashboard', '/admin', '/profile', '/settings']
-  const isProtectedRoute = protectedRoutes.some(route => 
-    pathname.startsWith(route)
-  )
+  // Used when no locale matches
+  defaultLocale: 'en',
 
-  if (isProtectedRoute) {
-    // Check for authentication token
-    const token = request.cookies.get('auth_token')?.value
-    
-    if (!token) {
-      // Redirect to auth page
-      const authUrl = new URL('/auth', request.url)
-      authUrl.searchParams.set('redirect', pathname)
-      return NextResponse.redirect(authUrl)
-    }
-  }
-
-  return NextResponse.next()
-}
+  // Always use locale prefix
+  localePrefix: 'as-needed'
+});
 
 export const config = {
-  matcher: [
-    // Skip all internal paths (_next)
-    '/((?!_next|api|favicon.ico|.*\\.).*)',
-  ]
-}
+  // Match only internationalized pathnames
+  matcher: ['/', '/(th|en)/:path*']
+};

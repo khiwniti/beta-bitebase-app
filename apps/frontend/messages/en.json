@@ -1,388 +1,45 @@
 {
+  "nav": {
+    "dashboard": "Dashboard",
+    "restaurants": "Restaurants",
+    "analytics": "Analytics",
+    "settings": "Settings",
+    "home": "Home",
+    "about": "About",
+    "pricing": "Pricing",
+    "contact": "Contact"
+  },
   "common": {
     "loading": "Loading...",
+    "error": "Error",
     "save": "Save",
     "cancel": "Cancel",
-    "continue": "Continue",
-    "back": "Back",
-    "next": "Next",
     "submit": "Submit",
-    "search": "Search",
     "close": "Close",
     "edit": "Edit",
     "delete": "Delete",
-    "yes": "Yes",
-    "no": "No",
-    "ok": "OK",
-    "error": "Error",
-    "success": "Success",
-    "warning": "Warning",
-    "info": "Information"
-  },
-  "navigation": {
-    "home": "Home",
-    "explore": "Explore",
-    "features": "Features",
-    "blog": "Blog",
-    "changelog": "Changelog",
-    "dashboard": "Dashboard",
-    "about": "About",
-    "contact": "Contact",
-    "pricing": "Pricing",
-    "marketAnalysis": "Market Analysis",
-    "competition": "Competition",
-    "demographics": "Demographics",
-    "reports": "Reports",
-    "settings": "Settings",
-    "logout": "Logout",
-    "profile": "Profile"
+    "search": "Search",
+    "filter": "Filter"
   },
   "auth": {
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "createAccount": "Create Account",
+    "login": "Login",
+    "logout": "Logout",
+    "signup": "Sign Up",
     "email": "Email",
     "password": "Password",
-    "confirmPassword": "Confirm Password",
-    "fullName": "Full Name",
-    "forgotPassword": "Forgot Password?",
-    "rememberMe": "Remember me",
-    "alreadyHaveAccount": "Already have an account?",
-    "dontHaveAccount": "Don't have an account?",
-    "signInWithGoogle": "Sign in with Google",
-    "signUpWithGoogle": "Sign up with Google",
-    "accountType": "Account Type",
-    "restaurantOwner": "Restaurant Owner",
-    "restaurantOwnerDesc": "Single restaurant or planning to open one",
-    "franchiseBusiness": "Franchise Business",
-    "franchiseBusinessDesc": "Multiple locations or franchise operations"
-  },
-  "landing": {
-    "hero": {
-      "badge": "AI-Powered Restaurant Intelligence",
-      "title": "Transform Your Restaurant Business",
-      "subtitle": "Harness the power of AI to analyze markets, optimize locations, and outperform competitors with BiteBase.",
-      "cta": "🚀 Start Free Trial",
-      "watchDemo": "▶️ Watch Demo",
-      "stats": {
-        "restaurants": "Restaurants Served",
-        "revenue": "Average Revenue Increase", 
-        "uptime": "Uptime Guarantee"
-      }
-    },
-    "features": {
-      "badge": "✨ Features",
-      "title": "Why Choose BiteBase",
-      "subtitle": "Discover how our AI-powered platform helps restaurants optimize operations, understand markets, and increase profitability.",
-      "marketAnalysis": {
-        "title": "Market Analysis",
-        "description": "Deep dive into local market conditions, customer demographics, and spending patterns"
-      },
-      "locationIntelligence": {
-        "title": "Location Intelligence",
-        "description": "Find the perfect location with AI-powered foot traffic analysis and competition mapping"
-      },
-      "competitorTracking": {
-        "title": "Competitor Tracking",
-        "description": "Monitor competitor performance, pricing strategies, and market positioning in real-time"
-      },
-      "geospatialAnalytics": {
-        "title": "Geospatial Analytics",
-        "features": [
-          "Interactive location intelligence maps",
-          "Demographic and foot traffic analysis", 
-          "Optimal site selection recommendations",
-          "Trade area visualization and insights"
-        ]
-      },
-      "aiInsights": {
-        "title": "AI-Powered Insights",
-        "features": [
-          "Intelligent competitor analysis",
-          "Predictive sales forecasting",
-          "Automated market research reports", 
-          "Strategic recommendations engine"
-        ]
-      },
-      "businessIntelligence": {
-        "title": "Business Intelligence",
-        "features": [
-          "Real-time performance dashboards",
-          "Revenue optimization analytics",
-          "Customer behavior insights",
-          "Operational efficiency metrics"
-        ]
-      }
-    },
-    "testimonials": {
-      "badge": "💬 Customer Success Stories",
-      "title": "Trusted by Restaurant Owners",
-      "subtitle": "See how BiteBase has transformed restaurants across the globe.",
-      "stories": [
-        {
-          "quote": "BiteBase helped us identify the perfect location for our second restaurant. The geospatial analytics were spot-on, and we saw a 40% increase in foot traffic compared to our projections.",
-          "name": "Maria Rodriguez",
-          "title": "Owner, Sabor Latino",
-          "location": "Miami, FL",
-          "avatar": "👩‍🍳"
-        },
-        {
-          "quote": "The AI insights are incredible. We discovered our peak hours were different than we thought, optimized our staffing, and reduced costs by 25% while improving customer satisfaction.",
-          "name": "James Chen", 
-          "title": "Manager, Dragon Palace",
-          "location": "San Francisco, CA",
-          "avatar": "👨‍💼"
-        },
-        {
-          "quote": "The competitor analysis feature is a game-changer. We can see what's working in our market and adapt our strategy accordingly. Our revenue has grown 35% since using BiteBase.",
-          "name": "Sarah Johnson",
-          "title": "CEO, Fresh & Fast", 
-          "location": "Austin, TX",
-          "avatar": "👩‍💼"
-        }
-      ]
-    },
-    "pricing": {
-      "badge": "💰 Pricing Plans",
-      "title": "Choose Your Plan",
-      "subtitle": "Select a plan that fits your needs and start building with BiteBase today!",
-      "monthly": "Monthly",
-      "yearly": "Yearly",
-      "save": "Save 20%",
-      "starter": {
-        "name": "Starter",
-        "price": "Free",
-        "description": "Perfect for new restaurant owners",
-        "features": [
-          "Basic market analysis",
-          "Location scoring",
-          "Competitor overview",
-          "Email support"
-        ]
-      },
-      "professional": {
-        "name": "Professional",
-        "price": "$49",
-        "description": "For growing restaurant businesses",
-        "features": [
-          "Advanced market analysis",
-          "Real-time competitor tracking",
-          "Custom reports",
-          "Priority support",
-          "API access"
-        ]
-      },
-      "enterprise": {
-        "name": "Enterprise",
-        "price": "$199",
-        "description": "For restaurant chains and franchises",
-        "features": [
-          "Multi-location analysis",
-          "Advanced AI insights",
-          "Custom integrations",
-          "Dedicated support",
-          "White-label options"
-        ]
-      }
-    }
+    "forgotPassword": "Forgot Password?"
   },
   "dashboard": {
-    "title": "Market Intelligence Dashboard",
-    "welcome": "Welcome back, {name}! Here's your market overview.",
-    "marketOpportunityScore": "Market Opportunity Score",
-    "competitionLevel": "Competition Level",
-    "footTrafficScore": "Foot Traffic Score",
-    "revenuePotential": "Revenue Potential",
-    "aiAssistant": "AI Market Assistant",
-    "aiAssistantDesc": "Ask me anything about market research, demographics, or competitor analysis",
-    "marketInsights": "Market Insights",
-    "aiRecommendations": "AI Recommendations"
-  },
-  "restaurantSetup": {
-    "title": "AI-Powered Restaurant Location Analysis",
-    "subtitle": "Chat with our AI consultant to find the perfect location for your restaurant. Get real-time market analysis, demographic insights, and competition data.",
-    "steps": {
-      "chat": "AI Consultation",
-      "chatDesc": "Chat with our AI consultant",
-      "location": "Location Analysis",
-      "locationDesc": "Find the perfect location",
-      "summary": "Setup Complete",
-      "summaryDesc": "Review and finalize"
-    },
-    "skipToDashboard": "Skip to Dashboard",
-    "aiConsultant": "AI Restaurant Consultant",
-    "restaurantProfile": "Restaurant Profile",
-    "restaurantProfileDesc": "Your restaurant concept is taking shape",
-    "profileComplete": "Profile Complete!",
-    "profileCompleteDesc": "Great! You're ready to explore locations. Click below to continue.",
-    "findPerfectLocation": "Find Perfect Location",
-    "startChatting": "Start Chatting",
-    "startChattingDesc": "Chat with our AI to build your restaurant profile",
-    "interactiveMap": "Interactive Location Map",
-    "interactiveMapDesc": "Click anywhere on the map to get AI-powered location analysis",
-    "selectedLocation": "Selected Location",
-    "aiInsights": "AI Insights",
-    "completeSetup": "Complete Setup",
-    "setupComplete": "Setup Complete!",
-    "setupCompleteDesc": "Your restaurant profile is ready. Review and finalize your setup.",
-    "restaurantDetails": "Restaurant Details",
-    "backToEdit": "Back to Edit",
-    "goToDashboard": "Go to Dashboard"
-  },
-  "aiChat": {
-    "initialPrompt": "👋 Hello! I'm your AI restaurant consultant. I'll help you create a comprehensive restaurant profile and provide market analysis. Let's start with the basics - what's your restaurant concept or what type of cuisine are you planning to serve?",
-    "chatNaturally": "Chat naturally with our AI to define your restaurant concept and get comprehensive market analysis",
-    "complete": "Complete",
-    "readyForResearch": "Ready for market research!",
-    "readyForResearchDesc": "All essential information collected. Continue chatting for additional insights or proceed to location analysis.",
-    "marketAnalysisComplete": "MARKET ANALYSIS COMPLETE",
-    "marketOpportunity": "Market Opportunity Score",
-    "competitionLevel": "Competition Level",
-    "successProbability": "Success Probability",
-    "keyRecommendations": "Key Recommendations",
-    "riskFactors": "Risk Factors to Consider",
-    "suggestions": {
-      "cuisineType": [
-        "Thai restaurant in Bangkok",
-        "Italian bistro",
-        "Japanese sushi bar",
-        "Mexican fusion"
-      ],
-      "budget": [
-        "Budget: $300K",
-        "Budget: $500K",
-        "Budget: $1M"
-      ],
-      "targetAudience": [
-        "Young professionals",
-        "Families with kids",
-        "Tourists and expats"
-      ],
-      "location": [
-        "Sukhumvit area",
-        "Silom district",
-        "Siam shopping area"
-      ],
-      "diningStyle": [
-        "Fine dining",
-        "Fast casual",
-        "Cafe style"
-      ],
-      "additional": [
-        "Tell me about delivery options",
-        "What about marketing strategy?",
-        "Help me find locations"
-      ]
-    }
-  },
-  "marketAnalysis": {
-    "title": "Market Analysis",
-    "subtitle": "Comprehensive geospatial analysis for restaurant market research",
-    "saveAnalysis": "Save Analysis",
-    "generateReport": "Generate Report",
-    "analysisConfiguration": "Analysis Configuration",
-    "analysisConfigurationDesc": "Configure your market analysis parameters",
-    "targetLocation": "Target Location",
-    "locationPlaceholder": "e.g., Sukhumvit, Bangkok or 13.7563, 100.5018",
-    "analysisType": "Analysis Type",
-    "layers": "Layers",
-    "demographics": "Demographics",
-    "heatmap": "Heatmap",
-    "density": "Density",
-    "competition": "Competition",
-    "interactiveMarketMap": "Interactive Market Map",
-    "interactiveMarketMapDesc": "Geospatial visualization of market opportunities and competition",
-    "keyMetrics": "Key Metrics",
-    "marketOpportunity": "Market Opportunity",
-    "competitionDensity": "Competition Density",
-    "footTraffic": "Foot Traffic",
-    "aiInsights": "AI Insights",
-    "optimalLocationIdentified": "Optimal Location Identified",
-    "sukhumvitHighestPotential": "Sukhumvit Soi 11 shows highest potential",
-    "cuisineGapAnalysis": "Cuisine Gap Analysis",
-    "mexicanUnderrepresented": "Authentic Mexican cuisine underrepresented",
-    "peakHours": "Peak Hours",
-    "peakHoursTime": "Lunch: 12-2pm, Dinner: 7-10pm, Late night: 10pm-1am",
-    "generateDetailedReport": "Generate Detailed Report",
-    "exportAnalysisData": "Export Analysis Data"
-  },
-  "blog": {
-    "title": "BiteBase Explorer Blog",
-    "subtitle": "Discover insights, trends, and expert advice for restaurant discovery and dining experiences",
-    "searchPlaceholder": "Search articles...",
-    "readMore": "Read More",
-    "categories": {
-      "all": "All",
-      "restaurantDiscovery": "Restaurant Discovery",
-      "diningGuide": "Dining Guide",
-      "foodCulture": "Food Culture",
-      "technology": "Technology",
-      "sustainability": "Sustainability"
-    },
-    "newsletter": {
-      "title": "Stay Updated with BiteBase Explorer",
-      "subtitle": "Subscribe to our newsletter for the latest restaurant discoveries, dining trends, and food insights.",
-      "emailPlaceholder": "Enter your email",
-      "subscribe": "Subscribe",
-      "disclaimer": "We'll never share your email. You can unsubscribe at any time."
-    }
-  },
-  "footer": {
-    "description": "Discover amazing restaurants and enhance your dining experiences with comprehensive restaurant data.",
-    "quickLinks": "Quick Links",
-    "resources": "Resources",
-    "legal": "Legal",
-    "copyright": "All rights reserved.",
-    "links": {
-      "home": "Home",
-      "aboutUs": "About Us",
-      "blog": "Blog",
-      "contact": "Contact",
-      "resourceCenter": "Resource Center",
-      "caseStudies": "Case Studies",
-      "webinars": "Webinars",
-      "apiDocumentation": "API Documentation",
-      "termsOfService": "Terms of Service",
-      "privacyPolicy": "Privacy Policy",
-      "cookiePolicy": "Cookie Policy"
-    }
-  },
-  "hero": {
-    "title": "Discover Amazing Restaurants with Data-Driven Intelligence",
-    "subtitle": "Find your next favorite dining spot using comprehensive restaurant analytics, reviews, and location intelligence.",
-    "cta": "Start Exploring",
-    "learnMore": "Learn More"
-  },
-  "features": {
-    "title": "Why Choose BiteBase Explorer?",
-    "subtitle": "Powerful tools to discover and analyze restaurants",
-    "smartSearch": {
-      "title": "Smart Restaurant Search",
-      "description": "Find restaurants using advanced filters including cuisine, price range, ratings, and location preferences."
-    },
-    "dataAnalytics": {
-      "title": "Comprehensive Data Analytics",
-      "description": "Access detailed insights about restaurants including foot traffic, peak hours, and customer demographics."
-    },
-    "realTimeInfo": {
-      "title": "Real-time Information",
-      "description": "Get up-to-date information about wait times, availability, and current promotions."
-    }
+    "title": "Dashboard",
+    "overview": "Overview",
+    "analytics": "Analytics",
+    "reports": "Reports"
   },
   "restaurant": {
-    "rating": "Rating",
-    "reviews": "Reviews",
-    "priceRange": "Price Range",
-    "cuisine": "Cuisine",
+    "name": "Restaurant Name",
     "location": "Location",
-    "hours": "Hours",
-    "phone": "Phone",
-    "website": "Website",
-    "menu": "Menu",
-    "photos": "Photos",
-    "directions": "Get Directions",
-    "callNow": "Call Now",
-    "viewMenu": "View Menu",
-    "bookTable": "Book Table"
+    "cuisine": "Cuisine Type",
+    "rating": "Rating",
+    "reviews": "Reviews"
   }
 }
