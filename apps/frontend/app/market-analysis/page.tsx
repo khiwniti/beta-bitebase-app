@@ -13,6 +13,7 @@ import { MapPin, BarChart3, Users, DollarSign, TrendingUp, Filter, Download, Ref
 import { MetricCard, ChartCard, DashboardInsightCard, DashboardSection } from "../../components/dashboard/DashboardGrid"
 import { DataTable } from "../../components/ui/data-table"
 import { ChartContainer, SimpleLineChart, SimpleBarChart } from "../../components/ui/chart-container"
+import RealTimeLocationTracker from "../../components/location/RealTimeLocationTracker"
 
 // Production data interfaces
 interface Restaurant {
@@ -182,6 +183,31 @@ export default function MarketAnalysisPage() {
               </div>
             </div>
           </div>
+        </ChartCard>
+
+        {/* Real-Time Location Tracker */}
+        <ChartCard
+          title="Real-Time Location Tracking"
+          actions={[
+            {
+              label: "Settings",
+              icon: <Filter className="h-4 w-4" />,
+              onClick: () => console.log('Location settings')
+            }
+          ]}
+        >
+          <RealTimeLocationTracker
+            autoStart={false}
+            showRestaurants={true}
+            onLocationUpdate={(location) => {
+              console.log('Market analysis location updated:', location);
+              // Update map center and fetch restaurants for this location
+              fetchRestaurants(location.lat, location.lng);
+            }}
+            onRestaurantsUpdate={(restaurants) => {
+              console.log('Market analysis restaurants updated:', restaurants.length);
+            }}
+          />
         </ChartCard>
 
         {/* Main Analysis View */}

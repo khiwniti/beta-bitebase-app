@@ -336,10 +336,15 @@ export function useLocationBasedRestaurants() {
         };
         setUserLocation(location);
 
-        // Update location on backend for tracking
-        updateUserLocationOnBackend(position.coords);
+        // Enhanced location update with streaming and auto-search
+        updateUserLocationOnBackend(position.coords, {
+          auto_search: autoAdjustRadius,
+          search_radius: searchRadius,
+          include_nearby: true,
+          use_streaming: true
+        });
 
-        // Fetch restaurants with enhanced search
+        // Fetch restaurants with enhanced search (fallback if streaming doesn't work)
         if (autoAdjustRadius) {
           fetchNearbyRestaurantsWithAutoRadius(location.lat, location.lng);
         } else {
@@ -391,22 +396,59 @@ export function useLocationBasedRestaurants() {
     }
   }, []);
 
-  // Update user location on backend
-  const updateUserLocationOnBackend = useCallback(async (coords: GeolocationCoordinates) => {
+  // Enhanced location update with streaming and nearby restaurant discovery
+  const updateUserLocationOnBackend = useCallback(async (coords: GeolocationCoordinates, options?: {
+    auto_search?: boolean;
+    search_radius?: number;
+    include_nearby?: boolean;
+    use_streaming?: boolean;
+  }) => {
     try {
-      await apiClient.updateUserLocation({
+      const updateParams = {
         latitude: coords.latitude,
         longitude: coords.longitude,
         accuracy: coords.accuracy,
         altitude: coords.altitude,
         heading: coords.heading,
         speed: coords.speed,
-        session_id: sessionId
-      });
+        session_id: sessionId,
+        timestamp: new Date().toISOString(),
+        device_info: {
+          user_agent: navigator.userAgent,
+          platform: navigator.platform,
+          language: navigator.language
+        }
+      };
+
+      // Use streaming endpoint if enabled and auto_search is true
+      if (options?.use_streaming && options?.auto_search) {
+        const streamResponse = await apiClient.streamUserLocation({
+          ...updateParams,
+          auto_search: options.auto_search,
+          search_radius: options.search_radius || searchRadius,
+          max_results: 10,
+          include_nearby: options.include_nearby ?? true
+        });
+
+        if (streamResponse.data) {
+          // Update restaurants from streaming response
+          setRestaurants(streamResponse.data.restaurants || []);
+          setSearchMetrics(streamResponse.data.search_metrics || null);
+
+          console.log(`📍 Location streamed with ${streamResponse.data.restaurants?.length || 0} nearby restaurants`);
+        }
+      } else {
+        // Use regular location update
+        const response = await apiClient.updateUserLocation(updateParams);
+
+        if (response.data?.nearby_restaurants) {
+          setRestaurants(response.data.nearby_restaurants);
+        }
+      }
     } catch (error) {
       console.warn('Failed to update location on backend:', error);
     }
-  }, [sessionId]);
+  }, [sessionId, searchRadius]);
 
   // Enhanced fetch with auto-radius adjustment and buffer zones
   const fetchNearbyRestaurantsWithAutoRadius = useCallback(async (lat: number, lng: number) => {

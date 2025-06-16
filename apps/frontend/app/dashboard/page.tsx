@@ -39,6 +39,7 @@ import { tourUtils } from "../../utils/tourUtils"
 import ServiceHealthDashboard from "../../components/admin/ServiceHealthDashboard"
 import { useRestaurants, useLocationBasedRestaurants } from "../../hooks/useRestaurantData"
 import RestaurantMap from "../../components/dashboard/RestaurantMap"
+import RealTimeLocationTracker from "../../components/location/RealTimeLocationTracker"
 
 // Real-time metrics that will be fetched from API
 const getRealTimeMetrics = (restaurantCount: number, avgRating: number) => ({
@@ -244,9 +245,26 @@ export default function DashboardPage() {
         </div>
       )}
 
+      {/* Real-Time Location Tracker */}
+      <DashboardSection
+        title="Real-Time Location Tracking"
+        description="GPS tracking with automatic restaurant discovery"
+      >
+        <RealTimeLocationTracker
+          autoStart={false}
+          showRestaurants={true}
+          onLocationUpdate={(location) => {
+            console.log('Location updated:', location);
+          }}
+          onRestaurantsUpdate={(restaurants) => {
+            console.log('Restaurants updated:', restaurants.length);
+          }}
+        />
+      </DashboardSection>
+
       {/* Real-Time Restaurant Map */}
-      <DashboardSection 
-        title="Live Restaurant Map" 
+      <DashboardSection
+        title="Live Restaurant Map"
         description="Real-time restaurant data from Wongnai with location-based discovery"
         actions={
           <Button variant="outline" size="sm" onClick={() => router.push('/restaurant-explorer')}>

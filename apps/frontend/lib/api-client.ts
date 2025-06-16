@@ -379,6 +379,8 @@ class ApiClient {
     speed?: number;
     user_id?: string;
     session_id?: string;
+    timestamp?: string;
+    device_info?: any;
   }): Promise<ApiResponse<{
     success: boolean;
     location: {
@@ -390,8 +392,49 @@ class ApiClient {
       speed?: number;
     };
     message: string;
+    nearby_restaurants?: Restaurant[];
+    location_context?: {
+      area: string;
+      district: string;
+    };
   }>> {
     return this.request('/user/location/update', {
+      method: 'POST',
+      body: JSON.stringify(params),
+    });
+  }
+
+  async streamUserLocation(params: {
+    latitude: number;
+    longitude: number;
+    accuracy?: number;
+    user_id?: string;
+    session_id?: string;
+    auto_search?: boolean;
+    search_radius?: number;
+    max_results?: number;
+    include_nearby?: boolean;
+  }): Promise<ApiResponse<{
+    tracking_id: string;
+    location: {
+      latitude: number;
+      longitude: number;
+      accuracy?: number;
+    };
+    restaurants: Restaurant[];
+    search_metrics?: {
+      search_time_ms: number;
+      radius_km: number;
+      results_found: number;
+      location: { latitude: number; longitude: number };
+    };
+    timestamp: string;
+    location_context?: {
+      area: string;
+      district: string;
+    };
+  }>> {
+    return this.request('/user/location/stream', {
       method: 'POST',
       body: JSON.stringify(params),
     });
