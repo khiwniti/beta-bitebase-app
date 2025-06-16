@@ -82,7 +82,7 @@ export default function ProductionMapComponent({
     })
   }, [])
 
-  // Fetch real restaurant data from backend API
+  // Fetch real restaurant data using location-based search with Foursquare integration
   const fetchRestaurants = useCallback(async (lat: number, lng: number, radius: number) => {
     setLoading(true)
     setError(null)
@@ -90,19 +90,20 @@ export default function ProductionMapComponent({
     try {
       const { apiClient } = await import('../../lib/api-client')
 
-      const response = await apiClient.fetchRealRestaurantData({
-        latitude: lat,
-        longitude: lng,
-        radius: radius,
-        platforms: ['wongnai', 'google']
-      })
+      console.log(`🔍 Fetching restaurants near: ${lat}, ${lng} within ${radius}km`)
 
-      if (response.data?.all_restaurants) {
-        setRestaurants(response.data.all_restaurants)
+      // Use the new location-based search with Foursquare integration
+      const response = await apiClient.searchRestaurantsByLocation(lat, lng, radius)
+
+      if (response.data && response.data.length > 0) {
+        console.log(`✅ Found ${response.data.length} real restaurants via Foursquare API`)
+        setRestaurants(response.data)
       } else {
-        throw new Error(response.error || 'Failed to fetch restaurant data')
+        console.warn('⚠️ No restaurants found, this might be expected for some locations')
+        setRestaurants([])
       }
     } catch (err) {
+      console.error('❌ Restaurant fetch error:', err)
       setError(`Failed to load restaurant data: ${err instanceof Error ? err.message : 'Unknown error'}`)
       setRestaurants([])
     } finally {

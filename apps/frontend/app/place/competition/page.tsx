@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState } from 'react'
-import { MainLayout } from '../../../components/layout/MainLayout'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../components/ui/card'
 import { Badge } from '../../../components/ui/badge'
 import { Button } from '../../../components/ui/button'
@@ -176,8 +175,7 @@ export default function CompetitionPage() {
   })
 
   return (
-    <MainLayout pageTitle="Competition Analysis" pageDescription="Comprehensive analysis of competitors and market positioning">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
           <div className="flex items-center justify-between">
@@ -435,6 +433,5 @@ export default function CompetitionPage() {
           </Button>
         </div>
       </div>
-    </MainLayout>
   )
 }

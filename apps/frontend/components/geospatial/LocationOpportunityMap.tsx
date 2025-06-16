@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Info, Star, TrendingUp, Users, Utensils } from 'lucide-react';
+import { MapPin, Info, Star, TrendingUp, Users, Utensils, Navigation, RefreshCw, Target } from 'lucide-react';
 import { MapContainer } from './MapContainer';
 import { RestaurantMarker } from './RestaurantMarker';
+import { useLocationBasedRestaurants } from '../../hooks/useRestaurantData';
+import { apiClient } from '../../lib/api-client';
 
 // Layer styles for heatmap
 const heatmapLayerStyle = {
@@ -106,6 +108,45 @@ export default function LocationOpportunityMap({
   const [selectedLocation, setSelectedLocation] = useState<any>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
 
+  // Use location-based restaurant data
+  const {
+    restaurants,
+    loading: restaurantsLoading,
+    error: restaurantsError,
+    userLocation,
+    refetch: refetchRestaurants
+  } = useLocationBasedRestaurants();
+
+  const [realRestaurants, setRealRestaurants] = useState<any[]>([]);
+  const [loadingRealData, setLoadingRealData] = useState(false);
+
+  // Fetch real restaurant data for the current viewport
+  const fetchRealRestaurantData = useCallback(async (lat: number, lng: number) => {
+    setLoadingRealData(true);
+    try {
+      console.log(`🔍 Fetching opportunity map restaurants near: ${lat}, ${lng}`);
+
+      const response = await apiClient.searchRestaurantsByLocation(lat, lng, 5);
+
+      if (response.data && response.data.length > 0) {
+        console.log(`✅ Found ${response.data.length} restaurants for opportunity analysis`);
+        setRealRestaurants(response.data);
+      } else {
+        setRealRestaurants([]);
+      }
+    } catch (error) {
+      console.error('❌ Failed to fetch restaurant data for opportunity map:', error);
+      setRealRestaurants([]);
+    } finally {
+      setLoadingRealData(false);
+    }
+  }, []);
+
+  // Fetch restaurants when viewport changes
+  useEffect(() => {
+    fetchRealRestaurantData(viewport.latitude, viewport.longitude);
+  }, [viewport.latitude, viewport.longitude, fetchRealRestaurantData]);
+
   // Handle map click
   const handleMapClick = useCallback((event: any) => {
     // Close popup if clicking elsewhere
@@ -153,6 +194,34 @@ export default function LocationOpportunityMap({
         height="100%"
         className="w-full"
       >
+        {/* Real Restaurant Markers from Foursquare API */}
+        {realRestaurants.map((restaurant, index) => (
+          <div
+            key={`real-${restaurant.id}`}
+            className="absolute cursor-pointer"
+            style={{
+              left: `${Math.random() * 80 + 10}%`,
+              top: `${Math.random() * 80 + 10}%`,
+            }}
+            onClick={() => handleLocationClick({
+              ...restaurant,
+              type: 'restaurant',
+              position: [restaurant.latitude, restaurant.longitude]
+            })}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+            >
+              <div className="relative">
+                <MapPin className="h-6 w-6 text-red-500 drop-shadow-lg" />
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border border-white"></div>
+              </div>
+            </motion.div>
+          </div>
+        ))}
+
         {/* Existing Locations Markers */}
         {existingLocations.map((location, index) => (
           <div
@@ -201,20 +270,59 @@ export default function LocationOpportunityMap({
           </div>
         )}
 
-        {/* Map controls */}
-        <div className="absolute top-2 right-2 bg-white shadow-md rounded-md flex flex-col p-1">
+        {/* Enhanced Map Controls */}
+        <div className="absolute top-2 right-2 bg-white shadow-md rounded-md flex flex-col p-1 space-y-1">
           <button
             onClick={() => setViewport(v => ({ ...v, zoom: v.zoom + 1 }))}
-            className="p-1 hover:bg-gray-100 rounded"
+            className="p-2 hover:bg-gray-100 rounded text-sm font-medium"
+            title="Zoom In"
           >
             +
           </button>
           <button
             onClick={() => setViewport(v => ({ ...v, zoom: Math.max(v.zoom - 1, 1) }))}
-            className="p-1 hover:bg-gray-100 rounded"
+            className="p-2 hover:bg-gray-100 rounded text-sm font-medium"
+            title="Zoom Out"
           >
             -
           </button>
+          <button
+            onClick={() => fetchRealRestaurantData(viewport.latitude, viewport.longitude)}
+            className="p-2 hover:bg-gray-100 rounded"
+            title="Refresh Restaurant Data"
+            disabled={loadingRealData}
+          >
+            <RefreshCw className={`w-4 h-4 ${loadingRealData ? 'animate-spin' : ''}`} />
+          </button>
+          {userLocation && (
+            <button
+              onClick={() => setViewport({
+                latitude: userLocation.lat,
+                longitude: userLocation.lng,
+                zoom: 14
+              })}
+              className="p-2 hover:bg-gray-100 rounded"
+              title="Go to My Location"
+            >
+              <Navigation className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+
+        {/* Real-time Data Status */}
+        <div className="absolute top-2 left-2 bg-white bg-opacity-90 shadow-md rounded-md p-2 text-xs">
+          <div className="flex items-center space-x-2">
+            <div className={`w-2 h-2 rounded-full ${realRestaurants.length > 0 ? 'bg-green-500' : 'bg-gray-400'}`}></div>
+            <span className="font-medium">
+              {loadingRealData ? 'Loading...' : `${realRestaurants.length} Real Restaurants`}
+            </span>
+          </div>
+          {userLocation && (
+            <div className="flex items-center space-x-1 mt-1">
+              <Target className="w-3 h-3 text-blue-500" />
+              <span className="text-gray-600">Location: {userLocation.lat.toFixed(4)}, {userLocation.lng.toFixed(4)}</span>
+            </div>
+          )}
         </div>
 
         {/* Legend */}
