@@ -1,9 +1,9 @@
 "use client"
 
 import React from 'react'
-import { 
-  TrendingUp, 
-  TrendingDown, 
+import {
+  TrendingUp,
+  TrendingDown,
   Minus,
   MoreHorizontal,
   ExternalLink,
@@ -11,7 +11,10 @@ import {
   Download,
   Filter,
   Calendar,
-  Info
+  Info,
+  AlertTriangle,
+  CheckCircle,
+  Clock
 } from 'lucide-react'
 import { Button } from "../ui/button"
 
@@ -258,7 +261,7 @@ interface InsightCardProps {
   className?: string
 }
 
-export function InsightCard({
+export function DashboardInsightCard({
   type,
   title,
   description,

@@ -368,6 +368,207 @@ class ApiClient {
       method: 'GET',
     });
   }
+
+  // Enhanced location tracking endpoints
+  async updateUserLocation(params: {
+    latitude: number;
+    longitude: number;
+    accuracy?: number;
+    altitude?: number;
+    heading?: number;
+    speed?: number;
+    user_id?: string;
+    session_id?: string;
+  }): Promise<ApiResponse<{
+    success: boolean;
+    location: {
+      latitude: number;
+      longitude: number;
+      accuracy?: number;
+      altitude?: number;
+      heading?: number;
+      speed?: number;
+    };
+    message: string;
+  }>> {
+    return this.request('/user/location/update', {
+      method: 'POST',
+      body: JSON.stringify(params),
+    });
+  }
+
+  async getCurrentUserLocation(userId: string): Promise<ApiResponse<{
+    location: {
+      latitude: number;
+      longitude: number;
+      accuracy?: number;
+      altitude?: number;
+      heading?: number;
+      speed?: number;
+    };
+    last_updated: string;
+  }>> {
+    return this.request(`/user/location/current/${userId}`);
+  }
+
+  async getUserLocationHistory(userId: string, options?: {
+    limit?: number;
+    hours?: number;
+  }): Promise<ApiResponse<{
+    user_id: string;
+    locations: Array<{
+      latitude: number;
+      longitude: number;
+      accuracy?: number;
+      altitude?: number;
+      heading?: number;
+      speed?: number;
+      timestamp: string;
+    }>;
+    total: number;
+    time_range_hours: number;
+  }>> {
+    const params = new URLSearchParams();
+    if (options?.limit) params.append('limit', options.limit.toString());
+    if (options?.hours) params.append('hours', options.hours.toString());
+
+    const query = params.toString() ? `?${params.toString()}` : '';
+    return this.request(`/user/location/history/${userId}${query}`);
+  }
+
+  async setLocationPreferences(params: {
+    user_id?: string;
+    session_id?: string;
+    default_search_radius?: number;
+    max_search_radius?: number;
+    location_sharing_enabled?: boolean;
+    auto_location_update?: boolean;
+    distance_unit?: 'km' | 'miles';
+  }): Promise<ApiResponse<{
+    user_id: string;
+    preferences: {
+      default_search_radius: number;
+      max_search_radius: number;
+      location_sharing_enabled: boolean;
+      auto_location_update: boolean;
+      distance_unit: string;
+    };
+    message: string;
+  }>> {
+    return this.request('/user/preferences/location', {
+      method: 'POST',
+      body: JSON.stringify(params),
+    });
+  }
+
+  async getLocationPreferences(userId: string): Promise<ApiResponse<{
+    user_id: string;
+    preferences: {
+      default_search_radius: number;
+      max_search_radius: number;
+      location_sharing_enabled: boolean;
+      auto_location_update: boolean;
+      distance_unit: string;
+    };
+    last_updated: string | null;
+  }>> {
+    return this.request(`/user/preferences/location/${userId}`);
+  }
+
+  // Enhanced real-time restaurant search with buffer zones
+  async searchRestaurantsRealtime(params: {
+    latitude: number;
+    longitude: number;
+    initial_radius?: number;
+    max_radius?: number;
+    min_results?: number;
+    cuisine_filter?: string;
+    price_range_filter?: number;
+    rating_filter?: number;
+    limit?: number;
+    buffer_zones?: boolean;
+    user_id?: string;
+    session_id?: string;
+  }): Promise<ApiResponse<{
+    restaurants: Restaurant[];
+    total: number;
+    search_params: {
+      center: { latitude: number; longitude: number };
+      initial_radius_km: number;
+      final_radius_km: number;
+      max_radius_km: number;
+      search_attempts: number;
+      min_results_target: number;
+      buffer_zones_enabled: boolean;
+    };
+    auto_adjustment: {
+      radius_expanded: boolean;
+      expansion_factor: number;
+      results_sufficient: boolean;
+      search_efficiency: number;
+    };
+    buffer_zones?: {
+      inner_zone: {
+        radius_km: number;
+        count: number;
+        restaurants: Restaurant[];
+      };
+      middle_zone: {
+        radius_km: number;
+        count: number;
+        restaurants: Restaurant[];
+      };
+      outer_zone: {
+        radius_km: number;
+        count: number;
+        restaurants: Restaurant[];
+      };
+    };
+  }>> {
+    return this.request('/restaurants/search/realtime', {
+      method: 'POST',
+      body: JSON.stringify(params),
+    });
+  }
+
+  // Enhanced nearby restaurants with buffer radius
+  async getNearbyRestaurantsWithBuffer(params: {
+    latitude: number;
+    longitude: number;
+    radius?: number;
+    buffer_radius?: number;
+    platforms?: string[];
+    cuisine_filter?: string;
+    price_range_filter?: number;
+    rating_filter?: number;
+    limit?: number;
+    real_time?: boolean;
+  }): Promise<ApiResponse<{
+    restaurants: Restaurant[];
+    total: number;
+    search_params: {
+      center: { latitude: number; longitude: number };
+      radius_km: number;
+      buffer_radius_km: number;
+      effective_radius_km: number;
+      filters: {
+        cuisine?: string;
+        price_range?: number;
+        min_rating: number;
+      };
+    };
+    platforms_searched: string[];
+    data_sources: {
+      database_results: number;
+      mock_results: number;
+      total_before_filtering: number;
+    };
+  }>> {
+    return this.request('/restaurants/nearby', {
+      method: 'POST',
+      body: JSON.stringify(params),
+    });
+  }
 }
 
 // Export singleton instance

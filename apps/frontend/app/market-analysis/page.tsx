@@ -10,7 +10,7 @@ import { AnalysisOverlay } from "../../components/geospatial/AnalysisOverlay"
 import { DemographicLayer } from "../../components/geospatial/DemographicLayer"
 import { MapPin, BarChart3, Users, DollarSign, TrendingUp, Filter, Download, RefreshCw, Eye, Target, Star, Clock } from "lucide-react"
 
-import { MetricCard, ChartCard, InsightCard, DashboardSection } from "../../components/dashboard/DashboardGrid"
+import { MetricCard, ChartCard, DashboardInsightCard, DashboardSection } from "../../components/dashboard/DashboardGrid"
 import { DataTable } from "../../components/ui/data-table"
 import { ChartContainer, SimpleLineChart, SimpleBarChart } from "../../components/ui/chart-container"
 
@@ -316,7 +316,7 @@ export default function MarketAnalysisPage() {
               description="AI-powered market analysis insights"
             >
               <div className="space-y-4">
-                <InsightCard
+                <DashboardInsightCard
                   type="opportunity"
                   title="Optimal Location"
                   description="Sukhumvit Soi 11 shows highest potential"
@@ -326,7 +326,7 @@ export default function MarketAnalysisPage() {
                   onAction={() => console.log('View location details')}
                   icon={<Target className="w-5 h-5" />}
                 />
-                <InsightCard
+                <DashboardInsightCard
                   type="opportunity"
                   title="Cuisine Gap"
                   description="Authentic Mexican cuisine underrepresented"
@@ -336,7 +336,7 @@ export default function MarketAnalysisPage() {
                   onAction={() => console.log('Explore cuisine gap')}
                   icon={<TrendingUp className="w-5 h-5" />}
                 />
-                <InsightCard
+                <DashboardInsightCard
                   type="info"
                   title="Peak Hours"
                   description="Lunch: 12-2pm, Dinner: 7-10pm, Late night: 10pm-1am"
@@ -460,7 +460,7 @@ export default function MarketAnalysisPage() {
           ]}
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <InsightCard
+            <DashboardInsightCard
               type="opportunity"
               title="Growth Opportunity"
               description="High foot traffic area with moderate competition density"
@@ -471,7 +471,7 @@ export default function MarketAnalysisPage() {
               icon={<TrendingUp className="w-5 h-5" />}
             />
 
-            <InsightCard
+            <DashboardInsightCard
               type="info"
               title="Target Demographics"
               description="Young professionals and tourists dominate the area"
@@ -482,7 +482,7 @@ export default function MarketAnalysisPage() {
               icon={<Users className="w-5 h-5" />}
             />
 
-            <InsightCard
+            <DashboardInsightCard
               type="info"
               title="Peak Hours"
               description="Clear patterns in customer traffic throughout the day"

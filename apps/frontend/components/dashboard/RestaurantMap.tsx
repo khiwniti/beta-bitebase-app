@@ -131,7 +131,7 @@ export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
         {/* Map Controls */}
         <div className="absolute top-4 right-4 z-30">
           <Button
-            onClick={refetch}
+            onClick={() => refetch()}
             variant="outline"
             size="sm"
             className="bg-white/90 backdrop-blur-sm"
@@ -241,7 +241,7 @@ export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
         {/* Map Controls */}
         <div className="absolute top-4 right-4 z-10">
           <Button
-            onClick={refetch}
+            onClick={() => refetch()}
             variant="outline"
             size="sm"
             className="bg-white/90 backdrop-blur-sm"
@@ -302,7 +302,7 @@ export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
             <div className="text-center py-8 text-gray-500 dark:text-gray-400">
               <MapPin className="w-12 h-12 mx-auto mb-3 opacity-50" />
               <p>No restaurants found nearby</p>
-              <Button onClick={refetch} variant="outline" size="sm" className="mt-2">
+              <Button onClick={() => refetch()} variant="outline" size="sm" className="mt-2">
                 Try Again
               </Button>
             </div>

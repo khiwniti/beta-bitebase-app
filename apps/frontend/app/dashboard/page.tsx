@@ -26,13 +26,13 @@ import {
 import { useAuth } from "../../contexts/AuthContext"
 import { apiClient, Restaurant } from "../../lib/api-client"
 
-import { 
-  DashboardGrid, 
-  DashboardSection, 
-  MetricCard, 
-  ChartCard, 
-  InsightCard,
-  ActivityItem 
+import {
+  DashboardGrid,
+  DashboardSection,
+  MetricCard,
+  ChartCard,
+  DashboardInsightCard,
+  ActivityItem
 } from "../../components/dashboard/DashboardGrid"
 import { ChartContainer, SimpleLineChart, SimpleBarChart } from "../../components/ui/chart-container"
 import { tourUtils } from "../../utils/tourUtils"
@@ -230,9 +230,9 @@ export default function DashboardPage() {
             <Download className="h-4 w-4 mr-2" />
             Export Report
           </Button>
-          <Button onClick={() => router.push('/market-analysis')} className="flex-shrink-0">
+          <Button onClick={() => router.push('/market-research')} className="flex-shrink-0">
             <Plus className="h-4 w-4 mr-2" />
-            New Analysis
+            Market Research
           </Button>
         </div>
       </div>
@@ -399,12 +399,21 @@ export default function DashboardPage() {
             <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">Quick Actions</h3>
             <div className="space-y-3">
               <Button
-                onClick={() => router.push('/market-analysis')}
+                onClick={() => router.push('/market-research')}
                 className="w-full justify-start btn-primary text-xs sm:text-sm min-h-[44px] touch-manipulation"
+                data-tour="market-research"
+              >
+                <BarChart2 className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
+                <span className="truncate">Market Research</span>
+              </Button>
+              <Button
+                onClick={() => router.push('/market-analysis')}
+                variant="outline"
+                className="w-full justify-start text-xs sm:text-sm min-h-[44px] touch-manipulation"
                 data-tour="map-analysis"
               >
                 <Map className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
-                <span className="truncate">Analyze Location</span>
+                <span className="truncate">Location Analysis</span>
               </Button>
               <Button
                 onClick={() => router.push('/restaurant-setup')}
@@ -434,7 +443,7 @@ export default function DashboardPage() {
             <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">AI Insights</h3>
             <div className="space-y-3">
               {realTimeMetrics && getRealTimeInsights(parseInt(realTimeMetrics.totalRestaurants.value) || 0).map((insight) => (
-                <InsightCard
+                <DashboardInsightCard
                   key={insight.id}
                   type={insight.type}
                   title={insight.title}
@@ -446,9 +455,9 @@ export default function DashboardPage() {
                   onAction={() => {
                     // Handle insight action based on type
                     if (insight.type === 'opportunity') {
-                      router.push('/market-analysis')
+                      router.push('/market-research')
                     } else if (insight.type === 'info') {
-                      router.push('/reports')
+                      router.push('/market-research')
                     } else {
                       router.push('/dashboard')
                     }

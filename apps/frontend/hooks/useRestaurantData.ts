@@ -296,21 +296,38 @@ export function useRealDataFetcher() {
   };
 }
 
-// Hook for real-time location-based restaurant data
+// Enhanced hook for real-time location-based restaurant data with buffer radius
 export function useLocationBasedRestaurants() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
+  const [searchRadius, setSearchRadius] = useState(5);
+  const [bufferRadius, setBufferRadius] = useState(0.5);
+  const [autoAdjustRadius, setAutoAdjustRadius] = useState(true);
+  const [bufferZones, setBufferZones] = useState<any>(null);
+  const [searchMetrics, setSearchMetrics] = useState<any>(null);
+  const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
 
-  // Get user's current location
-  const getCurrentLocation = useCallback(() => {
+  // Enhanced location tracking with real-time updates
+  const getCurrentLocation = useCallback((options?: {
+    enableHighAccuracy?: boolean;
+    timeout?: number;
+    maximumAge?: number;
+  }) => {
     if (!navigator.geolocation) {
       setError('Geolocation is not supported by this browser');
       return;
     }
 
     setLoading(true);
+    const defaultOptions = {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 300000,
+      ...options
+    };
+
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const location = {
@@ -318,18 +335,32 @@ export function useLocationBasedRestaurants() {
           lng: position.coords.longitude
         };
         setUserLocation(location);
-        fetchNearbyRestaurants(location.lat, location.lng);
+
+        // Update location on backend for tracking
+        updateUserLocationOnBackend(position.coords);
+
+        // Fetch restaurants with enhanced search
+        if (autoAdjustRadius) {
+          fetchNearbyRestaurantsWithAutoRadius(location.lat, location.lng);
+        } else {
+          fetchNearbyRestaurants(location.lat, location.lng, searchRadius);
+        }
       },
       (error) => {
         console.error('Error getting location:', error);
         // Default to Bangkok center if location access denied
         const bangkokCenter = { lat: 13.7563, lng: 100.5018 };
         setUserLocation(bangkokCenter);
-        fetchNearbyRestaurants(bangkokCenter.lat, bangkokCenter.lng);
+
+        if (autoAdjustRadius) {
+          fetchNearbyRestaurantsWithAutoRadius(bangkokCenter.lat, bangkokCenter.lng);
+        } else {
+          fetchNearbyRestaurants(bangkokCenter.lat, bangkokCenter.lng, searchRadius);
+        }
       },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 300000 }
+      defaultOptions
     );
-  }, []);
+  }, [searchRadius, autoAdjustRadius]);
 
   // Fetch nearby restaurants using real data endpoint
   const fetchNearbyRestaurants = useCallback(async (lat: number, lng: number, radius: number = 5) => {
@@ -359,6 +390,95 @@ export function useLocationBasedRestaurants() {
       setLoading(false);
     }
   }, []);
+
+  // Update user location on backend
+  const updateUserLocationOnBackend = useCallback(async (coords: GeolocationCoordinates) => {
+    try {
+      await apiClient.updateUserLocation({
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+        accuracy: coords.accuracy,
+        altitude: coords.altitude,
+        heading: coords.heading,
+        speed: coords.speed,
+        session_id: sessionId
+      });
+    } catch (error) {
+      console.warn('Failed to update location on backend:', error);
+    }
+  }, [sessionId]);
+
+  // Enhanced fetch with auto-radius adjustment and buffer zones
+  const fetchNearbyRestaurantsWithAutoRadius = useCallback(async (lat: number, lng: number) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await apiClient.searchRestaurantsRealtime({
+        latitude: lat,
+        longitude: lng,
+        initial_radius: 2,
+        max_radius: 15,
+        min_results: 5,
+        limit: 20,
+        buffer_zones: true,
+        session_id: sessionId
+      });
+
+      if (response.data) {
+        setRestaurants(response.data.restaurants || []);
+        setBufferZones(response.data.buffer_zones || null);
+        setSearchMetrics({
+          searchParams: response.data.search_params,
+          autoAdjustment: response.data.auto_adjustment
+        });
+      } else {
+        throw new Error(response.error || 'Failed to fetch restaurant data');
+      }
+    } catch (err) {
+      console.error('Error fetching restaurants with auto-radius:', err);
+      setError('Failed to fetch nearby restaurants');
+      // Load demo data as fallback
+      setRestaurants(getDemoRestaurants(lat, lng));
+    } finally {
+      setLoading(false);
+    }
+  }, [sessionId]);
+
+  // Enhanced fetch with buffer radius
+  const fetchNearbyRestaurantsWithBuffer = useCallback(async (lat: number, lng: number, radius: number = 5) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await apiClient.getNearbyRestaurantsWithBuffer({
+        latitude: lat,
+        longitude: lng,
+        radius: radius,
+        buffer_radius: bufferRadius,
+        platforms: ['wongnai', 'google'],
+        limit: 20,
+        real_time: true
+      });
+
+      if (response.data) {
+        setRestaurants(response.data.restaurants || []);
+        setSearchMetrics({
+          searchParams: response.data.search_params,
+          dataSources: response.data.data_sources
+        });
+      } else {
+        throw new Error(response.error || 'Failed to fetch restaurant data');
+      }
+    } catch (err) {
+      console.error('Error fetching restaurants with buffer:', err);
+      setError('Failed to fetch nearby restaurants');
+      // Load demo data as fallback
+      setRestaurants(getDemoRestaurants(lat, lng));
+    } finally {
+      setLoading(false);
+    }
+  }, [bufferRadius]);
 
   // Demo restaurants for fallback
   const getDemoRestaurants = (lat: number, lng: number): Restaurant[] => [
@@ -422,8 +542,149 @@ export function useLocationBasedRestaurants() {
     loading,
     error,
     userLocation,
+    searchRadius,
+    bufferRadius,
+    autoAdjustRadius,
+    bufferZones,
+    searchMetrics,
+    sessionId,
     refetch: getCurrentLocation,
-    fetchNearbyRestaurants
+    fetchNearbyRestaurants,
+    fetchNearbyRestaurantsWithAutoRadius,
+    fetchNearbyRestaurantsWithBuffer,
+    setSearchRadius,
+    setBufferRadius,
+    setAutoAdjustRadius,
+    updateUserLocationOnBackend
+  };
+}
+
+// Hook for location preferences management
+export function useLocationPreferences(userId?: string) {
+  const [preferences, setPreferences] = useState<{
+    default_search_radius: number;
+    max_search_radius: number;
+    location_sharing_enabled: boolean;
+    auto_location_update: boolean;
+    distance_unit: string;
+  } | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchPreferences = useCallback(async () => {
+    if (!userId) return;
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await apiClient.getLocationPreferences(userId);
+      if (response.error) {
+        setError(response.error);
+      } else {
+        setPreferences(response.data?.preferences || null);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to fetch preferences');
+    } finally {
+      setLoading(false);
+    }
+  }, [userId]);
+
+  const updatePreferences = useCallback(async (newPreferences: {
+    default_search_radius?: number;
+    max_search_radius?: number;
+    location_sharing_enabled?: boolean;
+    auto_location_update?: boolean;
+    distance_unit?: 'km' | 'miles';
+  }) => {
+    if (!userId) return false;
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await apiClient.setLocationPreferences({
+        user_id: userId,
+        ...newPreferences
+      });
+
+      if (response.error) {
+        setError(response.error);
+        return false;
+      } else {
+        setPreferences(response.data?.preferences || null);
+        return true;
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to update preferences');
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      fetchPreferences();
+    }
+  }, [userId, fetchPreferences]);
+
+  return {
+    preferences,
+    loading,
+    error,
+    updatePreferences,
+    refetch: fetchPreferences
+  };
+}
+
+// Hook for location history
+export function useLocationHistory(userId?: string) {
+  const [locations, setLocations] = useState<Array<{
+    latitude: number;
+    longitude: number;
+    accuracy?: number;
+    altitude?: number;
+    heading?: number;
+    speed?: number;
+    timestamp: string;
+  }>>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchHistory = useCallback(async (options?: { limit?: number; hours?: number }) => {
+    if (!userId) return;
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await apiClient.getUserLocationHistory(userId, options);
+      if (response.error) {
+        setError(response.error);
+      } else {
+        setLocations(response.data?.locations || []);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to fetch location history');
+    } finally {
+      setLoading(false);
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      fetchHistory();
+    }
+  }, [userId, fetchHistory]);
+
+  return {
+    locations,
+    loading,
+    error,
+    fetchHistory,
+    refetch: fetchHistory
   };
 }
 
