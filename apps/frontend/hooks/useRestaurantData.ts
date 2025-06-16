@@ -352,7 +352,18 @@ export function useLocationBasedRestaurants() {
         }
       },
       (error) => {
-        console.error('Error getting location:', error);
+        // Better error handling for geolocation
+        let errorMessage = 'Location access denied';
+        if (error.code === 1) {
+          errorMessage = 'Location permission denied by user';
+        } else if (error.code === 2) {
+          errorMessage = 'Location unavailable';
+        } else if (error.code === 3) {
+          errorMessage = 'Location request timeout';
+        }
+
+        console.log(`📍 Location error: ${errorMessage} ${error.code}`);
+
         // Default to Bangkok center if location access denied
         const bangkokCenter = { lat: 13.7563, lng: 100.5018 };
         setUserLocation(bangkokCenter);

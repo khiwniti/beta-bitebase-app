@@ -1,17 +1,26 @@
 {
   "version": 2,
-  "name": "bitebase-frontend",
+  "name": "bitebase-intelligence",
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "outputDirectory": ".next",
 
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://api.bitebase.app",
+    "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN": "pk.eyJ1Ijoia2hpd25pdGkiLCJhIjoiY205eDFwMzl0MHY1YzJscjB3bm4xcnh5ZyJ9.ANGVE0tiA9NslBn8ft_9fQ",
+    "NEXT_PUBLIC_ENABLE_MAPS": "true",
+    "NEXT_PUBLIC_ENABLE_REAL_DATA": "true",
+    "NEXT_PUBLIC_ENABLE_AI_CHAT": "true",
+    "NODE_ENV": "production"
+  },
+
   "functions": {
-    "pages/api/**/*.js": {
+    "app/api/**/*.js": {
       "maxDuration": 30
     },
-    "pages/api/**/*.ts": {
+    "app/api/**/*.ts": {
       "maxDuration": 30
     }
   },
@@ -58,7 +67,39 @@
   "rewrites": [
     {
       "source": "/api/backend/(.*)",
-      "destination": "https://bitebase-backend-prod.your-subdomain.workers.dev/api/$1"
+      "destination": "https://api.bitebase.app/$1"
     }
-  ]
+  ],
+
+  "redirects": [
+    {
+      "source": "/test",
+      "destination": "/dashboard",
+      "permanent": false
+    },
+    {
+      "source": "/api-test",
+      "destination": "/dashboard",
+      "permanent": false
+    },
+    {
+      "source": "/map-test",
+      "destination": "/market-analysis",
+      "permanent": false
+    },
+    {
+      "source": "/user-test",
+      "destination": "/dashboard",
+      "permanent": false
+    }
+  ],
+
+  "regions": ["sin1", "hkg1", "bom1"],
+
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_API_URL": "https://api.bitebase.app",
+      "NODE_ENV": "production"
+    }
+  }
 }

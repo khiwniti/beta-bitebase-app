@@ -95,9 +95,11 @@ class ApiClient {
   private agentUrl: string;
 
   constructor() {
-    // Clean API URL configuration
-    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:12001';
+    // Production API URL configuration
+    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.bitebase.app';
     this.agentUrl = this.baseUrl; // Unified backend
+
+    console.log('🔗 API Client initialized with:', this.baseUrl);
   }
 
   private async request<T>(
@@ -107,28 +109,46 @@ class ApiClient {
     const url = `${this.baseUrl}${endpoint}`;
 
     try {
+      console.log(`🌐 API Request: ${options.method || 'GET'} ${url}`);
+
+      // Create AbortController for timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+
       const response = await fetch(url, {
         headers: {
           'Content-Type': 'application/json',
           ...options.headers,
         },
+        signal: controller.signal,
         ...options,
       });
 
+      clearTimeout(timeoutId);
       const data = await response.json();
 
       if (!response.ok) {
+        console.error(`❌ API Error ${response.status}:`, data.message || 'Unknown error');
         return {
           error: data.message || `HTTP ${response.status}`,
           status: response.status,
         };
       }
 
+      console.log(`✅ API Success: ${endpoint}`);
       return {
         data,
         status: response.status,
       };
     } catch (error) {
+      if (error instanceof Error && error.name === 'AbortError') {
+        console.error(`⏰ Request timeout for ${endpoint}`);
+        return {
+          error: 'Request timeout',
+          status: 408,
+        };
+      }
+      console.error(`❌ Network Error for ${endpoint}:`, error);
       return {
         error: error instanceof Error ? error.message : 'Network error',
         status: 0,

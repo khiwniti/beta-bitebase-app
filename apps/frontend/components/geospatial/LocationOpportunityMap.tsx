@@ -195,7 +195,9 @@ export default function LocationOpportunityMap({
         className="w-full"
       >
         {/* Real Restaurant Markers from Foursquare API */}
-        {realRestaurants.map((restaurant, index) => (
+        {realRestaurants
+          .filter(restaurant => restaurant.latitude != null && restaurant.longitude != null)
+          .map((restaurant, index) => (
           <div
             key={`real-${restaurant.id}`}
             className="absolute cursor-pointer"
@@ -206,7 +208,7 @@ export default function LocationOpportunityMap({
             onClick={() => handleLocationClick({
               ...restaurant,
               type: 'restaurant',
-              position: [restaurant.latitude, restaurant.longitude]
+              position: [Number(restaurant.latitude), Number(restaurant.longitude)]
             })}
           >
             <motion.div
