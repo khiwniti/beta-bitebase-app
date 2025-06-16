@@ -30,18 +30,34 @@ interface RestaurantMapProps {
 }
 
 export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
-  const { restaurants, loading, error, userLocation, refetch } = useLocationBasedRestaurants();
+  const { restaurants, loading, error: hookError, userLocation, refetch } = useLocationBasedRestaurants();
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
   const [popupInfo, setPopupInfo] = useState<Restaurant | null>(null);
+  const [locationPermission, setLocationPermission] = useState<'granted' | 'denied' | 'prompt' | 'unknown'>('unknown');
+  const [localError, setLocalError] = useState<string | null>(null);
   const [viewState, setViewState] = useState({
     longitude: 100.5018, // Default to Bangkok
     latitude: 13.7563,
     zoom: 12
   });
 
+  // Combine hook error and local error
+  const error = hookError || localError;
+
+  // Check location permission status
+  useEffect(() => {
+    if (navigator.permissions) {
+      navigator.permissions.query({ name: 'geolocation' }).then((result) => {
+        setLocationPermission(result.state);
+        console.log('📍 Location permission status:', result.state);
+      });
+    }
+  }, []);
+
   // Update map center when user location is available
   useEffect(() => {
     if (userLocation) {
+      console.log('📍 Updating map center to user location:', userLocation);
       setViewState(prev => ({
         ...prev,
         longitude: userLocation.lng,
@@ -50,6 +66,64 @@ export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
       }));
     }
   }, [userLocation]);
+
+  // Manual location request function
+  const requestLocation = () => {
+    if (navigator.geolocation) {
+      console.log('📍 Requesting location permission...');
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const location = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          console.log('📍 Manual location obtained:', location);
+          setLocationPermission('granted');
+          setViewState({
+            longitude: location.lng,
+            latitude: location.lat,
+            zoom: 14
+          });
+          refetch(); // Refresh restaurants for new location
+        },
+        (error) => {
+          console.error('📍 Location error:', error.message, error.code);
+          setLocationPermission('denied');
+
+          // Show user-friendly error message
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              setLocalError('Location access denied. Please enable location in your browser settings.');
+              break;
+            case error.POSITION_UNAVAILABLE:
+              setLocalError('Location information unavailable. Using default Bangkok location.');
+              break;
+            case error.TIMEOUT:
+              setLocalError('Location request timed out. Using default Bangkok location.');
+              break;
+            default:
+              setLocalError('Unknown location error. Using default Bangkok location.');
+              break;
+          }
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 15000,
+          maximumAge: 300000
+        }
+      );
+    } else {
+      setLocalError('Geolocation is not supported by this browser.');
+      setLocationPermission('denied');
+    }
+  };
+
+  // Auto-request location on component mount
+  useEffect(() => {
+    if (locationPermission === 'unknown') {
+      requestLocation();
+    }
+  }, [locationPermission]);
 
   // Using MAPBOX_TOKEN from mapbox utility
 
@@ -274,13 +348,45 @@ export default function RestaurantMap({ className = "" }: RestaurantMapProps) {
             Nearby Restaurants
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            {userLocation 
-              ? `Found ${restaurants.length} restaurants near you`
-              : 'Getting your location...'
+            {userLocation
+              ? `Found ${restaurants.length} real restaurants near you (${userLocation.lat.toFixed(4)}, ${userLocation.lng.toFixed(4)})`
+              : locationPermission === 'denied'
+                ? `Showing ${restaurants.length} real Bangkok restaurants (location access denied)`
+                : 'Getting your location to show nearby restaurants...'
             }
           </p>
+          <div className="flex items-center space-x-2 mt-1">
+            <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-xs font-semibold text-green-700">
+              Real Restaurant Data
+            </span>
+            {locationPermission === 'denied' && (
+              <span className="inline-flex items-center rounded-full border border-orange-200 bg-orange-50 px-2.5 py-0.5 text-xs font-semibold text-orange-700">
+                Enable Location for Nearby Results
+              </span>
+            )}
+          </div>
         </div>
         <div className="flex items-center space-x-2">
+          {!userLocation && locationPermission !== 'denied' && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={requestLocation}
+              disabled={loading}
+            >
+              <MapPin className="w-4 h-4 mr-2" />
+              Get Location
+            </Button>
+          )}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => refetch()}
+            disabled={loading}
+          >
+            <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+            Refresh
+          </Button>
           {error && (
             <span className="text-sm text-red-600 dark:text-red-400">
               {error}

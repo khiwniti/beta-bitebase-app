@@ -16,12 +16,18 @@ export default function PricePage() {
           <p className="text-xl text-neutral-600 mb-8">
             Choose the perfect plan for your restaurant's growth journey
           </p>
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-center space-x-4 mb-4">
             <Link
               href="/price/analysis"
               className="btn btn-primary btn-lg"
             >
-              Run Price Analysis
+              Dish Price Analysis
+            </Link>
+            <Link
+              href="/price/restaurant-menu"
+              className="btn btn-secondary btn-lg"
+            >
+              Restaurant Menu Pricing
             </Link>
           </div>
         </div>

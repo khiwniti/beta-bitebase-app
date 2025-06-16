@@ -219,6 +219,203 @@ class ApiClient {
     });
   }
 
+  // Wongnai API integration endpoints
+  async getWongnaiBusinesses(params?: {
+    query?: string;
+    location?: string;
+    limit?: number;
+  }): Promise<ApiResponse<{
+    businesses: Array<{
+      id: string;
+      publicId: string;
+      name: string;
+      description: string;
+      cuisine: string[];
+      rating: number;
+      review_count: number;
+      price_range: string;
+      location: {
+        latitude: number;
+        longitude: number;
+        address: string;
+        district: string;
+        city: string;
+      };
+      contact: {
+        phone: string;
+        website: string;
+        email: string;
+      };
+      hours: any;
+      features: string[];
+      images: string[];
+      delivery_available: boolean;
+      takeout_available: boolean;
+      source: string;
+      last_updated: string;
+    }>;
+    total: number;
+    query_params: any;
+  }>> {
+    const queryParams = new URLSearchParams();
+    if (params?.query) queryParams.append('query', params.query);
+    if (params?.location) queryParams.append('location', params.location);
+    if (params?.limit) queryParams.append('limit', params.limit.toString());
+
+    const query = queryParams.toString() ? `?${queryParams.toString()}` : '';
+    return this.request(`/restaurants/wongnai/businesses${query}`);
+  }
+
+  async getWongnaiDeliveryMenu(publicId: string): Promise<ApiResponse<{
+    publicId: string;
+    restaurant_name: string;
+    restaurant_info: {
+      id: string;
+      name: string;
+      cuisine: string[];
+      rating: number;
+      review_count: number;
+      price_range: string;
+      location: any;
+      phone: string;
+      hours: any;
+    };
+    menu_categories: Array<{
+      id: string;
+      name: string;
+      description: string;
+      items: Array<{
+        id: string;
+        name: string;
+        description: string;
+        price: number;
+        discounted_price?: number;
+        image_url: string;
+        is_available: boolean;
+        options: any[];
+        tags: string[];
+        nutrition: any;
+        popularity_score: number;
+      }>;
+    }>;
+    delivery_info: {
+      isAvailable: boolean;
+      minimumOrder: number;
+      deliveryFee: number;
+      estimatedTime: string;
+      delivery_areas: string[];
+    };
+    pricing_analytics: {
+      total_items: number;
+      price_range: {
+        min: number;
+        max: number;
+        average: number;
+        median: number;
+      };
+      category_stats: Record<string, {
+        item_count: number;
+        min_price: number;
+        max_price: number;
+        avg_price: number;
+        price_distribution: Record<string, number>;
+      }>;
+      popular_items: Array<{
+        name: string;
+        price: number;
+        category: string;
+        popularity_score: number;
+      }>;
+      price_distribution: Record<string, number>;
+      pricing_insights: Array<{
+        type: string;
+        title: string;
+        description: string;
+        impact: string;
+      }>;
+    };
+    last_updated: string;
+  }>> {
+    return this.request(`/restaurants/wongnai/${publicId}/delivery-menu`);
+  }
+
+  // Restaurant-to-Menu Integration endpoints
+  async getRestaurantMenuPricing(restaurantId: string): Promise<ApiResponse<{
+    restaurant: {
+      id: string;
+      name: string;
+      cuisine_type: string;
+      rating: number;
+      price_range: number;
+      delivery_available: boolean;
+      wongnai_public_id?: string;
+      has_delivery_menu: boolean;
+    };
+    menu_pricing: {
+      total_items: number;
+      price_range: {
+        min: number;
+        max: number;
+        average: number;
+        median: number;
+      };
+      menu_categories: Array<{
+        name: string;
+        items: Array<{
+          name: string;
+          price: number;
+          category: string;
+          is_available: boolean;
+          popularity_score: number;
+        }>;
+      }>;
+      popular_items: Array<{
+        name: string;
+        price: number;
+        category: string;
+        popularity_score: number;
+      }>;
+      pricing_insights: Array<{
+        type: string;
+        title: string;
+        description: string;
+        impact: string;
+      }>;
+      sample_data?: boolean;
+    };
+    data_source: string;
+    integration_status: {
+      wongnai_connected: boolean;
+      delivery_menu_available: boolean;
+      real_data_available: boolean;
+    };
+  }>> {
+    return this.request(`/restaurants/${restaurantId}/menu-pricing`);
+  }
+
+  async getBatchRestaurantMenuPricing(restaurantIds: string[]): Promise<ApiResponse<{
+    results: Array<{
+      restaurant_id: string;
+      success: boolean;
+      restaurant?: any;
+      menu_pricing?: any;
+      data_source?: string;
+      error?: string;
+    }>;
+    summary: {
+      total_requested: number;
+      successful: number;
+      failed: number;
+      wongnai_data: number;
+      sample_data: number;
+    };
+  }>> {
+    return this.request('/restaurants/batch-menu-pricing', {
+      method: 'POST',
+      body: JSON.stringify({ restaurant_ids: restaurantIds }),
+    });
+  }
+
   // Real data fetching
   async fetchRealRestaurantData(params: {
     latitude: number;

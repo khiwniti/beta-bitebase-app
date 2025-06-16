@@ -373,21 +373,28 @@ export function useLocationBasedRestaurants() {
     setError(null);
 
     try {
-      // Use the real restaurant data endpoint
-      const response = await apiClient.fetchRealRestaurantData({
-        latitude: lat,
-        longitude: lng,
-        radius: radius,
-        platforms: ['wongnai', 'google']
-      });
+      console.log(`🔍 Fetching real restaurants near: ${lat}, ${lng} within ${radius}km`);
 
-      if (response.data?.all_restaurants) {
-        setRestaurants(response.data.all_restaurants);
+      // Use the searchRestaurantsByLocation method which calls /restaurants/search with coordinates
+      const response = await apiClient.searchRestaurantsByLocation(lat, lng, radius);
+
+      if (response.data && response.data.length > 0) {
+        console.log(`✅ Found ${response.data.length} real restaurants from Foursquare API`);
+        setRestaurants(response.data);
+
+        // Update search metrics
+        setSearchMetrics({
+          search_radius: radius,
+          results_count: response.data.length,
+          data_source: 'foursquare_api',
+          last_search: new Date().toISOString()
+        });
       } else {
-        throw new Error(response.error || 'Failed to fetch restaurant data');
+        console.warn('⚠️ No restaurants found, using demo data');
+        setRestaurants(getDemoRestaurants(lat, lng));
       }
     } catch (err) {
-      console.error('Error fetching restaurants:', err);
+      console.error('❌ Error fetching restaurants:', err);
       setError('Failed to fetch nearby restaurants');
       // Load demo data as fallback
       setRestaurants(getDemoRestaurants(lat, lng));
