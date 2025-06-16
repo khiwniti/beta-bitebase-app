@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "bitebase-intelligence",
+  "name": "bitebase-beta",
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
@@ -96,10 +96,15 @@
 
   "regions": ["sin1", "hkg1", "bom1"],
 
+  "domains": ["beta.bitebase.app"],
+
   "build": {
     "env": {
       "NEXT_PUBLIC_API_URL": "https://api.bitebase.app",
       "NODE_ENV": "production"
     }
-  }
+  },
+
+  "cleanUrls": true,
+  "trailingSlash": false
 }
