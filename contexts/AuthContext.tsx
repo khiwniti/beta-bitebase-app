@@ -154,7 +154,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         // Note: This would need to be returned from the backend
         // For now, assume new users based on account creation date
         const isNewUser =
-          new Date(result.data.user.created_at || "").getTime() >
+          new Date((result.data.user as any).created_at || "").getTime() >
           Date.now() - 24 * 60 * 60 * 1000;
 
         if (isNewUser) {
