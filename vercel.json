@@ -9,18 +9,18 @@
 
   "env": {
     "NEXT_PUBLIC_API_URL": "https://api.bitebase.app",
-    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "pk_live_51QXx6jBnlMK6rCAQRtEMwxV3fvYjCfSl1X61xY1M75yRZGY5eu8Y0Bq4VkUSEgbyXt4pkMLiaO2UqXUXR43TBH4C00iVaAHEJv",
-    "NEXT_PUBLIC_FOURSQUARE_CLIENT_ID": "UFEXNGODOGBQRX35NGIP0ZU0XDT2GJMIV0LGNGBMLU5RBVAN",
-    "NEXT_PUBLIC_FOURSQUARE_API_KEY": "2OGSJJT0AGVRX4NTDMQLNOAOHTL4JVTXHTLB5GXDRRHTCKBD",
-    "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN": "pk.eyJ1Ijoia2hpd25pdGkiLCJhIjoiY205eDFwMzl0MHY1YzJscjB3bm4xcnh5ZyJ9.ANGVE0tiA9NslBn8ft_9fQ",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "@next_public_stripe_publishable_key",
+    "NEXT_PUBLIC_FOURSQUARE_CLIENT_ID": "@next_public_foursquare_client_id",
+    "NEXT_PUBLIC_FOURSQUARE_API_KEY": "@next_public_foursquare_api_key",
+    "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN": "@next_public_mapbox_access_token",
     "NEXT_PUBLIC_ENABLE_MAPS": "true",
     "NEXT_PUBLIC_ENABLE_REAL_DATA": "true",
     "NEXT_PUBLIC_ENABLE_AI_CHAT": "true",
     "NEXT_PUBLIC_ENVIRONMENT": "production",
     "NEXT_PUBLIC_APP_NAME": "BiteBase Intelligence",
-    "NEXT_PUBLIC_STACK_PROJECT_ID": "6904b72f-dac0-4d07-b599-cdc5c5226508",
-    "NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY": "pck_4jbaec4nqwfwzr1k88x4j4v47hgrr8vd3zw90yedhdh20",
-    "STACK_SECRET_SERVER_KEY": "ssk_ft2k9mb57y4d6h3kafv7vdjgack59cmbe679r6mvn2bkg",
+    "NEXT_PUBLIC_STACK_PROJECT_ID": "@next_public_stack_project_id",
+    "NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY": "@next_public_stack_publishable_client_key",
+    "STACK_SECRET_SERVER_KEY": "@stack_secret_server_key",
     "NODE_ENV": "production"
   },
 
@@ -109,17 +109,17 @@
   "build": {
     "env": {
       "NEXT_PUBLIC_API_URL": "https://api.bitebase.app",
-      "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "pk_live_51QXx6jBnlMK6rCAQRtEMwxV3fvYjCfSl1X61xY1M75yRZGY5eu8Y0Bq4VkUSEgbyXt4pkMLiaO2UqXUXR43TBH4C00iVaAHEJv",
-      "NEXT_PUBLIC_FOURSQUARE_CLIENT_ID": "UFEXNGODOGBQRX35NGIP0ZU0XDT2GJMIV0LGNGBMLU5RBVAN",
-      "NEXT_PUBLIC_FOURSQUARE_API_KEY": "2OGSJJT0AGVRX4NTDMQLNOAOHTL4JVTXHTLB5GXDRRHTCKBD",
-      "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN": "pk.eyJ1Ijoia2hpd25pdGkiLCJhIjoiY205eDFwMzl0MHY1YzJscjB3bm4xcnh5ZyJ9.ANGVE0tiA9NslBn8ft_9fQ",
+      "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "@next_public_stripe_publishable_key",
+      "NEXT_PUBLIC_FOURSQUARE_CLIENT_ID": "@next_public_foursquare_client_id",
+      "NEXT_PUBLIC_FOURSQUARE_API_KEY": "@next_public_foursquare_api_key",
+      "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN": "@next_public_mapbox_access_token",
       "NEXT_PUBLIC_ENABLE_MAPS": "true",
       "NEXT_PUBLIC_ENABLE_REAL_DATA": "true",
       "NEXT_PUBLIC_ENABLE_AI_CHAT": "true",
       "NEXT_PUBLIC_ENVIRONMENT": "production",
       "NEXT_PUBLIC_APP_NAME": "BiteBase Intelligence",
-      "NEXT_PUBLIC_STACK_PROJECT_ID": "6904b72f-dac0-4d07-b599-cdc5c5226508",
-      "NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY": "pck_4jbaec4nqwfwzr1k88x4j4v47hgrr8vd3zw90yedhdh20",
+      "NEXT_PUBLIC_STACK_PROJECT_ID": "@next_public_stack_project_id",
+      "NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY": "@next_public_stack_publishable_client_key",
       "NODE_ENV": "production"
     }
   },
