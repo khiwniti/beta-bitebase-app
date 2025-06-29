@@ -1,0 +1,442 @@
+/* BiteBase Consolidated Theme - Clean and Consistent */
+/* This file consolidates all theme styles to prevent conflicts and overlapping */
+
+:root {
+  /* Primary Brand Colors - Consistent across the app */
+  --bitebase-primary: #74C365;
+  --bitebase-primary-dark: #5fa854;
+  --bitebase-primary-light: #e8f5e5;
+  --bitebase-primary-50: #f0f9ee;
+  --bitebase-primary-100: #e8f5e5;
+  --bitebase-primary-200: #c8e6c0;
+  --bitebase-primary-300: #a8d79b;
+  --bitebase-primary-400: #8ed080;
+  --bitebase-primary-500: #74C365;
+  --bitebase-primary-600: #5fa854;
+  --bitebase-primary-700: #4a8d43;
+  --bitebase-primary-800: #357232;
+  --bitebase-primary-900: #205721;
+  
+  /* Accent Colors */
+  --bitebase-accent-red: #E23D28;
+  --bitebase-accent-red-dark: #c73520;
+  --bitebase-accent-red-light: #f8e6e3;
+  --bitebase-accent-saffron: #F4C431;
+  --bitebase-accent-saffron-dark: #e0b02a;
+  --bitebase-accent-saffron-light: #fef7e0;
+  
+  /* Neutral Colors */
+  --bitebase-gray-50: #f9fafb;
+  --bitebase-gray-100: #f3f4f6;
+  --bitebase-gray-200: #e5e7eb;
+  --bitebase-gray-300: #d1d5db;
+  --bitebase-gray-400: #9ca3af;
+  --bitebase-gray-500: #6b7280;
+  --bitebase-gray-600: #4b5563;
+  --bitebase-gray-700: #374151;
+  --bitebase-gray-800: #1f2937;
+  --bitebase-gray-900: #111827;
+  
+  /* Dark Theme Colors */
+  --bitebase-dark-bg: #0F172A;
+  --bitebase-dark-surface: #1E293B;
+  --bitebase-dark-border: #334155;
+  
+  /* Consistent Spacing */
+  --bitebase-radius: 12px;
+  --bitebase-radius-sm: 8px;
+  --bitebase-radius-lg: 16px;
+  --bitebase-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --bitebase-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --bitebase-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Typography */
+  --bitebase-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --bitebase-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--bitebase-font-family);
+}
+
+body {
+  font-family: var(--bitebase-font-family);
+  line-height: 1.6;
+  color: var(--bitebase-gray-800);
+  background-color: var(--bitebase-gray-50);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Button Styles - Consistent across the app */
+.btn-primary {
+  background: linear-gradient(135deg, var(--bitebase-primary) 0%, var(--bitebase-primary-dark) 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--bitebase-radius);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: var(--bitebase-shadow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  min-height: 44px; /* Touch-friendly minimum */
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--bitebase-shadow-lg);
+  background: linear-gradient(135deg, var(--bitebase-primary-dark) 0%, var(--bitebase-primary-800) 100%);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--bitebase-shadow);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--bitebase-primary);
+  border: 2px solid var(--bitebase-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--bitebase-radius);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  min-height: 44px;
+}
+
+.btn-secondary:hover {
+  background: var(--bitebase-primary);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: var(--bitebase-shadow);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--bitebase-gray-700);
+  border: 1px solid var(--bitebase-gray-300);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--bitebase-radius);
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  min-height: 44px;
+}
+
+.btn-outline:hover {
+  background: var(--bitebase-gray-50);
+  border-color: var(--bitebase-gray-400);
+  transform: translateY(-1px);
+}
+
+/* Card Styles */
+.card {
+  background: white;
+  border-radius: var(--bitebase-radius);
+  box-shadow: var(--bitebase-shadow);
+  border: 1px solid var(--bitebase-gray-200);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--bitebase-shadow-lg);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--bitebase-gray-200);
+  background: var(--bitebase-gray-50);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--bitebase-gray-200);
+  background: var(--bitebase-gray-50);
+}
+
+/* Navigation Styles */
+.nav-link {
+  position: relative;
+  color: var(--bitebase-gray-600);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--bitebase-radius-sm);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  min-height: 44px;
+}
+
+.nav-link:hover {
+  color: var(--bitebase-primary);
+  background: var(--bitebase-primary-50);
+}
+
+.nav-link.active {
+  color: var(--bitebase-primary);
+  background: var(--bitebase-primary-100);
+  font-weight: 600;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  background: white;
+  border-right: 1px solid var(--bitebase-gray-200);
+  box-shadow: var(--bitebase-shadow);
+  transition: all 0.3s ease;
+}
+
+.sidebar-dark {
+  background: linear-gradient(135deg, var(--bitebase-dark-bg) 0%, var(--bitebase-dark-surface) 100%);
+  border-right: 1px solid var(--bitebase-dark-border);
+  color: white;
+}
+
+.sidebar-dark .nav-link {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.sidebar-dark .nav-link:hover {
+  color: var(--bitebase-primary);
+  background: rgba(116, 195, 101, 0.1);
+}
+
+.sidebar-dark .nav-link.active {
+  color: white;
+  background: var(--bitebase-primary);
+}
+
+/* Header Styles */
+.header {
+  background: white;
+  border-bottom: 1px solid var(--bitebase-gray-200);
+  box-shadow: var(--bitebase-shadow);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: between;
+  gap: 1rem;
+  min-height: 64px;
+}
+
+/* Form Styles */
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--bitebase-gray-300);
+  border-radius: var(--bitebase-radius-sm);
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  background: white;
+  min-height: 44px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--bitebase-primary);
+  box-shadow: 0 0 0 3px rgba(116, 195, 101, 0.1);
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: var(--bitebase-gray-700);
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Alert Styles */
+.alert {
+  padding: 1rem;
+  border-radius: var(--bitebase-radius);
+  border: 1px solid;
+  margin-bottom: 1rem;
+}
+
+.alert-success {
+  background: var(--bitebase-primary-50);
+  border-color: var(--bitebase-primary-200);
+  color: var(--bitebase-primary-800);
+}
+
+.alert-warning {
+  background: var(--bitebase-accent-saffron-light);
+  border-color: var(--bitebase-accent-saffron);
+  color: #92400e;
+}
+
+.alert-error {
+  background: var(--bitebase-accent-red-light);
+  border-color: var(--bitebase-accent-red);
+  color: var(--bitebase-accent-red-dark);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  border: 3px solid var(--bitebase-gray-200);
+  border-top: 3px solid var(--bitebase-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.875rem;
+    min-height: 48px; /* Larger touch targets on mobile */
+  }
+  
+  .card-header,
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .header {
+    padding: 0.75rem 1rem;
+    min-height: 56px;
+  }
+  
+  .nav-link {
+    padding: 0.75rem 1rem;
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .card {
+    margin: 0.5rem;
+    border-radius: var(--bitebase-radius-sm);
+  }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus Styles for Keyboard Navigation */
+.btn-primary:focus,
+.btn-secondary:focus,
+.btn-outline:focus,
+.nav-link:focus,
+.form-input:focus {
+  outline: 2px solid var(--bitebase-primary);
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .card {
+    border: 2px solid var(--bitebase-gray-400);
+  }
+  
+  .btn-primary {
+    border: 2px solid var(--bitebase-primary-dark);
+  }
+  
+  .btn-secondary {
+    border-width: 3px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .sidebar,
+  .header,
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline {
+    display: none !important;
+  }
+  
+  .card {
+    box-shadow: none;
+    border: 1px solid var(--bitebase-gray-400);
+    break-inside: avoid;
+  }
+}
+
+/* Utility Classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}

@@ -1,0 +1,83 @@
+/* Marketing Research Component Styles */
+
+/* Main container */
+.marketing-research-visualizer {
+  margin-top: 1rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Charts container */
+.marketing-charts-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .marketing-charts-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+/* Chart cards */
+.marketing-chart-card {
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.marketing-chart-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Chart images */
+.marketing-chart-image {
+  width: 100%;
+  height: auto;
+  border-radius: 0.25rem;
+  object-fit: contain;
+}
+
+/* Sentiment analysis */
+.sentiment-analysis-card {
+  margin-top: 1rem;
+}
+
+.sentiment-bars {
+  margin-top: 0.5rem;
+}
+
+/* Keyword cloud */
+.keyword-cloud-card {
+  margin-top: 1rem;
+}
+
+.keyword-cloud-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.keyword-tag {
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.keyword-tag:hover {
+  transform: scale(1.05);
+}
+
+/* Marketing research actions */
+.marketing-research-actions {
+  margin-top: 1rem;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

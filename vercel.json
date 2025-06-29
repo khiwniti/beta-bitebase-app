@@ -1,42 +1,56 @@
 {
   "version": 2,
-  "name": "bitebase-mcp-app",
-  "builds": [
-    {
-      "src": "apps/frontend/package.json",
-      "use": "@vercel/next"
-    },
-    {
-      "src": "api/index.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/apps/frontend/$1"
-    }
-  ],
+  "name": "bitebase-beta",
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "outputDirectory": ".next",
+
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://api.bitebase.app",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "pk_live_51QXx6jBnlMK6rCAQRtEMwxV3fvYjCfSl1X61xY1M75yRZGY5eu8Y0Bq4VkUSEgbyXt4pkMLiaO2UqXUXR43TBH4C00iVaAHEJv",
+    "NEXT_PUBLIC_FOURSQUARE_CLIENT_ID": "UFEXNGODOGBQRX35NGIP0ZU0XDT2GJMIV0LGNGBMLU5RBVAN",
+    "NEXT_PUBLIC_FOURSQUARE_API_KEY": "fsq3Ciis2M5OLrAUQqL2V5z+bsUMKpCCdQe1ULDMN23ISSo=",
+    "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN": "pk.eyJ1Ijoia2hpd25pdGkiLCJhIjoiY205eDFwMzl0MHY1YzJscjB3bm4xcnh5ZyJ9.ANGVE0tiA9NslBn8ft_9fQ",
+    "NEXT_PUBLIC_ENABLE_MAPS": "true",
+    "NEXT_PUBLIC_ENABLE_REAL_DATA": "true",
+    "NEXT_PUBLIC_ENABLE_AI_CHAT": "true",
+    "NEXT_PUBLIC_ENVIRONMENT": "production",
+    "NEXT_PUBLIC_APP_NAME": "BiteBase Intelligence",
+    "NODE_ENV": "production"
+  },
+
   "functions": {
-    "api/index.js": {
+    "app/api/**/*.js": {
+      "maxDuration": 30
+    },
+    "app/api/**/*.ts": {
       "maxDuration": 30
     }
   },
-  "env": {
-    "NODE_ENV": "production",
-    "MCP_ENABLED": "true",
-    "NEXT_PUBLIC_API_URL": "/api",
-    "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN": "pk.eyJ1Ijoia2hpd25pdGkiLCJhIjoiY205eDFwMzl0MHY1YzJscjB3bm4xcnh5ZyJ9.ANGVE0tiA9NslBn8ft_9fQ",
-    "NEXT_PUBLIC_MAPBOX_TOKEN": "pk.eyJ1Ijoia2hpd25pdGkiLCJhIjoiY205eDFwMzl0MHY1YzJscjB3bm4xcnh5ZyJ9.ANGVE0tiA9NslBn8ft_9fQ",
-    "NEXT_PUBLIC_ENABLE_AI_FEATURES": "true",
-    "NEXT_PUBLIC_ENABLE_ANALYTICS": "true",
-    "NEXT_PUBLIC_DEBUG_MODE": "false"
-  },
   "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options", 
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "origin-when-cross-origin"
+        }
+      ]
+    },
     {
       "source": "/api/(.*)",
       "headers": [
@@ -50,35 +64,52 @@
         },
         {
           "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization, X-User-ID, X-Session-ID"
+          "value": "Content-Type, Authorization"
         }
       ]
     }
   ],
   "rewrites": [
     {
-      "source": "/api/health",
-      "destination": "/api/health"
-    },
-    {
-      "source": "/api/init-database",
-      "destination": "/api/init-database"
-    },
-    {
-      "source": "/api/restaurants/search",
-      "destination": "/api/restaurants/search"
-    },
-    {
-      "source": "/api/restaurants/:id",
-      "destination": "/api/restaurants/[id]"
-    },
-    {
-      "source": "/api/analytics/dashboard",
-      "destination": "/api/analytics/dashboard"
-    },
-    {
-      "source": "/api/analytics/track",
-      "destination": "/api/analytics/track"
+      "source": "/api/backend/(.*)",
+      "destination": "https://api.bitebase.app/$1"
     }
-  ]
+  ],
+
+  "redirects": [
+    {
+      "source": "/test",
+      "destination": "/dashboard",
+      "permanent": false
+    },
+    {
+      "source": "/api-test",
+      "destination": "/dashboard",
+      "permanent": false
+    },
+    {
+      "source": "/map-test",
+      "destination": "/market-analysis",
+      "permanent": false
+    },
+    {
+      "source": "/user-test",
+      "destination": "/dashboard",
+      "permanent": false
+    }
+  ],
+
+  "regions": ["sin1", "hkg1", "bom1"],
+
+  "domains": ["beta.bitebase.app"],
+
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_API_URL": "https://api.bitebase.app",
+      "NODE_ENV": "production"
+    }
+  },
+
+  "cleanUrls": true,
+  "trailingSlash": false
 }
