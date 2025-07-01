@@ -15,7 +15,7 @@ export const API_CONFIG = {
     process.env.NEXT_PUBLIC_API_URL ||
     process.env.NEXT_PUBLIC_BACKEND_URL ||
     (isProduction 
-      ? "https://bitebase-backend-express.vercel.app" 
+      ? "https://bitebase-backend-prod.getintheq.workers.dev" 
       : typeof window !== "undefined"
         ? `${window.location.protocol}//${window.location.hostname}:3001`
         : "http://localhost:3001"),
@@ -28,7 +28,7 @@ export const API_CONFIG = {
     process.env.NEXT_PUBLIC_BACKEND_URL ||
     process.env.NEXT_PUBLIC_API_URL ||
     (isProduction 
-      ? "https://bitebase-backend-express.vercel.app"
+      ? "https://bitebase-backend-prod.getintheq.workers.dev"
       : "http://localhost:3001"),
 
   // Timeouts
