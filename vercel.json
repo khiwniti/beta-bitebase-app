@@ -1,0 +1,130 @@
+{
+  "version": 2,
+  "name": "bitebase-beta",
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev", 
+  "installCommand": "npm install",
+  "outputDirectory": ".next",
+  "rootDirectory": "./",
+
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://api.bitebase.app",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "@next_public_stripe_publishable_key",
+    "NEXT_PUBLIC_FOURSQUARE_CLIENT_ID": "@next_public_foursquare_client_id",
+    "NEXT_PUBLIC_FOURSQUARE_API_KEY": "@next_public_foursquare_api_key",
+    "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN": "@next_public_mapbox_access_token",
+    "NEXT_PUBLIC_ENABLE_MAPS": "true",
+    "NEXT_PUBLIC_ENABLE_REAL_DATA": "true",
+    "NEXT_PUBLIC_ENABLE_AI_CHAT": "true",
+    "NEXT_PUBLIC_ENVIRONMENT": "production",
+    "NEXT_PUBLIC_APP_NAME": "BiteBase Intelligence",
+    "NEXT_PUBLIC_STACK_PROJECT_ID": "@next_public_stack_project_id",
+    "NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY": "@next_public_stack_publishable_client_key",
+    "STACK_SECRET_SERVER_KEY": "@stack_secret_server_key",
+    "NODE_ENV": "production"
+  },
+
+  "functions": {
+    "app/api/**/*.js": {
+      "maxDuration": 30
+    },
+    "app/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options", 
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/backend/(.*)",
+      "destination": "https://api.bitebase.app/$1"
+    }
+  ],
+
+  "redirects": [
+    {
+      "source": "/test",
+      "destination": "/dashboard",
+      "permanent": false
+    },
+    {
+      "source": "/api-test",
+      "destination": "/dashboard",
+      "permanent": false
+    },
+    {
+      "source": "/map-test",
+      "destination": "/market-analysis",
+      "permanent": false
+    },
+    {
+      "source": "/user-test",
+      "destination": "/dashboard",
+      "permanent": false
+    }
+  ],
+
+  "regions": ["sin1", "hkg1", "bom1"],
+
+  "domains": ["beta.bitebase.app"],
+
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_API_URL": "https://api.bitebase.app",
+      "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "@next_public_stripe_publishable_key",
+      "NEXT_PUBLIC_FOURSQUARE_CLIENT_ID": "@next_public_foursquare_client_id",
+      "NEXT_PUBLIC_FOURSQUARE_API_KEY": "@next_public_foursquare_api_key",
+      "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN": "@next_public_mapbox_access_token",
+      "NEXT_PUBLIC_ENABLE_MAPS": "true",
+      "NEXT_PUBLIC_ENABLE_REAL_DATA": "true",
+      "NEXT_PUBLIC_ENABLE_AI_CHAT": "true",
+      "NEXT_PUBLIC_ENVIRONMENT": "production",
+      "NEXT_PUBLIC_APP_NAME": "BiteBase Intelligence",
+      "NEXT_PUBLIC_STACK_PROJECT_ID": "@next_public_stack_project_id",
+      "NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY": "@next_public_stack_publishable_client_key",
+      "NODE_ENV": "production"
+    }
+  },
+
+  "cleanUrls": true,
+  "trailingSlash": false
+}
