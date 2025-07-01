@@ -104,8 +104,6 @@
 
   "regions": ["sin1", "hkg1", "bom1"],
 
-  "domains": ["beta.bitebase.app"],
-
   "build": {
     "env": {
       "NEXT_PUBLIC_API_URL": "https://api.bitebase.app",
