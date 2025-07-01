@@ -7,7 +7,7 @@ const nextConfig = {
   reactStrictMode: false,
   distDir: ".next",
   trailingSlash: false,
-  output: "standalone",
+  output: "export",
   eslint: {
     ignoreDuringBuilds: true,
   },

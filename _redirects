@@ -1,0 +1,11 @@
+# Redirect old paths to new ones
+/test /dashboard 302
+/api-test /dashboard 302
+/map-test /market-analysis 302
+/user-test /dashboard 302
+
+# API proxy to backend
+/api/backend/* https://api.bitebase.app/:splat 200
+
+# SPA fallback
+/* /index.html 200
