@@ -40,9 +40,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
 
-  // Backend API base URL
+  // Backend API base URL - will use custom domain once it's set up
   const API_BASE =
-    process.env.NEXT_PUBLIC_BACKEND_URL || "https://api.bitebase.app";
+    process.env.NEXT_PUBLIC_BACKEND_URL || 
+    process.env.NEXT_PUBLIC_API_URL || 
+    "https://api.bitebase.app";
 
   // Check for existing session on mount using production auth service
   useEffect(() => {

@@ -15,24 +15,24 @@ export const API_CONFIG = {
     process.env.NEXT_PUBLIC_API_URL ||
     process.env.NEXT_PUBLIC_BACKEND_URL ||
     (isProduction 
-      ? "https://bitebase-backend-prod.getintheq.workers.dev" 
+      ? "https://bitebase-backend-prod.bitebase.workers.dev" 
       : typeof window !== "undefined"
         ? `${window.location.protocol}//${window.location.hostname}:3001`
         : "http://localhost:3001"),
   
   APP_URL: process.env.NEXT_PUBLIC_APP_URL || 
-    (isProduction ? "https://beta-bitebase-app.vercel.app" : "http://localhost:12000"),
+    (isProduction ? "https://beta.bitebase.app" : "http://localhost:12000"),
   
-  // Backend service URL - Points to separately deployed backend
+  // Backend service URL - Points to custom domain
   BACKEND_SERVICE_URL: 
     process.env.NEXT_PUBLIC_BACKEND_URL ||
     process.env.NEXT_PUBLIC_API_URL ||
     (isProduction 
-      ? "https://bitebase-backend-prod.getintheq.workers.dev"
+      ? "https://bitebase-backend-prod.bitebase.workers.dev"
       : "http://localhost:3001"),
 
   // Timeouts
-  REQUEST_TIMEOUT: 15000, // 15 seconds
+  REQUEST_TIMEOUT: 30000, // 30 seconds
 
   // Retry configuration
   MAX_RETRIES: 3,

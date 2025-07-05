@@ -6,7 +6,6 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 const nextConfig = {
   reactStrictMode: false,
   distDir: ".next",
-  output: "export",
   trailingSlash: false,
   skipTrailingSlashRedirect: true,
   eslint: {
@@ -16,7 +15,6 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
     formats: ['image/webp', 'image/avif'],
     domains: [
       'foursquare.com',
@@ -39,53 +37,52 @@ const nextConfig = {
     scrollRestoration: true,
   },
 
-  // Headers disabled for static export - using _headers file instead
-  // async headers() {
-  //   return [
-  //     {
-  //       source: "/(.*)",
-  //       headers: [
-  //         {
-  //           key: "X-Frame-Options",
-  //           value: "SAMEORIGIN",
-  //         },
-  //         {
-  //           key: "X-Content-Type-Options",
-  //           value: "nosniff",
-  //         },
-  //         {
-  //           key: "Referrer-Policy",
-  //           value: "strict-origin-when-cross-origin",
-  //         },
-  //         {
-  //           key: "X-XSS-Protection",
-  //           value: "1; mode=block",
-  //         },
-  //         {
-  //           key: "Permissions-Policy",
-  //           value: "camera=(), microphone=(), geolocation=()",
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       source: "/api/(.*)",
-  //       headers: [
-  //         {
-  //           key: "Access-Control-Allow-Origin",
-  //           value: "*",
-  //         },
-  //         {
-  //           key: "Access-Control-Allow-Methods",
-  //           value: "GET, POST, PUT, DELETE, OPTIONS",
-  //         },
-  //         {
-  //           key: "Access-Control-Allow-Headers",
-  //           value: "Content-Type, Authorization, X-Requested-With",
-  //         },
-  //       ],
-  //     },
-  //   ];
-  // },
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
+          },
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+          {
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+        ],
+      },
+      {
+        source: "/api/(.*)",
+        headers: [
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "*",
+          },
+          {
+            key: "Access-Control-Allow-Methods",
+            value: "GET, POST, PUT, DELETE, OPTIONS",
+          },
+          {
+            key: "Access-Control-Allow-Headers",
+            value: "Content-Type, Authorization, X-Requested-With",
+          },
+        ],
+      },
+    ];
+  },
 
   // Environment variables validation
   env: {
@@ -93,16 +90,15 @@ const nextConfig = {
     NEXT_PUBLIC_VERCEL_URL: process.env.NEXT_PUBLIC_VERCEL_URL,
   },
   
-  // Redirects disabled for static export
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/dashboard',
-  //       destination: '/',
-  //       permanent: true,
-  //     },
-  //   ]
-  // },
+  async redirects() {
+    return [
+      {
+        source: '/dashboard',
+        destination: '/',
+        permanent: true,
+      },
+    ]
+  },
   
   // Webpack configuration for Firebase and Node.js compatibility
   webpack: (config, { isServer, dev }) => {

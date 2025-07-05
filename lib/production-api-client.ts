@@ -114,9 +114,14 @@ class ProductionAPIClient {
     // Client-side detection
     const hostname = window.location.hostname;
     
-    // Production detection
+    // Production detection - use custom domain
     if (hostname === 'beta.bitebase.app' || hostname === 'bitebase.app') {
-      return 'https://bitebase-intelligence-backend.vercel.app';
+      return 'https://api.bitebase.app';
+    }
+    
+    // Cloudflare Pages detection
+    if (hostname.includes('.pages.dev')) {
+      return 'https://api.bitebase.app';
     }
     
     // Vercel preview detection
@@ -132,7 +137,7 @@ class ProductionAPIClient {
     }
     
     // Default fallback
-    return process.env.NEXT_PUBLIC_API_URL || 'https://bitebase-intelligence-backend.vercel.app';
+    return process.env.NEXT_PUBLIC_API_URL || 'https://bitebase-backend-prod.getintheq.workers.dev';
   }
 
   private async makeRequest<T>(
