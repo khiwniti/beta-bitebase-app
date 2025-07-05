@@ -157,7 +157,9 @@ class ProductionAPIClient {
         ...options.headers,
         ...(this.config.apiKey && { 'X-API-Key': this.config.apiKey })
       },
-      signal: this.abortController.signal
+      signal: this.abortController.signal,
+      mode: "cors",
+      credentials: "omit"
     };
 
     // Add timeout
