@@ -62,16 +62,17 @@ export default function RootLayout({
           rel="stylesheet"
         />
 
-        {/* Font Awesome Icons */}
+        {/* Font Awesome Icons - using jsDelivr as fallback */}
         <link
           rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+          onError="this.onerror=null;this.href='https://unpkg.com/@fortawesome/fontawesome-free@6.4.0/css/all.min.css'"
         />
 
         {/* Favicon and App Icons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/icon.svg" />
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className="font-body antialiased">

@@ -57,9 +57,9 @@ export default function BiteBaseLogo({
       className={`flex items-center ${animated ? "transition-all duration-300 hover:scale-105" : ""} ${className}`}
     >
       <div className="relative flex-shrink-0">
-        {!imageError ? (
+        {false ? (
           <Image
-            src="/logo.png"
+            src="/icon.svg"
             alt="BiteBase Logo"
             width={iconSize * 3.2} // Better visibility for logo
             height={iconSize}
@@ -144,9 +144,9 @@ export function BiteBaseIcon({
 
   return (
     <div className={`relative ${className}`}>
-      {!imageError ? (
+      {false ? (
         <Image
-          src="/logo.png"
+          src="/icon.svg"
           alt="BiteBase"
           width={iconSize * 2.2} // Better visibility for logo
           height={iconSize}
