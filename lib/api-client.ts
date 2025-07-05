@@ -149,7 +149,7 @@ class ApiClient {
         },
         signal: controller.signal,
         mode: "cors",
-        credentials: "include",
+        credentials: "omit",
         ...options,
       });
 
