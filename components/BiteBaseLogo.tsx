@@ -31,7 +31,7 @@ export default function BiteBaseLogo({
   href = "/",
   animated = false,
 }: BiteBaseLogoProps) {
-  const [imageError, setImageError] = useState(false);
+  const [imageError, setImageError] = useState(true); // Always use SVG fallback
 
   // Ensure size is valid, fallback to 'md' if not
   const validSize = size && sizeMap[size] ? size : "md";
@@ -136,7 +136,7 @@ export function BiteBaseIcon({
   variant?: "default" | "white" | "dark" | "gradient";
   animated?: boolean;
 }) {
-  const [imageError, setImageError] = useState(false);
+  const [imageError, setImageError] = useState(true); // Always use SVG fallback
 
   // Ensure size is valid, fallback to 'md' if not
   const validSize = size && sizeMap[size] ? size : "md";
