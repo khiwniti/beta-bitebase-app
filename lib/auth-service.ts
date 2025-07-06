@@ -137,6 +137,53 @@ class AuthService {
     }
   }
 
+  // Admin authentication
+  async signInAsAdmin(email: string, password: string): Promise<AuthResponse> {
+    try {
+      const response = await fetch(`${this.baseUrl}/auth/admin`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        return {
+          success: false,
+          error: data.message || "Admin login failed",
+        };
+      }
+
+      if (data.success && data.data) {
+        // Store admin-specific data
+        localStorage.setItem('isAdmin', 'true');
+        localStorage.setItem('adminUser', JSON.stringify(data.data.user));
+        localStorage.setItem('adminToken', data.data.token);
+
+        // Also store in regular auth system
+        this.storeTokens(data.data.token, data.data.refresh_token);
+
+        return {
+          success: true,
+          data: data.data,
+        };
+      }
+
+      return {
+        success: false,
+        error: "Invalid response from server",
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : "Network error",
+      };
+    }
+  }
+
   // Google OAuth sign in
   async signInWithGoogle(token: string): Promise<AuthResponse> {
     try {
@@ -231,7 +278,7 @@ class AuthService {
     }
 
     try {
-      const response = await fetch(`${this.baseUrl}/auth/refresh`, {
+      const response = await fetch(`${this.baseUrl}/auth/refresh-token`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -314,11 +361,42 @@ class AuthService {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.refreshTokenKey);
 
+    // Clear admin-specific data
+    localStorage.removeItem('isAdmin');
+    localStorage.removeItem('adminUser');
+    localStorage.removeItem('adminToken');
+
     // Clear cookies
     document.cookie =
       "auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     document.cookie =
       "user_role=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+  }
+
+  // Check if current user is admin
+  isAdmin(): boolean {
+    return localStorage.getItem('isAdmin') === 'true';
+  }
+
+  // Get current user info
+  getCurrentUser(): User | null {
+    try {
+      const adminUser = localStorage.getItem('adminUser');
+      if (adminUser) {
+        return JSON.parse(adminUser);
+      }
+
+      // Try to get user from token or other storage
+      // This would need to be implemented based on your token structure
+      return null;
+    } catch {
+      return null;
+    }
+  }
+
+  // Check if user is authenticated
+  isAuthenticated(): boolean {
+    return !!this.getToken() || this.isAdmin();
   }
 
   // Password reset

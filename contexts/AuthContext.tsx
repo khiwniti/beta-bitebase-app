@@ -124,8 +124,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const signInWithGoogle = async (accountType?: string) => {
     setLoading(true);
     try {
-      // For now, we'll simulate Google sign-in by creating a demo account
-      // In production, you would integrate with Google OAuth
+      // This would be called with a real Google token from Google OAuth
+      // For now, we'll simulate it by creating a demo account
       const demoEmail = `demo.${Date.now()}@bitebase.ai`;
       const demoPassword = "demo123456";
 

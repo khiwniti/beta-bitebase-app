@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../../contexts/AuthContext';
+import { authService } from '../../lib/auth-service';
 import BiteBaseLogo from '../../components/BiteBaseLogo';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -27,20 +28,16 @@ export default function AuthPage() {
       if (isLogin) {
         // Check for admin credentials
         if (email === 'admin@bitebase.app' && password === 'Libralytics1234!*') {
-          // Admin login - set admin user data
-          localStorage.setItem('isAdmin', 'true');
-          localStorage.setItem('adminUser', JSON.stringify({
-            id: 'admin',
-            email: 'admin@bitebase.app',
-            firstName: 'Admin',
-            lastName: 'User',
-            role: 'admin',
-            isAdmin: true
-          }));
-          router.push('/admin/dashboard');
-          return;
+          // Use auth service for admin login
+          const result = await authService.signInAsAdmin(email, password);
+          if (result.success) {
+            router.push('/admin/dashboard');
+            return;
+          } else {
+            throw new Error(result.error || 'Admin authentication failed');
+          }
         }
-        
+
         await signIn(email, password);
         router.push('/dashboard');
       } else {

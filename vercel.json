@@ -3,9 +3,32 @@
   "name": "bitebase-beta",
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "devCommand": "npm run dev", 
+  "devCommand": "npm run dev",
   "installCommand": "npm install",
 
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://bitebase-backend-prod.bitebase.workers.dev",
+    "NEXT_PUBLIC_BACKEND_URL": "https://bitebase-backend-prod.bitebase.workers.dev",
+    "NEXT_PUBLIC_APP_URL": "https://beta.bitebase.app",
+    "NEXT_PUBLIC_FRONTEND_URL": "https://beta.bitebase.app",
+    "NEXT_PUBLIC_ENABLE_MAPS": "true",
+    "NEXT_PUBLIC_ENABLE_AI_CHAT": "true",
+    "NEXT_PUBLIC_ENABLE_ANALYTICS": "true",
+    "NEXT_PUBLIC_DEBUG_MODE": "false",
+    "NEXT_PUBLIC_LOG_LEVEL": "info",
+    "NEXT_PUBLIC_BETA_FEATURES": "true",
+    "NEXT_PUBLIC_FEEDBACK_ENABLED": "true",
+    "NODE_ENV": "production"
+  },
+
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_API_URL": "https://bitebase-backend-prod.bitebase.workers.dev",
+      "NEXT_PUBLIC_BACKEND_URL": "https://bitebase-backend-prod.bitebase.workers.dev",
+      "NEXT_PUBLIC_APP_URL": "https://beta.bitebase.app",
+      "NODE_ENV": "production"
+    }
+  },
 
   "functions": {
     "app/api/**/*.js": {
@@ -24,7 +47,7 @@
           "value": "nosniff"
         },
         {
-          "key": "X-Frame-Options", 
+          "key": "X-Frame-Options",
           "value": "DENY"
         },
         {
@@ -34,6 +57,10 @@
         {
           "key": "Referrer-Policy",
           "value": "origin-when-cross-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
         }
       ]
     },
@@ -50,7 +77,24 @@
         },
         {
           "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization"
+          "value": "Content-Type, Authorization, X-Requested-With"
+        },
+        {
+          "key": "Access-Control-Allow-Credentials",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "source": "/manifest.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
         }
       ]
     }
@@ -85,8 +129,33 @@
     }
   ],
 
+  "routes": [
+    {
+      "src": "/auth/(.*)",
+      "headers": {
+        "Cache-Control": "no-cache, no-store, must-revalidate"
+      }
+    },
+    {
+      "src": "/admin/(.*)",
+      "headers": {
+        "Cache-Control": "no-cache, no-store, must-revalidate"
+      }
+    },
+    {
+      "src": "/dashboard/(.*)",
+      "headers": {
+        "Cache-Control": "no-cache, no-store, must-revalidate"
+      }
+    }
+  ],
 
+  "crons": [],
 
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+
+  "regions": ["iad1", "sfo1"],
+
+  "outputDirectory": ".next"
 }
