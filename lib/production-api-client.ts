@@ -159,7 +159,7 @@ class ProductionAPIClient {
       },
       signal: this.abortController.signal,
       mode: "cors",
-      credentials: "omit"
+      credentials: "include"
     };
 
     // Add timeout
