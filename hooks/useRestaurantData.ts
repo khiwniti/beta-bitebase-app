@@ -89,34 +89,12 @@ export function useRestaurantSearch() {
       setError(null);
 
       try {
-        // First try to get restaurants from Foursquare
-        const foursquareResponse = await apiClient.searchFoursquareRestaurants({
+        // Use Wongnai search (Google Places API backend)
+        const response = await apiClient.searchWongnaiRestaurants({
           latitude,
           longitude,
-          radius,
           limit: 20,
         });
-
-        if (
-          foursquareResponse.data &&
-          foursquareResponse.data.restaurants &&
-          foursquareResponse.data.restaurants.length > 0
-        ) {
-          console.log(
-            "✅ Found restaurants from Foursquare:",
-            foursquareResponse.data.restaurants.length,
-          );
-          setRestaurants(foursquareResponse.data.restaurants);
-          setLoading(false);
-          return;
-        }
-
-        // If Foursquare fails, fall back to regular search
-        const response = await apiClient.searchRestaurantsByLocation(
-          latitude,
-          longitude,
-          radius,
-        );
         if (response.error) {
           setError(response.error);
           setRestaurants([]);
@@ -147,50 +125,32 @@ export function useRestaurantSearch() {
       setError(null);
 
       try {
-        // First try Foursquare if we have coordinates
-        if (params.latitude && params.longitude) {
-          const foursquareResponse =
-            await apiClient.searchFoursquareRestaurants({
-              latitude: params.latitude,
-              longitude: params.longitude,
-              query: params.query,
-              limit: params.limit || 20,
-            });
-
-          if (
-            foursquareResponse.data &&
-            foursquareResponse.data.restaurants &&
-            foursquareResponse.data.restaurants.length > 0
-          ) {
-            console.log(
-              "✅ Found restaurants from Foursquare:",
-              foursquareResponse.data.restaurants.length,
-            );
-            setRestaurants(foursquareResponse.data.restaurants);
-            setLoading(false);
-            return;
-          }
-        }
-
-        // Fall back to Wongnai search
+        // Use Wongnai search (Google Places API backend)
         const response = await apiClient.searchWongnaiRestaurants({
           latitude: params.latitude,
           longitude: params.longitude,
           query: params.query,
           cuisine: params.cuisine,
-          limit: params.limit || 10,
+          limit: params.limit || 20,
         });
 
         console.log("🔍 Wongnai API Response:", response);
+        console.log("🔍 Response status:", response.status);
+        console.log("🔍 Response error:", response.error);
+        console.log("🔍 Response data:", response.data);
         
         if (response.error) {
           console.log("❌ API Error:", response.error);
           setError(response.error);
           setRestaurants([]);
-        } else {
-          console.log("✅ API Success, restaurants:", response.data?.restaurants?.length || 0);
+        } else if (response.data && response.data.restaurants) {
+          console.log("✅ API Success, restaurants:", response.data.restaurants.length);
           console.log("📊 Full response data:", response.data);
-          setRestaurants(response.data?.restaurants || []);
+          setRestaurants(response.data.restaurants);
+        } else {
+          console.log("⚠️ No restaurants in response data");
+          console.log("📊 Response structure:", JSON.stringify(response, null, 2));
+          setRestaurants([]);
         }
       } catch (err) {
         setError(

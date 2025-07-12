@@ -337,10 +337,26 @@ class ApiClient {
     cuisine?: string;
     limit?: number;
   }): Promise<ApiResponse<{ restaurants: Restaurant[]; total: number }>> {
-    return this.request(ENDPOINTS.RESTAURANTS.WONGNAI_SEARCH, {
+    const response = await this.request<{
+      success: boolean;
+      message: string;
+      data: { restaurants: Restaurant[]; total: number };
+    }>(ENDPOINTS.RESTAURANTS.WONGNAI_SEARCH, {
       method: "POST",
       body: JSON.stringify(params),
     });
+    
+    if (response.error || !response.data?.success) {
+      return {
+        error: response.error || "Failed to search restaurants",
+        status: response.status,
+      };
+    }
+    
+    return {
+      data: response.data.data,
+      status: response.status,
+    };
   }
 
   async getRestaurantMenu(
