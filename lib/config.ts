@@ -56,15 +56,15 @@ export const ENDPOINTS = {
 
   // Restaurant endpoints
   RESTAURANTS: {
-    SEARCH: "/restaurants/search",
-    DETAILS: (id: string) => `/restaurants/${id}`,
-    MENU: (id: string) => `/restaurants/${id}/menu-items`,
-    ANALYTICS: (id: string) => `/restaurants/${id}/analytics`,
-    NEARBY: "/restaurants/nearby",
-    REAL_TIME_SEARCH: "/restaurants/search/realtime",
-    WONGNAI_SEARCH: "/restaurants/wongnai/search",
-    FETCH_REAL_DATA: "/restaurants/fetch-real-data",
-    FOURSQUARE_SEARCH: "/restaurants/foursquare/search",
+    SEARCH: "/api/restaurants/search",
+    DETAILS: (id: string) => `/api/restaurants/${id}`,
+    MENU: (id: string) => `/api/restaurants/${id}/menu-items`,
+    ANALYTICS: (id: string) => `/api/restaurants/${id}/analytics`,
+    NEARBY: "/api/restaurants/nearby",
+    REAL_TIME_SEARCH: "/api/restaurants/search/realtime",
+    WONGNAI_SEARCH: "/api/restaurants/wongnai/search",
+    FETCH_REAL_DATA: "/api/restaurants/fetch-real-data",
+    FOURSQUARE_SEARCH: "/api/restaurants/foursquare/search",
   },
 
   // Location endpoints

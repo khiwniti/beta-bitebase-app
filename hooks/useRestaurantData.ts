@@ -181,10 +181,15 @@ export function useRestaurantSearch() {
           limit: params.limit || 10,
         });
 
+        console.log("🔍 Wongnai API Response:", response);
+        
         if (response.error) {
+          console.log("❌ API Error:", response.error);
           setError(response.error);
           setRestaurants([]);
         } else {
+          console.log("✅ API Success, restaurants:", response.data?.restaurants?.length || 0);
+          console.log("📊 Full response data:", response.data);
           setRestaurants(response.data?.restaurants || []);
         }
       } catch (err) {

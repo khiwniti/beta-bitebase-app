@@ -157,7 +157,9 @@ class ApiClient {
 
       let data;
       try {
-        data = await response.json();
+        const responseText = await response.text();
+        console.log(`📄 Raw response from ${endpoint}:`, responseText);
+        data = JSON.parse(responseText);
       } catch (parseError) {
         console.warn(
           `⚠️ Failed to parse JSON response from ${endpoint}:`,
@@ -335,7 +337,7 @@ class ApiClient {
     cuisine?: string;
     limit?: number;
   }): Promise<ApiResponse<{ restaurants: Restaurant[]; total: number }>> {
-    return this.request("/restaurants/wongnai/search", {
+    return this.request(ENDPOINTS.RESTAURANTS.WONGNAI_SEARCH, {
       method: "POST",
       body: JSON.stringify(params),
     });
@@ -588,7 +590,7 @@ class ApiClient {
       message: string;
     }>
   > {
-    return this.request("/restaurants/fetch-real-data", {
+    return this.request(ENDPOINTS.RESTAURANTS.FETCH_REAL_DATA, {
       method: "POST",
       body: JSON.stringify({
         latitude: params.latitude,
@@ -990,7 +992,7 @@ class ApiClient {
       };
     }>
   > {
-    return this.request("/restaurants/nearby", {
+    return this.request(ENDPOINTS.RESTAURANTS.NEARBY, {
       method: "POST",
       body: JSON.stringify(params),
     });
