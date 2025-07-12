@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "restaurants": "Restaurants",
+    "analytics": "Analytics",
+    "settings": "Settings",
+    "home": "Home",
+    "about": "About",
+    "pricing": "Pricing",
+    "contact": "Contact"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "close": "Close",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "filter": "Filter"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "signup": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "overview": "Overview",
+    "analytics": "Analytics",
+    "reports": "Reports"
+  },
+  "restaurant": {
+    "name": "Restaurant Name",
+    "location": "Location",
+    "cuisine": "Cuisine Type",
+    "rating": "Rating",
+    "reviews": "Reviews"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "dashboard": "แดชบอร์ด",
+    "restaurants": "ร้านอาหาร",
+    "analytics": "การวิเคราะห์",
+    "settings": "การตั้งค่า",
+    "home": "หน้าแรก",
+    "about": "เกี่ยวกับเรา",
+    "pricing": "ราคา",
+    "contact": "ติดต่อ"
+  },
+  "common": {
+    "loading": "กำลังโหลด...",
+    "error": "ข้อผิดพลาด",
+    "save": "บันทึก",
+    "cancel": "ยกเลิก",
+    "submit": "ส่ง",
+    "close": "ปิด",
+    "edit": "แก้ไข",
+    "delete": "ลบ",
+    "search": "ค้นหา",
+    "filter": "กรอง"
+  },
+  "auth": {
+    "login": "เข้าสู่ระบบ",
+    "logout": "ออกจากระบบ",
+    "signup": "สมัครสมาชิก",
+    "email": "อีเมล",
+    "password": "รหัสผ่าน",
+    "forgotPassword": "ลืมรหัสผ่าน?"
+  },
+  "dashboard": {
+    "title": "แดชบอร์ด",
+    "overview": "ภาพรวม",
+    "analytics": "การวิเคราะห์",
+    "reports": "รายงาน"
+  },
+  "restaurant": {
+    "name": "ชื่อร้านอาหาร",
+    "location": "ที่ตั้ง",
+    "cuisine": "ประเภทอาหาร",
+    "rating": "คะแนน",
+    "reviews": "รีวิว"
+  }
+}
