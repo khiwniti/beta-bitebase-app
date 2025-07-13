@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Button } from '../ui/button';
 import { Card } from '../ui/card';
-import EnhancedBiteBaseAI from './EnhancedBiteBaseAI';
+import ImprovedBiteBaseAI from './ImprovedBiteBaseAI';
 import { 
   MessageCircle, 
   X, 
@@ -110,14 +110,15 @@ const FloatingChatbot: React.FC<ChatbotProps> = ({ className = '' }) => {
             </div>
           </div>
 
-          {/* Enhanced AI Assistant */}
+          {/* Improved AI Assistant */}
           <div className="flex-1 overflow-hidden">
-            <EnhancedBiteBaseAI
+            <ImprovedBiteBaseAI
               userId="floating-chat-user"
               title=""
               placeholder={t.inputPlaceholder}
               defaultLanguage={currentLanguage}
               className="h-full border-0 shadow-none"
+              isFloating={true}
             />
           </div>
         </div>
