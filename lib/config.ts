@@ -14,9 +14,9 @@ export const API_CONFIG = {
   BASE_URL:
     process.env.NEXT_PUBLIC_API_URL ||
     (typeof window !== "undefined"
-      ? `${window.location.protocol}//${window.location.hostname}:3001`
-      : "http://localhost:3001"),
-  APP_URL: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:12000",
+      ? `${window.location.protocol}//${window.location.hostname}:56222`
+      : "http://localhost:56222"),
+  APP_URL: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:52580",
 
   // Timeouts
   REQUEST_TIMEOUT: 15000, // 15 seconds

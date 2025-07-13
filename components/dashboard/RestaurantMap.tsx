@@ -207,7 +207,7 @@ export default function RestaurantMap({
         </div>
 
         {/* Restaurant Markers */}
-        {restaurants.map((restaurant) => {
+        {Array.isArray(restaurants) && restaurants.map((restaurant) => {
           if (!restaurant.latitude || !restaurant.longitude) return null;
 
           const latOffset = (restaurant.latitude - centerLat) / latRange;
@@ -326,7 +326,7 @@ export default function RestaurantMap({
           )}
 
           {/* Restaurant Markers */}
-          {restaurants.map((restaurant) => {
+          {Array.isArray(restaurants) && restaurants.map((restaurant) => {
             if (!restaurant.latitude || !restaurant.longitude) return null;
 
             return (
@@ -416,12 +416,13 @@ export default function RestaurantMap({
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400">
             {userLocation
-              ? `Found ${restaurants.length} real restaurants near you (${userLocation.lat.toFixed(4)}, ${userLocation.lng.toFixed(4)})`
+              ? `Found ${Array.isArray(restaurants) ? restaurants.length : 0} real restaurants near you (${userLocation.lat.toFixed(4)}, ${userLocation.lng.toFixed(4)})`
               : locationPermission === 'denied'
-                ? `Showing ${restaurants.length} real Bangkok restaurants (location access denied)`
+                ? `Showing ${Array.isArray(restaurants) ? restaurants.length : 0} real Bangkok restaurants (location access denied)`
                 : 'Getting your location to show nearby restaurants...'
             }
           </p>
+
           <div className="flex items-center space-x-2 mt-1">
             <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-xs font-semibold text-green-700">
               Real Restaurant Data
@@ -501,7 +502,7 @@ export default function RestaurantMap({
               </Button>
             </div>
           ) : (
-            restaurants.map((restaurant) => (
+            Array.isArray(restaurants) && restaurants.map((restaurant) => (
               <div
                 key={restaurant.id}
                 className={`p-3 rounded-lg border transition-all cursor-pointer ${

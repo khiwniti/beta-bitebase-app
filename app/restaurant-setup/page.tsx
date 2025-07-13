@@ -25,6 +25,7 @@ import {
 
 export default function RestaurantSetupPage() {
   const [currentStep, setCurrentStep] = useState(1)
+  const [loading, setLoading] = useState(false)
   const [restaurantData, setRestaurantData] = useState({
     // Basic Info
     name: '',
@@ -116,10 +117,43 @@ export default function RestaurantSetupPage() {
     }
   }
 
-  const handleSubmit = () => {
-    // TODO: Submit restaurant data to backend
-    console.log('Submitting restaurant data:', restaurantData)
-    alert('Restaurant setup completed successfully!')
+  const handleSubmit = async () => {
+    try {
+      setLoading(true)
+      
+      // Import the API client
+      const { apiClient } = await import('../../lib/api-client')
+      
+      // Submit restaurant data to backend
+      console.log('Submitting restaurant data:', restaurantData)
+      
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:56222'}/api/restaurants`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(restaurantData)
+      })
+
+      if (response.ok) {
+        const result = await response.json()
+        console.log('Restaurant created successfully:', result)
+        
+        // Show success message with next steps
+        alert(`Restaurant setup completed successfully!\n\nRestaurant ID: ${result.data.restaurant.id}\n\nNext steps:\n- Complete your market analysis\n- Set up your menu items\n- Configure analytics tracking`)
+        
+        // Redirect to dashboard or market analysis
+        window.location.href = `/dashboard?restaurantId=${result.data.restaurant.id}`
+      } else {
+        const error = await response.json()
+        throw new Error(error.message || 'Failed to create restaurant')
+      }
+    } catch (error) {
+      console.error('Error submitting restaurant data:', error)
+      alert(`Error: ${error.message || 'Failed to create restaurant. Please try again.'}`)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const renderStepContent = () => {

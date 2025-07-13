@@ -107,21 +107,20 @@ class ApiClient {
 
   constructor() {
     // Use unified configuration with fallback
+
     this.baseUrl = API_CONFIG.BASE_URL;
     this.agentUrl = this.baseUrl; // Unified backend
 
     // Ensure we have a valid base URL
     if (!this.baseUrl || this.baseUrl === "undefined") {
-      this.baseUrl = "http://localhost:3001";
+      this.baseUrl = "http://localhost:56222"; // Updated to correct port
       console.warn(
         "⚠️ API_CONFIG.BASE_URL is undefined, using fallback:",
         this.baseUrl,
       );
     }
 
-    if (DEBUG.LOG_API_CALLS) {
-      console.log("🔗 API Client initialized with:", this.baseUrl);
-    }
+    console.log("🔗 API Client initialized with:", this.baseUrl);
   }
 
   private async request<T>(
@@ -158,7 +157,6 @@ class ApiClient {
       let data;
       try {
         const responseText = await response.text();
-        console.log(`📄 Raw response from ${endpoint}:`, responseText);
         data = JSON.parse(responseText);
       } catch (parseError) {
         console.warn(
@@ -233,7 +231,7 @@ class ApiClient {
     const response = await this.request<{
       data: { restaurants: Restaurant[]; total: number; pagination: any };
       success: boolean;
-    }>("/restaurants/search");
+    }>("/api/restaurants/search");
     if (response.error || !response.data?.success) {
       return {
         error: response.error || "Failed to fetch restaurants",
@@ -311,7 +309,7 @@ class ApiClient {
     radius?: number;
     query?: string;
     limit?: number;
-  }): Promise<ApiResponse<{ restaurants: Restaurant[]; total: number }>> {
+  }): Promise<ApiResponse<Restaurant[]>> {
     const urlParams = new URLSearchParams();
     urlParams.append("latitude", params.latitude.toString());
     urlParams.append("longitude", params.longitude.toString());
@@ -324,9 +322,10 @@ class ApiClient {
     if (params.limit) {
       urlParams.append("limit", params.limit.toString());
     }
-    return this.request(`/restaurants/search?${urlParams.toString()}`, {
+    const response = await this.request(`/api/restaurants/search?${urlParams.toString()}`, {
       method: "GET",
     });
+    return response;
   }
 
   // Wongnai integration endpoints

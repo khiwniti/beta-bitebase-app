@@ -380,7 +380,7 @@ export function useLocationBasedRestaurants() {
     lat: number;
     lng: number;
   } | null>(null);
-  const [searchRadius, setSearchRadius] = useState(5);
+  const [searchRadius, setSearchRadius] = useState(3);
   const [bufferRadius, setBufferRadius] = useState(0.5);
   const [autoAdjustRadius, setAutoAdjustRadius] = useState(true);
   const [bufferZones, setBufferZones] = useState<any>(null);
@@ -407,21 +407,24 @@ export function useLocationBasedRestaurants() {
           limit: 20,
         });
 
+        // The API response structure is: { data: { success: true, data: [...restaurants] } }
+        const restaurantsData = response.data?.data;
+
         if (
-          response.data &&
-          response.data.restaurants &&
-          response.data.restaurants.length > 0
+          restaurantsData &&
+          Array.isArray(restaurantsData) &&
+          restaurantsData.length > 0
         ) {
           console.log(
-            `✅ Found ${response.data.restaurants.length} restaurants from Foursquare API`,
+            `✅ Found ${restaurantsData.length} restaurants from API`,
           );
-          setRestaurants(response.data.restaurants);
+          setRestaurants(restaurantsData);
 
           // Update search metrics
           setSearchMetrics({
             search_radius: radius,
-            results_count: response.data.restaurants.length,
-            data_source: "foursquare_api",
+            results_count: restaurantsData.length,
+            data_source: "google_places_api",
             last_search: new Date().toISOString(),
           });
 

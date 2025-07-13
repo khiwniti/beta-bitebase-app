@@ -54,19 +54,20 @@ export default function MarketAnalysisPage() {
     setError(null)
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
-      const response = await fetch(`${backendUrl}/api/restaurants?latitude=${lat}&longitude=${lng}&radius=5000`)
+      const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:56222'
+      const response = await fetch(`${backendUrl}/api/restaurants/search?latitude=${lat}&longitude=${lng}&radius=5000&limit=50`)
 
       if (response.ok) {
         const data = await response.json()
-        const formattedRestaurants: Restaurant[] = (data.restaurants || []).map((r: any) => ({
+        const restaurants = data.data || data.restaurants || []
+        const formattedRestaurants: Restaurant[] = restaurants.map((r: any) => ({
           id: r.id.toString(),
           name: r.name,
           cuisine: r.cuisine || 'Unknown',
           rating: r.rating || 0,
           position: [r.latitude, r.longitude] as [number, number],
-          address: r.address,
-          priceRange: r.price_range
+          address: r.address || r.vicinity,
+          priceRange: r.price_level ? '$'.repeat(r.price_level) : '$'
         }))
         setRestaurants(formattedRestaurants)
       } else {
@@ -84,14 +85,16 @@ export default function MarketAnalysisPage() {
   // Fetch demographics data from AI agent
   const fetchDemographics = React.useCallback(async (location: string) => {
     try {
-      const aiAgentsUrl = process.env.NEXT_PUBLIC_AGENT_API_URL || 'http://localhost:8080'
-      const response = await fetch(`${aiAgentsUrl}/research`, {
+      const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:56222'
+      const response = await fetch(`${backendUrl}/api/ai/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          location,
-          cuisine_type: 'demographic analysis',
-          additional_context: { analysis_type: 'demographics' }
+          message: `Provide demographic analysis for ${location}`,
+          context: { 
+            location,
+            analysis_type: 'demographics'
+          }
         })
       })
 
