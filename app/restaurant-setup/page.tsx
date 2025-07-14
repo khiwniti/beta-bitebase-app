@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState } from 'react'
-import { MainLayout } from '../../components/layout/MainLayout'
 import { Button } from '../../components/ui/button'
 import { Input } from '../../components/ui/input'
 import { Label } from '../../components/ui/label'
@@ -491,8 +490,7 @@ export default function RestaurantSetupPage() {
   }
 
   return (
-    <MainLayout pageTitle="Restaurant Setup" pageDescription="Set up your restaurant profile and preferences">
-      <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto space-y-6">
         {/* Progress Steps */}
         <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
           <div className="flex items-center justify-between mb-4">
@@ -565,6 +563,5 @@ export default function RestaurantSetupPage() {
           )}
         </div>
       </div>
-    </MainLayout>
   )
 }
