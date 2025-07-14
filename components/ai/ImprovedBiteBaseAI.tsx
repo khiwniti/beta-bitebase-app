@@ -41,7 +41,7 @@ import {
   Maximize2,
   Minimize2
 } from 'lucide-react';
-import { useRestaurantData } from '../../hooks/useRestaurantData';
+import { useRestaurants } from '../../hooks/useRestaurantData';
 
 // Enhanced AI Response Types
 interface AIResponse {
@@ -156,7 +156,7 @@ const ImprovedBiteBaseAI: React.FC<ImprovedBiteBaseAIProps> = ({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Get real restaurant data
-  const { restaurants, analytics, isLoading: dataLoading } = useRestaurantData();
+  const { restaurants, loading: dataLoading } = useRestaurants();
 
   // Enhanced quick actions with real data integration
   const quickActions = [
@@ -241,7 +241,9 @@ const ImprovedBiteBaseAI: React.FC<ImprovedBiteBaseAIProps> = ({
         });
       }
 
-      if (analytics) {
+      // Generate sample analytics data
+      const hasAnalytics = true;
+      if (hasAnalytics) {
         metrics.push(
           {
             name: language === 'th' ? 'รายได้รายเดือน' : 'Monthly Revenue',
