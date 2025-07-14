@@ -1,5 +1,7 @@
-# Trigger new deployment - Build fixes applied
+# Trigger new deployment - React-leaflet dependency fixed
 # All UI components added and dependencies resolved
-# Build should now succeed
-timestamp: 2025-07-14T01:52:00Z
-commit: 6cd5c22
+# React 18 compatibility maintained with react-leaflet@4.2.1
+# .npmrc added with legacy-peer-deps=true for Vercel
+# Build should now succeed with latest fixes
+timestamp: 2025-07-14T02:15:00Z
+commit: f60514a
