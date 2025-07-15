@@ -56,13 +56,23 @@ class AuthService {
         };
       }
 
-      if (data.success && data.data) {
+      if (data.success) {
+        // Handle both formats: direct response or nested data
+        const userData = data.data || data;
+        const token = userData.token;
+        const refreshToken = userData.refresh_token || userData.refreshToken;
+        
         // Store tokens securely
-        this.storeTokens(data.data.token, data.data.refresh_token);
+        this.storeTokens(token, refreshToken);
 
         return {
           success: true,
-          data: data.data,
+          data: {
+            user: userData.user,
+            token: token,
+            refresh_token: refreshToken,
+            expires_in: 3600 // Default 1 hour
+          },
         };
       }
 

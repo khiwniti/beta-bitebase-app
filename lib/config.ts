@@ -54,6 +54,15 @@ export const ENDPOINTS = {
   HEALTH: "/health",
   AI_STATUS: "/ai",
 
+  // Authentication endpoints
+  AUTH: {
+    LOGIN: "/api/auth/login",
+    REGISTER: "/api/auth/register",
+    LOGOUT: "/api/auth/logout",
+    REFRESH: "/api/auth/refresh",
+    PROFILE: "/api/auth/profile",
+  },
+
   // Restaurant endpoints
   RESTAURANTS: {
     SEARCH: "/api/restaurants/search",
