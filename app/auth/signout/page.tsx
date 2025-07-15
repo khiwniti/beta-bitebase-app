@@ -5,13 +5,13 @@ import { useAuth } from "@/components/auth";
 import { useRouter } from "next/navigation";
 
 export default function SignOutPage() {
-  const { logout } = useAuth();
+  const { signOut } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     const handleSignOut = async () => {
       try {
-        await logout();
+        await signOut();
         router.push("/auth");
       } catch (error) {
         console.error("Sign out error:", error);
@@ -21,7 +21,7 @@ export default function SignOutPage() {
     };
 
     handleSignOut();
-  }, [logout, router]);
+  }, [signOut, router]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
