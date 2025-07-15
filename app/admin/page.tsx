@@ -5,6 +5,8 @@ import { Button } from "../../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
 import { Badge } from "../../components/ui/badge";
+import { Input } from "../../components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select";
 import { 
   ChevronUp, 
   ChevronDown, 
@@ -19,12 +21,30 @@ import {
   Users,
   MessageSquare,
   BarChart3,
-  Sparkles
+  Sparkles,
+  Activity,
+  AlertTriangle,
+  TrendingUp,
+  Server,
+  Shield,
+  Clock,
+  Database,
+  Cpu,
+  HardDrive,
+  Network
 } from "lucide-react";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("seo");
   const [isGenerating, setIsGenerating] = useState(false);
+  
+  // Enterprise monitoring state
+  const [systemHealth, setSystemHealth] = useState(null);
+  const [performanceMetrics, setPerformanceMetrics] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [auditLogs, setAuditLogs] = useState([]);
+  const [alerts, setAlerts] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
   const [blogPosts, setBlogPosts] = useState([
     {
       id: 1,
@@ -94,7 +114,7 @@ export default function AdminDashboard() {
     },
   ]);
   
-  const [users, setUsers] = useState({
+  const [userStats, setUserStats] = useState({
     totalCount: 1250,
     activeSubscriptions: 875,
     trialUsers: 230,
@@ -154,6 +174,100 @@ export default function AdminDashboard() {
     );
   };
 
+  // Enterprise monitoring functions
+  const fetchEnterpriseData = async () => {
+    try {
+      setRefreshing(true);
+      
+      // Mock enterprise data (in production, fetch from real API)
+      setSystemHealth({
+        status: 'healthy',
+        timestamp: new Date().toISOString(),
+        uptime: { seconds: 86400, human: '1d 0h 0m' },
+        memory: { used: 512, total: 1024, usage_percent: 50 },
+        cpu: { user: 1000000, system: 500000, load_average: [0.5, 0.6, 0.7] },
+        system: {
+          platform: 'linux', arch: 'x64', node_version: 'v18.17.0',
+          total_memory: 8, free_memory: 4, cpu_count: 4
+        },
+        alerts: [], alertCount: 0
+      });
+
+      setPerformanceMetrics({
+        summary: {
+          total_requests: 15420, avg_response_time: 245, p95_response_time: 890,
+          error_rate: 1.2, uptime_hours: 24
+        },
+        requests: {
+          total: 15420,
+          by_status: { '2xx': 14800, '4xx': 520, '5xx': 100 },
+          last_hour: 1250,
+          top_endpoints: [
+            { endpoint: 'GET /api/restaurants/search', count: 4500 },
+            { endpoint: 'POST /api/ai/market-analysis', count: 2800 },
+            { endpoint: 'GET /api/analytics/dashboard', count: 2100 }
+          ]
+        },
+        performance: {
+          avg_response_time: 245, p95_response_time: 890,
+          slowest_endpoints: [
+            { endpoint: 'POST /api/ai/market-analysis', avgResponseTime: 1200, requestCount: 2800 },
+            { endpoint: 'POST /api/ai/predictive-analytics', avgResponseTime: 980, requestCount: 1500 }
+          ]
+        },
+        errors: { total: 620, by_type: { client_error: 520, server_error: 100 }, error_rate: 1.2, recent_errors: [] }
+      });
+
+      setUsers([
+        {
+          id: 'user_123', email: 'admin@bitebase.com', name: 'Admin User',
+          userType: 'ADMIN', subscriptionTier: 'ENTERPRISE', status: 'active',
+          lastLogin: new Date().toISOString(),
+          createdAt: new Date(Date.now() - 86400000 * 30).toISOString(),
+          usage: { searches: 150, analyses: 45, apiCalls: 1200 }
+        },
+        {
+          id: 'user_456', email: 'owner@restaurant.com', name: 'Restaurant Owner',
+          userType: 'EXISTING_OWNER', subscriptionTier: 'PROFESSIONAL', status: 'active',
+          lastLogin: new Date(Date.now() - 3600000).toISOString(),
+          createdAt: new Date(Date.now() - 86400000 * 15).toISOString(),
+          usage: { searches: 89, analyses: 23, apiCalls: 0 }
+        }
+      ]);
+
+      setAuditLogs([
+        {
+          id: 1, timestamp: new Date().toISOString(), userId: 'user_123',
+          userEmail: 'admin@bitebase.com', action: 'LOGIN', resource: '/api/auth/login',
+          ip: '192.168.1.100', userAgent: 'Mozilla/5.0...', success: true,
+          details: { method: 'email' }
+        }
+      ]);
+
+      setAlerts([]);
+      
+    } catch (error) {
+      console.error('Error fetching enterprise data:', error);
+    } finally {
+      setRefreshing(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchEnterpriseData();
+    const interval = setInterval(fetchEnterpriseData, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const getStatusColor = (status) => {
+    switch (status?.toLowerCase()) {
+      case 'healthy': return 'bg-green-500';
+      case 'warning': return 'bg-yellow-500';
+      case 'critical': return 'bg-red-500';
+      default: return 'bg-gray-500';
+    }
+  };
+
   return (
     <div className="p-6 max-w-7xl mx-auto">
       <div className="flex justify-between items-center mb-8">
@@ -162,6 +276,15 @@ export default function AdminDashboard() {
           <p className="text-gray-600">Manage your platform content, SEO, and features</p>
         </div>
         <div className="flex items-center gap-2">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={fetchEnterpriseData}
+            disabled={refreshing}
+          >
+            <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
+            Refresh
+          </Button>
           <Button variant="outline" size="sm">
             <Settings className="h-4 w-4 mr-2" />
             Settings
@@ -173,51 +296,60 @@ export default function AdminDashboard() {
         </div>
       </div>
       
-      {/* Dashboard Stats */}
+      {/* Enterprise Dashboard Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-500">Total Users</CardTitle>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">System Status</CardTitle>
+            <Server className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{users.totalCount}</div>
-            <p className="text-xs text-green-600 flex items-center mt-1">
-              <ChevronUp className="h-3 w-3 mr-1" /> 12% from last month
+            <div className="flex items-center space-x-2">
+              <div className={`w-3 h-3 rounded-full ${getStatusColor(systemHealth?.status)}`}></div>
+              <div className="text-2xl font-bold capitalize">{systemHealth?.status || 'Unknown'}</div>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Uptime: {systemHealth?.uptime?.human || 'N/A'}
             </p>
           </CardContent>
         </Card>
-        
+
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-500">Active Subscriptions</CardTitle>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Memory Usage</CardTitle>
+            <HardDrive className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{users.activeSubscriptions}</div>
-            <p className="text-xs text-green-600 flex items-center mt-1">
-              <ChevronUp className="h-3 w-3 mr-1" /> 8% from last month
+            <div className="text-2xl font-bold">{systemHealth?.memory?.usage_percent || 0}%</div>
+            <p className="text-xs text-muted-foreground">
+              {systemHealth?.memory?.used || 0}MB / {systemHealth?.memory?.total || 0}MB
             </p>
           </CardContent>
         </Card>
-        
+
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-500">Trial Users</CardTitle>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Response Time</CardTitle>
+            <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{users.trialUsers}</div>
-            <p className="text-xs text-red-600 flex items-center mt-1">
-              <ChevronDown className="h-3 w-3 mr-1" /> 3% from last month
+            <div className="text-2xl font-bold">{performanceMetrics?.summary?.avg_response_time || 0}ms</div>
+            <p className="text-xs text-muted-foreground">
+              P95: {performanceMetrics?.summary?.p95_response_time || 0}ms
             </p>
           </CardContent>
         </Card>
-        
+
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-500">Admin Users</CardTitle>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Error Rate</CardTitle>
+            <AlertTriangle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{users.adminUsers}</div>
-            <p className="text-xs text-gray-500 mt-1">No change</p>
+            <div className="text-2xl font-bold">{performanceMetrics?.summary?.error_rate || 0}%</div>
+            <p className="text-xs text-muted-foreground">
+              {performanceMetrics?.errors?.total || 0} total errors
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -236,6 +368,18 @@ export default function AdminDashboard() {
           <TabsTrigger value="analytics">
             <BarChart3 className="h-4 w-4 mr-2" />
             Analytics
+          </TabsTrigger>
+          <TabsTrigger value="performance">
+            <Activity className="h-4 w-4 mr-2" />
+            Performance
+          </TabsTrigger>
+          <TabsTrigger value="users">
+            <Users className="h-4 w-4 mr-2" />
+            Users
+          </TabsTrigger>
+          <TabsTrigger value="security">
+            <Shield className="h-4 w-4 mr-2" />
+            Security
           </TabsTrigger>
           <TabsTrigger value="messages">
             <MessageSquare className="h-4 w-4 mr-2" />
@@ -431,6 +575,186 @@ export default function AdminDashboard() {
           </div>
         </TabsContent>
         
+        {/* Performance Monitoring Tab */}
+        <TabsContent value="performance">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            {/* Performance Summary */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Performance Summary</CardTitle>
+                <CardDescription>Response time and throughput metrics</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm font-medium">Average Response Time</p>
+                    <p className="text-2xl font-bold">{performanceMetrics?.performance?.avg_response_time || 0}ms</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">95th Percentile</p>
+                    <p className="text-2xl font-bold">{performanceMetrics?.performance?.p95_response_time || 0}ms</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">Error Rate</p>
+                    <p className="text-2xl font-bold">{performanceMetrics?.errors?.error_rate || 0}%</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">Uptime</p>
+                    <p className="text-2xl font-bold">{performanceMetrics?.summary?.uptime_hours || 0}h</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* CPU Load */}
+            <Card>
+              <CardHeader>
+                <CardTitle>CPU Load Average</CardTitle>
+                <CardDescription>System load over time</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  {systemHealth?.cpu?.load_average?.map((load, index) => (
+                    <div key={index} className="flex justify-between items-center">
+                      <span className="text-sm">{index === 0 ? '1 min' : index === 1 ? '5 min' : '15 min'}</span>
+                      <Badge variant={load > 1 ? 'destructive' : load > 0.7 ? 'secondary' : 'default'}>
+                        {load.toFixed(2)}
+                      </Badge>
+                    </div>
+                  )) || []}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Top Endpoints */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Top API Endpoints</CardTitle>
+              <CardDescription>Most frequently accessed endpoints</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                {performanceMetrics?.requests?.top_endpoints?.map((endpoint, index) => (
+                  <div key={index} className="flex justify-between items-center p-2 rounded border">
+                    <span className="font-mono text-sm">{endpoint.endpoint}</span>
+                    <Badge>{endpoint.count.toLocaleString()} requests</Badge>
+                  </div>
+                )) || []}
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Users Management Tab */}
+        <TabsContent value="users">
+          <Card>
+            <CardHeader>
+              <CardTitle>User Management</CardTitle>
+              <CardDescription>Manage user accounts and subscriptions</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {/* User Filters */}
+                <div className="flex gap-4">
+                  <Input placeholder="Search users..." className="max-w-sm" />
+                  <Select>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Subscription Tier" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Tiers</SelectItem>
+                      <SelectItem value="free">Free</SelectItem>
+                      <SelectItem value="basic">Basic</SelectItem>
+                      <SelectItem value="professional">Professional</SelectItem>
+                      <SelectItem value="enterprise">Enterprise</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Users Table */}
+                <div className="border rounded-lg">
+                  <div className="grid grid-cols-6 gap-4 p-4 border-b font-medium text-sm">
+                    <div>User</div>
+                    <div>Type</div>
+                    <div>Subscription</div>
+                    <div>Status</div>
+                    <div>Last Login</div>
+                    <div>Usage</div>
+                  </div>
+                  {users.map((user) => (
+                    <div key={user.id} className="grid grid-cols-6 gap-4 p-4 border-b last:border-b-0">
+                      <div>
+                        <p className="font-medium">{user.name}</p>
+                        <p className="text-sm text-muted-foreground">{user.email}</p>
+                      </div>
+                      <div>
+                        <Badge variant="outline">{user.userType}</Badge>
+                      </div>
+                      <div>
+                        <Badge variant={user.subscriptionTier === 'ENTERPRISE' ? 'default' : 'secondary'}>
+                          {user.subscriptionTier}
+                        </Badge>
+                      </div>
+                      <div>
+                        <Badge variant={user.status === 'active' ? 'default' : 'destructive'}>
+                          {user.status}
+                        </Badge>
+                      </div>
+                      <div className="text-sm">
+                        {new Date(user.lastLogin).toLocaleDateString()}
+                      </div>
+                      <div className="text-sm">
+                        <p>{user.usage.searches} searches</p>
+                        <p>{user.usage.analyses} analyses</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Security Tab */}
+        <TabsContent value="security">
+          <Card>
+            <CardHeader>
+              <CardTitle>Security Audit Logs</CardTitle>
+              <CardDescription>Monitor user actions and security events</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {auditLogs.length === 0 ? (
+                  <div className="text-center py-8">
+                    <Shield className="h-12 w-12 text-green-500 mx-auto mb-4" />
+                    <h3 className="text-lg font-medium">No Recent Activity</h3>
+                    <p className="text-muted-foreground">Security audit logs will appear here</p>
+                  </div>
+                ) : (
+                  auditLogs.map((log) => (
+                    <div key={log.id} className="flex justify-between items-center p-3 border rounded">
+                      <div className="flex items-center space-x-4">
+                        <Badge variant={log.success ? 'default' : 'destructive'}>
+                          {log.action}
+                        </Badge>
+                        <div>
+                          <p className="font-medium">{log.userEmail}</p>
+                          <p className="text-sm text-muted-foreground">{log.resource}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm">{new Date(log.timestamp).toLocaleString()}</p>
+                        <p className="text-xs text-muted-foreground">{log.ip}</p>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
         <TabsContent value="messages">
           <div className="p-8 text-center">
             <h3 className="text-lg font-medium mb-2">Support Messages</h3>

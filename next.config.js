@@ -17,6 +17,16 @@ const nextConfig = {
     // Removed deprecated serverComponentsExternalPackages
   },
 
+  // API rewrites to proxy backend requests
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: `http://localhost:56038/api/:path*`,
+      },
+    ];
+  },
+
   // Production-ready headers for security and CORS
   async headers() {
     return [

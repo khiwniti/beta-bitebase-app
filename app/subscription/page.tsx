@@ -1,12 +1,16 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { loadStripe } from '@stripe/stripe-js'
 import { Button } from "../../components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card"
 import { Badge } from "../../components/ui/badge"
 import { Check, Crown, Star, Zap, ArrowRight, Building2, X } from "lucide-react"
 import BiteBaseLogo from "../../components/BiteBaseLogo"
 import Image from "next/image"
+
+// Initialize Stripe
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
 interface PricingPlan {
   id: string
@@ -126,22 +130,80 @@ export default function SubscriptionPage() {
     setIsLoading(true)
 
     try {
-      // Simulate Stripe integration
-      console.log(`Redirecting to Stripe for plan: ${plan.stripePriceId}`)
+      if (plan.id === 'free') {
+        // Handle free plan - redirect to setup
+        setTimeout(() => {
+          setIsLoading(false)
+          window.location.href = '/restaurant-setup'
+        }, 1000)
+        return
+      }
 
-      setTimeout(() => {
-        setIsLoading(false)
-        if (plan.id === 'free') {
-          window.location.href = '/restaurant-setup'
-        } else if (plan.id === 'enterprise') {
+      if (plan.id === 'enterprise') {
+        // Handle enterprise plan - contact sales
+        setTimeout(() => {
+          setIsLoading(false)
           window.location.href = '/franchise'
-        } else {
-          window.location.href = '/restaurant-setup'
+        }, 1000)
+        return
+      }
+
+      // Handle paid plans with Stripe
+      console.log(`Processing Stripe checkout for plan: ${plan.stripePriceId}`)
+
+      // First create a customer
+      const customerResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/payments/create-customer`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: 'demo@bitebase.com', // In production, get from auth context
+          name: 'Demo User',
+          userType: 'NEW_ENTREPRENEUR'
+        }),
+      })
+
+      const customerData = await customerResponse.json()
+      
+      if (!customerData.success) {
+        throw new Error('Failed to create customer')
+      }
+
+      // Create checkout session
+      const checkoutResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/payments/create-checkout-session`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          customerId: customerData.data.customerId,
+          priceId: plan.stripePriceId,
+          planName: plan.name
+        }),
+      })
+
+      const checkoutData = await checkoutResponse.json()
+      
+      if (!checkoutData.success) {
+        throw new Error('Failed to create checkout session')
+      }
+
+      // Redirect to Stripe Checkout
+      const stripe = await stripePromise
+      if (stripe) {
+        const { error } = await stripe.redirectToCheckout({
+          sessionId: checkoutData.data.sessionId,
+        })
+
+        if (error) {
+          throw new Error(error.message)
         }
-      }, 2000)
+      }
 
     } catch (error) {
       console.error('Payment failed:', error)
+      alert(`Payment failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
       setIsLoading(false)
     }
   }

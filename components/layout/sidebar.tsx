@@ -63,6 +63,13 @@ const navigation: NavigationSection[] = [
         badge: "Pro",
       },
       {
+        name: "AI Analytics",
+        href: "/analytics",
+        icon: TrendingUp,
+        description: "AI-powered market intelligence",
+        badge: "AI",
+      },
+      {
         name: "Location Analytics",
         href: "/place",
         icon: MapPin,

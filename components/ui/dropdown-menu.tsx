@@ -27,6 +27,11 @@ interface DropdownMenuSeparatorProps {
   className?: string
 }
 
+interface DropdownMenuLabelProps {
+  className?: string
+  children: React.ReactNode
+}
+
 const DropdownMenuContext = React.createContext<{
   isOpen: boolean
   setIsOpen: (open: boolean) => void
@@ -126,4 +131,12 @@ export function DropdownMenuItem({ onClick, className = "", children }: Dropdown
 
 export function DropdownMenuSeparator({ className = "" }: DropdownMenuSeparatorProps) {
   return <div className={`my-1 h-px bg-gray-200 ${className}`} />
+}
+
+export function DropdownMenuLabel({ className = "", children }: DropdownMenuLabelProps) {
+  return (
+    <div className={`px-4 py-2 text-sm font-medium text-gray-900 ${className}`}>
+      {children}
+    </div>
+  )
 }

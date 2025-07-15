@@ -6,13 +6,14 @@
 import { API_CONFIG } from "./config";
 
 interface User {
-  id: number;
+  id: string;
   email: string;
   role: string;
   name?: string;
   uid?: string;
   subscription_tier?: "basic" | "pro" | "enterprise";
-  subscription_status?: "active" | "inactive" | "trial";
+  email_verified?: boolean;
+  created_at?: string;
 }
 
 interface AuthResponse {
@@ -38,7 +39,7 @@ class AuthService {
   // Production-ready sign in
   async signIn(email: string, password: string): Promise<AuthResponse> {
     try {
-      const response = await fetch(`${this.baseUrl}/auth/login`, {
+      const response = await fetch(`${this.baseUrl}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +90,7 @@ class AuthService {
     },
   ): Promise<AuthResponse> {
     try {
-      const response = await fetch(`${this.baseUrl}/auth/register`, {
+      const response = await fetch(`${this.baseUrl}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -138,7 +139,7 @@ class AuthService {
   // Google OAuth sign in
   async signInWithGoogle(token: string): Promise<AuthResponse> {
     try {
-      const response = await fetch(`${this.baseUrl}/auth/google`, {
+      const response = await fetch(`${this.baseUrl}/api/auth/google`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -185,7 +186,7 @@ class AuthService {
     }
 
     try {
-      const response = await fetch(`${this.baseUrl}/auth/me`, {
+      const response = await fetch(`${this.baseUrl}/api/auth/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -229,7 +230,7 @@ class AuthService {
     }
 
     try {
-      const response = await fetch(`${this.baseUrl}/auth/refresh`, {
+      const response = await fetch(`${this.baseUrl}/api/auth/refresh`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -274,7 +275,7 @@ class AuthService {
 
     if (token) {
       try {
-        await fetch(`${this.baseUrl}/auth/logout`, {
+        await fetch(`${this.baseUrl}/api/auth/logout`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -324,7 +325,7 @@ class AuthService {
     email: string,
   ): Promise<{ success: boolean; error?: string }> {
     try {
-      const response = await fetch(`${this.baseUrl}/auth/password-reset`, {
+      const response = await fetch(`${this.baseUrl}/api/auth/password-reset`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -353,7 +354,7 @@ class AuthService {
     token: string,
   ): Promise<{ success: boolean; error?: string }> {
     try {
-      const response = await fetch(`${this.baseUrl}/auth/verify-email`, {
+      const response = await fetch(`${this.baseUrl}/api/auth/verify-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

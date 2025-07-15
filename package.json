@@ -6,7 +6,7 @@
   "homepage": "https://beta.bitebase.app",
   "scripts": {
     "build": "next build",
-    "dev": "next dev -p 52580 -H 0.0.0.0",
+    "dev": "next dev -p 54538 -H 0.0.0.0",
     "staging": "NODE_ENV=staging next start -p 12001 -H 0.0.0.0",
     "lint": "next lint",
     "start": "next start -p 52580 -H 0.0.0.0",
@@ -31,14 +31,13 @@
     "@stripe/react-stripe-js": "^3.7.0",
     "@stripe/stripe-js": "^7.4.0",
     "@tanstack/react-query": "^5.81.5",
-
+    "@types/mapbox-gl": "^3.4.1",
     "autoprefixer": "^10.4.21",
     "chart.js": "^4.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.19.2",
-
     "lucide-react": "^0.525.0",
     "mapbox-gl": "^3.13.0",
     "next": "^15.3.4",
@@ -47,8 +46,7 @@
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.59.0",
-
-    "react-map-gl": "^7.1.7",
+    "react-map-gl": "^7.1.9",
     "react-resizable-panels": "^3.0.3",
     "recharts": "^2.13.3",
     "stripe": "^18.2.1",

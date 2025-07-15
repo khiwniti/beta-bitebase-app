@@ -2,7 +2,7 @@
 
 import React from "react"
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query"
-import { AuthProvider } from "../contexts/AuthContext"
+import { AuthProvider } from "../components/auth"
 import { LanguageProvider } from "../contexts/LanguageContext"
 import { OnboardingProvider } from "../components/onboarding"
 
