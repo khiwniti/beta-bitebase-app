@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-import mapboxgl from 'mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import mapboxgl, { MapMouseEvent } from 'mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import Map, { Marker } from 'react-map-gl';
 
 // TO MAKE THE MAP APPEAR YOU MUST
@@ -16,7 +16,7 @@ interface MapContainerProps {
   className?: string
   children?: React.ReactNode
   onViewportChange?: (viewport: any) => void;
-  onClick?: (event: mapboxgl.MapMouseEvent) => void;
+  onClick?: (event: MapMouseEvent) => void;
 }
 
 export function MapContainer({ center, zoom, height, className = "", children, onViewportChange, onClick }: MapContainerProps) {
@@ -35,7 +35,7 @@ export function MapContainer({ center, zoom, height, className = "", children, o
     }
   };
 
-  const handleClick = (evt: mapboxgl.MapMouseEvent) => {
+  const handleClick = (evt: MapMouseEvent) => {
     if (onClick) {
       onClick(evt);
     }

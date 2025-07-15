@@ -35,7 +35,7 @@ interface MetricCardProps {
   className?: string
 }
 
-export function MetricCard({
+export const MetricCard = React.memo(function MetricCard({
   title,
   value,
   change,
@@ -96,7 +96,7 @@ export function MetricCard({
               </div>
             </div>
             <div className="min-w-0 flex-1">
-              <h3 className="text-xs font-medium text-gray-600 dark:text-gray-400 truncate leading-tight mb-1">{title}</h3>
+              <h3 className="text-xs font-medium text-gray-600 dark:text-gray-400 truncate leading-tight mb-1" role="heading" aria-level={3}>{title}</h3>
               <div className="flex items-center gap-2">
                 {getStatusIndicator()}
                 <span className="text-xs text-gray-500 dark:text-gray-400 capitalize">{status}</span>
@@ -104,7 +104,10 @@ export function MetricCard({
             </div>
           </div>
           
-          <button className="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex-shrink-0 touch-manipulation">
+          <button 
+            className="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex-shrink-0 touch-manipulation"
+            aria-label="More options"
+          >
             <MoreHorizontal className="h-3 w-3 sm:h-4 sm:w-4" />
           </button>
         </div>
@@ -157,7 +160,7 @@ export function MetricCard({
       </div>
     </div>
   )
-}
+})
 
 interface ChartCardProps {
   title: string
