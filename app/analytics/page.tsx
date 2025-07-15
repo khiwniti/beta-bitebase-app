@@ -5,6 +5,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import LocationSelector from '@/components/analytics/LocationSelector';
 import AnalyticsDashboard from '@/components/analytics/AnalyticsDashboard';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function AnalyticsPage() {
   const router = useRouter();
