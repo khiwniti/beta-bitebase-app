@@ -1,6 +1,8 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import enTranslations from '../messages/en.json';
+import thTranslations from '../messages/th.json';
 
 type Language = 'en' | 'th';
 
@@ -12,32 +14,10 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Simple translations
+// Load translations from JSON files
 const translations = {
-  en: {
-    'nav.dashboard': 'Dashboard',
-    'nav.restaurants': 'Restaurants',
-    'nav.analytics': 'Analytics',
-    'nav.settings': 'Settings',
-    'common.loading': 'Loading...',
-    'common.error': 'Error',
-    'common.save': 'Save',
-    'common.cancel': 'Cancel',
-    'auth.login': 'Login',
-    'auth.logout': 'Logout',
-  },
-  th: {
-    'nav.dashboard': 'แดชบอร์ด',
-    'nav.restaurants': 'ร้านอาหาร',
-    'nav.analytics': 'การวิเคราะห์',
-    'nav.settings': 'การตั้งค่า',
-    'common.loading': 'กำลังโหลด...',
-    'common.error': 'ข้อผิดพลาด',
-    'common.save': 'บันทึก',
-    'common.cancel': 'ยกเลิก',
-    'auth.login': 'เข้าสู่ระบบ',
-    'auth.logout': 'ออกจากระบบ',
-  }
+  en: enTranslations,
+  th: thTranslations
 };
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
@@ -56,7 +36,18 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations['en']] || key;
+    const keys = key.split('.');
+    let value: any = translations[language];
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object' && k in value) {
+        value = value[k];
+      } else {
+        return key; // Return the key if translation not found
+      }
+    }
+    
+    return typeof value === 'string' ? value : key;
   };
 
   return (

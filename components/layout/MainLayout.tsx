@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from "../ui/button"
@@ -47,6 +47,9 @@ import { useAuth } from '../../contexts/AuthContext'
 import BiteBaseLogo from '../BiteBaseLogo'
 import { WebTour, useTour } from '../tour/WebTour'
 import { TourTrigger, WelcomeBanner } from '../tour/TourTrigger'
+import { LanguageSwitcher } from '../LanguageSwitcher'
+import { useTranslations } from '../../hooks/useTranslations'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 // Type definitions for navigation
 interface NavigationSubItem {
@@ -71,95 +74,145 @@ interface NavigationSection {
   items: NavigationItem[];
 }
 
-// Updated navigation structure with improved organization and categorization for restaurant context
-const navigation: NavigationSection[] = [
+// Function to get navigation structure with translations
+const getNavigationStructure = (t: any): NavigationSection[] => [
   {
-    name: "Dashboard",
+    name: t('navigation.sections.dashboard'),
     items: [
       {
-        name: "Overview",
+        name: t('navigation.items.dashboard'),
         href: "/dashboard",
         icon: LayoutDashboard,
         tourId: "dashboard",
-        description: "Restaurant performance at a glance",
-        badge: "New"
+        description: t('navigation.descriptions.overview'),
+        badge: t('navigation.badges.new')
       },
     ]
   },
   {
-    name: "Location",
+    name: t('navigation.sections.location'),
     items: [
       {
-        name: "Place Analysis",
-        href: "/place",
-        icon: MapPin,
-        tourId: "place-analysis",
-        description: "Location intelligence",
-        subitems: [
-          { name: "Area Overview", href: "/place/area-analysis" },
-          { name: "Foot Traffic", href: "/place/foot-traffic" },
-          { name: "Competition Map", href: "/place/competition" },
-        ]
-      },
-      {
-        name: "Market Analysis",
+        name: t('navigation.items.marketAnalysis'),
         href: "/market-analysis",
         icon: TrendingUp,
         tourId: "market-analysis",
-        description: "Interactive map intelligence",
-        highlight: true
+        description: t('navigation.descriptions.marketAnalysis'),
+        highlight: true,
+        badge: t('navigation.badges.pro')
+      },
+      {
+        name: t('navigation.items.aiAnalytics'),
+        href: "/analytics",
+        icon: Activity,
+        tourId: "ai-analytics",
+        description: "AI-powered analytics",
+        badge: t('navigation.badges.ai')
+      },
+      {
+        name: t('navigation.items.locationAnalytics'),
+        href: "/place",
+        icon: MapPin,
+        tourId: "place-analysis",
+        description: t('navigation.descriptions.placeAnalysis'),
+        expandable: true,
+        subitems: [
+          { name: t('navigation.subitems.areaOverview'), href: "/place/area-analysis" },
+          { name: t('navigation.subitems.footTraffic'), href: "/place/foot-traffic" },
+          { name: t('navigation.subitems.competitionMap'), href: "/place/competition" },
+        ]
       },
     ]
   },
   {
-    name: "Business",
+    name: t('navigation.sections.business'),
     items: [
       {
-        name: "Menu Optimization",
+        name: t('navigation.items.menuOptimization'),
         href: "/product",
         icon: Package,
         tourId: "product-management",
-        description: "Menu management & analysis"
+        description: t('navigation.descriptions.menuOptimization')
       },
       {
-        name: "Pricing Strategy",
+        name: t('navigation.items.pricingStrategy'),
         href: "/price",
         icon: DollarSign,
         tourId: "price-strategy",
-        description: "Pricing optimization"
+        description: t('navigation.descriptions.pricingStrategy')
       },
       {
-        name: "Marketing",
+        name: t('navigation.items.marketing'),
         href: "/promotion",
         icon: Megaphone,
         tourId: "promotion-marketing",
-        description: "Campaigns & promotions"
+        description: t('navigation.descriptions.marketing')
+      },
+      {
+        name: t('navigation.items.customerInsights'),
+        href: "/customers",
+        icon: Users,
+        tourId: "customer-insights",
+        description: "Customer behavior analysis"
       },
     ]
   },
   {
-    name: "Insights",
+    name: t('navigation.sections.operations'),
     items: [
       {
-        name: "Reports",
+        name: t('navigation.items.restaurantSettings'),
+        href: "/restaurant-settings",
+        icon: Utensils,
+        tourId: "restaurant-settings",
+        description: "Restaurant configuration"
+      },
+      {
+        name: t('navigation.items.posIntegration'),
+        href: "/pos-integration",
+        icon: Zap,
+        tourId: "pos-integration",
+        description: "POS system integration"
+      },
+      {
+        name: t('navigation.items.campaignManagement'),
+        href: "/campaigns",
+        icon: Megaphone,
+        tourId: "campaign-management",
+        description: "Marketing campaigns"
+      },
+      {
+        name: t('navigation.items.reviewsRatings'),
+        href: "/reviews",
+        icon: Star,
+        tourId: "reviews-ratings",
+        description: "Customer feedback"
+      },
+      {
+        name: t('navigation.items.schedule'),
+        href: "/calendar",
+        icon: Calendar,
+        tourId: "schedule",
+        description: "Schedule management"
+      },
+    ]
+  },
+  {
+    name: t('navigation.sections.reports'),
+    items: [
+      {
+        name: t('navigation.items.marketReports'),
         href: "/reports",
         icon: FileText,
         tourId: "reports",
-        description: "Market analysis reports"
-  },
-      {
-        name: "Restaurant Setup",
-        href: "/restaurant-setup",
-        icon: Utensils,
-        tourId: "restaurant-setup",
-        description: "Setup wizard"
+        description: t('navigation.descriptions.reports')
       },
       {
-        name: "Settings",
-        href: "/settings",
-        icon: Settings,
-        tourId: "settings",
-        description: "System configuration"
+        name: t('navigation.items.performance'),
+        href: "/reports/performance",
+        icon: PieChart,
+        tourId: "performance",
+        description: "Performance metrics"
       },
     ]
   }
@@ -185,6 +238,8 @@ export function MainLayout({
   const pathname = usePathname()
   const { user, logout } = useAuth()
   const { isTourOpen, startTour, closeTour, completeTour } = useTour()
+  const { language } = useLanguage()
+  const t = useTranslations()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({})
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({})
@@ -197,6 +252,142 @@ export function MainLayout({
   const [showNotifications, setShowNotifications] = useState(false)
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [collapsedSidebar, setCollapsedSidebar] = useState(false)
+
+  // Direct navigation structure with translations - bypassing the function
+  const navigation = useMemo(() => {
+    console.log('Creating navigation directly with language:', language);
+    
+    return [
+      {
+        name: language === 'th' ? 'ภาพรวม' : 'OVERVIEW',
+        items: [
+          {
+            name: language === 'th' ? 'แดชบอร์ด' : 'Dashboard',
+            href: '/dashboard',
+            icon: LayoutDashboard,
+            tourId: 'dashboard-nav'
+          }
+        ]
+      },
+      {
+        name: language === 'th' ? 'ที่ตั้ง' : 'LOCATION',
+        items: [
+          {
+            name: language === 'th' ? 'การวิเคราะห์ตลาด' : 'Market Analysis',
+            href: '/market-analysis',
+            icon: TrendingUp,
+            badge: language === 'th' ? 'โปร' : 'Pro',
+            highlight: true,
+            tourId: 'market-analysis-nav'
+          },
+          {
+            name: language === 'th' ? 'การวิเคราะห์ AI' : 'AI Analytics',
+            href: '/analytics',
+            icon: Brain,
+            badge: 'AI',
+            tourId: 'ai-analytics-nav'
+          },
+          {
+            name: language === 'th' ? 'การวิเคราะห์ที่ตั้ง' : 'Location Analytics',
+            href: '/place',
+            icon: MapPin,
+            subitems: [
+              {
+                name: language === 'th' ? 'ข้อมูลพื้นที่' : 'Area Insights',
+                href: '/place/insights'
+              },
+              {
+                name: language === 'th' ? 'การเปรียบเทียบ' : 'Comparison',
+                href: '/place/comparison'
+              }
+            ],
+            tourId: 'location-analytics-nav'
+          }
+        ]
+      },
+      {
+        name: language === 'th' ? 'ธุรกิจ' : 'BUSINESS',
+        items: [
+          {
+            name: language === 'th' ? 'การปรับปรุงเมนู' : 'Menu Optimization',
+            href: '/product',
+            icon: UtensilsCrossed,
+            tourId: 'menu-optimization-nav'
+          },
+          {
+            name: language === 'th' ? 'กลยุทธ์การตั้งราคา' : 'Pricing Strategy',
+            href: '/price',
+            icon: DollarSign,
+            tourId: 'pricing-strategy-nav'
+          },
+          {
+            name: language === 'th' ? 'การตลาด' : 'Marketing',
+            href: '/promotion',
+            icon: Megaphone,
+            tourId: 'marketing-nav'
+          },
+          {
+            name: language === 'th' ? 'ข้อมูลเชิงลึกลูกค้า' : 'Customer Insights',
+            href: '/customers',
+            icon: Users,
+            tourId: 'customer-insights-nav'
+          }
+        ]
+      },
+      {
+        name: language === 'th' ? 'การดำเนินงาน' : 'OPERATIONS',
+        items: [
+          {
+            name: language === 'th' ? 'การตั้งค่าร้านอาหาร' : 'Restaurant Settings',
+            href: '/restaurant-settings',
+            icon: Settings,
+            tourId: 'restaurant-settings-nav'
+          },
+          {
+            name: language === 'th' ? 'การรวม POS' : 'POS Integration',
+            href: '/pos-integration',
+            icon: CreditCard,
+            tourId: 'pos-integration-nav'
+          },
+          {
+            name: language === 'th' ? 'การจัดการแคมเปญ' : 'Campaign Management',
+            href: '/campaigns',
+            icon: Target,
+            tourId: 'campaign-management-nav'
+          },
+          {
+            name: language === 'th' ? 'รีวิวและการให้คะแนน' : 'Reviews & Ratings',
+            href: '/reviews',
+            icon: Star,
+            tourId: 'reviews-ratings-nav'
+          },
+          {
+            name: language === 'th' ? 'ตารางเวลา' : 'Schedule',
+            href: '/calendar',
+            icon: Calendar,
+            tourId: 'schedule-nav'
+          }
+        ]
+      },
+      {
+        name: language === 'th' ? 'รายงาน' : 'REPORTS',
+        items: [
+          {
+            name: language === 'th' ? 'รายงานตลาด' : 'Market Reports',
+            href: '/reports',
+            icon: FileText,
+            tourId: 'market-reports-nav'
+          },
+          {
+            name: language === 'th' ? 'ประสิทธิภาพ' : 'Performance',
+            href: '/reports/performance',
+            icon: BarChart3,
+            tourId: 'performance-nav'
+          }
+        ]
+      }
+    ];
+  }, [language]);
 
   // Initialize expanded sections on load
   useEffect(() => {
@@ -224,7 +415,7 @@ export function MainLayout({
         }
       });
     });
-  }, []);
+  }, [navigation, pathname]);
   
   // Toggle dark mode
   useEffect(() => {
@@ -323,6 +514,7 @@ export function MainLayout({
       {/* Sidebar - Improved with cleaner styling */}
       {showSidebar && (
         <div 
+          key={`sidebar-${language}`}
           className={`bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex-shrink-0 transition-all duration-300 ease-in-out 
           ${collapsedSidebar ? 'w-20' : 'w-64'} 
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} 
@@ -343,7 +535,7 @@ export function MainLayout({
                     </div>
 
           {/* Navigation menu */}
-          <nav className="h-full overflow-y-auto pb-20 pt-2 scroll-smooth scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent">
+          <nav key={language} className="h-full overflow-y-auto pb-20 pt-2 scroll-smooth scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent">
             <div className="px-3 py-2">
                       {navigation.map((section) => (
                 <div key={section.name} className="mb-3">
@@ -487,6 +679,9 @@ export function MainLayout({
                       <User className="h-4 w-4 mr-3" />
                       Profile Settings
                     </Link>
+                    <div className="px-4 py-2">
+                      <LanguageSwitcher />
+                    </div>
                     <button 
                       onClick={() => setDarkMode(!darkMode)}
                       className="w-full flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"

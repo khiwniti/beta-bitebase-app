@@ -62,11 +62,15 @@ export function UserMenu() {
   const getSubscriptionBadge = (tier?: string) => {
     const tierMap: Record<string, { label: string; color: string }> = {
       basic: { label: "Basic", color: "bg-gray-500" },
+      FREE: { label: "Free", color: "bg-gray-500" },
+      BASIC: { label: "Basic", color: "bg-gray-500" },
       pro: { label: "Pro", color: "bg-blue-500" },
+      PROFESSIONAL: { label: "Professional", color: "bg-blue-500" },
       enterprise: { label: "Enterprise", color: "bg-purple-500" },
+      ENTERPRISE: { label: "Enterprise", color: "bg-purple-500" },
     };
     
-    const subscription = tierMap[tier || "basic"];
+    const subscription = tierMap[tier || "basic"] || tierMap["basic"];
     return (
       <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium text-white ${subscription.color}`}>
         {subscription.label}

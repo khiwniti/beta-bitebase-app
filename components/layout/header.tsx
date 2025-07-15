@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 
 interface HeaderProps {
   onOpenSidebar: () => void
@@ -24,8 +25,11 @@ export default function Header({ onOpenSidebar, userName, restaurantName }: Head
           {restaurantName || "BiteBase"}
         </div>
       </div>
-      <div className="text-sm text-gray-600">
-        Welcome, {userName || "User"}
+      <div className="flex items-center gap-4">
+        <LanguageSwitcher />
+        <div className="text-sm text-gray-600">
+          Welcome, {userName || "User"}
+        </div>
       </div>
     </div>
   )
