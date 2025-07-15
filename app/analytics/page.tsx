@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import LocationSelector from '@/components/analytics/LocationSelector';
 import AnalyticsDashboard from '@/components/analytics/AnalyticsDashboard';
@@ -8,7 +8,7 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 
-export default function AnalyticsPage() {
+function AnalyticsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -248,6 +248,14 @@ export default function AnalyticsPage() {
         ) : null}
       </div>
     </div>
+  );
+}
+
+export default function AnalyticsPage() {
+  return (
+    <Suspense fallback={<DashboardSkeleton />}>
+      <AnalyticsContent />
+    </Suspense>
   );
 }
 

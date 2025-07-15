@@ -90,7 +90,7 @@ export function UserMenu() {
         </Button>
       </DropdownMenuTrigger>
       
-      <DropdownMenuContent className="w-80" align="end" forceMount>
+      <DropdownMenuContent className="w-80" align="end">
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-2">
             <div className="flex items-center justify-between">
@@ -152,9 +152,8 @@ export function UserMenu() {
         <DropdownMenuSeparator />
         
         <DropdownMenuItem 
-          onClick={handleSignOut}
-          disabled={isLoading}
-          className="text-red-600 focus:text-red-600"
+          onClick={isLoading ? undefined : handleSignOut}
+          className={`text-red-600 focus:text-red-600 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
           <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />

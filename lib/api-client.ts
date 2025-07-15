@@ -325,7 +325,7 @@ class ApiClient {
     const response = await this.request(`/api/restaurants/search?${urlParams.toString()}`, {
       method: "GET",
     });
-    return response;
+    return response as ApiResponse<Restaurant[]>;
   }
 
   // Wongnai integration endpoints

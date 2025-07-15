@@ -57,7 +57,7 @@ const MapDashboard: React.FC<MapDashboardProps> = ({ className = '' }) => {
         limit: 20,
         ...(filters.cuisine.length > 0 && { cuisine: filters.cuisine }),
         ...(filters.rating > 0 && { rating: filters.rating }),
-        ...(filters.priceRange[0] > 1 || filters.priceRange[1] < 4 && { 
+        ...((filters.priceRange[0] > 1 || filters.priceRange[1] < 4) && { 
           priceRange: filters.priceRange 
         }),
         sortBy: filters.sortBy

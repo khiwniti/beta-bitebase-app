@@ -31,7 +31,7 @@ import {
   Trash2,
   RefreshCw,
   FileSpreadsheet,
-  FilePdf
+  FileText as FilePdf
 } from 'lucide-react';
 
 interface ReportTemplate {
@@ -193,7 +193,7 @@ export default function ReportGeneration() {
       setFilters(prev => ({
         ...prev,
         [parent]: {
-          ...prev[parent as keyof ReportFilters],
+          ...(prev[parent as keyof ReportFilters] as object || {}),
           [child]: value
         }
       }));

@@ -40,7 +40,10 @@ import {
   MessageSquare,
   Sun,
   Moon,
-  Zap
+  Zap,
+  Brain,
+  UtensilsCrossed,
+  CreditCard
 } from 'lucide-react'
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
 import { useAuth } from '../../contexts/AuthContext'
@@ -62,7 +65,7 @@ interface NavigationItem {
   href: string;
   icon: any;
   tourId?: string;
-  description: string;
+  description?: string;
   badge?: string;
   expandable?: boolean;
   highlight?: boolean;
@@ -239,7 +242,7 @@ export function MainLayout({
   const { user, logout } = useAuth()
   const { isTourOpen, startTour, closeTour, completeTour } = useTour()
   const { language } = useLanguage()
-  const t = useTranslations()
+  const t = useTranslations('common')
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({})
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({})
@@ -254,7 +257,7 @@ export function MainLayout({
   const [collapsedSidebar, setCollapsedSidebar] = useState(false)
 
   // Direct navigation structure with translations - bypassing the function
-  const navigation = useMemo(() => {
+  const navigation: NavigationSection[] = useMemo(() => {
     console.log('Creating navigation directly with language:', language);
     
     return [
@@ -381,7 +384,7 @@ export function MainLayout({
           {
             name: language === 'th' ? 'ประสิทธิภาพ' : 'Performance',
             href: '/reports/performance',
-            icon: BarChart3,
+            icon: BarChart2,
             tourId: 'performance-nav'
           }
         ]

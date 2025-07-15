@@ -11,7 +11,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-
+  
   // Server configuration for development
   experimental: {
     // Removed deprecated serverComponentsExternalPackages

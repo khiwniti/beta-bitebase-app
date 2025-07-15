@@ -99,7 +99,14 @@ export function useRestaurantSearch() {
           setError(response.error);
           setRestaurants([]);
         } else {
-          setRestaurants(response.data || []);
+          const data = response.data;
+          if (Array.isArray(data)) {
+            setRestaurants(data);
+          } else if (data && Array.isArray(data.restaurants)) {
+            setRestaurants(data.restaurants);
+          } else {
+            setRestaurants([]);
+          }
         }
       } catch (err) {
         setError(
@@ -143,10 +150,10 @@ export function useRestaurantSearch() {
           console.log("❌ API Error:", response.error);
           setError(response.error);
           setRestaurants([]);
-        } else if (response.data && response.data.restaurants) {
-          console.log("✅ API Success, restaurants:", response.data.restaurants.length);
+        } else if (response.data && (response.data as any).restaurants) {
+          console.log("✅ API Success, restaurants:", (response.data as any).restaurants.length);
           console.log("📊 Full response data:", response.data);
-          setRestaurants(response.data.restaurants);
+          setRestaurants((response.data as any).restaurants);
         } else {
           console.log("⚠️ No restaurants in response data");
           console.log("📊 Response structure:", JSON.stringify(response, null, 2));
@@ -323,22 +330,25 @@ export function useRealDataFetcher() {
           limit: 20,
         });
 
-        if (
-          foursquareResponse.data &&
-          foursquareResponse.data.restaurants &&
-          foursquareResponse.data.restaurants.length > 0
-        ) {
+        const foursquareData = foursquareResponse.data;
+        const foursquareRestaurants = Array.isArray(foursquareData) 
+          ? foursquareData 
+          : (foursquareData && Array.isArray((foursquareData as any).restaurants) 
+              ? (foursquareData as any).restaurants 
+              : []);
+
+        if (foursquareRestaurants.length > 0) {
           console.log(
             "✅ Found restaurants from Foursquare:",
-            foursquareResponse.data.restaurants.length,
+            foursquareRestaurants.length,
           );
           setLastResult({
             status: "success",
             source: "foursquare",
-            restaurants: foursquareResponse.data.restaurants,
-            total: foursquareResponse.data.restaurants.length,
+            restaurants: foursquareRestaurants,
+            total: foursquareRestaurants.length,
           });
-          return foursquareResponse.data.restaurants;
+          return foursquareRestaurants;
         }
 
         // Fall back to the regular API
@@ -408,7 +418,12 @@ export function useLocationBasedRestaurants() {
         });
 
         // The API response structure is: { data: { success: true, data: [...restaurants] } }
-        const restaurantsData = response.data?.data;
+        const responseData = response.data;
+        const restaurantsData = Array.isArray(responseData) 
+          ? responseData 
+          : (responseData && Array.isArray((responseData as any).data) 
+              ? (responseData as any).data 
+              : []);
 
         if (
           restaurantsData &&
@@ -608,11 +623,11 @@ export function useLocationBasedRestaurants() {
 
           if (streamResponse.data) {
             // Update restaurants from streaming response
-            setRestaurants(streamResponse.data.restaurants || []);
-            setSearchMetrics(streamResponse.data.search_metrics || null);
+            setRestaurants((streamResponse.data as any).restaurants || []);
+            setSearchMetrics((streamResponse.data as any).search_metrics || null);
 
             console.log(
-              `📍 Location streamed with ${streamResponse.data.restaurants?.length || 0} nearby restaurants`,
+              `📍 Location streamed with ${(streamResponse.data as any).restaurants?.length || 0} nearby restaurants`,
             );
           } else if (streamResponse.error) {
             console.warn("Location streaming failed:", streamResponse.error);
@@ -666,20 +681,23 @@ export function useLocationBasedRestaurants() {
           limit: 20,
         });
 
-        if (
-          foursquareResponse.data &&
-          foursquareResponse.data.restaurants &&
-          foursquareResponse.data.restaurants.length > 0
-        ) {
+        const foursquareData2 = foursquareResponse.data;
+        const foursquareRestaurants2 = Array.isArray(foursquareData2) 
+          ? foursquareData2 
+          : (foursquareData2 && Array.isArray((foursquareData2 as any).restaurants) 
+              ? (foursquareData2 as any).restaurants 
+              : []);
+
+        if (foursquareRestaurants2.length > 0) {
           console.log(
-            `✅ Found ${foursquareResponse.data.restaurants.length} restaurants from Foursquare API`,
+            `✅ Found ${foursquareRestaurants2.length} restaurants from Foursquare API`,
           );
-          setRestaurants(foursquareResponse.data.restaurants);
+          setRestaurants(foursquareRestaurants2);
 
           // Update search metrics
           setSearchMetrics({
             search_radius: 5,
-            results_count: foursquareResponse.data.restaurants.length,
+            results_count: foursquareRestaurants2.length,
             data_source: "foursquare_api",
             last_search: new Date().toISOString(),
           });
@@ -704,11 +722,11 @@ export function useLocationBasedRestaurants() {
         });
 
         if (response.data) {
-          setRestaurants(response.data.restaurants || []);
-          setBufferZones(response.data.buffer_zones || null);
+          setRestaurants((response.data as any).restaurants || []);
+          setBufferZones((response.data as any).buffer_zones || null);
           setSearchMetrics({
-            searchParams: response.data.search_params,
-            autoAdjustment: response.data.auto_adjustment,
+            searchParams: (response.data as any).search_params,
+            autoAdjustment: (response.data as any).auto_adjustment,
           });
         } else {
           throw new Error(response.error || "Failed to fetch restaurant data");
@@ -768,20 +786,23 @@ export function useLocationBasedRestaurants() {
           limit: 20,
         });
 
-        if (
-          foursquareResponse.data &&
-          foursquareResponse.data.restaurants &&
-          foursquareResponse.data.restaurants.length > 0
-        ) {
+        const foursquareData3 = foursquareResponse.data;
+        const foursquareRestaurants3 = Array.isArray(foursquareData3) 
+          ? foursquareData3 
+          : (foursquareData3 && Array.isArray((foursquareData3 as any).restaurants) 
+              ? (foursquareData3 as any).restaurants 
+              : []);
+
+        if (foursquareRestaurants3.length > 0) {
           console.log(
-            `✅ Found ${foursquareResponse.data.restaurants.length} restaurants from Foursquare API`,
+            `✅ Found ${foursquareRestaurants3.length} restaurants from Foursquare API`,
           );
-          setRestaurants(foursquareResponse.data.restaurants);
+          setRestaurants(foursquareRestaurants3);
 
           // Update search metrics
           setSearchMetrics({
             search_radius: radius,
-            results_count: foursquareResponse.data.restaurants.length,
+            results_count: foursquareRestaurants3.length,
             data_source: "foursquare_api",
             last_search: new Date().toISOString(),
           });
@@ -805,10 +826,10 @@ export function useLocationBasedRestaurants() {
         });
 
         if (response.data) {
-          setRestaurants(response.data.restaurants || []);
+          setRestaurants((response.data as any).restaurants || []);
           setSearchMetrics({
-            searchParams: response.data.search_params,
-            dataSources: response.data.data_sources,
+            searchParams: (response.data as any).search_params,
+            dataSources: (response.data as any).data_sources,
           });
         } else {
           throw new Error(response.error || "Failed to fetch restaurant data");
