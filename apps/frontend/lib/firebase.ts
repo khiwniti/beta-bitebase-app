@@ -1,7 +1,7 @@
-import { initializeApp } from 'firebase/app'
-import { getAuth, GoogleAuthProvider } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
-import { getStorage } from 'firebase/storage'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+import 'firebase/compat/firestore'
+import 'firebase/compat/storage'
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "AIzaSyBoVa7LlMV9WZkS4TVgMx7SXTn_E2gjt0Q",
@@ -14,16 +14,16 @@ const firebaseConfig = {
 }
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig)
+const app = firebase.initializeApp(firebaseConfig)
 
 // Initialize Firebase Authentication and get a reference to the service
-export const auth = getAuth(app)
-export const googleProvider = new GoogleAuthProvider()
+export const auth = firebase.auth()
+export const googleProvider = new firebase.auth.GoogleAuthProvider()
 
 // Initialize Cloud Firestore and get a reference to the service
-export const db = getFirestore(app)
+export const db = firebase.firestore()
 
 // Initialize Cloud Storage and get a reference to the service
-export const storage = getStorage(app)
+export const storage = firebase.storage()
 
 export default app
