@@ -9,6 +9,41 @@
     "pricing": "ราคา",
     "contact": "ติดต่อ"
   },
+  "navigation": {
+    "sections": {
+      "dashboard": "แดชบอร์ด",
+      "location": "ที่ตั้ง",
+      "business": "ธุรกิจ",
+      "operations": "การดำเนินงาน",
+      "reports": "รายงาน"
+    },
+    "items": {
+      "dashboard": "แดชบอร์ด",
+      "marketAnalysis": "การวิเคราะห์ตลาด",
+      "aiAnalytics": "การวิเคราะห์ AI",
+      "locationAnalytics": "การวิเคราะห์ที่ตั้ง",
+      "menuOptimization": "การปรับปรุงเมนู",
+      "pricingStrategy": "กลยุทธ์การตั้งราคา",
+      "marketing": "การตลาด",
+      "customerInsights": "ข้อมูลเชิงลึกลูกค้า",
+      "restaurantSettings": "การตั้งค่าร้านอาหาร",
+      "posIntegration": "การเชื่อมต่อ POS",
+      "campaignManagement": "การจัดการแคมเปญ",
+      "reviewsRatings": "รีวิวและคะแนน",
+      "schedule": "ตารางเวลา",
+      "marketReports": "รายงานตลาด",
+      "performance": "ประสิทธิภาพ"
+    },
+    "subitems": {
+      "areaInsights": "ข้อมูลพื้นที่",
+      "comparison": "การเปรียบเทียบ"
+    },
+    "badges": {
+      "pro": "โปร",
+      "ai": "AI",
+      "new": "ใหม่"
+    }
+  },
   "common": {
     "loading": "กำลังโหลด...",
     "error": "ข้อผิดพลาด",

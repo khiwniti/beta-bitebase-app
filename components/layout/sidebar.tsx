@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { Button } from "../ui/button";
 import BiteBaseLogo from "../BiteBaseLogo";
+import { useTranslations } from "@/hooks/useTranslations";
 
 interface NavigationItem {
   name: string;
@@ -39,131 +40,6 @@ interface NavigationSection {
   name: string;
   items: NavigationItem[];
 }
-
-const navigation: NavigationSection[] = [
-  {
-    name: "Overview",
-    items: [
-      {
-        name: "Dashboard",
-        href: "/dashboard",
-        icon: LayoutDashboard,
-        description: "Restaurant performance metrics",
-      },
-    ],
-  },
-  {
-    name: "Location",
-    items: [
-      {
-        name: "Market Analysis",
-        href: "/market-analysis",
-        icon: TrendingUp,
-        description: "Interactive map intelligence",
-        badge: "Pro",
-      },
-      {
-        name: "AI Analytics",
-        href: "/analytics",
-        icon: TrendingUp,
-        description: "AI-powered market intelligence",
-        badge: "AI",
-      },
-      {
-        name: "Location Analytics",
-        href: "/place",
-        icon: MapPin,
-        description: "Location intelligence",
-        subitems: [
-          { name: "Area Overview", href: "/place/area-analysis" },
-          { name: "Foot Traffic", href: "/place/foot-traffic" },
-          { name: "Competition Map", href: "/place/competition" },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Business",
-    items: [
-      {
-        name: "Menu Optimization",
-        href: "/product",
-        icon: Package,
-        description: "Menu engineering & analysis",
-      },
-      {
-        name: "Pricing Strategy",
-        href: "/price",
-        icon: DollarSign,
-        description: "Dynamic pricing models",
-      },
-      {
-        name: "Marketing",
-        href: "/promotion",
-        icon: Megaphone,
-        description: "Campaigns & promotions",
-      },
-      {
-        name: "Customer Insights",
-        href: "/customers",
-        icon: Users,
-        description: "Customer preferences & segmentation",
-      },
-    ],
-  },
-  {
-    name: "Operations",
-    items: [
-      {
-        name: "Restaurant Settings",
-        href: "/restaurant-settings",
-        icon: Settings,
-        description: "Restaurant configuration & setup",
-      },
-      {
-        name: "POS Integration",
-        href: "/pos-integration",
-        icon: DollarSign,
-        description: "Connect your POS system",
-      },
-      {
-        name: "Campaign Management",
-        href: "/campaigns",
-        icon: Megaphone,
-        description: "Monitor marketing campaigns & projects",
-      },
-      {
-        name: "Reviews & Ratings",
-        href: "/reviews",
-        icon: Star,
-        description: "Monitor & respond to reviews",
-      },
-      {
-        name: "Schedule",
-        href: "/calendar",
-        icon: Calendar,
-        description: "Business hours & events",
-      },
-    ],
-  },
-  {
-    name: "Reports",
-    items: [
-      {
-        name: "Market Reports",
-        href: "/reports",
-        icon: FileText,
-        description: "Data analytics reports",
-      },
-      {
-        name: "Performance",
-        href: "/reports/performance",
-        icon: TrendingUp,
-        description: "Business performance metrics",
-      },
-    ],
-  },
-];
 
 interface SidebarProps {
   className?: string;
@@ -192,6 +68,139 @@ export function Sidebar({
     {},
   );
   const [showUserMenu, setShowUserMenu] = useState(false);
+  
+  // Translation hooks
+  const tNav = useTranslations('navigation');
+  const tSections = useTranslations('navigation.sections');
+  const tItems = useTranslations('navigation.items');
+  const tSubitems = useTranslations('navigation.subitems');
+  const tBadges = useTranslations('navigation.badges');
+
+  // Create navigation structure with translation keys
+  const navigation: NavigationSection[] = [
+    {
+      name: "dashboard",
+      items: [
+        {
+          name: "dashboard",
+          href: "/dashboard",
+          icon: LayoutDashboard,
+          description: "Restaurant performance metrics",
+        },
+      ],
+    },
+    {
+      name: "location",
+      items: [
+        {
+          name: "marketAnalysis",
+          href: "/market-analysis",
+          icon: TrendingUp,
+          description: "Interactive map intelligence",
+          badge: "pro",
+        },
+        {
+          name: "aiAnalytics",
+          href: "/analytics",
+          icon: TrendingUp,
+          description: "AI-powered market intelligence",
+          badge: "ai",
+        },
+        {
+          name: "locationAnalytics",
+          href: "/place",
+          icon: MapPin,
+          description: "Location intelligence",
+          subitems: [
+            { name: "areaOverview", href: "/place/area-analysis" },
+            { name: "footTraffic", href: "/place/foot-traffic" },
+            { name: "competitionMap", href: "/place/competition" },
+          ],
+        },
+      ],
+    },
+    {
+      name: "business",
+      items: [
+        {
+          name: "menuOptimization",
+          href: "/product",
+          icon: Package,
+          description: "Menu engineering & analysis",
+        },
+        {
+          name: "pricingStrategy",
+          href: "/price",
+          icon: DollarSign,
+          description: "Dynamic pricing models",
+        },
+        {
+          name: "marketing",
+          href: "/promotion",
+          icon: Megaphone,
+          description: "Campaigns & promotions",
+        },
+        {
+          name: "customerInsights",
+          href: "/customers",
+          icon: Users,
+          description: "Customer preferences & segmentation",
+        },
+      ],
+    },
+    {
+      name: "operations",
+      items: [
+        {
+          name: "restaurantSettings",
+          href: "/restaurant-settings",
+          icon: Settings,
+          description: "Restaurant configuration & setup",
+        },
+        {
+          name: "posIntegration",
+          href: "/pos-integration",
+          icon: DollarSign,
+          description: "Connect your POS system",
+        },
+        {
+          name: "campaignManagement",
+          href: "/campaigns",
+          icon: Megaphone,
+          description: "Monitor marketing campaigns & projects",
+        },
+        {
+          name: "reviewsRatings",
+          href: "/reviews",
+          icon: Star,
+          description: "Monitor & respond to reviews",
+        },
+        {
+          name: "schedule",
+          href: "/calendar",
+          icon: Calendar,
+          description: "Business hours & events",
+        },
+      ],
+    },
+    {
+      name: "reports",
+      items: [
+        {
+          name: "marketReports",
+          href: "/reports",
+          icon: FileText,
+          description: "Data analytics reports",
+        },
+        {
+          name: "performance",
+          href: "/reports/performance",
+          icon: TrendingUp,
+          description: "Business performance metrics",
+        },
+      ],
+    },
+  ];
 
   // Initialize expanded sections on load
   useEffect(() => {
@@ -307,7 +316,7 @@ export function Sidebar({
                     onClick={() => toggleSection(section.name)}
                     className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors group"
                   >
-                    <span>{section.name}</span>
+                    <span>{tSections(section.name)}</span>
                     <ChevronDown
                       className={`h-3.5 w-3.5 transform transition-transform ${
                         expandedSections[section.name]
@@ -362,12 +371,12 @@ export function Sidebar({
                               </div>
                               {!collapsed && (
                                 <span className="text-sm font-medium truncate">
-                                  {item.name}
+                                  {tItems(item.name)}
                                 </span>
                               )}
                               {collapsed && (
                                 <span className="text-xs font-medium text-center">
-                                  {item.name.split(" ")[0]}
+                                  {tItems(item.name).split(" ")[0]}
                                 </span>
                               )}
                             </div>
@@ -376,7 +385,7 @@ export function Sidebar({
                               <div className="flex items-center">
                                 {item.badge && (
                                   <span className="ml-auto mr-2 px-1.5 py-0.5 text-xs rounded-md bg-primary-100 text-primary-700 dark:bg-primary-900/40 dark:text-primary-400">
-                                    {item.badge}
+                                    {tBadges(item.badge)}
                                   </span>
                                 )}
                                 {item.subitems && (
@@ -406,7 +415,7 @@ export function Sidebar({
                           {collapsed && (
                             <div className="absolute left-full top-0 ml-6 hidden group-hover:block z-50">
                               <div className="bg-gray-900 text-white text-sm rounded-md py-1 px-3 whitespace-nowrap">
-                                {item.name}
+                                {tItems(item.name)}
                               </div>
                               <div className="absolute top-2 -left-1 w-0 h-0 border-t-4 border-r-4 border-b-4 border-t-transparent border-r-gray-900 border-b-transparent"></div>
                             </div>
@@ -430,7 +439,7 @@ export function Sidebar({
                                     }`}
                                   >
                                     <div className="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-gray-600 mr-3"></div>
-                                    {subitem.name}
+                                    {tSubitems(subitem.name)}
                                   </Link>
                                 ))}
                               </div>

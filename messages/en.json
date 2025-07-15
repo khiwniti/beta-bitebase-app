@@ -9,6 +9,41 @@
     "pricing": "Pricing",
     "contact": "Contact"
   },
+  "navigation": {
+    "sections": {
+      "dashboard": "DASHBOARD",
+      "location": "LOCATION",
+      "business": "BUSINESS",
+      "operations": "OPERATIONS",
+      "reports": "REPORTS"
+    },
+    "items": {
+      "dashboard": "Dashboard",
+      "marketAnalysis": "Market Analysis",
+      "aiAnalytics": "AI Analytics",
+      "locationAnalytics": "Location Analytics",
+      "menuOptimization": "Menu Optimization",
+      "pricingStrategy": "Pricing Strategy",
+      "marketing": "Marketing",
+      "customerInsights": "Customer Insights",
+      "restaurantSettings": "Restaurant Settings",
+      "posIntegration": "POS Integration",
+      "campaignManagement": "Campaign Management",
+      "reviewsRatings": "Reviews & Ratings",
+      "schedule": "Schedule",
+      "marketReports": "Market Reports",
+      "performance": "Performance"
+    },
+    "subitems": {
+      "areaInsights": "Area Insights",
+      "comparison": "Comparison"
+    },
+    "badges": {
+      "pro": "Pro",
+      "ai": "AI",
+      "new": "New"
+    }
+  },
   "common": {
     "loading": "Loading...",
     "error": "Error",
