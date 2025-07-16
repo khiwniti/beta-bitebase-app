@@ -196,28 +196,46 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={handleTabChange} className="space-y-6">
-        <TabsList className="grid w-full grid-cols-6">
-          <TabsTrigger value="overview" className="flex items-center gap-2">
+        <TabsList className="grid w-full grid-cols-6 bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
+          <TabsTrigger 
+            value="overview" 
+            className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white transition-all duration-200"
+          >
             <BarChart3 className="h-4 w-4" />
             <span className="hidden sm:inline">Overview</span>
           </TabsTrigger>
-          <TabsTrigger value="market-analysis" className="flex items-center gap-2">
+          <TabsTrigger 
+            value="market-analysis" 
+            className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white transition-all duration-200"
+          >
             <Globe className="h-4 w-4" />
             <span className="hidden sm:inline">Market</span>
           </TabsTrigger>
-          <TabsTrigger value="location-intelligence" className="flex items-center gap-2">
+          <TabsTrigger 
+            value="location-intelligence" 
+            className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white transition-all duration-200"
+          >
             <MapPin className="h-4 w-4" />
             <span className="hidden sm:inline">Location</span>
           </TabsTrigger>
-          <TabsTrigger value="analytics" className="flex items-center gap-2">
+          <TabsTrigger 
+            value="analytics" 
+            className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white transition-all duration-200"
+          >
             <TrendingUp className="h-4 w-4" />
             <span className="hidden sm:inline">Analytics</span>
           </TabsTrigger>
-          <TabsTrigger value="restaurant-explorer" className="flex items-center gap-2">
+          <TabsTrigger 
+            value="restaurant-explorer" 
+            className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white transition-all duration-200"
+          >
             <Utensils className="h-4 w-4" />
             <span className="hidden sm:inline">Explorer</span>
           </TabsTrigger>
-          <TabsTrigger value="ai-insights" className="flex items-center gap-2">
+          <TabsTrigger 
+            value="ai-insights" 
+            className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white transition-all duration-200"
+          >
             <Brain className="h-4 w-4" />
             <span className="hidden sm:inline">AI Insights</span>
           </TabsTrigger>
@@ -227,10 +245,10 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
         <TabsContent value="overview" className="space-y-6">
           {/* Quick Stats */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card>
+            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center gap-2">
-                  <Globe className="h-4 w-4" />
+                  <Globe className="h-4 w-4 text-primary-500" />
                   Market Analyses
                 </CardTitle>
               </CardHeader>
@@ -240,10 +258,10 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center gap-2">
-                  <MapPin className="h-4 w-4" />
+                  <MapPin className="h-4 w-4 text-primary-500" />
                   Locations Analyzed
                 </CardTitle>
               </CardHeader>
@@ -253,10 +271,10 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center gap-2">
-                  <Brain className="h-4 w-4" />
+                  <Brain className="h-4 w-4 text-primary-500" />
                   AI Insights
                 </CardTitle>
               </CardHeader>
@@ -266,15 +284,15 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center gap-2">
-                  <Users className="h-4 w-4" />
+                  <Users className="h-4 w-4 text-primary-500" />
                   Subscription
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-green-600 dark:text-green-400 capitalize">
+                <div className="text-2xl font-bold text-primary-600 dark:text-primary-400 capitalize">
                   {user?.subscription_tier || "Free"}
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">Current plan</p>
@@ -285,10 +303,10 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
           {/* Recent Activity */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Recent Market Analyses */}
-            <Card>
+            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
-                  <Globe className="h-5 w-5" />
+                  <Globe className="h-5 w-5 text-primary-500" />
                   Recent Market Analyses
                 </CardTitle>
                 <CardDescription className="text-gray-600 dark:text-gray-300">
@@ -333,10 +351,10 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
             </Card>
 
             {/* AI Insights Preview */}
-            <Card>
+            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
-                  <Brain className="h-5 w-5" />
+                  <Brain className="h-5 w-5 text-primary-500" />
                   Latest AI Insights
                 </CardTitle>
                 <CardDescription className="text-gray-600 dark:text-gray-300">
@@ -373,7 +391,7 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
 
           {/* Quick Actions */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card>
+            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white">Start Market Analysis</CardTitle>
                 <CardDescription className="text-gray-600 dark:text-gray-300">
@@ -382,7 +400,7 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
               </CardHeader>
               <CardContent>
                 <Button 
-                  className="w-full"
+                  className="w-full bg-primary-500 hover:bg-primary-600 text-white"
                   onClick={() => setActiveTab('market-analysis')}
                 >
                   <Globe className="h-4 w-4 mr-2" />
@@ -391,7 +409,7 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white">Explore Locations</CardTitle>
                 <CardDescription className="text-gray-600 dark:text-gray-300">
@@ -400,7 +418,7 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
               </CardHeader>
               <CardContent>
                 <Button 
-                  className="w-full"
+                  className="w-full bg-primary-500 hover:bg-primary-600 text-white"
                   onClick={() => setActiveTab('location-intelligence')}
                 >
                   <MapPin className="h-4 w-4 mr-2" />
@@ -409,7 +427,7 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white">Restaurant Explorer</CardTitle>
                 <CardDescription className="text-gray-600 dark:text-gray-300">
@@ -418,7 +436,7 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
               </CardHeader>
               <CardContent>
                 <Button 
-                  className="w-full"
+                  className="w-full bg-primary-500 hover:bg-primary-600 text-white"
                   onClick={() => setActiveTab('restaurant-explorer')}
                 >
                   <Utensils className="h-4 w-4 mr-2" />
