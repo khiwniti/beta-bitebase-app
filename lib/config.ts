@@ -56,11 +56,11 @@ export const ENDPOINTS = {
 
   // Authentication endpoints
   AUTH: {
-    LOGIN: "/api/auth/login",
-    REGISTER: "/api/auth/register",
-    LOGOUT: "/api/auth/logout",
-    REFRESH: "/api/auth/refresh",
-    PROFILE: "/api/auth/profile",
+    LOGIN: "/auth/login",
+    REGISTER: "/auth/register",
+    LOGOUT: "/auth/logout",
+    REFRESH: "/auth/refresh",
+    PROFILE: "/auth/profile",
   },
 
   // Restaurant endpoints
