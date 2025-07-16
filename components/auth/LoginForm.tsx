@@ -48,7 +48,7 @@ export function LoginForm({ onSwitchToSignUp, redirectTo = "/dashboard" }: Login
     <Card className="w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl">
       <CardHeader className="text-center space-y-4">
         <div className="flex justify-center">
-          <BiteBaseLogo className="h-12 w-auto" />
+          <BiteBaseLogo className="h-12 w-auto" showText={false} />
         </div>
         <div>
           <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">Welcome Back</CardTitle>
