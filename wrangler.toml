@@ -1,0 +1,55 @@
+name = "bitebase-backend-prod"
+main = "index.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+account_id = "5adf62efd6cf179a8939c211b155e229"
+
+[build]
+command = "npm run build:cloudflare"
+
+[env.production]
+name = "bitebase-backend-prod"
+
+[env.staging]
+name = "bitebase-backend-staging"
+
+# Environment variables
+[vars]
+NODE_ENV = "production"
+
+# Note: Secrets are set via wrangler secret put command
+# Required secrets:
+# - GOOGLE_PLACES_API_KEY
+# - JWT_SECRET
+# - CORS_ORIGIN
+# 
+# Optional secrets:
+# - FOURSQUARE_API_KEY
+# - DATABASE_URL
+# - REDIS_URL
+
+# KV Namespaces
+[[kv_namespaces]]
+binding = "CACHE"
+id = "955a6bac6c734235a4bdc0f5801a5dbd"
+preview_id = "989ac16c8ed94939b21edc779af1dd7f"
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "bitebase-db"
+database_id = "76e6f232-5d8b-4e43-b9c8-df2aef026563"
+
+# R2 Bucket
+[[r2_buckets]]
+binding = "STORAGE"
+bucket_name = "bitebase-storage"
+
+# Rate limiting
+[limits]
+cpu_ms = 50
+
+# Analytics
+# [[analytics_engine_datasets]]
+# binding = "ANALYTICS"
+# dataset = "bitebase_analytics"

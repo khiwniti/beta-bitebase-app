@@ -17,9 +17,30 @@ import {
   Clock
 } from 'lucide-react';
 import { useServiceHealth } from '../../hooks/useRestaurantData';
+import { ApiReliability } from '../../services/api';
 
 export default function ServiceHealthDashboard() {
   const { backendHealth, agentHealth, loading, refetch } = useServiceHealth();
+  const [reliabilityStats, setReliabilityStats] = React.useState<any>(null);
+  const [lastUpdate, setLastUpdate] = React.useState(new Date());
+
+  // Fetch reliability stats
+  React.useEffect(() => {
+    const updateStats = () => {
+      const stats = {
+        cache: ApiReliability.getCacheStats(),
+        circuitBreakers: ApiReliability.getCircuitBreakerStats(),
+        health: ApiReliability.getHealthStatus()
+      };
+      setReliabilityStats(stats);
+      setLastUpdate(new Date());
+    };
+
+    updateStats();
+    const interval = setInterval(updateStats, 30000); // Update every 30 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   const getStatusIcon = (status: string | undefined) => {
     switch (status) {
@@ -200,10 +221,182 @@ export default function ServiceHealthDashboard() {
         </div>
       </div>
 
+      {/* Reliability Metrics */}
+      {reliabilityStats && (
+        <div className="mt-6 pt-6 border-t border-gray-200">
+          <h3 className="font-medium text-gray-900 mb-4">Reliability Metrics</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Cache Stats */}
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <Database className="w-4 h-4 text-blue-600" />
+                <h4 className="font-medium text-blue-900">Response Cache</h4>
+              </div>
+              <div className="space-y-1 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-blue-700">Cached Entries:</span>
+                  <span className="font-mono">{reliabilityStats.cache.entries}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-blue-700">TTL:</span>
+                  <span className="font-mono">5m</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Circuit Breaker Stats */}
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <AlertCircle className="w-4 h-4 text-yellow-600" />
+                <h4 className="font-medium text-yellow-900">Circuit Breakers</h4>
+              </div>
+              <div className="space-y-1 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-yellow-700">Active:</span>
+                  <span className="font-mono">{Object.keys(reliabilityStats.circuitBreakers).length}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-yellow-700">Open:</span>
+                  <span className="font-mono">
+                    {Object.values(reliabilityStats.circuitBreakers).filter((cb: any) => cb.state === 'OPEN').length}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Health Monitoring */}
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <Activity className="w-4 h-4 text-green-600" />
+                <h4 className="font-medium text-green-900">Health Monitoring</h4>
+              </div>
+              <div className="space-y-1 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-green-700">Endpoints:</span>
+                  <span className="font-mono">{Object.keys(reliabilityStats.health).length}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-green-700">Healthy:</span>
+                  <span className="font-mono">
+                    {Object.values(reliabilityStats.health).filter((h: any) => h.status === 'healthy').length}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Circuit Breaker Details */}
+          {Object.keys(reliabilityStats.circuitBreakers).length > 0 && (
+            <div className="mt-4">
+              <h4 className="font-medium text-gray-900 mb-2">Circuit Breaker Status</h4>
+              <div className="bg-gray-50 rounded-lg p-3">
+                <div className="space-y-2">
+                  {Object.entries(reliabilityStats.circuitBreakers).map(([key, breaker]: [string, any]) => (
+                    <div key={key} className="flex items-center justify-between text-sm">
+                      <span className="font-mono text-xs">{key}</span>
+                      <div className="flex items-center gap-2">
+                        <span className={`px-2 py-1 rounded text-xs font-medium ${
+                          breaker.state === 'OPEN' ? 'bg-red-100 text-red-800' :
+                          breaker.state === 'HALF_OPEN' ? 'bg-yellow-100 text-yellow-800' :
+                          'bg-green-100 text-green-800'
+                        }`}>
+                          {breaker.state}
+                        </span>
+                        <span className="text-gray-600">Failures: {breaker.failures}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Health Check Details */}
+          {Object.keys(reliabilityStats.health).length > 0 && (
+            <div className="mt-4">
+              <h4 className="font-medium text-gray-900 mb-2">Health Check Status</h4>
+              <div className="bg-gray-50 rounded-lg p-3">
+                <div className="space-y-2">
+                  {Object.entries(reliabilityStats.health).map(([endpoint, health]: [string, any]) => (
+                    <div key={endpoint} className="flex items-center justify-between text-sm">
+                      <span className="font-mono text-xs">{endpoint}</span>
+                      <div className="flex items-center gap-2">
+                        <span className={`px-2 py-1 rounded text-xs font-medium ${
+                          health.status === 'healthy' ? 'bg-green-100 text-green-800' :
+                          health.status === 'unhealthy' ? 'bg-red-100 text-red-800' :
+                          'bg-yellow-100 text-yellow-800'
+                        }`}>
+                          {health.status}
+                        </span>
+                        <span className="text-gray-600">Failures: {health.consecutive_failures || 0}</span>
+                        {health.lastCheck && (
+                          <span className="text-gray-500 text-xs">
+                            {new Date(health.lastCheck).toLocaleTimeString()}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Actions */}
+      <div className="mt-6 pt-6 border-t border-gray-200">
+        <h3 className="font-medium text-gray-900 mb-4">Reliability Actions</h3>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <button
+            onClick={() => {
+              ApiReliability.clearCache();
+              setReliabilityStats(prev => prev ? {...prev, cache: ApiReliability.getCacheStats()} : null);
+            }}
+            className="flex items-center justify-center gap-2 p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm"
+          >
+            <RefreshCw className="w-4 h-4" />
+            Clear Cache
+          </button>
+          <button
+            onClick={() => {
+              ApiReliability.resetCircuitBreakers();
+              setReliabilityStats(prev => prev ? {...prev, circuitBreakers: ApiReliability.getCircuitBreakerStats()} : null);
+            }}
+            className="flex items-center justify-center gap-2 p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm"
+          >
+            <AlertCircle className="w-4 h-4" />
+            Reset Breakers
+          </button>
+          <button
+            onClick={() => window.open('/api/health', '_blank')}
+            className="flex items-center justify-center gap-2 p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm"
+          >
+            <Activity className="w-4 h-4" />
+            API Health
+          </button>
+          <button
+            onClick={() => {
+              const stats = {
+                cache: ApiReliability.getCacheStats(),
+                circuitBreakers: ApiReliability.getCircuitBreakerStats(),
+                health: ApiReliability.getHealthStatus()
+              };
+              console.log('Reliability Stats:', stats);
+              navigator.clipboard?.writeText(JSON.stringify(stats, null, 2));
+            }}
+            className="flex items-center justify-center gap-2 p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm"
+          >
+            <Database className="w-4 h-4" />
+            Export Stats
+          </button>
+        </div>
+      </div>
+
       {/* Last Updated */}
       <div className="mt-4 pt-4 border-t border-gray-200 flex items-center gap-2 text-xs text-gray-500">
         <Clock className="w-3 h-3" />
-        <span>Last updated: {new Date().toLocaleTimeString()}</span>
+        <span>Last updated: {lastUpdate.toLocaleTimeString()}</span>
       </div>
     </div>
   );

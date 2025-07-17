@@ -19,6 +19,9 @@ interface DataTableProps {
   exportable?: boolean;
   pagination?: boolean;
   pageSize?: number;
+  ariaLabel?: string;
+  ariaLabelledBy?: string;
+  ariaDescribedBy?: string;
 }
 
 export function DataTable({
@@ -30,7 +33,10 @@ export function DataTable({
   searchable = false,
   exportable = false,
   pagination = false,
-  pageSize = 10
+  pageSize = 10,
+  ariaLabel,
+  ariaLabelledBy,
+  ariaDescribedBy
 }: DataTableProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,6 +47,10 @@ export function DataTable({
     key: '',
     direction: null
   });
+  const [announcement, setAnnouncement] = useState('');
+  const tableId = React.useId();
+  const titleId = React.useId();
+  const descriptionId = React.useId();
 
   // Filter data based on search query
   const filteredData = searchQuery
@@ -78,17 +88,32 @@ export function DataTable({
 
   // Handle sort
   const handleSort = (key: string) => {
+    const column = columns.find(col => col.key === key);
+    let newDirection: 'asc' | 'desc' | null;
+    let announcement = '';
+    
     if (sortConfig.key === key) {
       if (sortConfig.direction === 'asc') {
         setSortConfig({ key, direction: 'desc' });
+        newDirection = 'desc';
+        announcement = `Table sorted by ${column?.title || key} in descending order`;
       } else if (sortConfig.direction === 'desc') {
         setSortConfig({ key: '', direction: null });
+        newDirection = null;
+        announcement = `Sorting removed from table`;
       } else {
         setSortConfig({ key, direction: 'asc' });
+        newDirection = 'asc';
+        announcement = `Table sorted by ${column?.title || key} in ascending order`;
       }
     } else {
       setSortConfig({ key, direction: 'asc' });
+      newDirection = 'asc';
+      announcement = `Table sorted by ${column?.title || key} in ascending order`;
     }
+    
+    setAnnouncement(announcement);
+    setTimeout(() => setAnnouncement(''), 1000);
   };
 
   // Handle export
@@ -116,14 +141,15 @@ export function DataTable({
   };
 
   return (
+    <>
     <div className={cn("bg-white border rounded-lg shadow-sm", className)}>
       {/* Header */}
       {(title || description || searchable || exportable) && (
         <div className="p-4 border-b">
           <div className="flex items-center justify-between flex-wrap gap-3">
             <div>
-              {title && <h3 className="text-lg font-medium">{title}</h3>}
-              {description && <p className="text-sm text-gray-500 mt-1">{description}</p>}
+              {title && <h3 id={titleId} className="text-lg font-medium">{title}</h3>}
+              {description && <p id={descriptionId} className="text-sm text-gray-500 mt-1">{description}</p>}
             </div>
             <div className="flex items-center space-x-2">
               {searchable && (
@@ -134,16 +160,24 @@ export function DataTable({
                     placeholder="Search..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    aria-label="Search table data"
+                    aria-describedby={searchQuery ? undefined : `${tableId}-search-help`}
                     className="h-9 rounded-md border border-gray-300 pl-9 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
+                  {!searchQuery && (
+                    <div id={`${tableId}-search-help`} className="sr-only">
+                      Type to search table data
+                    </div>
+                  )}
                 </div>
               )}
               {exportable && (
                 <button
                   onClick={handleExport}
-                  className="h-9 px-3 rounded-md border border-gray-300 bg-white text-gray-700 flex items-center text-sm hover:bg-gray-50"
+                  aria-label={`Export ${title || 'table'} data as CSV`}
+                  className="h-9 px-3 rounded-md border border-gray-300 bg-white text-gray-700 flex items-center text-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  <Download className="h-4 w-4 mr-1" />
+                  <Download className="h-4 w-4 mr-1" aria-hidden="true" />
                   Export
                 </button>
               )}
@@ -154,51 +188,106 @@ export function DataTable({
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full divide-y divide-gray-200">
+        <table 
+          className="w-full divide-y divide-gray-200"
+          role="table"
+          aria-label={ariaLabel || `${title || 'Data'} table`}
+          aria-labelledby={ariaLabelledBy || (title ? titleId : undefined)}
+          aria-describedby={ariaDescribedBy || (description ? descriptionId : undefined)}
+          aria-rowcount={sortedData.length + 1}
+          aria-colcount={columns.length}
+        >
           <thead className="bg-gray-50">
-            <tr>
+            <tr role="row">
               {columns.map((column, idx) => (
                 <th
                   key={idx}
                   scope="col"
+                  role="columnheader"
+                  aria-colindex={idx + 1}
+                  aria-sort={
+                    column.sortable && sortConfig.key === column.key
+                      ? sortConfig.direction === 'asc'
+                        ? 'ascending'
+                        : sortConfig.direction === 'desc'
+                        ? 'descending'
+                        : 'none'
+                      : column.sortable
+                      ? 'none'
+                      : undefined
+                  }
                   className={cn(
                     "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
-                    column.sortable && "cursor-pointer hover:bg-gray-100"
+                    column.sortable && "cursor-pointer hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
                   )}
                   onClick={() => column.sortable && handleSort(column.key)}
+                  onKeyDown={(e) => {
+                    if (column.sortable && (e.key === 'Enter' || e.key === ' ')) {
+                      e.preventDefault();
+                      handleSort(column.key);
+                    }
+                  }}
+                  tabIndex={column.sortable ? 0 : undefined}
                 >
                   <div className="flex items-center space-x-1">
                     <span>{column.title}</span>
-                    {column.sortable && sortConfig.key === column.key && (
-                      <span>
-                        {sortConfig.direction === 'asc' ? (
+                    {column.sortable && (
+                      <span aria-hidden="true">
+                        {sortConfig.key === column.key && sortConfig.direction === 'asc' ? (
                           <ChevronUp className="h-4 w-4" />
-                        ) : sortConfig.direction === 'desc' ? (
+                        ) : sortConfig.key === column.key && sortConfig.direction === 'desc' ? (
                           <ChevronDown className="h-4 w-4" />
-                        ) : null}
+                        ) : (
+                          <div className="h-4 w-4" />
+                        )}
                       </span>
                     )}
                   </div>
+                  {column.sortable && (
+                    <span className="sr-only">
+                      {sortConfig.key === column.key
+                        ? sortConfig.direction === 'asc'
+                          ? 'Sorted ascending. Click to sort descending.'
+                          : sortConfig.direction === 'desc'
+                          ? 'Sorted descending. Click to remove sorting.'
+                          : 'Not sorted. Click to sort ascending.'
+                        : 'Not sorted. Click to sort ascending.'}
+                    </span>
+                  )}
                 </th>
               ))}
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {paginatedData.length > 0 ? (
-              paginatedData.map((row, rowIdx) => (
-                <tr key={rowIdx} className="hover:bg-gray-50">
-                  {columns.map((column, colIdx) => (
-                    <td key={colIdx} className="px-6 py-4 whitespace-nowrap text-sm">
-                      {column.render
-                        ? column.render(row[column.key])
-                        : row[column.key]}
-                    </td>
-                  ))}
-                </tr>
-              ))
+              paginatedData.map((row, rowIdx) => {
+                const actualRowIndex = pagination ? (currentPage - 1) * pageSize + rowIdx : rowIdx;
+                return (
+                  <tr 
+                    key={rowIdx} 
+                    role="row"
+                    aria-rowindex={actualRowIndex + 2}
+                    className="hover:bg-gray-50"
+                  >
+                    {columns.map((column, colIdx) => (
+                      <td 
+                        key={colIdx} 
+                        role="gridcell"
+                        aria-colindex={colIdx + 1}
+                        className="px-6 py-4 whitespace-nowrap text-sm"
+                      >
+                        {column.render
+                          ? column.render(row[column.key])
+                          : row[column.key]}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })
             ) : (
-              <tr>
+              <tr role="row">
                 <td
+                  role="gridcell"
                   colSpan={columns.length}
                   className="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-500"
                 >
@@ -228,7 +317,8 @@ export function DataTable({
               <button
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
-                className="relative inline-flex items-center px-2 py-1 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed rounded-md"
+                aria-label="Go to previous page"
+                className="relative inline-flex items-center px-2 py-1 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 Previous
               </button>
@@ -245,8 +335,10 @@ export function DataTable({
                   <button
                     key={idx}
                     onClick={() => setCurrentPage(pageNumber)}
+                    aria-label={`Go to page ${pageNumber}`}
+                    aria-current={currentPage === pageNumber ? 'page' : undefined}
                     className={cn(
-                      "relative inline-flex items-center px-3 py-1 border text-sm font-medium rounded-md",
+                      "relative inline-flex items-center px-3 py-1 border text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500",
                       currentPage === pageNumber
                         ? "bg-blue-600 text-white border-blue-600"
                         : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
@@ -259,7 +351,8 @@ export function DataTable({
               <button
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}
-                className="relative inline-flex items-center px-2 py-1 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed rounded-md"
+                aria-label="Go to next page"
+                className="relative inline-flex items-center px-2 py-1 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 Next
               </button>
@@ -268,6 +361,12 @@ export function DataTable({
         </div>
       )}
     </div>
+    
+    {/* Screen reader announcements */}
+    <div aria-live="polite" aria-atomic="true" className="sr-only">
+      {announcement}
+    </div>
+    </>
   );
 }
 
