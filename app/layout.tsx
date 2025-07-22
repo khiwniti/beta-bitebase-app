@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <title>BiteBase Explorer - Restaurant Discovery Platform</title>
+        <title>BiteBase Explorer - Intelligence Platform</title>
         {/* Force deployment: 2025-06-09 08:55 UTC */}
         <meta
           name="description"
@@ -25,7 +25,7 @@ export default function RootLayout({
         <meta name="robots" content="index, follow" />
         <meta
           property="og:title"
-          content="BiteBase Explorer - Restaurant Discovery Platform"
+          content="BiteBase Explorer - Intelligence Platform"
         />
         <meta
           property="og:description"
@@ -40,7 +40,7 @@ export default function RootLayout({
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="BiteBase Explorer - Restaurant Discovery Platform"
+          content="BiteBase Explorer - Intelligence Platform"
         />
         <meta
           name="twitter:description"

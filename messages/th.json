@@ -198,55 +198,242 @@
     "includeDetails": "รวมรายละเอียด",
     "includeSummary": "รวมสรุป"
   },
-  "navigation": {
-    "sections": {
-      "dashboard": "แดชบอร์ด",
-      "location": "ที่ตั้ง", 
-      "business": "ธุรกิจ",
-      "operations": "การดำเนินงาน",
-      "reports": "รายงาน"
+  "locationIntelligence": {
+    "title": "ข้อมูลเชิงลึกเกี่ยวกับที่ตั้ง",
+    "description": "การวิเคราะห์ที่ตั้งและข้อมูลเชิงลึกร้านอาหารอย่างครอบคลุม",
+    "search": {
+      "title": "ค้นหา",
+      "searchBy": "ค้นหาโดย",
+      "brand": "แบรนด์",
+      "branch": "สาขา",
+      "item": "รายการ",
+      "itemName": "ชื่อรายการ",
+      "area": "พื้นที่",
+      "cuisine": "ประเภทอาหาร",
+      "selectCuisine": "เลือกประเภทอาหาร",
+      "exactMatch": "ตรงทุกตัวอักษร",
+      "excludeItem": "ยกเว้นรายการนี้",
+      "searchButton": "ค้นหา",
+      "averagePrice": "ราคาเฉลี่ย",
+      "brands": "แบรนด์",
+      "items": "รายการ",
+      "showing": "แสดง",
+      "results": "รายการ"
     },
-    "items": {
-      "overview": "ภาพรวม",
-      "dashboard": "แดชบอร์ด",
-      "placeAnalysis": "การวิเคราะห์สถานที่",
+    "table": {
+      "brand": "แบรนด์",
+      "city": "เมือง",
+      "area": "พื้นที่",
+      "cuisines": "ประเภทอาหาร",
+      "rating": "คะแนน / รวม",
+      "median": "ค่ามัธยฐาน",
+      "itemPrice": "ราคารายการ",
+      "menuCategory": "หมวดหมู่เมนู"
+    },
+    "filters": {
+      "all": "ทั้งหมด",
+      "burger": "เบอร์เกอร์",
+      "pizza": "พิซซ่า",
+      "thai": "ไทย",
+      "japanese": "ญี่ปุ่น",
+      "italian": "อิตาเลียน",
+      "chinese": "จีน",
+      "american": "อเมริกัน",
+      "drinks": "เครื่องดื่ม"
+    },
+    "insights": {
       "marketAnalysis": "การวิเคราะห์ตลาด",
-      "aiAnalytics": "การวิเคราะห์ AI",
-      "locationAnalytics": "การวิเคราะห์ที่ตั้ง",
-      "menuOptimization": "การปรับปรุงเมนู",
-      "pricingStrategy": "กลยุทธ์การตั้งราคา",
-      "marketing": "การตลาด",
-      "customerInsights": "ข้อมูลเชิงลึกลูกค้า",
-      "restaurantSettings": "การตั้งค่าร้านอาหาร",
-      "posIntegration": "การเชื่อมต่อ POS",
-      "campaignManagement": "การจัดการแคมเปญ",
-      "reviewsRatings": "รีวิวและคะแนน",
-      "schedule": "ตารางเวลา",
-      "marketReports": "รายงานตลาด",
-      "performance": "ประสิทธิภาพ",
-      "restaurantSetup": "การตั้งค่าร้านอาหาร",
+      "competitorInsights": "ข้อมูลเชิงลึกคู่แข่ง",
+      "pricingTrends": "แนวโน้มราคา",
+      "locationScoring": "การให้คะแนนที่ตั้ง"
+    }
+  },
+  "admin": {
+    "title": "แดชบอร์ดผู้ดูแลระบบ",
+    "navigation": {
+      "dashboard": "แดชบอร์ด",
+      "restaurants": "ร้านอาหาร",
+      "locationIntelligence": "ข้อมูลเชิงลึกตำแหน่งที่ตั้ง",
+      "seoManagement": "การจัดการ SEO",
+      "userManagement": "การจัดการผู้ใช้",
+      "analytics": "การวิเคราะห์",
       "settings": "การตั้งค่า"
     },
-    "subitems": {
-      "areaOverview": "ภาพรวมพื้นที่",
-      "footTraffic": "การเดินทางของคน",
-      "competitionMap": "แผนที่คู่แข่ง"
+    "restaurants": {
+      "title": "การจัดการร้านอาหาร",
+      "list": "รายชื่อร้านอาหาร",
+      "details": "รายละเอียดร้านอาหาร",
+      "insights": "ข้อมูลเชิงลึกร้านอาหาร",
+      "menu": "การวิเคราะห์เมนู",
+      "performance": "ตัวชี้วัดประสิทธิภาพ",
+      "location": "ข้อมูลที่ตั้ง"
     },
-    "descriptions": {
-      "overview": "ประสิทธิภาพร้านอาหารในภาพรวม",
-      "placeAnalysis": "ข้อมูลเชิงลึกเกี่ยวกับที่ตั้ง",
-      "marketAnalysis": "ข้อมูลเชิงลึกแผนที่แบบโต้ตอบ",
-      "menuOptimization": "การจัดการและวิเคราะห์เมนู",
-      "pricingStrategy": "การปรับปรุงราคา",
-      "marketing": "แคมเปญและโปรโมชั่น",
-      "reports": "รายงานการวิเคราะห์ตลาด",
-      "restaurantSetup": "ตัวช่วยการตั้งค่า",
-      "settings": "การกำหนดค่าระบบ"
+    "users": {
+      "title": "การจัดการผู้ใช้",
+      "list": "รายชื่อผู้ใช้",
+      "details": "รายละเอียดผู้ใช้",
+      "permissions": "สิทธิ์การเข้าถึง"
     },
-    "badges": {
-      "new": "ใหม่",
-      "pro": "โปร",
-      "ai": "AI"
+    "analytics": {
+      "title": "การวิเคราะห์ระบบ",
+      "overview": "ภาพรวมระบบ",
+      "usage": "สถิติการใช้งาน",
+      "performance": "ตัวชี้วัดประสิทธิภาพ"
+    },
+    "seo": {
+      "title": "ชุดเครื่องมือปรับปรุง SEO",
+      "description": "ปรับปรุงกลยุทธ์เนื้อหาของคุณด้วยเครื่องมือ SEO ที่ขับเคลื่อนด้วย AI",
+      "tabs": {
+        "topicResearch": "การวิจัยหัวข้อ",
+        "contentGenerator": "เครื่องมือสร้างเนื้อหา",
+        "seoAnalyzer": "เครื่องมือวิเคราะห์ SEO"
+      },
+      "topicResearch": {
+        "title": "การวิจัยหัวข้อ",
+        "keywordResearch": "การวิจัยคำสำคัญ",
+        "keywordDescription": "เพิ่มคำสำคัญเพื่อค้นหาไอเดียหัวข้อที่เกี่ยวข้องสำหรับบล็อกของคุณ",
+        "selectedKeywords": "คำสำคัญที่เลือก",
+        "suggestedKeywords": "คำสำคัญที่แนะนำ",
+        "analyzeKeywords": "วิเคราะห์คำสำคัญ",
+        "analyzing": "กำลังวิเคราะห์...",
+        "recommendedTopics": "หัวข้อที่แนะนำ",
+        "topicsDescription": "หัวข้อบล็อกที่ AI แนะนำตามการวิเคราะห์คำสำคัญและแนวโน้มตลาด",
+        "difficulty": "ความยาก",
+        "searchVolume": "ปริมาณการค้นหา",
+        "competition": "การแข่งขัน",
+        "easy": "ง่าย",
+        "medium": "ปานกลาง",
+        "hard": "ยาก",
+        "low": "ต่ำ",
+        "high": "สูง"
+      },
+      "contentGenerator": {
+        "title": "เครื่องมือสร้างเนื้อหา AI",
+        "description": "สร้างเนื้อหาคุณภาพสูงที่ปรับปรุง SEO สำหรับบล็อกร้านอาหารของคุณ",
+        "prompt": "สรุปเนื้อหา",
+        "promptPlaceholder": "อธิบายประเภทเนื้อหาที่คุณต้องการสร้าง...",
+        "targetKeywords": "คำสำคัญเป้าหมาย",
+        "contentType": "ประเภทเนื้อหา",
+        "blogPost": "โพสต์บล็อก",
+        "productDescription": "คำอธิบายผลิตภัณฑ์",
+        "socialMedia": "โพสต์โซเชียลมีเดีย",
+        "emailNewsletter": "จดหมายข่าวอีเมล",
+        "tone": "น้ำเสียงการเขียน",
+        "professional": "เป็นทางการ",
+        "casual": "สบายๆ",
+        "friendly": "เป็นมิตร",
+        "authoritative": "มีอำนาจ",
+        "wordCount": "จำนวนคำเป้าหมาย",
+        "generateContent": "สร้างเนื้อหา",
+        "generating": "กำลังสร้าง...",
+        "generatedContent": "เนื้อหาที่สร้างขึ้น",
+        "copyContent": "คัดลอกเนื้อหา",
+        "editContent": "แก้ไขเนื้อหา",
+        "regenerate": "สร้างใหม่",
+        "tips": "เคล็ดลับ",
+        "tip1": "ระบุคำสำคัญที่คุณต้องการเป้าหมาย",
+        "tip2": "ระบุความยาวที่ต้องการ (สั้น, ปานกลาง, ยาว)",
+        "tip3": "ระบุกลุ่มเป้าหมายเพื่อปรับน้ำเสียงให้เหมาะสม",
+        "noContentYet": "ยังไม่มีเนื้อหาที่สร้างขึ้น",
+        "enterTopicPrompt": "ใส่หัวข้อและคลิก \"สร้างเนื้อหา\"",
+        "creatingContent": "กำลังสร้างเนื้อหาที่ปรับปรุง SEO...",
+        "pleaseWait": "กรุณารอสักครู่"
+      },
+      "seoAnalyzer": {
+        "title": "เครื่องมือวิเคราะห์เนื้อหา SEO",
+        "description": "วิเคราะห์และปรับปรุงเนื้อหาของคุณเพื่อการจัดอันดับที่ดีขึ้นในเครื่องมือค้นหา",
+        "analyzeUrl": "วิเคราะห์ URL",
+        "urlPlaceholder": "ใส่ URL เพื่อวิเคราะห์...",
+        "analyzeContent": "วิเคราะห์เนื้อหา",
+        "contentPlaceholder": "วางเนื้อหาของคุณที่นี่เพื่อวิเคราะห์...",
+        "analyzing": "กำลังวิเคราะห์...",
+        "seoScore": "คะแนน SEO",
+        "recommendations": "คำแนะนำ",
+        "keywordDensity": "ความหนาแน่นของคำสำคัญ",
+        "readabilityScore": "คะแนนความสามารถในการอ่าน",
+        "metaTitle": "Meta Title",
+        "metaDescription": "Meta Description",
+        "headingStructure": "โครงสร้างหัวข้อ",
+        "internalLinks": "ลิงก์ภายใน",
+        "externalLinks": "ลิงก์ภายนอก",
+        "imageOptimization": "การปรับปรุงรูปภาพ",
+        "pageSpeed": "ความเร็วหน้าเว็บ",
+        "mobileOptimization": "การปรับปรุงสำหรับมือถือ"
+      },
+      "sampleTopics": [
+        {
+          "topic": "การวิเคราะห์ข้อมูลร้านอาหาร: วิธีใช้ข้อมูลเพื่อเพิ่มอัตรากำไร",
+          "keywords": ["การวิเคราะห์ร้านอาหาร", "อัตรากำไร", "การตัดสินใจจากข้อมูล"],
+          "difficulty": "medium",
+          "searchVolume": "medium",
+          "competition": "medium",
+          "score": 78
+        },
+        {
+          "topic": "10 ตัวชี้วัดสำคัญที่เจ้าของร้านอาหารทุกคนควรติดตาม",
+          "keywords": ["ตัวชี้วัดร้านอาหาร", "เมตริก", "ประสิทธิภาพธุรกิจ"],
+          "difficulty": "easy",
+          "searchVolume": "high",
+          "competition": "high",
+          "score": 85
+        },
+        {
+          "topic": "วิธีเลือกที่ตั้งที่ดีที่สุดสำหรับร้านอาหารใหม่ของคุณ",
+          "keywords": ["ที่ตั้งร้านอาหาร", "การเลือกสถานที่", "การวิเคราะห์ที่ตั้ง"],
+          "difficulty": "medium",
+          "searchVolume": "high",
+          "competition": "medium",
+          "score": 92
+        },
+        {
+          "topic": "ทำความเข้าใจเปอร์เซ็นต์ต้นทุนอาหารและวิธีปรับปรุงให้เหมาะสม",
+          "keywords": ["เปอร์เซ็นต์ต้นทุนอาหาร", "การตั้งราคาเมนู", "ความสามารถในการทำกำไรของร้านอาหาร"],
+          "difficulty": "hard",
+          "searchVolume": "medium",
+          "competition": "low",
+          "score": 73
+        },
+        {
+          "topic": "AI กำลังเปลี่ยนแปลงอุตสาหกรรมร้านอาหารอย่างไร",
+          "keywords": ["AI ในร้านอาหาร", "เทคโนโลยีร้านอาหาร", "การเปลี่ยนแปลงดิจิทัล"],
+          "difficulty": "medium",
+          "searchVolume": "high",
+          "competition": "medium",
+          "score": 88
+        }
+      ]
     }
+  },
+  "locationIntelligence": {
+    "title": "ข้อมูลเชิงลึกตำแหน่งที่ตั้ง",
+    "description": "ค้นพบตำแหน่งที่ตั้งร้านอาหารที่ดีที่สุดด้วยข้อมูลเชิงลึกที่ขับเคลื่อนด้วย AI",
+    "search": {
+      "title": "ค้นหา",
+      "searchBy": "ค้นหาโดย",
+      "brand": "แบรนด์",
+      "branch": "สาขา",
+      "item": "รายการ",
+      "itemName": "ชื่อรายการ",
+      "area": "พื้นที่",
+      "cuisine": "ประเภทอาหาร",
+      "selectCuisine": "เลือกประเภทอาหาร",
+      "exactMatch": "ตรงทุกตัวอักษร",
+      "excludeItem": "ยกเว้นรายการนี้",
+      "searchButton": "ค้นหา",
+      "averagePrice": "ราคาเฉลี่ย",
+      "brands": "แบรนด์",
+      "items": "รายการ",
+      "showing": "แสดง",
+      "results": "ผลลัพธ์"
+    },
+    "table": {
+      "brand": "แบรนด์",
+      "city": "เมือง",
+      "area": "พื้นที่",
+      "cuisines": "ประเภทอาหาร",
+      "rating": "คะแนน / รวม",
+      "median": "ค่ากลาง"
+    },
+    "loadMore": "โหลดผลลัพธ์เพิ่มเติม"
   }
 }

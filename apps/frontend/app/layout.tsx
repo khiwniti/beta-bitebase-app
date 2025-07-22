@@ -94,7 +94,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <title>BiteBase Explorer - Restaurant Discovery Platform</title>
+        <title>BiteBase Explorer - Intelligence Platform</title>
         {/* Force deployment: 2025-06-09 08:55 UTC */}
         <meta
           name="description"
@@ -103,13 +103,13 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#74C365" />
         <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="BiteBase Explorer - Restaurant Discovery Platform" />
+        <meta property="og:title" content="BiteBase Explorer - Intelligence Platform" />
         <meta property="og:description" content="AI-powered analytics for restaurant success" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://bitebase.com" />
         <meta property="og:image" content="https://bitebase.com/images/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="BiteBase Explorer - Restaurant Discovery Platform" />
+        <meta name="twitter:title" content="BiteBase Explorer - Intelligence Platform" />
         <meta name="twitter:description" content="AI-powered analytics for restaurant success" />
         <meta name="twitter:image" content="https://bitebase.com/images/twitter-card.jpg" />
         

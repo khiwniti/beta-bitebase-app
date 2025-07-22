@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import AdminTabs from "../../components/admin/AdminTabs";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
@@ -269,12 +270,14 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-          <p className="text-gray-600">Manage your platform content, SEO, and features</p>
-        </div>
+    <div className="min-h-screen bg-gray-50">
+      <AdminTabs />
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+            <p className="text-gray-600">Manage your platform content, SEO, and features</p>
+          </div>
         <div className="flex items-center gap-2">
           <Button 
             variant="outline" 
@@ -762,6 +765,7 @@ export default function AdminDashboard() {
           </div>
         </TabsContent>
       </Tabs>
+      </div>
     </div>
   );
 } 

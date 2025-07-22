@@ -6,7 +6,7 @@
   "homepage": "https://beta.bitebase.app",
   "scripts": {
     "build": "next build",
-    "dev": "next dev -p 54538 -H 0.0.0.0",
+    "dev": "next dev -p 51115 -H 0.0.0.0",
     "staging": "NODE_ENV=staging next start -p 12001 -H 0.0.0.0",
     "lint": "next lint",
     "start": "next start -p 52580 -H 0.0.0.0",

@@ -198,55 +198,242 @@
     "includeDetails": "Include Details",
     "includeSummary": "Include Summary"
   },
-  "navigation": {
-    "sections": {
-      "dashboard": "Dashboard",
-      "location": "Location", 
-      "business": "Business",
-      "operations": "Operations",
-      "reports": "Reports"
+  "locationIntelligence": {
+    "title": "Location Intelligence",
+    "description": "Comprehensive location analysis and restaurant insights",
+    "search": {
+      "title": "Search",
+      "searchBy": "Search by",
+      "brand": "Brand",
+      "branch": "Branch",
+      "item": "Item",
+      "itemName": "Item name",
+      "area": "Area",
+      "cuisine": "Cuisine",
+      "selectCuisine": "Select a cuisine",
+      "exactMatch": "Exact match",
+      "excludeItem": "Exclude this item",
+      "searchButton": "Search",
+      "averagePrice": "Average price",
+      "brands": "Brands",
+      "items": "Items",
+      "showing": "Showing",
+      "results": "items"
     },
-    "items": {
-      "overview": "Overview",
-      "dashboard": "Dashboard",
-      "placeAnalysis": "Place Analysis",
+    "table": {
+      "brand": "Brand",
+      "city": "City",
+      "area": "Area",
+      "cuisines": "Cuisines",
+      "rating": "Rating / total",
+      "median": "Median",
+      "itemPrice": "Item price",
+      "menuCategory": "Menu category"
+    },
+    "filters": {
+      "all": "All",
+      "burger": "Burger",
+      "pizza": "Pizza",
+      "thai": "Thai",
+      "japanese": "Japanese",
+      "italian": "Italian",
+      "chinese": "Chinese",
+      "american": "American",
+      "drinks": "Drinks"
+    },
+    "insights": {
       "marketAnalysis": "Market Analysis",
-      "aiAnalytics": "AI Analytics",
-      "locationAnalytics": "Location Analytics",
-      "menuOptimization": "Menu Optimization",
-      "pricingStrategy": "Pricing Strategy",
-      "marketing": "Marketing",
-      "customerInsights": "Customer Insights",
-      "restaurantSettings": "Restaurant Settings",
-      "posIntegration": "POS Integration",
-      "campaignManagement": "Campaign Management",
-      "reviewsRatings": "Reviews & Ratings",
-      "schedule": "Schedule",
-      "marketReports": "Market Reports",
-      "performance": "Performance",
-      "restaurantSetup": "Restaurant Setup",
+      "competitorInsights": "Competitor Insights",
+      "pricingTrends": "Pricing Trends",
+      "locationScoring": "Location Scoring"
+    }
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "navigation": {
+      "dashboard": "Dashboard",
+      "restaurants": "Restaurants",
+      "locationIntelligence": "Location Intelligence",
+      "seoManagement": "SEO Management",
+      "userManagement": "User Management",
+      "analytics": "Analytics",
       "settings": "Settings"
     },
-    "subitems": {
-      "areaOverview": "Area Overview",
-      "footTraffic": "Foot Traffic",
-      "competitionMap": "Competition Map"
+    "restaurants": {
+      "title": "Restaurant Management",
+      "list": "Restaurant List",
+      "details": "Restaurant Details",
+      "insights": "Restaurant Insights",
+      "menu": "Menu Analysis",
+      "performance": "Performance Metrics",
+      "location": "Location Data"
     },
-    "descriptions": {
-      "overview": "Restaurant performance at a glance",
-      "placeAnalysis": "Location intelligence",
-      "marketAnalysis": "Interactive map intelligence",
-      "menuOptimization": "Menu management & analysis",
-      "pricingStrategy": "Pricing optimization",
-      "marketing": "Campaigns & promotions",
-      "reports": "Market analysis reports",
-      "restaurantSetup": "Setup wizard",
-      "settings": "System configuration"
+    "users": {
+      "title": "User Management",
+      "list": "User List",
+      "details": "User Details",
+      "permissions": "Permissions"
     },
-    "badges": {
-      "new": "New",
-      "pro": "Pro",
-      "ai": "AI"
+    "analytics": {
+      "title": "System Analytics",
+      "overview": "System Overview",
+      "usage": "Usage Statistics",
+      "performance": "Performance Metrics"
+    },
+    "seo": {
+      "title": "SEO Optimization Suite",
+      "description": "Optimize your content strategy with AI-assisted SEO tools",
+      "tabs": {
+        "topicResearch": "Topic Research",
+        "contentGenerator": "Content Generator",
+        "seoAnalyzer": "SEO Analyzer"
+      },
+      "topicResearch": {
+        "title": "Topic Research",
+        "keywordResearch": "Keyword Research",
+        "keywordDescription": "Add keywords to find relevant topic ideas for your blog",
+        "selectedKeywords": "Selected Keywords",
+        "suggestedKeywords": "Suggested Keywords",
+        "analyzeKeywords": "Analyze Keywords",
+        "analyzing": "Analyzing...",
+        "recommendedTopics": "Recommended Topics",
+        "topicsDescription": "AI-suggested blog topics based on keyword analysis and market trends",
+        "difficulty": "Difficulty",
+        "searchVolume": "Search Volume",
+        "competition": "Competition",
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard",
+        "low": "Low",
+        "high": "High"
+      },
+      "contentGenerator": {
+        "title": "AI Content Generator",
+        "description": "Generate high-quality, SEO-optimized content for your restaurant blog",
+        "prompt": "Content Brief",
+        "promptPlaceholder": "Describe the type of content you want to create...",
+        "targetKeywords": "Target Keywords",
+        "contentType": "Content Type",
+        "blogPost": "Blog Post",
+        "productDescription": "Product Description",
+        "socialMedia": "Social Media Post",
+        "emailNewsletter": "Email Newsletter",
+        "tone": "Tone of Voice",
+        "professional": "Professional",
+        "casual": "Casual",
+        "friendly": "Friendly",
+        "authoritative": "Authoritative",
+        "wordCount": "Target Word Count",
+        "generateContent": "Generate Content",
+        "generating": "Generating...",
+        "generatedContent": "Generated Content",
+        "copyContent": "Copy Content",
+        "editContent": "Edit Content",
+        "regenerate": "Regenerate",
+        "tips": "Tips",
+        "tip1": "Include specific keywords you want to target",
+        "tip2": "Specify desired length (short, medium, long)",
+        "tip3": "Mention target audience for better tone alignment",
+        "noContentYet": "No content generated yet",
+        "enterTopicPrompt": "Enter a topic and click \"Generate Content\"",
+        "creatingContent": "Creating SEO-optimized content...",
+        "pleaseWait": "This may take a few moments"
+      },
+      "seoAnalyzer": {
+        "title": "SEO Content Analyzer",
+        "description": "Analyze and optimize your content for better search engine rankings",
+        "analyzeUrl": "Analyze URL",
+        "urlPlaceholder": "Enter URL to analyze...",
+        "analyzeContent": "Analyze Content",
+        "contentPlaceholder": "Paste your content here for analysis...",
+        "analyzing": "Analyzing...",
+        "seoScore": "SEO Score",
+        "recommendations": "Recommendations",
+        "keywordDensity": "Keyword Density",
+        "readabilityScore": "Readability Score",
+        "metaTitle": "Meta Title",
+        "metaDescription": "Meta Description",
+        "headingStructure": "Heading Structure",
+        "internalLinks": "Internal Links",
+        "externalLinks": "External Links",
+        "imageOptimization": "Image Optimization",
+        "pageSpeed": "Page Speed",
+        "mobileOptimization": "Mobile Optimization"
+      },
+      "sampleTopics": [
+        {
+          "topic": "Restaurant Analytics: How to Use Data to Increase Profit Margins",
+          "keywords": ["restaurant analytics", "profit margins", "data-driven decisions"],
+          "difficulty": "medium",
+          "searchVolume": "medium",
+          "competition": "medium",
+          "score": 78
+        },
+        {
+          "topic": "10 Essential KPIs Every Restaurant Owner Should Track",
+          "keywords": ["restaurant KPIs", "metrics", "business performance"],
+          "difficulty": "easy",
+          "searchVolume": "high",
+          "competition": "high",
+          "score": 85
+        },
+        {
+          "topic": "How to Choose the Best Location for Your New Restaurant",
+          "keywords": ["restaurant location", "site selection", "location analysis"],
+          "difficulty": "medium",
+          "searchVolume": "high",
+          "competition": "medium",
+          "score": 92
+        },
+        {
+          "topic": "Understanding Food Cost Percentage and How to Optimize It",
+          "keywords": ["food cost percentage", "menu pricing", "restaurant profitability"],
+          "difficulty": "hard",
+          "searchVolume": "medium",
+          "competition": "low",
+          "score": 73
+        },
+        {
+          "topic": "How AI is Transforming the Restaurant Industry",
+          "keywords": ["AI in restaurants", "restaurant technology", "digital transformation"],
+          "difficulty": "medium",
+          "searchVolume": "high",
+          "competition": "medium",
+          "score": 88
+        }
+      ]
     }
+  },
+  "locationIntelligence": {
+    "title": "Location Intelligence",
+    "description": "Discover the best restaurant locations with AI-powered insights",
+    "search": {
+      "title": "Search",
+      "searchBy": "Search by",
+      "brand": "Brand",
+      "branch": "Branch",
+      "item": "Item",
+      "itemName": "Item name",
+      "area": "Area",
+      "cuisine": "Cuisine",
+      "selectCuisine": "Select a cuisine",
+      "exactMatch": "Exact match",
+      "excludeItem": "Exclude this item",
+      "searchButton": "Search",
+      "averagePrice": "Average price",
+      "brands": "Brands",
+      "items": "Items",
+      "showing": "Showing",
+      "results": "results"
+    },
+    "table": {
+      "brand": "Brand",
+      "city": "City",
+      "area": "Area",
+      "cuisines": "Cuisines",
+      "rating": "Rating / total",
+      "median": "Median"
+    },
+    "loadMore": "Load More Results"
   }
 }

@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from '../../../hooks/useTranslations';
+import { useLanguage } from '../../../contexts/LanguageContext';
+import AdminTabs from "../../../components/admin/AdminTabs";
 import { Button } from "../../../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/ui/tabs";
@@ -30,16 +33,19 @@ type Topic = {
 };
 
 export default function SEOOptimizationPage() {
+  const t = useTranslations('admin.seo');
+  const { language } = useLanguage();
   const [aiPrompt, setAiPrompt] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [generatedContent, setGeneratedContent] = useState("");
   const [activeTab, setActiveTab] = useState("topic-research");
   
+  // Sample topics - will be loaded from translations later
   const [topicSuggestions, setTopicSuggestions] = useState<Topic[]>([
     {
       id: 1,
-      topic: "Restaurant Analytics: How to Use Data to Increase Profit Margins",
+      topic: t('sampleTopics.0.topic') || "Restaurant Analytics: How to Use Data to Increase Profit Margins",
       keywords: ["restaurant analytics", "profit margins", "data-driven decisions"],
       difficulty: "medium",
       searchVolume: "medium",
@@ -48,7 +54,7 @@ export default function SEOOptimizationPage() {
     },
     {
       id: 2,
-      topic: "10 Essential KPIs Every Restaurant Owner Should Track",
+      topic: t('sampleTopics.1.topic') || "10 Essential KPIs Every Restaurant Owner Should Track",
       keywords: ["restaurant KPIs", "metrics", "business performance"],
       difficulty: "easy",
       searchVolume: "high",
@@ -57,40 +63,36 @@ export default function SEOOptimizationPage() {
     },
     {
       id: 3,
-      topic: "How to Choose the Best Location for Your New Restaurant",
+      topic: t('sampleTopics.2.topic') || "How to Choose the Best Location for Your New Restaurant",
       keywords: ["restaurant location", "site selection", "location analysis"],
       difficulty: "medium",
-      searchVolume: "high",
-      competition: "medium",
-      score: 92
-    },
-    {
-      id: 4,
-      topic: "Understanding Food Cost Percentage and How to Optimize It",
-      keywords: ["food cost percentage", "menu pricing", "restaurant profitability"],
-      difficulty: "hard",
       searchVolume: "medium",
       competition: "low",
-      score: 73
-    },
-    {
-      id: 5,
-      topic: "How AI is Transforming the Restaurant Industry",
-      keywords: ["AI in restaurants", "restaurant technology", "digital transformation"],
-      difficulty: "medium",
-      searchVolume: "high",
-      competition: "medium",
-      score: 88
+      score: 92
     }
   ]);
 
-  const [selectedKeywords, setSelectedKeywords] = useState<string[]>([
-    "restaurant analytics",
-    "business intelligence",
-    "data-driven decisions",
-    "restaurant profit",
-    "menu optimization"
-  ]);
+  // Initialize keywords based on current language
+  const getInitialKeywords = () => {
+    if (language === 'th') {
+      return [
+        "การวิเคราะห์ร้านอาหาร",
+        "ธุรกิจอัจฉริยะ", 
+        "การตัดสินใจจากข้อมูล",
+        "กำไรร้านอาหาร",
+        "การปรับปรุงเมนู"
+      ];
+    }
+    return [
+      "restaurant analytics",
+      "business intelligence", 
+      "data-driven decisions",
+      "restaurant profit",
+      "menu optimization"
+    ];
+  };
+
+  const [selectedKeywords, setSelectedKeywords] = useState<string[]>(getInitialKeywords());
 
   const handleGenerateContent = () => {
     setIsGenerating(true);
@@ -98,7 +100,97 @@ export default function SEOOptimizationPage() {
     
     // Simulate API call to generate content
     setTimeout(() => {
-      const sampleContent = `
+      const locale = typeof window !== 'undefined' ? window.location.pathname.split('/')[1] : 'en';
+      
+      const sampleContentTh = `
+# การวิเคราะห์ข้อมูลร้านอาหาร: วิธีใช้ข้อมูลเพื่อเพิ่มอัตรากำไร
+
+## บทนำ
+
+ในอุตสาหกรรมร้านอาหารที่มีการแข่งขันสูงในปัจจุบัน สัญชาตญาณและประสบการณ์เพียงอย่างเดียวไม่เพียงพอที่จะเพิ่มกำไรให้สูงสุด ร้านอาหารที่ประสบความสำเร็จคือร้านที่ใช้การวิเคราะห์ข้อมูลในการตัดสินใจอย่างมีข้อมูล บทความนี้จะสำรวจวิธีที่เจ้าของร้านอาหารสามารถใช้พลังของข้อมูลเพื่อเพิ่มอัตรากำไร
+
+## การวิเคราะห์ข้อมูลร้านอาหารคืออะไร?
+
+การวิเคราะห์ข้อมูลร้านอาหารหมายถึงกระบวนการรวบรวม วิเคราะห์ และตีความข้อมูลที่เกี่ยวข้องกับการดำเนินงานของร้านอาหารของคุณ ซึ่งรวมถึงข้อมูลการขาย การจัดการสินค้าคงคลัง พฤติกรรมลูกค้า ประสิทธิภาพของพนักงาน และอื่นๆ การวิเคราะห์ข้อมูลเหล่านี้จะช่วยให้คุณระบุแนวโน้ม ค้นหาความไม่มีประสิทธิภาพ และตัดสินใจจากข้อมูลเพื่อปรับปรุงความสามารถในการทำกำไร
+
+## พื้นที่สำคัญที่การวิเคราะห์ข้อมูลสามารถปรับปรุงอัตรากำไร
+
+### 1. การออกแบบเมนู
+
+การวิเคราะห์ข้อมูลสามารถเปิดเผยว่ารายการเมนูใดมีกำไรมากที่สุดและรายการใดมีประสิทธิภาพต่ำ การวิเคราะห์ตัวชี้วัดเช่น เปอร์เซ็นต์ต้นทุนอาหาร อัตรากำไรขั้นต้น และปริมาณการขาย คุณสามารถปรับปรุงเมนูเพื่อเน้นรายการที่มีกำไรสูงและปรับหรือเอารายการที่ไม่มีประสิทธิภาพออก
+
+**ตัวชี้วัดสำคัญที่ต้องติดตาม:**
+- เปอร์เซ็นต์ต้นทุนอาหารต่อรายการ
+- อัตรากำไรขั้นต้นต่อจาน
+- ปริมาณการขาย
+- ความนิยมของรายการเมนูเทียบกับความสามารถในการทำกำไร
+
+### 2. การจัดการสินค้าคงคลัง
+
+การจัดการสินค้าคงคลังที่ไม่เหมาะสมนำไปสู่ความสูญเสีย ซึ่งส่งผลกระทบโดยตรงต่อผลกำไรของคุณ เครื่องมือวิเคราะห์ข้อมูลสามารถช่วยคุณ:
+
+- พยากรณ์ความต้องการวัตถุดิบตามข้อมูลการขายในอดีต
+- ติดตามรูปแบบของความสูญเสีย
+- ปรับปรุงปริมาณการสั่งซื้อ
+- ระบุการขโมยหรือความไม่สอดคล้อง
+
+### 3. การจัดตารางงานและประสิทธิภาพของพนักงาน
+
+ต้นทุนแรงงานมักจะคิดเป็น 30-35% ของค่าใช้จ่ายของร้านอาหาร การวิเคราะห์ข้อมูลสามารถช่วยปรับปรุงการจัดตารางงานโดย:
+
+- ระบุช่วงเวลาที่มีลูกค้าเยอะที่ต้องการพนักงานมากขึ้น
+- วัดประสิทธิภาพของพนักงานแต่ละคน (ขนาดบิลเฉลี่ย ความสำเร็จในการขายเพิ่ม)
+- ลดการมีพนักงานเกินความจำเป็นในช่วงเวลาที่ลูกค้าน้อย
+
+### 4. การวิเคราะห์พฤติกรรมลูกค้า
+
+การเข้าใจความชอบและพฤติกรรมของลูกค้าสามารถช่วยคุณปรับแต่งข้อเสนอและกลยุทธ์การตลาด:
+
+- ติดตามว่าโปรโมชั่นใดดึงดูดลูกค้ามากที่สุด
+- วิเคราะห์ข้อมูลประชากรศาสตร์ของลูกค้า
+- ระบุลูกค้าประจำและความชอบของพวกเขา
+- กำหนดกลยุทธ์การตั้งราคาที่เหมาะสม
+
+## การนำการวิเคราะห์ข้อมูลมาใช้ในร้านอาหารของคุณ
+
+### ขั้นตอนที่ 1: ระบุเป้าหมายของคุณ
+
+ก่อนที่จะเริ่มการวิเคราะห์ข้อมูล ให้กำหนดเป้าหมายที่ชัดเจนว่าคุณต้องการบรรลุอะไร คุณต้องการลดความสูญเสียของอาหารหรือไม่? เพิ่มขนาดบิลเฉลี่ย? ปรับปรุงการจัดพนักงาน? การมีวัตถุประสงค์ที่ชัดเจนจะช่วยแนะนำว่าข้อมูลใดที่คุณควรรวบรวมและวิเคราะห์
+
+### ขั้นตอนที่ 2: เลือกเครื่องมือที่เหมาะสม
+
+มีแพลตฟอร์มการวิเคราะห์ข้อมูลร้านอาหารหลายแห่งให้เลือก ตั้งแต่ระบบ POS พื้นฐานที่มีการรายงานในตัวไปจนถึงโซลูชันธุรกิจอัจฉริยะที่ครอบคลุม เลือกเครื่องมือที่สอดคล้องกับความต้องการและงงบประมาณเฉพาะของคุณ
+
+### ขั้นตอนที่ 3: รวบรวมข้อมูลที่เกี่ยวข้อง
+
+ตรวจสอบให้แน่ใจว่าคุณรวบรวมข้อมูลอย่างเป็นระบบในทุกด้านของการดำเนินงาน:
+- ข้อมูลการขายจากระบบ POS ของคุณ
+- ระดับและการใช้สินค้าคงคลัง
+- ข้อมูลและความคิดเห็นของลูกค้า
+- ตัวชี้วัดประสิทธิภาพของพนักงาน
+- ข้อมูลการสั่งซื้อออนไลน์และการจัดส่ง
+
+### ขั้นตอนที่ 4: วิเคราะห์และดำเนินการ
+
+ข้อมูลมีค่าเฉพาะเมื่อคุณใช้มันในการตัดสินใจ ตรวจสอบการวิเคราะห์ข้อมูลของคุณอย่างสม่ำเสมอและนำการเปลี่ยนแปลงไปใช้ตามข้อมูลเชิงลึกที่คุณรวบรวมได้
+
+## กรณีศึกษา: BiteBase ช่วยเพิ่มกำไรอย่างไร
+
+[ชื่อร้านอาหาร] ร้านอาหารขนาดกลางแบบ casual dining ได้นำแพลตฟอร์มการวิเคราะห์ข้อมูลของ BiteBase มาใช้และเห็นการเพิ่มขึ้นของอัตรากำไร 15% ภายในหกเดือนโดย:
+
+- ออกแบบเมนูใหม่ตามการวิเคราะห์ความสามารถในการทำกำไร
+- ลดความสูญเสียของอาหาร 22% ผ่านการจัดการสินค้าคงคลังที่ดีขึ้น
+- ปรับปรุงการจัดตารางงานของพนักงานในช่วงเวลาที่มีลูกค้าเยอะ
+- นำแคมเปญการตลาดที่มีเป้าหมายเฉพาะตามข้อมูลลูกค้ามาใช้
+
+## บทสรุป
+
+ในอุตสาหกรรมที่มีอัตรากำไรบางโดยทั่วไป การใช้การวิเคราะห์ข้อมูลสามารถให้ความได้เปรียบในการแข่งขันที่จำเป็นเพื่อความเจริญรุ่งเรือง การตัดสินใจจากข้อมูลเกี่ยวกับเมนู สินค้าคงคลัง การจัดพนักงาน และกลยุทธ์การมีส่วนร่วมของลูกค้า คุณสามารถปรับปรุงความสามารถในการทำกำไรของร้านอาหารได้อย่างมีนัยสำคัญในขณะที่เพิ่มประสบการณ์ของลูกค้า
+
+พร้อมที่จะเปลี่ยนแปลงร้านอาหารของคุณด้วยข้อมูลแล้วหรือยัง? [Call to action เกี่ยวกับแพลตฟอร์มการวิเคราะห์ข้อมูลของ BiteBase]
+`;
+
+      const sampleContentEn = `
 # Restaurant Analytics: How to Use Data to Increase Profit Margins
 
 ## Introduction
@@ -186,7 +278,7 @@ In an industry with typically thin profit margins, using data analytics can prov
 Ready to transform your restaurant with data? [Call to action about BiteBase's analytics platform]
 `;
       
-      setGeneratedContent(sampleContent);
+      setGeneratedContent(locale === 'th' ? sampleContentTh : sampleContentEn);
       setIsGenerating(false);
     }, 3000);
   };
@@ -209,10 +301,28 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
   };
 
   const generateKeywordSuggestions = () => {
-    const keywords = [
+    const locale = typeof window !== 'undefined' ? window.location.pathname.split('/')[1] : 'en';
+    
+    const keywordsTh = [
+      "การจัดการร้านอาหาร",
+      "เทคโนโลยีร้านอาหาร", 
+      "กลยุทธ์การตั้งราคาเมนู",
+      "การรักษาลูกค้าร้านอาหาร",
+      "การวิเคราะห์บริการอาหาร",
+      "การปรับปรุงรายได้ร้านอาหาร",
+      "การตลาดร้านอาหาร",
+      "ตัวชี้วัดร้านอาหาร",
+      "ตัวชี้วัดประสิทธิภาพร้านอาหาร",
+      "อุตสาหกรรมการบริการ",
+      "กลยุทธ์การเติบโตร้านอาหาร",
+      "ประสบการณ์ลูกค้าร้านอาหาร",
+      "การวิเคราะห์อาหารและเครื่องดื่ม"
+    ];
+    
+    const keywordsEn = [
       "restaurant management",
       "restaurant technology",
-      "menu pricing strategy",
+      "menu pricing strategy", 
       "restaurant customer retention",
       "food service analytics",
       "restaurant revenue optimization",
@@ -225,29 +335,32 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
       "food and beverage analytics"
     ];
     
+    const keywords = locale === 'th' ? keywordsTh : keywordsEn;
     return keywords.filter(k => !selectedKeywords.includes(k)).slice(0, 5);
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">SEO Optimization Suite</h1>
-        <p className="text-gray-600">Optimize your content strategy with AI-assisted SEO tools</p>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      <AdminTabs />
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
+          <p className="text-gray-600">{t('description')}</p>
+        </div>
       
       <Tabs defaultValue="topic-research" value={activeTab} onValueChange={setActiveTab} className="mb-8">
         <TabsList className="mb-6">
           <TabsTrigger value="topic-research">
             <Search className="h-4 w-4 mr-2" />
-            Topic Research
+            {t('tabs.topicResearch')}
           </TabsTrigger>
           <TabsTrigger value="content-generator">
             <Sparkles className="h-4 w-4 mr-2" />
-            Content Generator
+            {t('tabs.contentGenerator')}
           </TabsTrigger>
           <TabsTrigger value="seo-analyzer">
             <Globe className="h-4 w-4 mr-2" />
-            SEO Analyzer
+            {t('tabs.seoAnalyzer')}
           </TabsTrigger>
         </TabsList>
         
@@ -257,15 +370,15 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
             <div className="col-span-1 lg:col-span-1">
               <Card>
                 <CardHeader>
-                  <CardTitle>Keyword Research</CardTitle>
+                  <CardTitle>{t('topicResearch.keywordResearch')}</CardTitle>
                   <CardDescription>
-                    Add keywords to find relevant topic ideas for your blog
+                    {t('topicResearch.keywordDescription')}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Selected Keywords
+                      {t('topicResearch.selectedKeywords')}
                     </label>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {selectedKeywords.map((keyword, index) => (
@@ -301,7 +414,7 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
                   
                   <div className="mb-6">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Suggested Keywords
+                      {t('topicResearch.suggestedKeywords')}
                     </label>
                     <div className="flex flex-wrap gap-2">
                       {generateKeywordSuggestions().map((keyword, index) => (
@@ -324,12 +437,12 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
                     {isAnalyzing ? (
                       <>
                         <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
-                        Analyzing...
+                        {t('topicResearch.analyzing')}
                       </>
                     ) : (
                       <>
                         <Search className="mr-2 h-4 w-4" />
-                        Analyze Keywords
+                        {t('topicResearch.analyzeKeywords')}
                       </>
                     )}
                   </Button>
@@ -340,9 +453,9 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
             <div className="col-span-1 lg:col-span-2">
               <Card>
                 <CardHeader>
-                  <CardTitle>Recommended Topics</CardTitle>
+                  <CardTitle>{t('topicResearch.recommendedTopics')}</CardTitle>
                   <CardDescription>
-                    AI-suggested blog topics based on keyword analysis and market trends
+                    {t('topicResearch.topicsDescription')}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -375,7 +488,7 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
                         
                         <div className="mt-4 grid grid-cols-3 gap-4 text-sm">
                           <div>
-                            <span className="text-gray-500 block">Difficulty</span>
+                            <span className="text-gray-500 block">{t('topicResearch.difficulty')}</span>
                             <span
                               className={`inline-flex items-center mt-1 ${
                                 topic.difficulty === "easy"
@@ -386,14 +499,14 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
                               }`}
                             >
                               {topic.difficulty === "easy"
-                                ? "Easy"
+                                ? t('topicResearch.easy')
                                 : topic.difficulty === "medium"
-                                ? "Medium"
-                                : "Hard"}
+                                ? t('topicResearch.medium')
+                                : t('topicResearch.hard')}
                             </span>
                           </div>
                           <div>
-                            <span className="text-gray-500 block">Search Volume</span>
+                            <span className="text-gray-500 block">{t('topicResearch.searchVolume')}</span>
                             <span
                               className={`inline-flex items-center mt-1 ${
                                 topic.searchVolume === "high"
@@ -404,14 +517,14 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
                               }`}
                             >
                               {topic.searchVolume === "high"
-                                ? "High"
+                                ? t('topicResearch.high')
                                 : topic.searchVolume === "medium"
-                                ? "Medium"
-                                : "Low"}
+                                ? t('topicResearch.medium')
+                                : t('topicResearch.low')}
                             </span>
                           </div>
                           <div>
-                            <span className="text-gray-500 block">Competition</span>
+                            <span className="text-gray-500 block">{t('topicResearch.competition')}</span>
                             <span
                               className={`inline-flex items-center mt-1 ${
                                 topic.competition === "low"
@@ -422,10 +535,10 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
                               }`}
                             >
                               {topic.competition === "low"
-                                ? "Low"
+                                ? t('topicResearch.low')
                                 : topic.competition === "medium"
-                                ? "Medium"
-                                : "High"}
+                                ? t('topicResearch.medium')
+                                : t('topicResearch.high')}
                             </span>
                           </div>
                         </div>
@@ -451,7 +564,7 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
                             }}
                           >
                             <Sparkles className="mr-1 h-3 w-3" />
-                            Generate Content
+                            {t('contentGenerator.generateContent')}
                           </Button>
                         </div>
                       </div>
@@ -469,22 +582,22 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
             <div className="col-span-1 lg:col-span-1">
               <Card>
                 <CardHeader>
-                  <CardTitle>AI Content Generator</CardTitle>
+                  <CardTitle>{t('contentGenerator.title')}</CardTitle>
                   <CardDescription>
-                    Generate SEO-optimized content with our advanced AI
+                    {t('contentGenerator.description')}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Your Topic/Instructions
+                      {t('contentGenerator.prompt')}
                     </label>
                     <textarea
                       rows={6}
                       value={aiPrompt}
                       onChange={(e) => setAiPrompt(e.target.value)}
                       className="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                      placeholder="Describe what you want the AI to write about..."
+                      placeholder={t('contentGenerator.promptPlaceholder')}
                     />
                   </div>
                   
@@ -496,30 +609,30 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
                     {isGenerating ? (
                       <>
                         <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
-                        Generating...
+                        {t('contentGenerator.generating')}
                       </>
                     ) : (
                       <>
                         <Sparkles className="mr-2 h-4 w-4" />
-                        Generate Content
+                        {t('contentGenerator.generateContent')}
                       </>
                     )}
                   </Button>
                   
                   <div className="mt-6">
-                    <h4 className="text-sm font-medium text-gray-700 mb-2">Tips</h4>
+                    <h4 className="text-sm font-medium text-gray-700 mb-2">{t('contentGenerator.tips')}</h4>
                     <ul className="text-sm text-gray-600 space-y-2">
                       <li className="flex items-start">
                         <ChevronUp className="h-4 w-4 text-primary-600 mr-2 mt-0.5" />
-                        Include specific keywords you want to target
+                        {t('contentGenerator.tip1')}
                       </li>
                       <li className="flex items-start">
                         <ChevronUp className="h-4 w-4 text-primary-600 mr-2 mt-0.5" />
-                        Specify desired length (short, medium, long)
+                        {t('contentGenerator.tip2')}
                       </li>
                       <li className="flex items-start">
                         <ChevronUp className="h-4 w-4 text-primary-600 mr-2 mt-0.5" />
-                        Mention target audience for better tone alignment
+                        {t('contentGenerator.tip3')}
                       </li>
                     </ul>
                   </div>
@@ -531,16 +644,16 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between">
                   <div>
-                    <CardTitle>Generated Content</CardTitle>
+                    <CardTitle>{t('contentGenerator.generatedContent')}</CardTitle>
                     <CardDescription>
-                      AI-generated content ready for your review and editing
+                      {t('contentGenerator.description')}
                     </CardDescription>
                   </div>
                   
                   {generatedContent && (
                     <Button variant="outline" size="sm">
                       <Copy className="mr-2 h-4 w-4" />
-                      Copy All
+                      {t('contentGenerator.copyContent')}
                     </Button>
                   )}
                 </CardHeader>
@@ -554,11 +667,14 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
                       <div className="mt-6 flex justify-between">
                         <Button variant="outline">
                           <Edit className="mr-2 h-4 w-4" />
-                          Edit Content
+                          {t('contentGenerator.editContent')}
                         </Button>
-                        <Button className="bg-primary-600 hover:bg-primary-700 text-white">
-                          <CheckCircle2 className="mr-2 h-4 w-4" />
-                          Save to Posts
+                        <Button 
+                          className="bg-primary-600 hover:bg-primary-700 text-white"
+                          onClick={handleGenerateContent}
+                        >
+                          <RefreshCw className="mr-2 h-4 w-4" />
+                          {t('contentGenerator.regenerate')}
                         </Button>
                       </div>
                     </div>
@@ -567,14 +683,14 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
                       {isGenerating ? (
                         <div>
                           <RefreshCw className="h-12 w-12 mx-auto mb-4 animate-spin text-primary-500" />
-                          <p className="text-lg font-medium">Creating SEO-optimized content...</p>
-                          <p className="text-sm mt-2">This may take a few moments</p>
+                          <p className="text-lg font-medium">{t('contentGenerator.creatingContent')}</p>
+                          <p className="text-sm mt-2">{t('contentGenerator.pleaseWait')}</p>
                         </div>
                       ) : (
                         <div>
                           <BookOpen className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-                          <p className="text-lg font-medium">No content generated yet</p>
-                          <p className="text-sm mt-2">Enter a topic and click "Generate Content"</p>
+                          <p className="text-lg font-medium">{t('contentGenerator.noContentYet')}</p>
+                          <p className="text-sm mt-2">{t('contentGenerator.enterTopicPrompt')}</p>
                         </div>
                       )}
                     </div>
@@ -589,13 +705,14 @@ Ready to transform your restaurant with data? [Call to action about BiteBase's a
         <TabsContent value="seo-analyzer">
           <div className="p-8 text-center">
             <Info className="h-12 w-12 mx-auto mb-4 text-primary-500" />
-            <h3 className="text-lg font-medium mb-2">SEO Analyzer Coming Soon</h3>
+            <h3 className="text-lg font-medium mb-2">{t('seoAnalyzer.title')} - Coming Soon</h3>
             <p className="text-gray-500 max-w-md mx-auto">
-              Our advanced SEO analysis tools will be available in the next update. Stay tuned for powerful content optimization features!
+              {t('seoAnalyzer.description')} - Available in the next update!
             </p>
           </div>
         </TabsContent>
       </Tabs>
+      </div>
     </div>
   );
 } 
