@@ -44,10 +44,13 @@ if [ $? -eq 0 ]; then
     echo "3. Update backend CORS with your Vercel domain"
     echo ""
     echo -e "${YELLOW}🔧 Required Environment Variables:${NC}"
-    echo "NEXT_PUBLIC_API_URL=https://your-worker.workers.dev"
+    echo "NEXT_PUBLIC_API_URL=https://api.bitebase.app"
+    echo "NEXT_PUBLIC_APP_URL=https://beta.bitebase.app"
     echo "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=pk.eyJ1Ijoia2hpd25pdGkiLCJhIjoiY205eDFwMzl0MHY1YzJscjB3bm4xcnh5ZyJ9.ANGVE0tiA9NslBn8ft_9fQ"
+    echo "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=AIzaSyCfG9E3ggBc1ZBkhqTEDSBm0eYp152tMLk"
     echo "NEXT_PUBLIC_ENABLE_MAPS=true"
     echo "NEXT_PUBLIC_ENABLE_AI_CHAT=true"
+    echo "NEXT_PUBLIC_ENABLE_REAL_DATA=true"
 else
     echo -e "${RED}❌ Deployment failed. Please check the errors above.${NC}"
     exit 1
