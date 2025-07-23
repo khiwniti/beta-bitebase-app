@@ -27,7 +27,9 @@ import {
   CheckCircle,
   AlertCircle,
   PieChart,
-  Activity
+  Activity,
+  X,
+  LineChart
 } from 'lucide-react';
 
 interface Report {
@@ -59,7 +61,7 @@ const reportTemplates: ReportTemplate[] = [
     name: 'Sales Analytics Report',
     description: 'Comprehensive sales performance analysis with revenue trends and product insights',
     icon: <DollarSign className="h-6 w-6" />,
-    color: 'bg-green-500',
+    color: 'bg-gradient-to-br from-green-500 to-green-600',
     fields: ['Revenue', 'Orders', 'Average Order Value', 'Top Products', 'Sales Trends'],
     charts: ['Revenue Chart', 'Product Performance', 'Sales by Time']
   },
@@ -68,7 +70,7 @@ const reportTemplates: ReportTemplate[] = [
     name: 'Customer Insights Report',
     description: 'Customer behavior analysis, demographics, and satisfaction metrics',
     icon: <Users className="h-6 w-6" />,
-    color: 'bg-blue-500',
+    color: 'bg-gradient-to-br from-blue-500 to-blue-600',
     fields: ['Customer Count', 'Demographics', 'Satisfaction Score', 'Retention Rate', 'Feedback'],
     charts: ['Customer Growth', 'Demographics Chart', 'Satisfaction Trends']
   },
@@ -77,7 +79,7 @@ const reportTemplates: ReportTemplate[] = [
     name: 'Inventory Management Report',
     description: 'Stock levels, product movement, and inventory optimization insights',
     icon: <BarChart3 className="h-6 w-6" />,
-    color: 'bg-orange-500',
+    color: 'bg-gradient-to-br from-orange-500 to-orange-600',
     fields: ['Stock Levels', 'Product Movement', 'Low Stock Alerts', 'Waste Analysis', 'Cost Analysis'],
     charts: ['Stock Level Chart', 'Movement Trends', 'Cost Analysis']
   },
@@ -86,7 +88,7 @@ const reportTemplates: ReportTemplate[] = [
     name: 'Financial Performance Report',
     description: 'Profit & loss analysis, expense tracking, and financial health metrics',
     icon: <PieChart className="h-6 w-6" />,
-    color: 'bg-purple-500',
+    color: 'bg-gradient-to-br from-purple-500 to-purple-600',
     fields: ['Revenue', 'Expenses', 'Profit Margin', 'Cash Flow', 'ROI Analysis'],
     charts: ['P&L Chart', 'Expense Breakdown', 'Cash Flow Trends']
   },
@@ -95,7 +97,7 @@ const reportTemplates: ReportTemplate[] = [
     name: 'Operational Performance Report',
     description: 'Service quality, efficiency metrics, and operational KPIs',
     icon: <Activity className="h-6 w-6" />,
-    color: 'bg-red-500',
+    color: 'bg-gradient-to-br from-red-500 to-red-600',
     fields: ['Service Time', 'Order Accuracy', 'Staff Performance', 'Peak Hours', 'Efficiency Score'],
     charts: ['Performance Metrics', 'Service Time Trends', 'Efficiency Analysis']
   }
@@ -375,21 +377,36 @@ export default function SimpleReportManagement() {
     <MainLayout>
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg p-8 text-white">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <FileText className="h-8 w-8 text-blue-600" />
+            <div className="flex items-center space-x-6">
+              <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
+                <FileText className="h-10 w-10 text-white" />
+              </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Report Management System</h1>
-                <p className="text-gray-600">Create, manage, and analyze comprehensive business reports with 5 different templates</p>
+                <h1 className="text-3xl font-bold mb-2">Report Management System</h1>
+                <p className="text-blue-100 text-lg">Create, manage, and analyze comprehensive business reports with 5 different templates</p>
+                <div className="flex items-center space-x-6 mt-3">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <span className="text-sm text-blue-100">System Active</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <BarChart3 className="h-4 w-4 text-blue-200" />
+                    <span className="text-sm text-blue-100">{reports.length} Total Reports</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="flex items-center space-x-3">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
                 <RefreshCw className="h-4 w-4 mr-2" />
                 Refresh
               </Button>
-              <Button onClick={() => setShowCreateTemplates(!showCreateTemplates)}>
+              <Button 
+                onClick={() => setShowCreateTemplates(!showCreateTemplates)}
+                className="bg-white text-blue-600 hover:bg-blue-50 shadow-lg"
+              >
                 <Plus className="h-4 w-4 mr-2" />
                 Create Report
               </Button>
@@ -399,217 +416,377 @@ export default function SimpleReportManagement() {
 
         {/* Create Report Templates */}
         {showCreateTemplates && (
-          <Card>
-            <CardHeader>
-              <CardTitle>Choose Report Template</CardTitle>
-              <CardDescription>Select a template to create your new report</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {reportTemplates.map((template) => (
-                  <Card key={template.id} className="cursor-pointer hover:shadow-md transition-shadow border-2 hover:border-blue-200"
-                        onClick={() => handleCreateReport(template.id)}>
-                    <CardHeader className="pb-3">
-                      <div className="flex items-center space-x-3">
-                        <div className={`p-3 rounded-lg ${template.color} text-white`}>
-                          {template.icon}
+          <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+            <div className="bg-gradient-to-r from-gray-50 to-blue-50 px-6 py-4 border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">Choose Report Template</h3>
+                  <p className="text-gray-600 mt-1">Select a template to create your new report with pre-configured analytics</p>
+                </div>
+                <Button variant="outline" onClick={() => setShowCreateTemplates(false)} className="hover:bg-red-50 hover:border-red-200 hover:text-red-600">
+                  <X className="h-4 w-4 mr-2" />
+                  Cancel
+                </Button>
+              </div>
+            </div>
+            <div className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {reportTemplates.map((template, index) => (
+                  <div 
+                    key={template.id} 
+                    className="group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                    onClick={() => handleCreateReport(template.id)}
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <div className="bg-white rounded-xl border-2 border-gray-200 hover:border-blue-300 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+                      {/* Template Header */}
+                      <div className="relative p-6 pb-4">
+                        <div className="flex items-start space-x-4">
+                          <div className={`p-4 rounded-xl ${template.color} text-white shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
+                            {template.icon}
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                              {template.name}
+                            </h4>
+                            <p className="text-sm text-gray-600 mt-1 line-clamp-2">
+                              {template.description}
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <CardTitle className="text-lg">{template.name}</CardTitle>
-                          <CardDescription className="text-sm">{template.description}</CardDescription>
-                        </div>
+                        
+                        {/* Hover overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3">
+
+                      {/* Template Content */}
+                      <div className="px-6 pb-6 space-y-4">
                         <div>
-                          <p className="text-sm font-medium text-gray-700 mb-2">Key Metrics:</p>
-                          <div className="flex flex-wrap gap-1">
+                          <div className="flex items-center space-x-2 mb-3">
+                            <TrendingUp className="h-4 w-4 text-blue-500" />
+                            <p className="text-sm font-semibold text-gray-700">Key Metrics</p>
+                          </div>
+                          <div className="flex flex-wrap gap-2">
                             {template.fields.slice(0, 3).map((field, index) => (
-                              <Badge key={index} variant="secondary" className="text-xs">
+                              <Badge key={index} variant="secondary" className="text-xs bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors">
                                 {field}
                               </Badge>
                             ))}
                             {template.fields.length > 3 && (
-                              <Badge variant="secondary" className="text-xs">
+                              <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-600">
                                 +{template.fields.length - 3} more
                               </Badge>
                             )}
                           </div>
                         </div>
+                        
                         <div>
-                          <p className="text-sm font-medium text-gray-700 mb-2">Charts Included:</p>
-                          <div className="flex flex-wrap gap-1">
+                          <div className="flex items-center space-x-2 mb-3">
+                            <BarChart3 className="h-4 w-4 text-green-500" />
+                            <p className="text-sm font-semibold text-gray-700">Charts & Analytics</p>
+                          </div>
+                          <div className="flex flex-wrap gap-2">
                             {template.charts.slice(0, 2).map((chart, index) => (
-                              <Badge key={index} variant="outline" className="text-xs">
-                                <BarChart3 className="h-3 w-3 mr-1" />
+                              <Badge key={index} variant="outline" className="text-xs border-green-200 text-green-700 hover:bg-green-50 transition-colors">
+                                <Activity className="h-3 w-3 mr-1" />
                                 {chart}
                               </Badge>
                             ))}
                             {template.charts.length > 2 && (
-                              <Badge variant="outline" className="text-xs">
+                              <Badge variant="outline" className="text-xs border-gray-200 text-gray-600">
                                 +{template.charts.length - 2} more
                               </Badge>
                             )}
                           </div>
                         </div>
+
+                        {/* Create Button */}
+                        <div className="pt-2 border-t border-gray-100">
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-gray-500">Click to create</span>
+                            <div className="flex items-center space-x-1 text-blue-600 group-hover:text-blue-700 transition-colors">
+                              <Plus className="h-4 w-4" />
+                              <span className="text-sm font-medium">Create Report</span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 ))}
               </div>
-              <div className="flex justify-end mt-4">
-                <Button variant="outline" onClick={() => setShowCreateTemplates(false)}>
-                  Cancel
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         )}
 
         {/* Filters and Search */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Reports Overview ({filteredReports.length} reports)</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col md:flex-row gap-4 mb-6">
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+          <div className="bg-gradient-to-r from-gray-50 to-blue-50 px-6 py-4 border-b border-gray-200">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="bg-blue-100 p-2 rounded-lg">
+                  <BarChart3 className="h-5 w-5 text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">Reports Overview</h3>
+                  <p className="text-sm text-gray-600">
+                    {filteredReports.length} of {reports.length} reports • 
+                    {reports.filter(r => r.status === 'published').length} published • 
+                    {reports.filter(r => r.status === 'draft').length} drafts • 
+                    {reports.filter(r => r.status === 'scheduled').length} scheduled
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-1 text-sm text-gray-600">
+                  <Activity className="h-4 w-4 text-green-500" />
+                  <span>Live Updates</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="p-6">
+            <div className="flex flex-col lg:flex-row gap-4 mb-6">
               <div className="flex-1">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                   <Input
                     placeholder="Search reports by title, description, or tags..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10"
+                    className="pl-12 h-12 text-base border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-lg shadow-sm"
                   />
+                  {searchTerm && (
+                    <button
+                      onClick={() => setSearchTerm('')}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  )}
                 </div>
               </div>
-              <Select value={filterStatus} onValueChange={setFilterStatus}>
-                <SelectTrigger className="w-full md:w-40">
-                  <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="published">Published</SelectItem>
-                  <SelectItem value="draft">Draft</SelectItem>
-                  <SelectItem value="scheduled">Scheduled</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select value={filterTemplate} onValueChange={setFilterTemplate}>
-                <SelectTrigger className="w-full md:w-48">
-                  <SelectValue placeholder="Template" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Templates</SelectItem>
-                  {reportTemplates.map((template) => (
-                    <SelectItem key={template.id} value={template.id}>
-                      {template.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              
+              <div className="flex gap-3">
+                <div className="relative">
+                  <Select value={filterStatus} onValueChange={setFilterStatus}>
+                    <SelectTrigger className="w-40 h-12 border-gray-300 focus:border-blue-500 rounded-lg shadow-sm">
+                      <div className="flex items-center space-x-2">
+                        <CheckCircle className="h-4 w-4 text-gray-400" />
+                        <SelectValue placeholder="Status" />
+                      </div>
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                          <span>All Status</span>
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="published">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                          <span>Published</span>
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="draft">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                          <span>Draft</span>
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="scheduled">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span>Scheduled</span>
+                        </div>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="relative">
+                  <Select value={filterTemplate} onValueChange={setFilterTemplate}>
+                    <SelectTrigger className="w-52 h-12 border-gray-300 focus:border-blue-500 rounded-lg shadow-sm">
+                      <div className="flex items-center space-x-2">
+                        <FileText className="h-4 w-4 text-gray-400" />
+                        <SelectValue placeholder="Template" />
+                      </div>
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">
+                        <div className="flex items-center space-x-2">
+                          <FileText className="h-4 w-4 text-gray-400" />
+                          <span>All Templates</span>
+                        </div>
+                      </SelectItem>
+                      {reportTemplates.map((template) => (
+                        <SelectItem key={template.id} value={template.id}>
+                          <div className="flex items-center space-x-2">
+                            <div className={`p-1 rounded ${template.color.replace('bg-gradient-to-br from-', 'bg-').replace(' to-', '').split('-')[0] + '-500'}`}>
+                              <div className="w-3 h-3 text-white">
+                                {template.icon}
+                              </div>
+                            </div>
+                            <span>{template.name}</span>
+                          </div>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
             </div>
 
             {/* Reports Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredReports.map((report) => {
+              {filteredReports.map((report, index) => {
                 const template = getTemplateInfo(report.template);
                 return (
-                  <Card key={report.id} className="hover:shadow-md transition-shadow">
-                    <CardHeader className="pb-3">
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center space-x-3">
+                  <div 
+                    key={report.id} 
+                    className="group bg-white rounded-xl border border-gray-200 hover:border-blue-300 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                    style={{ animationDelay: `${index * 50}ms` }}
+                  >
+                    {/* Report Header */}
+                    <div className="p-6 pb-4">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-center space-x-4">
                           {template && (
-                            <div className={`p-2 rounded-lg ${template.color} text-white`}>
+                            <div className={`p-3 rounded-xl ${template.color} text-white shadow-lg group-hover:shadow-xl transition-all duration-300`}>
                               {template.icon}
                             </div>
                           )}
                           <div className="flex-1">
-                            <CardTitle className="text-base line-clamp-1">{report.title}</CardTitle>
-                            <CardDescription className="text-sm line-clamp-2">
+                            <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1">
+                              {report.title}
+                            </h3>
+                            <p className="text-sm text-gray-600 mt-1 line-clamp-2">
                               {report.description}
-                            </CardDescription>
+                            </p>
                           </div>
                         </div>
-                        <Badge className={`${getStatusColor(report.status)} flex items-center gap-1`}>
+                        <Badge className={`${getStatusColor(report.status)} flex items-center gap-1 shadow-sm`}>
                           {getStatusIcon(report.status)}
-                          <span className="capitalize text-xs">{report.status}</span>
+                          <span className="capitalize text-xs font-medium">{report.status}</span>
                         </Badge>
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3">
-                        <div className="flex flex-wrap gap-1">
-                          {report.tags.map((tag, index) => (
-                            <Badge key={index} variant="outline" className="text-xs">
-                              {tag}
-                            </Badge>
-                          ))}
-                        </div>
-                        
-                        <div className="text-xs text-gray-500 space-y-1">
-                          <p>Created: {new Date(report.createdAt).toLocaleDateString()}</p>
-                          <p>Updated: {new Date(report.updatedAt).toLocaleDateString()}</p>
-                          <p>Author: {report.author}</p>
-                        </div>
 
-                        <div className="flex items-center justify-between pt-2 border-t">
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {report.tags.map((tag, index) => (
+                          <Badge key={index} variant="outline" className="text-xs bg-gray-50 hover:bg-blue-50 hover:border-blue-200 transition-colors">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Report Details */}
+                    <div className="px-6 pb-4">
+                      <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+                        <div className="grid grid-cols-2 gap-4 text-xs">
                           <div className="flex items-center space-x-2">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => handleViewReport(report)}
-                            >
-                              <Eye className="h-4 w-4 mr-1" />
-                              Preview
-                            </Button>
-                            <Button variant="outline" size="sm">
-                              <Edit className="h-4 w-4 mr-1" />
-                              Edit
-                            </Button>
+                            <Calendar className="h-3 w-3 text-blue-500" />
+                            <div>
+                              <p className="text-gray-500">Created</p>
+                              <p className="font-medium text-gray-900">{new Date(report.createdAt).toLocaleDateString()}</p>
+                            </div>
                           </div>
-                          <div className="flex items-center space-x-1">
-                            <Button variant="ghost" size="sm">
-                              <Download className="h-4 w-4" />
-                            </Button>
-                            <Button variant="ghost" size="sm">
-                              <Share className="h-4 w-4" />
-                            </Button>
-                            <Button 
-                              variant="ghost" 
-                              size="sm"
-                              onClick={() => handleDeleteReport(report.id)}
-                              className="text-red-600 hover:text-red-700"
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
+                          <div className="flex items-center space-x-2">
+                            <RefreshCw className="h-3 w-3 text-green-500" />
+                            <div>
+                              <p className="text-gray-500">Updated</p>
+                              <p className="font-medium text-gray-900">{new Date(report.updatedAt).toLocaleDateString()}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-2 pt-2 border-t border-gray-200">
+                          <Users className="h-3 w-3 text-purple-500" />
+                          <div>
+                            <p className="text-gray-500 text-xs">Author</p>
+                            <p className="font-medium text-gray-900 text-xs">{report.author}</p>
                           </div>
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="px-6 pb-6">
+                      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <div className="flex items-center space-x-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleViewReport(report)}
+                            className="hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 transition-colors"
+                          >
+                            <Eye className="h-4 w-4 mr-1" />
+                            Preview
+                          </Button>
+                          <Button variant="outline" size="sm" className="hover:bg-green-50 hover:border-green-200 hover:text-green-600 transition-colors">
+                            <Edit className="h-4 w-4 mr-1" />
+                            Edit
+                          </Button>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                          <Button variant="ghost" size="sm" className="hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <Download className="h-4 w-4" />
+                          </Button>
+                          <Button variant="ghost" size="sm" className="hover:bg-green-50 hover:text-green-600 transition-colors">
+                            <Share className="h-4 w-4" />
+                          </Button>
+                          <Button 
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => handleDeleteReport(report.id)}
+                            className="text-red-500 hover:text-red-700 hover:bg-red-50 transition-colors"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 );
               })}
             </div>
 
             {filteredReports.length === 0 && (
-              <div className="text-center py-12">
-                <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No reports found</h3>
-                <p className="text-gray-600 mb-4">
+              <div className="text-center py-16">
+                <div className="bg-gray-100 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                  <FileText className="h-12 w-12 text-gray-400" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">No reports found</h3>
+                <p className="text-gray-600 mb-6 max-w-md mx-auto">
                   {searchTerm || filterStatus !== 'all' || filterTemplate !== 'all'
-                    ? 'Try adjusting your search or filters'
-                    : 'Create your first report to get started'}
+                    ? 'Try adjusting your search filters or create a new report with different criteria'
+                    : 'Get started by creating your first comprehensive business report'}
                 </p>
-                <Button onClick={() => setShowCreateTemplates(true)}>
-                  <Plus className="h-4 w-4 mr-2" />
-                  Create Report
-                </Button>
+                <div className="flex items-center justify-center space-x-3">
+                  {(searchTerm || filterStatus !== 'all' || filterTemplate !== 'all') && (
+                    <Button 
+                      variant="outline" 
+                      onClick={() => {
+                        setSearchTerm('');
+                        setFilterStatus('all');
+                        setFilterTemplate('all');
+                      }}
+                    >
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                      Clear Filters
+                    </Button>
+                  )}
+                  <Button onClick={() => setShowCreateTemplates(true)} className="bg-blue-600 hover:bg-blue-700">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Create Report
+                  </Button>
+                </div>
               </div>
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </MainLayout>
   );
