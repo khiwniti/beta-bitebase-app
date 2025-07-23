@@ -7,6 +7,7 @@ import AnalyticsDashboard from '@/components/analytics/AnalyticsDashboard';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { MainLayout } from '@/components/layout/MainLayout';
 
 function AnalyticsContent() {
   const router = useRouter();
@@ -123,34 +124,31 @@ function AnalyticsContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">
-                AI Analytics Dashboard
-              </h1>
-              <p className="mt-2 text-gray-600">
-                Comprehensive market intelligence and business insights powered by AI
+    <MainLayout>
+      <div className="space-y-6">
+        {/* Page Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">
+              AI Analytics Dashboard
+            </h1>
+            <p className="mt-2 text-gray-600">
+              Comprehensive market intelligence and business insights powered by AI
+            </p>
+          </div>
+          
+          {selectedLocation && (
+            <div className="text-right">
+              <p className="text-sm text-gray-500">Analyzing location:</p>
+              <p className="font-medium text-gray-900">
+                {selectedLocation.address}
               </p>
             </div>
-            
-            {selectedLocation && (
-              <div className="text-right">
-                <p className="text-sm text-gray-500">Analyzing location:</p>
-                <p className="font-medium text-gray-900">
-                  {selectedLocation.address}
-                </p>
-              </div>
-            )}
-          </div>
+          )}
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Main Content */}
+        <div>
         {!selectedLocation ? (
           /* Location Selection */
           <div className="max-w-2xl mx-auto">
@@ -246,8 +244,9 @@ function AnalyticsContent() {
             onChangeLocation={() => setSelectedLocation(null)}
           />
         ) : null}
+        </div>
       </div>
-    </div>
+    </MainLayout>
   );
 }
 

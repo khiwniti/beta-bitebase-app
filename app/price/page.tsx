@@ -3,10 +3,12 @@
 import React from 'react';
 import Link from 'next/link';
 import { DollarSign, TrendingUp, BarChart3, Utensils, Target, PieChart, MapPin, Star, Users, CheckCircle } from 'lucide-react';
+import { MainLayout } from '@/components/layout/MainLayout';
 
 export default function PricePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100">
+    <MainLayout>
+      <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100">
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -226,6 +228,7 @@ export default function PricePage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </MainLayout>
   );
 }
