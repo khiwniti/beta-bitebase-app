@@ -2,10 +2,12 @@
 
 import React from 'react';
 import { Star, MessageSquare, TrendingUp, AlertCircle } from 'lucide-react';
+import { MainLayout } from '@/components/layout/MainLayout';
 
 export default function ReviewsPage() {
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
+    <MainLayout>
+      <div className="max-w-7xl mx-auto space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
         <div className="flex items-center space-x-4">
@@ -78,6 +80,7 @@ export default function ReviewsPage() {
           </button>
         </div>
       </div>
-    </div>
+      </div>
+    </MainLayout>
   );
 }

@@ -27,7 +27,7 @@ export default function AppContent({
   const isPublicPage = pathname === '/' || pathname?.startsWith('/auth') || pathname?.startsWith('/blog') || pathname?.startsWith('/about') || pathname?.startsWith('/contact') || pathname?.startsWith('/privacy') || pathname?.startsWith('/terms') || pathname?.startsWith('/help') || pathname?.startsWith('/changelog')
   
   // Pages that use MainLayout instead of PageWrapper (to avoid double sidebar)
-  const usesMainLayout = pathname?.startsWith('/place') || pathname?.startsWith('/reports') || pathname === '/dashboard' || pathname?.startsWith('/product') || pathname?.startsWith('/price') || pathname?.startsWith('/promotion') || pathname?.startsWith('/analytics') || pathname?.startsWith('/location-intelligence') || pathname?.startsWith('/settings') || pathname?.startsWith('/customers') || pathname?.startsWith('/campaigns')
+  const usesMainLayout = pathname?.startsWith('/place') || pathname?.startsWith('/reports') || pathname === '/dashboard' || pathname?.startsWith('/product') || pathname?.startsWith('/price') || pathname?.startsWith('/promotion') || pathname?.startsWith('/analytics') || pathname?.startsWith('/location-intelligence') || pathname?.startsWith('/settings') || pathname?.startsWith('/customers') || pathname?.startsWith('/campaigns') || pathname?.startsWith('/reviews') || pathname?.startsWith('/calendar')
 
   // Check localStorage for tour completion status (client-side only)
   useEffect(() => {
