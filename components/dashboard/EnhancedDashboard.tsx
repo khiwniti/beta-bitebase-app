@@ -25,7 +25,7 @@ import {
   Target,
   Zap
 } from "lucide-react";
-import { useAuth } from "@/components/auth";
+// import { useAuth } from "@/components/auth";
 import { cn } from "@/lib/utils";
 import {
   useDashboardStats,
@@ -46,7 +46,13 @@ interface EnhancedDashboardProps {
 }
 
 export default function EnhancedDashboard({ className }: EnhancedDashboardProps) {
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  // Temporary bypass for development
+  const user = {
+    restaurantName: 'BiteBase Intelligence',
+    displayName: 'Restaurant Manager',
+    email: 'manager@bitebase.app'
+  };
   const [activeTab, setActiveTab] = useState("overview");
   
   // Use custom hooks for data fetching

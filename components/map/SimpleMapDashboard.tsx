@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useAuth } from '@/components/auth';
+// import { useAuth } from '@/components/auth';
 import RestaurantMapContainer, { Restaurant } from './RestaurantMapContainer';
 
 export interface SimpleMapDashboardProps {
@@ -9,7 +9,13 @@ export interface SimpleMapDashboardProps {
 }
 
 const SimpleMapDashboard: React.FC<SimpleMapDashboardProps> = ({ className = '' }) => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  // Temporary bypass for development
+  const user = {
+    restaurantName: 'BiteBase Intelligence',
+    displayName: 'Restaurant Manager',
+    email: 'manager@bitebase.app'
+  };
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
 
   // Handle restaurant selection
