@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { MainLayout } from '../../components/layout/MainLayout';
 import { MetricCard } from "../../components/ui/metric-card";
 import { DataTable } from "../../components/ui/data-table";
 import { ChartContainer, SimpleLineChart, SimpleBarChart } from "../../components/ui/chart-container";
@@ -23,14 +24,11 @@ export default function PlacePage() {
   const { t } = useLanguage();
 
   return (
-    <div>
+    <MainLayout 
+      pageTitle={t('locationIntelligence.title')}
+      pageDescription={t('locationIntelligence.description')}
+    >
       <div className="flex flex-col space-y-8">
-        {/* Page Header */}
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('locationIntelligence.title')}</h1>
-          <p className="text-gray-600">{t('locationIntelligence.description')}</p>
-        </div>
-
         {/* Action Button */}
         <div className="flex justify-end">
           <Link
@@ -229,7 +227,7 @@ export default function PlacePage() {
             </div>
           </div>
         </div>
-    </div>
-    </div>
+      </div>
+    </MainLayout>
   );
 }

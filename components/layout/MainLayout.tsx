@@ -242,17 +242,18 @@ export function MainLayout({
   // const { user, logout } = useAuth()
   // Temporary bypass for development
   const user = {
-    restaurantName: 'BiteBase Intelligence',
-    displayName: 'Restaurant Manager',
-    email: 'manager@bitebase.app'
+    id: '1',
+    name: 'Restaurant Manager',
+    email: 'manager@bitebase.app',
+    role: 'admin',
+    subscription_tier: 'pro' as const
   };
   const logout = () => console.log('Logout bypassed in development');
   const { isTourOpen, startTour, closeTour, completeTour } = useTour()
   const { language } = useLanguage()
   const t = useTranslations('common')
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({})
-  const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({})
+  // Removed expandedSections and expandedItems state - all sections are now always visible
   const [darkMode, setDarkMode] = useState(false)
   const [notifications, setNotifications] = useState([
     { id: 1, title: "New market report available", time: "2 min ago", read: false },
@@ -399,33 +400,7 @@ export function MainLayout({
     ];
   }, [language]);
 
-  // Initialize expanded sections on load
-  useEffect(() => {
-    // Default expand all sections
-    const sections: Record<string, boolean> = {};
-    navigation.forEach(section => {
-      sections[section.name] = true;
-    });
-    setExpandedSections(sections);
-    
-    // Auto expand active section
-    navigation.forEach(section => {
-      section.items.forEach(item => {
-        if (isActive(item.href)) {
-          setExpandedItems(prev => ({ ...prev, [item.name]: true }));
-        }
-        
-        // If the item has subitems and one is active, expand it
-        if (item.subitems) {
-          item.subitems.forEach(subitem => {
-            if (pathname === subitem.href) {
-              setExpandedItems(prev => ({ ...prev, [item.name]: true }));
-            }
-          });
-        }
-      });
-    });
-  }, [navigation, pathname]);
+  // Removed expanded sections initialization - all sections are now always visible
   
   // Toggle dark mode
   useEffect(() => {
@@ -444,19 +419,7 @@ export function MainLayout({
     }
   }
 
-  const toggleSection = (sectionName: string) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [sectionName]: !prev[sectionName]
-    }));
-  }
-  
-  const toggleItem = (itemName: string) => {
-    setExpandedItems(prev => ({
-      ...prev,
-      [itemName]: !prev[itemName]
-    }));
-  }
+  // Removed toggle functions - all sections are now always visible
 
   const isActive = (href: string) => {
     if (!pathname) return false;
@@ -545,29 +508,24 @@ export function MainLayout({
                     </div>
 
           {/* Navigation menu */}
-          <nav key={language} className="h-full overflow-y-auto pb-20 pt-2 scroll-smooth scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent">
-            <div className="px-3 py-2">
+          <nav key={language} className="h-full overflow-y-auto pb-20 pt-4 scroll-smooth scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent">
+            <div className="px-3">
                       {navigation.map((section) => (
-                <div key={section.name} className="mb-3">
-                  {/* Section header */}
+                <div key={section.name} className="mb-6">
+                  {/* Section header - always visible, simpler style */}
                           {!collapsedSidebar && (
-                              <button
-                                onClick={() => toggleSection(section.name)}
-                      className="w-full flex items-center justify-between px-3 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                    >
+                              <div className="px-3 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                       <span>{section.name}</span>
-                      <ChevronDown className={`h-3 w-3 transition-transform ${expandedSections[section.name] ? 'transform rotate-180' : ''}`} />
-                              </button>
+                              </div>
                           )}
                           
-                  {/* Section items */}
-                          {(expandedSections[section.name] || collapsedSidebar) && (
-                    <div className="mt-1 space-y-1">
+                  {/* Section items - always visible */}
+                    <div className="space-y-1">
                       {section.items.map((item) => (
                                   <div key={item.name}>
                                     <Link
                                       href={item.href}
-                            className={`group flex items-center ${!collapsedSidebar ? 'px-3 py-2 justify-between' : 'px-1 py-4 justify-center'} rounded-lg text-sm font-medium transition-colors duration-150 ease-in-out
+                            className={`group flex items-center ${!collapsedSidebar ? 'px-3 py-2.5 justify-between' : 'px-1 py-4 justify-center'} rounded-lg text-sm font-medium transition-colors duration-150 ease-in-out
                               ${isActive(item.href) 
                                 ? 'bg-primary-50 text-primary-700 hover:bg-primary-100 dark:bg-primary-900/20 dark:text-primary-400 dark:hover:bg-primary-900/30' 
                                 : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
@@ -600,25 +558,13 @@ export function MainLayout({
                                               </span>
                                             )}
                                 
-                                {/* Chevron for items with subitems */}
-                                            {item.subitems && (
-                                                <ChevronDown
-                                    className={`h-4 w-4 ml-1 transition-transform ${
-                                      expandedItems[item.name] ? 'transform rotate-180' : ''
-                                    }`}
-                                    onClick={(e) => {
-                                      e.preventDefault()
-                                      toggleItem(item.name)
-                                    }}
-                                  />
-                                )}
                                         </div>
                                       )}
                                     </Link>
                                     
-                          {/* Subitems dropdown */}
-                                    {!collapsedSidebar && item.subitems && expandedItems[item.name] && (
-                            <div className="ml-10 mt-1 space-y-1">
+                          {/* Subitems - always visible when they exist */}
+                                    {!collapsedSidebar && item.subitems && (
+                            <div className="ml-6 mt-1 space-y-1">
                               {item.subitems.map((subitem) => (
                                             <Link
                                               key={subitem.name}
@@ -637,7 +583,6 @@ export function MainLayout({
                                   </div>
                       ))}
                             </div>
-                          )}
                         </div>
                       ))}
                           </div>
@@ -706,10 +651,10 @@ export function MainLayout({
                       <LogOut className="h-4 w-4 mr-3" />
                       Logout
                     </button>
-                    </div>
-                          </div>
-                        )}
-                      </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </nav>
                   </div>
       )}

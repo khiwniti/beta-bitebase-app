@@ -25,6 +25,9 @@ export default function AppContent({
 
   // Determine if we're on the landing page, auth pages, or blog pages
   const isPublicPage = pathname === '/' || pathname?.startsWith('/auth') || pathname?.startsWith('/blog') || pathname?.startsWith('/about') || pathname?.startsWith('/contact') || pathname?.startsWith('/privacy') || pathname?.startsWith('/terms') || pathname?.startsWith('/help') || pathname?.startsWith('/changelog')
+  
+  // Pages that use MainLayout instead of PageWrapper (to avoid double sidebar)
+  const usesMainLayout = pathname?.startsWith('/place') || pathname?.startsWith('/reports') || pathname === '/dashboard' || pathname?.startsWith('/product') || pathname?.startsWith('/price') || pathname?.startsWith('/promotion') || pathname?.startsWith('/analytics') || pathname?.startsWith('/location-intelligence') || pathname?.startsWith('/settings')
 
   // Check localStorage for tour completion status (client-side only)
   useEffect(() => {
@@ -59,8 +62,8 @@ export default function AppContent({
     }
     if (pathname?.includes('/product')) {
       return {
-        title: 'Menu Optimization',
-        description: 'Optimize your menu offerings and pricing'
+        title: t('product.title'),
+        description: t('product.description')
       }
     }
     if (pathname?.includes('/price')) {
@@ -109,8 +112,11 @@ export default function AppContent({
       {isPublicPage ? (
         // Public pages (landing, auth) don't use the dashboard layout
         <>{children}</>
+      ) : usesMainLayout ? (
+        // Pages that use MainLayout directly (to avoid double sidebar)
+        <>{children}</>
       ) : (
-        // Dashboard and authenticated pages use the PageWrapper
+        // Other authenticated pages use the PageWrapper
         <PageWrapper
           pageTitle={pageInfo.title}
           pageDescription={pageInfo.description}

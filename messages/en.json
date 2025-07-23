@@ -552,5 +552,45 @@
       "median": "Median"
     },
     "loadMore": "Load More Results"
+  },
+  "product": {
+    "title": "Menu Optimization",
+    "description": "Optimize your menu offerings and pricing",
+    "addNewItem": "Add New Item",
+    "dashboard": {
+      "title": "Product Dashboard",
+      "description": "Complete product management dashboard"
+    },
+    "categories": {
+      "title": "Menu Categories",
+      "description": "Organize and manage your menu categories"
+    },
+    "performance": {
+      "title": "Menu Performance",
+      "description": "Analyze sales and popularity of menu items"
+    },
+    "ingredients": {
+      "title": "Ingredient Analysis",
+      "description": "Track ingredient costs and availability"
+    },
+    "seasonal": {
+      "title": "Seasonal Menu Planning",
+      "description": "Plan seasonal menus and special offerings"
+    },
+    "posIntegration": {
+      "title": "POS Integration",
+      "description": "Connect and sync with your Point of Sale system"
+    },
+    "recentChanges": {
+      "title": "Recent Menu Changes",
+      "newItemAdded": "New Item Added",
+      "priceUpdated": "Price Updated",
+      "ingredientAlert": "Ingredient Alert",
+      "newItemDescription": "Added \"Mediterranean Salad\" to Appetizers",
+      "priceUpdateDescription": "Updated price of \"Grilled Salmon\" from $18.99 to $21.99",
+      "ingredientAlertDescription": "Avocado prices increased by 15% - affects 3 menu items",
+      "daysAgo": "{count} days ago",
+      "weekAgo": "1 week ago"
+    }
   }
 }

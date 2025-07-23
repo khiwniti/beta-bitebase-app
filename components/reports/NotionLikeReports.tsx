@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-// import { MainLayout } from '../layout/MainLayout';
+import { MainLayout } from '../layout/MainLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
@@ -308,14 +308,15 @@ export default function NotionLikeReports() {
   });
 
   return (
-    <div className="min-h-screen bg-white">
-        {/* Notion-like Header */}
+    <MainLayout 
+      pageTitle="📊 Reports"
+      pageDescription="Key insights and performance analytics"
+    >
+      <div className="min-h-screen bg-white">
         <div className="border-b border-gray-100">
           <div className="max-w-6xl mx-auto px-6 py-8">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">📊 Reports</h1>
-                <p className="text-gray-600">Key insights and performance analytics</p>
               </div>
               <Button 
                 onClick={() => setShowTemplates(true)}
@@ -512,5 +513,6 @@ export default function NotionLikeReports() {
           )}
         </div>
       </div>
+    </MainLayout>
   );
 }

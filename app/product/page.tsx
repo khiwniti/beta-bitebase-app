@@ -2,10 +2,13 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { MainLayout } from '../../components/layout/MainLayout';
 
 export default function ProductPage() {
+  const { t } = useLanguage();
   return (
-    <div>
+    <MainLayout>
       <div className="flex flex-col space-y-8">
       {/* Action Button */}
       <div className="flex justify-end mb-4">
@@ -13,7 +16,7 @@ export default function ProductPage() {
           href="/product/new"
           className="btn-primary px-4 py-2 rounded-md"
         >
-          Add New Item
+          {t('product.addNewItem')}
         </Link>
       </div>
 
@@ -33,8 +36,8 @@ export default function ProductPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Product Dashboard</h3>
-              <p className="text-sm text-gray-500">Complete product management dashboard</p>
+              <h3 className="text-lg font-medium">{t('product.dashboard.title')}</h3>
+              <p className="text-sm text-gray-500">{t('product.dashboard.description')}</p>
             </div>
           </div>
         </Link>
@@ -54,8 +57,8 @@ export default function ProductPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Menu Categories</h3>
-              <p className="text-sm text-gray-500">Organize and manage your menu categories</p>
+              <h3 className="text-lg font-medium">{t('product.categories.title')}</h3>
+              <p className="text-sm text-gray-500">{t('product.categories.description')}</p>
             </div>
           </div>
         </Link>
@@ -74,8 +77,8 @@ export default function ProductPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Menu Performance</h3>
-              <p className="text-sm text-gray-500">Analyze sales and popularity of menu items</p>
+              <h3 className="text-lg font-medium">{t('product.performance.title')}</h3>
+              <p className="text-sm text-gray-500">{t('product.performance.description')}</p>
             </div>
           </div>
         </Link>
@@ -99,8 +102,8 @@ export default function ProductPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Ingredient Analysis</h3>
-              <p className="text-sm text-gray-500">Track ingredient costs and availability</p>
+              <h3 className="text-lg font-medium">{t('product.ingredients.title')}</h3>
+              <p className="text-sm text-gray-500">{t('product.ingredients.description')}</p>
             </div>
           </div>
         </Link>
@@ -120,8 +123,8 @@ export default function ProductPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">Seasonal Menu Planning</h3>
-              <p className="text-sm text-gray-500">Plan seasonal menus and special offerings</p>
+              <h3 className="text-lg font-medium">{t('product.seasonal.title')}</h3>
+              <p className="text-sm text-gray-500">{t('product.seasonal.description')}</p>
             </div>
           </div>
         </Link>
@@ -142,8 +145,8 @@ export default function ProductPage() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-medium">POS Integration</h3>
-              <p className="text-sm text-gray-500">Connect and sync with your Point of Sale system</p>
+              <h3 className="text-lg font-medium">{t('product.posIntegration.title')}</h3>
+              <p className="text-sm text-gray-500">{t('product.posIntegration.description')}</p>
             </div>
           </div>
         </Link>
@@ -151,7 +154,7 @@ export default function ProductPage() {
 
       {/* Recent Activity */}
       <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
-        <h3 className="text-lg font-medium mb-4">Recent Menu Changes</h3>
+        <h3 className="text-lg font-medium mb-4">{t('product.recentChanges.title')}</h3>
         <div className="space-y-4">
           <div className="flex items-start p-3 rounded-lg hover:bg-gray-50 transition-all">
             <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center mr-3 text-primary">
@@ -159,10 +162,10 @@ export default function ProductPage() {
             </div>
             <div className="flex-1">
               <div className="flex justify-between">
-                <h4 className="font-medium">New Item Added</h4>
-                <span className="text-xs text-gray-500">2 days ago</span>
+                <h4 className="font-medium">{t('product.recentChanges.newItemAdded')}</h4>
+                <span className="text-xs text-gray-500">{t('product.recentChanges.daysAgo', { count: 2 })}</span>
               </div>
-              <p className="text-sm text-gray-500">Added "Mediterranean Salad" to Appetizers</p>
+              <p className="text-sm text-gray-500">{t('product.recentChanges.newItemDescription')}</p>
             </div>
           </div>
 
@@ -172,10 +175,10 @@ export default function ProductPage() {
             </div>
             <div className="flex-1">
               <div className="flex justify-between">
-                <h4 className="font-medium">Price Updated</h4>
-                <span className="text-xs text-gray-500">5 days ago</span>
+                <h4 className="font-medium">{t('product.recentChanges.priceUpdated')}</h4>
+                <span className="text-xs text-gray-500">{t('product.recentChanges.daysAgo', { count: 5 })}</span>
               </div>
-              <p className="text-sm text-gray-500">Updated price of "Grilled Salmon" from $18.99 to $21.99</p>
+              <p className="text-sm text-gray-500">{t('product.recentChanges.priceUpdateDescription')}</p>
             </div>
           </div>
 
@@ -185,15 +188,15 @@ export default function ProductPage() {
             </div>
             <div className="flex-1">
               <div className="flex justify-between">
-                <h4 className="font-medium">Ingredient Alert</h4>
-                <span className="text-xs text-gray-500">1 week ago</span>
+                <h4 className="font-medium">{t('product.recentChanges.ingredientAlert')}</h4>
+                <span className="text-xs text-gray-500">{t('product.recentChanges.weekAgo')}</span>
               </div>
-              <p className="text-sm text-gray-500">Avocado prices increased by 15% - affects 3 menu items</p>
+              <p className="text-sm text-gray-500">{t('product.recentChanges.ingredientAlertDescription')}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
+    </MainLayout>
   );
 }

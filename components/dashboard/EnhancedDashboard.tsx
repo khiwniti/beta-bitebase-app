@@ -49,9 +49,11 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
   // const { user } = useAuth();
   // Temporary bypass for development
   const user = {
-    restaurantName: 'BiteBase Intelligence',
-    displayName: 'Restaurant Manager',
-    email: 'manager@bitebase.app'
+    id: '1',
+    name: 'Restaurant Manager',
+    email: 'manager@bitebase.app',
+    role: 'admin',
+    subscription_tier: 'pro' as const
   };
   const [activeTab, setActiveTab] = useState("overview");
   

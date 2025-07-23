@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { MainLayout } from "../layout/MainLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -55,7 +56,11 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
   ];
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <MainLayout 
+      pageTitle={t("dashboard.title")}
+      pageDescription={t("dashboard.description")}
+    >
+      <div className={`space-y-6 ${className}`}>
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <TabsList className="grid w-full grid-cols-6 bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
@@ -1138,6 +1143,7 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
           </Card>
         </TabsContent>
       </Tabs>
-    </div>
+      </div>
+    </MainLayout>
   );
 }

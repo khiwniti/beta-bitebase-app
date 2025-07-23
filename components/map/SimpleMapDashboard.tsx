@@ -12,9 +12,11 @@ const SimpleMapDashboard: React.FC<SimpleMapDashboardProps> = ({ className = '' 
   // const { user } = useAuth();
   // Temporary bypass for development
   const user = {
-    restaurantName: 'BiteBase Intelligence',
-    displayName: 'Restaurant Manager',
-    email: 'manager@bitebase.app'
+    id: '1',
+    name: 'Restaurant Manager',
+    email: 'manager@bitebase.app',
+    role: 'admin',
+    subscription_tier: 'pro' as const
   };
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
 
