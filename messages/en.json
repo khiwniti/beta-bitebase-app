@@ -36,7 +36,10 @@
     },
     "subitems": {
       "areaInsights": "Area Insights",
-      "comparison": "Comparison"
+      "comparison": "Comparison",
+      "areaOverview": "Area Overview",
+      "footTraffic": "Foot Traffic",
+      "competitionMap": "Competition Map"
     },
     "badges": {
       "pro": "Pro",

@@ -1012,6 +1012,104 @@ class ApiClient {
       body: JSON.stringify(params),
     });
   }
+
+  // Customer Analytics API methods
+  async getCustomerDemographics(lat: number, lng: number, radius: number = 5000): Promise<
+    ApiResponse<{
+      demographics: Record<string, { count: number; places: any[] }>;
+      analysis: {
+        customerSegments: Array<{
+          segment: string;
+          confidence: string;
+          indicators: string[];
+          characteristics: string[];
+        }>;
+        trafficPatterns: {
+          peakHours: string[];
+          weekendTraffic: string;
+          seasonalTrends: string[];
+        };
+        competitorDensity: number;
+        marketOpportunities: Array<{
+          opportunity: string;
+          description: string;
+          potential: string;
+        }>;
+      };
+      location: { lat: number; lng: number; radius: number };
+    }>
+  > {
+    return this.request(`/api/customers/demographics/${lat}/${lng}?radius=${radius}`);
+  }
+
+  async getCustomerInsights(lat: number, lng: number, radius: number = 5000): Promise<
+    ApiResponse<{
+      demographics: any;
+      marketMetrics: {
+        competitorCount: number;
+        averageRating: string;
+        priceDistribution: Record<string, number>;
+        marketSaturation: string;
+      };
+      recommendations: Array<{
+        type: string;
+        title: string;
+        description: string;
+        priority: string;
+      }>;
+    }>
+  > {
+    return this.request(`/api/customers/insights/${lat}/${lng}?radius=${radius}`);
+  }
+
+  async getNearbyPlaces(lat: number, lng: number, radius: number = 5000, type: string = 'restaurant'): Promise<
+    ApiResponse<{
+      data: Array<{
+        place_id: string;
+        name: string;
+        rating?: number;
+        user_ratings_total?: number;
+        price_level?: number;
+        types: string[];
+        geometry: {
+          location: { lat: number; lng: number };
+        };
+        vicinity: string;
+      }>;
+      total: number;
+    }>
+  > {
+    return this.request(`/api/customers/nearby-places/${lat}/${lng}?radius=${radius}&type=${type}`);
+  }
+
+  // Reports API methods
+  async getReports(): Promise<ApiResponse<{ success: boolean; data: any[] }>> {
+    return this.request('/api/reports');
+  }
+
+  async getReport(reportId: string): Promise<ApiResponse<{ success: boolean; data: any }>> {
+    return this.request(`/api/reports/${reportId}`);
+  }
+
+  async generateReport(type: string, params: any): Promise<ApiResponse<{ success: boolean; data: any }>> {
+    return this.request(`/api/reports/generate/${type}`, {
+      method: 'POST',
+      body: JSON.stringify(params),
+    });
+  }
+
+  async deleteReport(reportId: string): Promise<ApiResponse<{ success: boolean }>> {
+    return this.request(`/api/reports/${reportId}`, {
+      method: 'DELETE',
+    });
+  }
+
+  // Add defaults property for compatibility
+  get defaults() {
+    return {
+      baseURL: this.baseUrl
+    };
+  }
 }
 
 // Export singleton instance

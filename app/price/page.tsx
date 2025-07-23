@@ -6,7 +6,7 @@ import { DollarSign, TrendingUp, BarChart3, Utensils, Target, PieChart, MapPin, 
 
 export default function PricePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100">
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -21,14 +21,14 @@ export default function PricePage() {
             <div className="flex justify-center space-x-4 mb-8">
               <Link
                 href="/price/analysis"
-                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors shadow-lg"
+                className="inline-flex items-center px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors shadow-lg"
               >
                 <BarChart3 className="w-5 h-5 mr-2" />
                 Dish Price Analysis
               </Link>
               <Link
                 href="/price/restaurant-menu"
-                className="inline-flex items-center px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors shadow-lg"
+                className="inline-flex items-center px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors shadow-lg"
               >
                 <Utensils className="w-5 h-5 mr-2" />
                 Restaurant Menu Pricing
@@ -154,25 +154,25 @@ export default function PricePage() {
       </div>
 
       {/* Benefits Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 py-16">
+      <div className="bg-gradient-to-r from-green-600 to-red-600 py-16">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-3xl font-bold text-white mb-4">
             Transform Your Pricing Strategy Today
           </h2>
-          <p className="text-xl text-blue-100 mb-8">
+          <p className="text-xl text-green-100 mb-8">
             Join restaurants using data-driven dish pricing to increase revenue by up to 25%
           </p>
           <div className="flex justify-center space-x-4">
             <Link
               href="/price/analysis"
-              className="inline-flex items-center px-8 py-3 bg-white text-blue-600 font-medium rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
+              className="inline-flex items-center px-8 py-3 bg-white text-green-600 font-medium rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
             >
               <PieChart className="w-5 h-5 mr-2" />
               Start Analysis
             </Link>
             <Link
               href="/price/restaurant-menu"
-              className="inline-flex items-center px-8 py-3 bg-transparent border-2 border-white text-white font-medium rounded-lg hover:bg-white hover:text-blue-600 transition-colors"
+              className="inline-flex items-center px-8 py-3 bg-transparent border-2 border-white text-white font-medium rounded-lg hover:bg-white hover:text-green-600 transition-colors"
             >
               <MapPin className="w-5 h-5 mr-2" />
               Explore Restaurants
@@ -195,33 +195,33 @@ export default function PricePage() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-neutral-900 mb-2">Real-time Analytics</h3>
-              <p className="text-neutral-600">Get instant insights into your restaurant's performance with live data updates.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Real-time Analytics</h3>
+              <p className="text-gray-600">Get instant insights into your restaurant's performance with live data updates.</p>
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-accent-saffron-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-accent-saffron-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-neutral-900 mb-2">AI-Powered Insights</h3>
-              <p className="text-neutral-600">Leverage artificial intelligence to discover hidden opportunities and optimize operations.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">AI-Powered Insights</h3>
+              <p className="text-gray-600">Leverage artificial intelligence to discover hidden opportunities and optimize operations.</p>
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-accent-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-accent-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-neutral-900 mb-2">Enterprise Security</h3>
-              <p className="text-neutral-600">Your data is protected with enterprise-grade security and compliance standards.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Enterprise Security</h3>
+              <p className="text-gray-600">Your data is protected with enterprise-grade security and compliance standards.</p>
             </div>
           </div>
         </div>
