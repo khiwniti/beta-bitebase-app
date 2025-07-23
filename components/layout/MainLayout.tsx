@@ -46,7 +46,7 @@ import {
   CreditCard
 } from 'lucide-react'
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
-import { useAuth } from '../../contexts/AuthContext'
+// import { useAuth } from '../../contexts/AuthContext'
 import BiteBaseLogo from '../BiteBaseLogo'
 import { WebTour, useTour } from '../tour/WebTour'
 import { TourTrigger, WelcomeBanner } from '../tour/TourTrigger'
@@ -239,7 +239,14 @@ export function MainLayout({
   showNavbar = true
 }: MainLayoutProps) {
   const pathname = usePathname()
-  const { user, logout } = useAuth()
+  // const { user, logout } = useAuth()
+  // Temporary bypass for development
+  const user = {
+    restaurantName: 'BiteBase Intelligence',
+    displayName: 'Restaurant Manager',
+    email: 'manager@bitebase.app'
+  };
+  const logout = () => console.log('Logout bypassed in development');
   const { isTourOpen, startTour, closeTour, completeTour } = useTour()
   const { language } = useLanguage()
   const t = useTranslations('common')
