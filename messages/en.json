@@ -57,7 +57,33 @@
     "edit": "Edit",
     "delete": "Delete",
     "search": "Search",
-    "filter": "Filter"
+    "filter": "Filter",
+    "saveAnalysis": "Save Analysis",
+    "generateReport": "Generate Report"
+  },
+  "marketAnalysis": {
+    "title": "Market Analysis",
+    "subtitle": "Explore market data and competition in your area",
+    "configuration": "Analysis Configuration",
+    "targetLocation": "Target Location",
+    "analysisType": "Analysis Type",
+    "layers": "Layers",
+    "realTimeTracking": "Real-time Location Tracking",
+    "marketMetrics": "Market Metrics"
+  },
+  "location": {
+    "map": "Location Map",
+    "mapDescription": "Interactive map of your locations and competitors",
+    "demographics": "Demographic Analysis",
+    "demographicsDescription": "Analyze customer demographics by location"
+  },
+  "pricing": {
+    "dishBased": {
+      "title": "Dish-Based Pricing Strategy",
+      "description": "Optimize your restaurant's menu pricing with real market data and AI-driven insights from actual restaurants"
+    },
+    "dishAnalysis": "Dish Price Analysis",
+    "menuPricing": "Restaurant Menu Pricing"
   },
   "auth": {
     "login": "Login",
@@ -69,9 +95,33 @@
   },
   "dashboard": {
     "title": "Dashboard",
+    "subtitle": "Your restaurant performance at a glance",
     "overview": "Overview",
+    "market": "Market",
+    "location": "Location",
     "analytics": "Analytics",
-    "reports": "Reports"
+    "explorer": "Explorer",
+    "aiInsights": "AI Insights",
+    "reports": "Reports",
+    "generateMarketAnalysis": "Generate Market Analysis",
+    "summaryOfFindings": "SUMMARY OF FINDINGS",
+    "progress": "Progress",
+    "progressStatus": "Done: {current}/{total}",
+    "progressPercent": "{percent}% Complete",
+    "searchingFood": "Searching Food",
+    "opportunityRating": "Opportunity Rating",
+    "highFootTraffic": "High foot traffic area",
+    "strongLunchMarket": "Strong lunch market",
+    "limitedBreakfastOptions": "Limited breakfast options",
+    "eveningDiningFocus": "Evening dining focus",
+    "expatCommunity": "Expat community",
+    "downtownBangkok": "Downtown Bangkok",
+    "sukhumvitRoad": "Sukhumvit Road",
+    "marketAnalysisResults": "Market Analysis Results",
+    "aiScoring": "AI Scoring",
+    "marketScore": "Market Score",
+    "viewOnMap": "View on Map",
+    "competitivePricingNeeded": "Competitive pricing needed"
   },
   "restaurant": {
     "name": "Restaurant Name",

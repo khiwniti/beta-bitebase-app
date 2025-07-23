@@ -22,6 +22,11 @@ export function ProtectedRoute({
 
   useEffect(() => {
     if (!loading) {
+      // Temporary bypass for demo/development - remove in production
+      if (process.env.NODE_ENV === 'development') {
+        return; // Allow access in development mode
+      }
+      
       if (!user) {
         router.push(redirectTo);
         return;
@@ -49,6 +54,11 @@ export function ProtectedRoute({
         </div>
       </div>
     );
+  }
+
+  // Temporary bypass for demo/development - remove in production
+  if (process.env.NODE_ENV === 'development') {
+    return <>{children}</>;
   }
 
   if (!user) {

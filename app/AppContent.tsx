@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 // import { useAuth } from '../contexts/AuthContext'
 import PageWrapper from '../components/layout/PageWrapper'
 import FloatingChatbot from '../components/ai/FloatingChatbot'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export default function AppContent({
   children,
@@ -12,6 +13,7 @@ export default function AppContent({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
+  const { t } = useLanguage()
   // const { user, loading } = useAuth() // This will now be called within AuthProvider
   const user = {
     restaurantName: 'BiteBase Intelligence',
@@ -39,14 +41,14 @@ export default function AppContent({
   const getPageInfo = () => {
     if (pathname === '/dashboard') {
       return {
-        title: 'Dashboard',
-        description: 'Your restaurant performance at a glance'
+        title: t('dashboard.title'),
+        description: t('dashboard.subtitle')
       }
     }
     if (pathname?.includes('/market-analysis')) {
       return {
-        title: 'Market Analysis',
-        description: 'Explore market data and competition in your area'
+        title: t('marketAnalysis.title'),
+        description: t('marketAnalysis.subtitle')
       }
     }
     if (pathname?.includes('/place')) {

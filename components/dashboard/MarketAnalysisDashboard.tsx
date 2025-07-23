@@ -23,6 +23,7 @@ import {
   Star,
   Clock
 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface MarketAnalysisDashboardProps {
   className?: string;
@@ -30,26 +31,27 @@ interface MarketAnalysisDashboardProps {
 
 export default function MarketAnalysisDashboard({ className }: MarketAnalysisDashboardProps) {
   const [activeTab, setActiveTab] = useState("overview");
+  const { t } = useLanguage();
 
   // Mock data to match the image
   const summaryData = {
-    analytics: "Searching Food",
+    analytics: t("dashboard.searchingFood"),
     aiScoring: "60 of 60",
-    marketScore: "Opportunity Rating"
+    marketScore: t("dashboard.opportunityRating")
   };
 
   const progressValue = 60; // 6/10 = 60%
 
   const findings = [
-    "High foot traffic area",
-    "Strong lunch market", 
-    "Limited breakfast options"
+    t("dashboard.highFootTraffic"),
+    t("dashboard.strongLunchMarket"), 
+    t("dashboard.limitedBreakfastOptions")
   ];
 
   const insights = [
-    "Evening dining focus",
-    "Expat community",
-    "Competitive pricing needed"
+    t("dashboard.eveningDiningFocus"),
+    t("dashboard.expatCommunity"),
+    t("dashboard.competitivePricingNeeded")
   ];
 
   return (
@@ -62,42 +64,42 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
             className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white transition-all duration-200"
           >
             <BarChart3 className="h-4 w-4" />
-            <span className="hidden sm:inline">Overview</span>
+            <span className="hidden sm:inline">{t("dashboard.overview")}</span>
           </TabsTrigger>
           <TabsTrigger 
             value="market" 
             className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white transition-all duration-200"
           >
             <Globe className="h-4 w-4" />
-            <span className="hidden sm:inline">Market</span>
+            <span className="hidden sm:inline">{t("dashboard.market")}</span>
           </TabsTrigger>
           <TabsTrigger 
             value="location" 
             className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white transition-all duration-200"
           >
             <MapPin className="h-4 w-4" />
-            <span className="hidden sm:inline">Location</span>
+            <span className="hidden sm:inline">{t("dashboard.location")}</span>
           </TabsTrigger>
           <TabsTrigger 
             value="analytics" 
             className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white transition-all duration-200"
           >
             <TrendingUp className="h-4 w-4" />
-            <span className="hidden sm:inline">Analytics</span>
+            <span className="hidden sm:inline">{t("dashboard.analytics")}</span>
           </TabsTrigger>
           <TabsTrigger 
             value="explorer" 
             className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white transition-all duration-200"
           >
             <Utensils className="h-4 w-4" />
-            <span className="hidden sm:inline">Explorer</span>
+            <span className="hidden sm:inline">{t("dashboard.explorer")}</span>
           </TabsTrigger>
           <TabsTrigger 
             value="ai-insights" 
             className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-700 dark:data-[state=active]:text-white transition-all duration-200"
           >
             <Brain className="h-4 w-4" />
-            <span className="hidden sm:inline">AI Insights</span>
+            <span className="hidden sm:inline">{t("dashboard.aiInsights")}</span>
           </TabsTrigger>
         </TabsList>
 
@@ -110,7 +112,7 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
               size="lg"
             >
               <Target className="h-5 w-5 mr-2" />
-              Generate Market Analysis
+              {t("dashboard.generateMarketAnalysis")}
             </Button>
           </div>
 
@@ -121,7 +123,7 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
               <Card className="h-full">
                 <CardHeader>
                   <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white">
-                    SUMMARY OF FINDINGS
+                    {t("dashboard.summaryOfFindings")}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
@@ -129,7 +131,7 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <BarChart3 className="h-5 w-5 text-blue-500" />
-                      <span className="font-medium">Analytics</span>
+                      <span className="font-medium">{t("dashboard.analytics")}</span>
                     </div>
                     <span className="text-gray-600">{summaryData.analytics}</span>
                   </div>
@@ -138,7 +140,7 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <Brain className="h-5 w-5 text-purple-500" />
-                      <span className="font-medium">AI Scoring</span>
+                      <span className="font-medium">{t("dashboard.aiScoring")}</span>
                     </div>
                     <span className="text-gray-600">{summaryData.aiScoring}</span>
                   </div>
@@ -147,7 +149,7 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <Target className="h-5 w-5 text-green-500" />
-                      <span className="font-medium">Market Score</span>
+                      <span className="font-medium">{t("dashboard.marketScore")}</span>
                     </div>
                     <span className="text-gray-600">{summaryData.marketScore}</span>
                   </div>
@@ -161,10 +163,10 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                 <CardHeader>
                   <div className="flex justify-between items-center">
                     <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white">
-                      Progress
+                      {t("dashboard.progress")}
                     </CardTitle>
                     <Badge variant="secondary" className="bg-green-100 text-green-800">
-                      Done: 6/10
+                      {t("dashboard.progressStatus", { current: 6, total: 10 })}
                     </Badge>
                   </div>
                 </CardHeader>
@@ -172,7 +174,7 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                   <div className="space-y-4">
                     <Progress value={progressValue} className="w-full" />
                     <p className="text-sm text-gray-600 text-center">
-                      {progressValue}% Complete
+                      {t("dashboard.progressPercent", { percent: progressValue })}
                     </p>
                   </div>
                 </CardContent>
@@ -187,9 +189,9 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle className="text-lg font-semibold">Downtown Bangkok</CardTitle>
+                    <CardTitle className="text-lg font-semibold">{t("dashboard.downtownBangkok")}</CardTitle>
                     <CardDescription className="text-sm text-gray-600">
-                      Market Analysis Results
+                      {t("dashboard.marketAnalysisResults")}
                     </CardDescription>
                   </div>
                   <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">
@@ -208,7 +210,7 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                 </div>
                 <Button variant="outline" className="w-full">
                   <Map className="h-4 w-4 mr-2" />
-                  View on Map
+                  {t("dashboard.viewOnMap")}
                 </Button>
               </CardContent>
             </Card>
@@ -218,9 +220,9 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle className="text-lg font-semibold">Sukhumvit Road</CardTitle>
+                    <CardTitle className="text-lg font-semibold">{t("dashboard.sukhumvitRoad")}</CardTitle>
                     <CardDescription className="text-sm text-gray-600">
-                      Market Analysis Results
+                      {t("dashboard.marketAnalysisResults")}
                     </CardDescription>
                   </div>
                   <Badge variant="secondary" className="bg-blue-100 text-blue-800">
@@ -239,7 +241,7 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                 </div>
                 <Button variant="outline" className="w-full">
                   <Map className="h-4 w-4 mr-2" />
-                  View on Map
+                  {t("dashboard.viewOnMap")}
                 </Button>
               </CardContent>
             </Card>

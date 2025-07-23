@@ -36,7 +36,10 @@
     },
     "subitems": {
       "areaInsights": "ข้อมูลพื้นที่",
-      "comparison": "การเปรียบเทียบ"
+      "comparison": "การเปรียบเทียบ",
+      "areaOverview": "ภาพรวมพื้นที่",
+      "footTraffic": "การเดินทางของลูกค้า",
+      "competitionMap": "แผนที่คู่แข่ง"
     },
     "badges": {
       "pro": "โปร",
@@ -54,7 +57,33 @@
     "edit": "แก้ไข",
     "delete": "ลบ",
     "search": "ค้นหา",
-    "filter": "กรอง"
+    "filter": "กรอง",
+    "saveAnalysis": "บันทึกการวิเคราะห์",
+    "generateReport": "สร้างรายงาน"
+  },
+  "marketAnalysis": {
+    "title": "การวิเคราะห์ตลาด",
+    "subtitle": "สำรวจข้อมูลตลาดและการแข่งขันในพื้นที่ของคุณ",
+    "configuration": "การกำหนดค่าการวิเคราะห์",
+    "targetLocation": "ตำแหน่งเป้าหมาย",
+    "analysisType": "ประเภทการวิเคราะห์",
+    "layers": "เลเยอร์",
+    "realTimeTracking": "การติดตามแบบเรียลไทม์",
+    "marketMetrics": "ตัวชี้วัดตลาด"
+  },
+  "location": {
+    "map": "แผนที่ตำแหน่ง",
+    "mapDescription": "แผนที่แบบโต้ตอบของตำแหน่งและคู่แข่งของคุณ",
+    "demographics": "การวิเคราะห์ประชากรศาสตร์",
+    "demographicsDescription": "วิเคราะห์ประชากรศาสตร์ลูกค้าตามตำแหน่ง"
+  },
+  "pricing": {
+    "dishBased": {
+      "title": "กลยุทธ์การตั้งราคาตามจาน",
+      "description": "เพิ่มประสิทธิภาพการตั้งราคาเมนูร้านอาหารของคุณด้วยข้อมูลตลาดจริงและข้อมูลเชิงลึกที่ขับเคลื่อนด้วย AI จากร้านอาหารจริง"
+    },
+    "dishAnalysis": "การวิเคราะห์ราคาจาน",
+    "menuPricing": "การตั้งราคาเมนูร้านอาหาร"
   },
   "auth": {
     "login": "เข้าสู่ระบบ",
@@ -66,9 +95,33 @@
   },
   "dashboard": {
     "title": "แดชบอร์ด",
+    "subtitle": "ประสิทธิภาพร้านอาหารของคุณในมุมมองเดียว",
     "overview": "ภาพรวม",
+    "market": "ตลาด",
+    "location": "ที่ตั้ง",
     "analytics": "การวิเคราะห์",
-    "reports": "รายงาน"
+    "explorer": "สำรวจ",
+    "aiInsights": "ข้อมูลเชิงลึก AI",
+    "reports": "รายงาน",
+    "generateMarketAnalysis": "สร้างการวิเคราะห์ตลาด",
+    "summaryOfFindings": "สรุปผลการค้นพบ",
+    "progress": "ความคืบหน้า",
+    "progressStatus": "เสร็จแล้ว: {current}/{total}",
+    "progressPercent": "{percent}% เสร็จสมบูรณ์",
+    "searchingFood": "กำลังค้นหาอาหาร",
+    "opportunityRating": "คะแนนโอกาส",
+    "highFootTraffic": "พื้นที่มีการเดินทางสูง",
+    "strongLunchMarket": "ตลาดอาหารกลางวันแข็งแกร่ง",
+    "limitedBreakfastOptions": "ตัวเลือกอาหารเช้าจำกัด",
+    "eveningDiningFocus": "เน้นการรับประทานอาหารเย็น",
+    "expatCommunity": "ชุมชนชาวต่างชาติ",
+    "downtownBangkok": "ใจกลางกรุงเทพฯ",
+    "sukhumvitRoad": "ถนนสุขุมวิท",
+    "marketAnalysisResults": "ผลการวิเคราะห์ตลาด",
+    "aiScoring": "คะแนน AI",
+    "marketScore": "คะแนนตลาด",
+    "viewOnMap": "ดูบนแผนที่",
+    "competitivePricingNeeded": "จำเป็นต้องตั้งราคาแข่งขัน"
   },
   "restaurant": {
     "name": "ชื่อร้านอาหาร",
