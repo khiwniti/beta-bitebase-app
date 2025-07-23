@@ -1,12 +1,12 @@
 "use client";
 
 import { ProtectedRoute } from "@/components/auth";
-import EnhancedDashboard from "@/components/dashboard/EnhancedDashboard";
+import MarketAnalysisDashboard from "@/components/dashboard/MarketAnalysisDashboard";
 
 export default function DashboardPage() {
   return (
     <ProtectedRoute>
-      <EnhancedDashboard />
+      <MarketAnalysisDashboard />
     </ProtectedRoute>
   );
 }

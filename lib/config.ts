@@ -15,8 +15,8 @@ export const API_CONFIG = {
     process.env.NEXT_PUBLIC_API_URL ||
     (isDevelopment
       ? (typeof window !== "undefined"
-          ? `${window.location.protocol}//${window.location.hostname}:56222`
-          : "http://localhost:56222")
+          ? `${window.location.protocol}//${window.location.hostname}:58952`
+          : "http://localhost:58952")
       : "https://api.bitebase.app"),
   APP_URL: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:52580",
 
