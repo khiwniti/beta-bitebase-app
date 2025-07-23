@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { MainLayout } from '../layout/MainLayout';
+// import { MainLayout } from '../layout/MainLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
@@ -308,8 +308,7 @@ export default function NotionLikeReports() {
   });
 
   return (
-    <MainLayout>
-      <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
         {/* Notion-like Header */}
         <div className="border-b border-gray-100">
           <div className="max-w-6xl mx-auto px-6 py-8">
@@ -513,6 +512,5 @@ export default function NotionLikeReports() {
           )}
         </div>
       </div>
-    </MainLayout>
   );
 }
