@@ -2,9 +2,11 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { MainLayout } from '@/components/layout/MainLayout';
 
 export default function PromotionPage() {
   return (
+    <MainLayout>
       <div className="flex flex-col space-y-8">
       {/* Action Button */}
       <div className="flex justify-end">
@@ -244,6 +246,7 @@ export default function PromotionPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </MainLayout>
   );
 }
