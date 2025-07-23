@@ -29,7 +29,39 @@ import {
   PieChart,
   Activity,
   X,
-  LineChart
+  LineChart,
+  Package,
+  Wallet,
+  Target,
+  Zap,
+  Star,
+  Filter,
+  SortDesc,
+  Grid3X3,
+  List,
+  Settings,
+  BookOpen,
+  TrendingDown,
+  ArrowUpRight,
+  ArrowDownRight,
+  Database,
+  ChartBar,
+  Layers,
+  Globe,
+  Shield,
+  Award,
+  Briefcase,
+  Calculator,
+  CreditCard,
+  ShoppingCart,
+  Truck,
+  Factory,
+  Store,
+  MessageCircle,
+  Bot,
+  Send,
+  Minimize2,
+  Maximize2
 } from 'lucide-react';
 
 interface Report {
@@ -60,8 +92,11 @@ const reportTemplates: ReportTemplate[] = [
     id: 'sales',
     name: 'Sales Analytics Report',
     description: 'Comprehensive sales performance analysis with revenue trends and product insights',
-    icon: <DollarSign className="h-6 w-6" />,
-    color: 'bg-gradient-to-br from-green-500 to-green-600',
+    icon: <div className="relative">
+      <DollarSign className="h-6 w-6" />
+      <TrendingUp className="h-3 w-3 absolute -top-1 -right-1 bg-white rounded-full p-0.5" />
+    </div>,
+    color: 'bg-gradient-to-br from-green-500 to-emerald-600',
     fields: ['Revenue', 'Orders', 'Average Order Value', 'Top Products', 'Sales Trends'],
     charts: ['Revenue Chart', 'Product Performance', 'Sales by Time']
   },
@@ -69,8 +104,11 @@ const reportTemplates: ReportTemplate[] = [
     id: 'customer',
     name: 'Customer Insights Report',
     description: 'Customer behavior analysis, demographics, and satisfaction metrics',
-    icon: <Users className="h-6 w-6" />,
-    color: 'bg-gradient-to-br from-blue-500 to-blue-600',
+    icon: <div className="relative">
+      <Users className="h-6 w-6" />
+      <Star className="h-3 w-3 absolute -top-1 -right-1 bg-white rounded-full p-0.5" />
+    </div>,
+    color: 'bg-gradient-to-br from-blue-500 to-cyan-600',
     fields: ['Customer Count', 'Demographics', 'Satisfaction Score', 'Retention Rate', 'Feedback'],
     charts: ['Customer Growth', 'Demographics Chart', 'Satisfaction Trends']
   },
@@ -78,8 +116,11 @@ const reportTemplates: ReportTemplate[] = [
     id: 'inventory',
     name: 'Inventory Management Report',
     description: 'Stock levels, product movement, and inventory optimization insights',
-    icon: <BarChart3 className="h-6 w-6" />,
-    color: 'bg-gradient-to-br from-orange-500 to-orange-600',
+    icon: <div className="relative">
+      <Package className="h-6 w-6" />
+      <BarChart3 className="h-3 w-3 absolute -top-1 -right-1 bg-white rounded-full p-0.5" />
+    </div>,
+    color: 'bg-gradient-to-br from-orange-500 to-amber-600',
     fields: ['Stock Levels', 'Product Movement', 'Low Stock Alerts', 'Waste Analysis', 'Cost Analysis'],
     charts: ['Stock Level Chart', 'Movement Trends', 'Cost Analysis']
   },
@@ -87,8 +128,11 @@ const reportTemplates: ReportTemplate[] = [
     id: 'financial',
     name: 'Financial Performance Report',
     description: 'Profit & loss analysis, expense tracking, and financial health metrics',
-    icon: <PieChart className="h-6 w-6" />,
-    color: 'bg-gradient-to-br from-purple-500 to-purple-600',
+    icon: <div className="relative">
+      <Wallet className="h-6 w-6" />
+      <Calculator className="h-3 w-3 absolute -top-1 -right-1 bg-white rounded-full p-0.5" />
+    </div>,
+    color: 'bg-gradient-to-br from-purple-500 to-violet-600',
     fields: ['Revenue', 'Expenses', 'Profit Margin', 'Cash Flow', 'ROI Analysis'],
     charts: ['P&L Chart', 'Expense Breakdown', 'Cash Flow Trends']
   },
@@ -96,8 +140,11 @@ const reportTemplates: ReportTemplate[] = [
     id: 'performance',
     name: 'Operational Performance Report',
     description: 'Service quality, efficiency metrics, and operational KPIs',
-    icon: <Activity className="h-6 w-6" />,
-    color: 'bg-gradient-to-br from-red-500 to-red-600',
+    icon: <div className="relative">
+      <Target className="h-6 w-6" />
+      <Zap className="h-3 w-3 absolute -top-1 -right-1 bg-white rounded-full p-0.5" />
+    </div>,
+    color: 'bg-gradient-to-br from-red-500 to-pink-600',
     fields: ['Service Time', 'Order Accuracy', 'Staff Performance', 'Peak Hours', 'Efficiency Score'],
     charts: ['Performance Metrics', 'Service Time Trends', 'Efficiency Analysis']
   }
@@ -202,6 +249,11 @@ export default function SimpleReportManagement() {
   const [showCreateTemplates, setShowCreateTemplates] = useState(false);
   const [selectedReport, setSelectedReport] = useState<Report | null>(null);
   const [showReportPreview, setShowReportPreview] = useState(false);
+  const [showChatbot, setShowChatbot] = useState(false);
+  const [chatMessages, setChatMessages] = useState([
+    { id: 1, text: "Hi! I'm your BiteBase AI assistant. How can I help you with your reports today?", sender: 'bot' }
+  ]);
+  const [chatInput, setChatInput] = useState('');
 
   // Filter reports based on search and filters
   const filteredReports = reports.filter(report => {
@@ -265,6 +317,44 @@ export default function SimpleReportManagement() {
 
   const handleDeleteReport = (reportId: string) => {
     setReports(reports.filter(r => r.id !== reportId));
+  };
+
+  const handleSendMessage = () => {
+    if (!chatInput.trim()) return;
+    
+    const newMessage = {
+      id: chatMessages.length + 1,
+      text: chatInput,
+      sender: 'user'
+    };
+    
+    setChatMessages([...chatMessages, newMessage]);
+    setChatInput('');
+    
+    // Simulate bot response
+    setTimeout(() => {
+      const botResponse = {
+        id: chatMessages.length + 2,
+        text: getBotResponse(chatInput),
+        sender: 'bot'
+      };
+      setChatMessages(prev => [...prev, botResponse]);
+    }, 1000);
+  };
+
+  const getBotResponse = (userMessage: string) => {
+    const message = userMessage.toLowerCase();
+    if (message.includes('create') || message.includes('new')) {
+      return "I can help you create a new report! Click the 'Create Report' button and choose from our 5 templates: Sales, Customer, Inventory, Financial, or Performance reports.";
+    } else if (message.includes('template')) {
+      return "We have 5 report templates available: Sales Analytics, Customer Insights, Inventory Management, Financial Performance, and Operational Performance. Each template comes with pre-configured metrics and charts.";
+    } else if (message.includes('export') || message.includes('download')) {
+      return "You can export any report to PDF format by clicking the 'Export PDF' button in the report preview or from the report card actions.";
+    } else if (message.includes('filter') || message.includes('search')) {
+      return "Use the search bar to find reports by title, description, or tags. You can also filter by status (Published, Draft, Scheduled) or by template type.";
+    } else {
+      return "I'm here to help with your report management! You can ask me about creating reports, using templates, exporting data, or navigating the system.";
+    }
   };
 
   const renderReportPreview = (report: Report) => {
@@ -377,37 +467,71 @@ export default function SimpleReportManagement() {
     <MainLayout>
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg p-8 text-white">
-          <div className="flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-xl shadow-2xl p-8 text-white relative overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-4 left-4">
+              <BarChart3 className="h-16 w-16 text-white/20" />
+            </div>
+            <div className="absolute top-8 right-8">
+              <PieChart className="h-12 w-12 text-white/20" />
+            </div>
+            <div className="absolute bottom-4 left-1/3">
+              <TrendingUp className="h-8 w-8 text-white/20" />
+            </div>
+            <div className="absolute bottom-8 right-1/4">
+              <Activity className="h-10 w-10 text-white/20" />
+            </div>
+          </div>
+          
+          <div className="relative z-10 flex items-center justify-between">
             <div className="flex items-center space-x-6">
-              <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
-                <FileText className="h-10 w-10 text-white" />
+              <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30">
+                <div className="relative">
+                  <FileText className="h-10 w-10 text-white" />
+                  <div className="absolute -top-1 -right-1 bg-green-400 rounded-full p-1">
+                    <Database className="h-3 w-3 text-white" />
+                  </div>
+                </div>
               </div>
               <div>
-                <h1 className="text-3xl font-bold mb-2">Report Management System</h1>
-                <p className="text-blue-100 text-lg">Create, manage, and analyze comprehensive business reports with 5 different templates</p>
-                <div className="flex items-center space-x-6 mt-3">
+                <div className="flex items-center space-x-3 mb-2">
+                  <h1 className="text-3xl font-bold">Report Management System</h1>
+                  <Badge className="bg-green-500/20 text-green-100 border-green-400/30">
+                    <Shield className="h-3 w-3 mr-1" />
+                    Enterprise
+                  </Badge>
+                </div>
+                <p className="text-blue-100 text-lg mb-3">Create, manage, and analyze comprehensive business reports with 5 different templates</p>
+                <div className="flex items-center space-x-6">
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <Zap className="h-4 w-4 text-green-300" />
                     <span className="text-sm text-blue-100">System Active</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <BarChart3 className="h-4 w-4 text-blue-200" />
+                    <Database className="h-4 w-4 text-blue-200" />
                     <span className="text-sm text-blue-100">{reports.length} Total Reports</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Award className="h-4 w-4 text-yellow-300" />
+                    <span className="text-sm text-blue-100">5 Templates</span>
                   </div>
                 </div>
               </div>
             </div>
             <div className="flex items-center space-x-3">
-              <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+              <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm">
                 <RefreshCw className="h-4 w-4 mr-2" />
+                <Settings className="h-4 w-4 mr-2" />
                 Refresh
               </Button>
               <Button 
                 onClick={() => setShowCreateTemplates(!showCreateTemplates)}
-                className="bg-white text-blue-600 hover:bg-blue-50 shadow-lg"
+                className="bg-white text-blue-600 hover:bg-blue-50 shadow-lg border-2 border-white/30"
               >
                 <Plus className="h-4 w-4 mr-2" />
+                <Briefcase className="h-4 w-4 mr-2" />
                 Create Report
               </Button>
             </div>
@@ -787,6 +911,119 @@ export default function SimpleReportManagement() {
             )}
           </div>
         </div>
+
+        {/* Chatbot Toggle Button */}
+        <div className="fixed bottom-6 right-6 z-50">
+          <Button
+            onClick={() => setShowChatbot(!showChatbot)}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full w-14 h-14 shadow-2xl border-2 border-white/20 backdrop-blur-sm"
+            size="lg"
+          >
+            {showChatbot ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <div className="relative">
+                <MessageCircle className="h-6 w-6" />
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+              </div>
+            )}
+          </Button>
+        </div>
+
+        {/* Chatbot Window */}
+        {showChatbot && (
+          <div className="fixed bottom-24 right-6 w-96 h-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-40 overflow-hidden">
+            {/* Chatbot Header */}
+            <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="bg-white/20 rounded-full p-2">
+                  <Bot className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold">BiteBase AI Assistant</h3>
+                  <p className="text-xs text-blue-100">Online • Ready to help</p>
+                </div>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowChatbot(false)}
+                className="text-white hover:bg-white/20"
+              >
+                <Minimize2 className="h-4 w-4" />
+              </Button>
+            </div>
+
+            {/* Chat Messages */}
+            <div className="flex-1 p-4 space-y-4 h-64 overflow-y-auto bg-gray-50">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-xs px-4 py-2 rounded-lg ${
+                      message.sender === 'user'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-white border border-gray-200 text-gray-800'
+                    }`}
+                  >
+                    {message.sender === 'bot' && (
+                      <div className="flex items-center space-x-2 mb-1">
+                        <Bot className="h-3 w-3 text-blue-600" />
+                        <span className="text-xs font-medium text-blue-600">AI Assistant</span>
+                      </div>
+                    )}
+                    <p className="text-sm">{message.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Chat Input */}
+            <div className="p-4 border-t border-gray-200 bg-white">
+              <div className="flex items-center space-x-2">
+                <Input
+                  placeholder="Ask me about reports..."
+                  value={chatInput}
+                  onChange={(e) => setChatInput(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                  className="flex-1 border-gray-300 focus:border-blue-500"
+                />
+                <Button
+                  onClick={handleSendMessage}
+                  disabled={!chatInput.trim()}
+                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                  size="sm"
+                >
+                  <Send className="h-4 w-4" />
+                </Button>
+              </div>
+              <div className="flex items-center space-x-2 mt-2">
+                <div className="flex space-x-1">
+                  <button
+                    onClick={() => setChatInput('How do I create a new report?')}
+                    className="text-xs bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-full text-gray-600"
+                  >
+                    Create Report
+                  </button>
+                  <button
+                    onClick={() => setChatInput('What templates are available?')}
+                    className="text-xs bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-full text-gray-600"
+                  >
+                    Templates
+                  </button>
+                  <button
+                    onClick={() => setChatInput('How to export reports?')}
+                    className="text-xs bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-full text-gray-600"
+                  >
+                    Export
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </MainLayout>
   );
