@@ -1,12 +1,12 @@
 "use client";
 
 import { ProtectedRoute } from "@/components/auth";
-import NotionLikeReports from "@/components/reports/NotionLikeReports";
+import SimpleReportManagement from "@/components/reports/SimpleReportManagement";
 
 export default function ReportsPage() {
   return (
     <ProtectedRoute>
-      <NotionLikeReports />
+      <SimpleReportManagement />
     </ProtectedRoute>
   );
 }
