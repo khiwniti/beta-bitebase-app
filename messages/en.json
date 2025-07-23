@@ -472,7 +472,58 @@
   },
   "locationIntelligence": {
     "title": "Location Intelligence",
-    "description": "Discover the best restaurant locations with AI-powered insights",
+    "description": "Analyze foot traffic and competitive landscape",
+    "analyzeNewLocation": "Analyze New Location",
+    "metrics": {
+      "dailyFootTraffic": "Daily Foot Traffic",
+      "marketPotential": "Market Potential",
+      "competitorDensity": "Competitor Density",
+      "locationScore": "Location Score",
+      "vsLastWeek": "vs last week",
+      "vsLastMonth": "vs last month",
+      "vsLastQuarter": "vs last quarter",
+      "vsLastAssessment": "vs last assessment"
+    },
+    "sections": {
+      "locationMap": {
+        "title": "Location Map",
+        "description": "Interactive map of your locations and competitors"
+      },
+      "demographicAnalysis": {
+        "title": "Demographic Analysis",
+        "description": "Analyze customer demographics by location"
+      },
+      "footTrafficAnalysis": {
+        "title": "Foot Traffic Analysis",
+        "description": "Track customer traffic patterns"
+      },
+      "competitorLocations": {
+        "title": "Competitor Locations",
+        "description": "Map and analyze competitor locations"
+      },
+      "siteSelection": {
+        "title": "Site Selection",
+        "description": "Find and evaluate new potential locations"
+      }
+    },
+    "insights": {
+      "title": "Location Insights",
+      "highGrowthArea": {
+        "title": "High Growth Area",
+        "impact": "High Impact",
+        "description": "Downtown West location shows 22% growth potential based on new residential developments"
+      },
+      "peakHoursShift": {
+        "title": "Peak Hours Shift",
+        "impact": "Medium Impact",
+        "description": "Northside location showing increased lunch traffic (11am-1pm) due to new office complex"
+      },
+      "competitorAlert": {
+        "title": "Competitor Alert",
+        "impact": "High Impact",
+        "description": "New Mediterranean restaurant opening within 0.5 miles of your Eastside location"
+      }
+    },
     "search": {
       "title": "Search",
       "searchBy": "Search by",
