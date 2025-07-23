@@ -58,6 +58,10 @@
     "delete": "Delete",
     "search": "Search",
     "filter": "Filter",
+    "reset": "Reset",
+    "settings": "Settings",
+    "fullscreen": "Fullscreen",
+    "exportMap": "Export Map",
     "saveAnalysis": "Save Analysis",
     "generateReport": "Generate Report"
   },
@@ -65,11 +69,20 @@
     "title": "Market Analysis",
     "subtitle": "Explore market data and competition in your area",
     "configuration": "Analysis Configuration",
+    "analysisConfiguration": "Analysis Configuration",
     "targetLocation": "Target Location",
     "analysisType": "Analysis Type",
     "layers": "Layers",
+    "heatmap": "Heatmap",
+    "density": "Density",
+    "competition": "Competition",
+    "demographics": "Demographics",
     "realTimeTracking": "Real-time Location Tracking",
-    "marketMetrics": "Market Metrics"
+    "realTimeLocationTracking": "Real-Time Location Tracking",
+    "marketMetrics": "Market Metrics",
+    "interactiveMarketMap": "Interactive Market Map",
+    "loadingRestaurants": "Loading restaurants...",
+    "restaurantsFound": "{{count}} restaurants found"
   },
   "location": {
     "map": "Location Map",

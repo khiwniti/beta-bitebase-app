@@ -14,6 +14,7 @@ import { MetricCard, ChartCard, DashboardInsightCard, DashboardSection } from ".
 import { DataTable } from "../../components/ui/data-table"
 import { ChartContainer, SimpleLineChart, SimpleBarChart } from "../../components/ui/chart-container"
 import RealTimeLocationTracker from "../../components/location/RealTimeLocationTracker"
+import { useLanguage } from "../../contexts/LanguageContext"
 
 // Production data interfaces
 interface Restaurant {
@@ -41,6 +42,7 @@ interface Demographics {
 }
 
 export default function MarketAnalysisPage() {
+  const { t } = useLanguage()
   const [selectedLocation, setSelectedLocation] = React.useState("Bangkok, Thailand")
   const [analysisType, setAnalysisType] = React.useState<"heatmap" | "density" | "competition" | "demographics">("heatmap")
   const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
@@ -123,20 +125,20 @@ export default function MarketAnalysisPage() {
         <div className="flex justify-end gap-2">
           <Button variant="outline" onClick={() => console.log('Save analysis')}>
             <Download className="w-4 h-4 mr-2" />
-            Save Analysis
+            {t("common.saveAnalysis")}
           </Button>
           <Button onClick={() => console.log('Generate report')}>
             <BarChart3 className="w-4 h-4 mr-2" />
-            Generate Report
+            {t("common.generateReport")}
           </Button>
         </div>
 
         {/* Analysis Controls */}
         <ChartCard
-          title="Analysis Configuration"
+          title={t("marketAnalysis.analysisConfiguration")}
           actions={[
             {
-              label: "Reset",
+              label: t("common.reset"),
               icon: <RefreshCw className="h-4 w-4" />,
               onClick: () => {
                 setSelectedLocation("Bangkok, Thailand")
@@ -147,7 +149,7 @@ export default function MarketAnalysisPage() {
         >
           <div className="grid gap-4 md:grid-cols-3">
             <div className="space-y-2">
-              <Label htmlFor="location">Target Location</Label>
+              <Label htmlFor="location">{t("marketAnalysis.targetLocation")}</Label>
               <Input
                 id="location"
                 placeholder="e.g., Sukhumvit, Bangkok or 13.7563, 100.5018"
@@ -157,7 +159,7 @@ export default function MarketAnalysisPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label>Analysis Type</Label>
+              <Label>{t("marketAnalysis.analysisType")}</Label>
               <div className="flex space-x-2">
                 {(["heatmap", "density", "competition", "demographics"] as const).map((type) => (
                   <Button
@@ -167,13 +169,13 @@ export default function MarketAnalysisPage() {
                     onClick={() => setAnalysisType(type)}
                     className={analysisType === type ? "btn-tool-active" : "btn-tool-inactive"}
                   >
-                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                    {t(`marketAnalysis.${type}`)}
                   </Button>
                 ))}
               </div>
             </div>
             <div className="space-y-2">
-              <Label>Layers</Label>
+              <Label>{t("marketAnalysis.layers")}</Label>
               <div className="flex space-x-2">
                 <Button
                   variant={showDemographics ? "default" : "outline"}
@@ -181,7 +183,7 @@ export default function MarketAnalysisPage() {
                   onClick={() => setShowDemographics(!showDemographics)}
                   className={showDemographics ? "btn-tool-active" : "btn-tool-inactive"}
                 >
-                  Demographics
+                  {t("marketAnalysis.demographics")}
                 </Button>
               </div>
             </div>
@@ -190,10 +192,10 @@ export default function MarketAnalysisPage() {
 
         {/* Real-Time Location Tracker */}
         <ChartCard
-          title="Real-Time Location Tracking"
+          title={t("marketAnalysis.realTimeLocationTracking")}
           actions={[
             {
-              label: "Settings",
+              label: t("common.settings"),
               icon: <Filter className="h-4 w-4" />,
               onClick: () => console.log('Location settings')
             }
@@ -217,15 +219,15 @@ export default function MarketAnalysisPage() {
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Map */}
           <ChartCard
-            title="Interactive Market Map"
+            title={t("marketAnalysis.interactiveMarketMap")}
             actions={[
               {
-                label: "Fullscreen",
+                label: t("common.fullscreen"),
                 icon: <Eye className="h-4 w-4" />,
                 onClick: () => console.log('Fullscreen map')
               },
               {
-                label: "Export Map",
+                label: t("common.exportMap"),
                 icon: <Download className="h-4 w-4" />,
                 onClick: () => console.log('Export map')
               }
@@ -244,7 +246,7 @@ export default function MarketAnalysisPage() {
                   <div className="absolute top-4 left-4 bg-white bg-opacity-90 px-3 py-2 rounded-lg shadow-lg z-10">
                     <div className="flex items-center space-x-2">
                       <div className="loading-spinner w-4 h-4 border-2 border-primary border-t-transparent rounded-full"></div>
-                      <span className="text-sm text-gray-700">Loading restaurants...</span>
+                      <span className="text-sm text-gray-700">{t("marketAnalysis.loadingRestaurants")}</span>
                     </div>
                   </div>
                 )}
@@ -260,7 +262,7 @@ export default function MarketAnalysisPage() {
                 {!loading && !error && restaurants.length > 0 && (
                   <div className="absolute top-4 left-4 bg-white bg-opacity-90 px-3 py-2 rounded-lg shadow-lg z-10">
                     <span className="text-sm text-gray-700">
-                      {restaurants.length} restaurants found
+                      {t("marketAnalysis.restaurantsFound", { count: restaurants.length })}
                     </span>
                   </div>
                 )}

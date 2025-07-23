@@ -58,6 +58,10 @@
     "delete": "ลบ",
     "search": "ค้นหา",
     "filter": "กรอง",
+    "reset": "รีเซ็ต",
+    "settings": "การตั้งค่า",
+    "fullscreen": "เต็มจอ",
+    "exportMap": "ส่งออกแผนที่",
     "saveAnalysis": "บันทึกการวิเคราะห์",
     "generateReport": "สร้างรายงาน"
   },
@@ -65,11 +69,20 @@
     "title": "การวิเคราะห์ตลาด",
     "subtitle": "สำรวจข้อมูลตลาดและการแข่งขันในพื้นที่ของคุณ",
     "configuration": "การกำหนดค่าการวิเคราะห์",
+    "analysisConfiguration": "การกำหนดค่าการวิเคราะห์",
     "targetLocation": "ตำแหน่งเป้าหมาย",
     "analysisType": "ประเภทการวิเคราะห์",
     "layers": "เลเยอร์",
+    "heatmap": "แผนที่ความร้อน",
+    "density": "ความหนาแน่น",
+    "competition": "การแข่งขัน",
+    "demographics": "ข้อมูลประชากร",
     "realTimeTracking": "การติดตามแบบเรียลไทม์",
-    "marketMetrics": "ตัวชี้วัดตลาด"
+    "realTimeLocationTracking": "การติดตามตำแหน่งแบบเรียลไทม์",
+    "marketMetrics": "ตัวชี้วัดตลาด",
+    "interactiveMarketMap": "แผนที่ตลาดแบบโต้ตอบ",
+    "loadingRestaurants": "กำลังโหลดร้านอาหาร...",
+    "restaurantsFound": "พบร้านอาหาร {{count}} แห่ง"
   },
   "location": {
     "map": "แผนที่ตำแหน่ง",
