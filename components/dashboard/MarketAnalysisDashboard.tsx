@@ -262,30 +262,30 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Globe className="h-5 w-5 text-blue-500" />
-                  Market Research
+                  {t("dashboard.marketResearch")}
                 </CardTitle>
                 <CardDescription>
-                  Analyze market trends and opportunities in your area
+                  {t("dashboard.marketResearchDescription")}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium">Market Size</span>
+                    <span className="text-sm font-medium">{t("dashboard.marketSize")}</span>
                     <Badge variant="secondary">$2.4M</Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium">Growth Rate</span>
+                    <span className="text-sm font-medium">{t("dashboard.growthRate")}</span>
                     <Badge variant="secondary" className="bg-green-100 text-green-800">+12.5%</Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium">Competition Level</span>
-                    <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">Medium</Badge>
+                    <span className="text-sm font-medium">{t("dashboard.competitionLevel")}</span>
+                    <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">{t("dashboard.medium")}</Badge>
                   </div>
                 </div>
                 <Button className="w-full" variant="outline">
                   <BarChart3 className="h-4 w-4 mr-2" />
-                  View Detailed Report
+                  {t("dashboard.viewDetailedReport")}
                 </Button>
               </CardContent>
             </Card>
@@ -295,30 +295,30 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Target className="h-5 w-5 text-red-500" />
-                  Competitor Analysis
+                  {t("dashboard.competitorAnalysis")}
                 </CardTitle>
                 <CardDescription>
-                  Track and analyze your competition
+                  {t("dashboard.competitorAnalysisDescription")}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium">Direct Competitors</span>
+                    <span className="text-sm font-medium">{t("dashboard.directCompetitors")}</span>
                     <Badge variant="secondary">8</Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium">Market Share</span>
+                    <span className="text-sm font-medium">{t("dashboard.marketShare")}</span>
                     <Badge variant="secondary" className="bg-blue-100 text-blue-800">15.2%</Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium">Avg. Rating</span>
+                    <span className="text-sm font-medium">{t("dashboard.avgRating")}</span>
                     <Badge variant="secondary" className="bg-green-100 text-green-800">4.2/5</Badge>
                   </div>
                 </div>
                 <Button className="w-full" variant="outline">
                   <Users className="h-4 w-4 mr-2" />
-                  Analyze Competitors
+                  {t("dashboard.analyzeCompetitors")}
                 </Button>
               </CardContent>
             </Card>
@@ -329,25 +329,25 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-green-500" />
-                Market Trends & Insights
+                {t("dashboard.marketTrendsInsights")}
               </CardTitle>
               <CardDescription>
-                Latest trends and insights in your market segment
+                {t("dashboard.marketTrendsDescription")}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                   <div className="text-2xl font-bold text-green-600 mb-1">↗ 23%</div>
-                  <div className="text-sm text-gray-600">Delivery Orders</div>
+                  <div className="text-sm text-gray-600">{t("dashboard.deliveryOrders")}</div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                   <div className="text-2xl font-bold text-blue-600 mb-1">↗ 18%</div>
-                  <div className="text-sm text-gray-600">Health-Conscious</div>
+                  <div className="text-sm text-gray-600">{t("dashboard.healthConscious")}</div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                   <div className="text-2xl font-bold text-purple-600 mb-1">↗ 31%</div>
-                  <div className="text-sm text-gray-600">Plant-Based Options</div>
+                  <div className="text-sm text-gray-600">{t("dashboard.plantBasedOptions")}</div>
                 </div>
               </div>
             </CardContent>
@@ -358,10 +358,10 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <MapPin className="h-5 w-5 text-orange-500" />
-                Recent Market Analyses
+                {t("dashboard.recentMarketAnalyses")}
               </CardTitle>
               <CardDescription>
-                Your latest market analysis reports
+                {t("dashboard.recentAnalysesDescription")}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -370,13 +370,13 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                     <div>
-                      <div className="font-medium">Silom District Analysis</div>
-                      <div className="text-sm text-gray-600">Generated 2 hours ago</div>
+                      <div className="font-medium">{t("dashboard.silomDistrictAnalysis")}</div>
+                      <div className="text-sm text-gray-600">{t("dashboard.generated2HoursAgo")}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant="secondary" className="bg-green-100 text-green-800">Score: 8.7/10</Badge>
-                    <Button size="sm" variant="outline">View</Button>
+                    <Badge variant="secondary" className="bg-green-100 text-green-800">{t("dashboard.scoreFormat", { score: "8.7" })}</Badge>
+                    <Button size="sm" variant="outline">{t("dashboard.view")}</Button>
                   </div>
                 </div>
                 
@@ -384,13 +384,13 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                     <div>
-                      <div className="font-medium">Thonglor Area Analysis</div>
-                      <div className="text-sm text-gray-600">Generated 1 day ago</div>
+                      <div className="font-medium">{t("dashboard.thonglorAreaAnalysis")}</div>
+                      <div className="text-sm text-gray-600">{t("dashboard.generated1DayAgo")}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant="secondary" className="bg-blue-100 text-blue-800">Score: 7.9/10</Badge>
-                    <Button size="sm" variant="outline">View</Button>
+                    <Badge variant="secondary" className="bg-blue-100 text-blue-800">{t("dashboard.scoreFormat", { score: "7.9" })}</Badge>
+                    <Button size="sm" variant="outline">{t("dashboard.view")}</Button>
                   </div>
                 </div>
 
@@ -398,13 +398,13 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                     <div>
-                      <div className="font-medium">Chatuchak Market Analysis</div>
-                      <div className="text-sm text-gray-600">Generated 3 days ago</div>
+                      <div className="font-medium">{t("dashboard.chatuchakMarketAnalysis")}</div>
+                      <div className="text-sm text-gray-600">{t("dashboard.generated3DaysAgo")}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">Score: 6.4/10</Badge>
-                    <Button size="sm" variant="outline">View</Button>
+                    <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">{t("dashboard.scoreFormat", { score: "6.4" })}</Badge>
+                    <Button size="sm" variant="outline">{t("dashboard.view")}</Button>
                   </div>
                 </div>
               </div>
@@ -420,30 +420,30 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <MapPin className="h-5 w-5 text-blue-500" />
-                  Location Analysis
+                  {t("dashboard.locationAnalysis")}
                 </CardTitle>
                 <CardDescription>
-                  Analyze foot traffic and demographic data for your location
+                  {t("dashboard.locationAnalysisDescription")}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium">Foot Traffic</span>
-                    <Badge variant="secondary" className="bg-green-100 text-green-800">High</Badge>
+                    <span className="text-sm font-medium">{t("dashboard.footTraffic")}</span>
+                    <Badge variant="secondary" className="bg-green-100 text-green-800">{t("dashboard.high")}</Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium">Demographics</span>
+                    <span className="text-sm font-medium">{t("dashboard.demographics")}</span>
                     <Badge variant="secondary">25-45 years</Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium">Peak Hours</span>
+                    <span className="text-sm font-medium">{t("dashboard.peakHours")}</span>
                     <Badge variant="secondary" className="bg-blue-100 text-blue-800">12-2 PM, 6-8 PM</Badge>
                   </div>
                 </div>
                 <Button className="w-full" variant="outline">
                   <Map className="h-4 w-4 mr-2" />
-                  View Heat Map
+                  {t("dashboard.viewHeatMap")}
                 </Button>
               </CardContent>
             </Card>
