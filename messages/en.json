@@ -628,5 +628,69 @@
       "daysAgo": "{count} days ago",
       "weekAgo": "1 week ago"
     }
+  },
+  "landing": {
+    "hero": {
+      "badge": "Now in Beta",
+      "title": "Restaurant Intelligence Platform",
+      "subtitle": "Discover profitable locations, track competitors, and optimize operations with geospatial analytics and AI-driven insights that boost your bottom line.",
+      "getStarted": "Get Started",
+      "watchDemo": "Watch Demo"
+    },
+    "stats": {
+      "restaurants": "Restaurants Analyzed",
+      "revenue": "Average Revenue Increase",
+      "uptime": "Platform Uptime"
+    },
+    "features": {
+      "badge": "Powerful Features",
+      "title": "Everything You Need to Succeed",
+      "subtitle": "Comprehensive tools and insights to help your restaurant thrive in a competitive market.",
+      "geospatial": {
+        "title": "Geospatial Analytics",
+        "items": [
+          "Location intelligence mapping",
+          "Trade area analysis", 
+          "Demographic insights",
+          "Foot traffic patterns"
+        ]
+      },
+      "ai": {
+        "title": "AI-Powered Insights",
+        "items": [
+          "Predictive analytics",
+          "Market trend analysis",
+          "Revenue optimization", 
+          "Smart recommendations"
+        ]
+      },
+      "business": {
+        "title": "Business Intelligence",
+        "items": [
+          "Real-time dashboards",
+          "Performance metrics",
+          "Competitor tracking",
+          "Custom reports"
+        ]
+      }
+    },
+    "testimonials": {
+      "badge": "Customer Stories",
+      "title": "Trusted by Restaurant Owners",
+      "subtitle": "See how BiteBase is helping restaurants grow and succeed.",
+      "quote": "BiteBase helped us identify the perfect location for our second restaurant. The AI insights were spot-on and we've seen a 30% increase in revenue since opening.",
+      "author": "John Doe",
+      "position": "Owner, Bistro Central"
+    },
+    "pricing": {
+      "badge": "Simple Pricing",
+      "title": "Choose Your Plan",
+      "subtitle": "Start free and scale as you grow. No hidden fees, cancel anytime."
+    },
+    "cta": {
+      "title": "Ready to Transform Your Restaurant?",
+      "subtitle": "Join thousands of restaurants using BiteBase to optimize operations and increase profitability.",
+      "button": "🚀 Start Your Free Trial Today"
+    }
   }
 }

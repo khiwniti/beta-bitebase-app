@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import BiteBaseLogo from "../BiteBaseLogo";
 import { LanguageSwitcher } from "../LanguageSwitcher";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 // Animated particles component
 const AnimatedParticles = () => {
@@ -76,6 +77,7 @@ const AnimatedParticles = () => {
 export default function BetaInspiredLandingPage() {
   const [scrollY, setScrollY] = useState(0);
   const { scrollYProgress } = useScroll();
+  const { t } = useLanguage();
   
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -119,7 +121,7 @@ export default function BetaInspiredLandingPage() {
               <div className="flex items-center gap-4">
                 <LanguageSwitcher />
                 <Link href="/auth" className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full font-medium transition-colors">
-                  Get Started
+                  {t('landing.hero.getStarted')}
                 </Link>
               </div>
             </div>
@@ -127,7 +129,7 @@ export default function BetaInspiredLandingPage() {
             {/* Mobile menu button */}
             <div className="md:hidden">
               <Link href="/auth" className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
-                Get Started
+                {t('landing.hero.getStarted')}
               </Link>
             </div>
           </div>
@@ -148,7 +150,7 @@ export default function BetaInspiredLandingPage() {
             className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/30 rounded-full px-4 py-2 mb-8"
           >
             <span className="text-green-400">🚀</span>
-            <span className="text-green-400 font-medium">Now in Beta</span>
+            <span className="text-green-400 font-medium">{t('landing.hero.badge')}</span>
           </motion.div>
 
           {/* Main Heading */}
@@ -158,11 +160,7 @@ export default function BetaInspiredLandingPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
           >
-            Restaurant Intelligence
-            <br />
-            <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-              Platform
-            </span>
+            {t('landing.hero.title')}
           </motion.h1>
 
           {/* Description */}
@@ -172,8 +170,7 @@ export default function BetaInspiredLandingPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"
           >
-            Discover profitable locations, track competitors, and optimize operations with 
-            geospatial analytics and AI-driven insights that boost your bottom line.
+            {t('landing.hero.subtitle')}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -184,10 +181,10 @@ export default function BetaInspiredLandingPage() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
             <Link href="/auth" className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-lg shadow-green-500/25">
-              Get Started
+              {t('landing.hero.getStarted')}
             </Link>
             <button className="border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105">
-              Watch Demo
+              {t('landing.hero.watchDemo')}
             </button>
           </motion.div>
 
@@ -200,15 +197,15 @@ export default function BetaInspiredLandingPage() {
           >
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-green-400 mb-2">1000+</div>
-              <div className="text-slate-400">Restaurants Analyzed</div>
+              <div className="text-slate-400">{t('landing.stats.restaurants')}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-green-400 mb-2">25%</div>
-              <div className="text-slate-400">Average Revenue Increase</div>
+              <div className="text-slate-400">{t('landing.stats.revenue')}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-green-400 mb-2">99.9%</div>
-              <div className="text-slate-400">Platform Uptime</div>
+              <div className="text-slate-400">{t('landing.stats.uptime')}</div>
             </div>
           </motion.div>
 
@@ -238,13 +235,13 @@ export default function BetaInspiredLandingPage() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/30 rounded-full px-4 py-2 mb-6">
               <span className="text-green-400">✨</span>
-              <span className="text-green-400 font-medium">Powerful Features</span>
+              <span className="text-green-400 font-medium">{t('landing.features.badge')}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Everything You Need to Succeed
+              {t('landing.features.title')}
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Comprehensive tools and insights to help your restaurant thrive in a competitive market.
+              {t('landing.features.subtitle')}
             </p>
           </div>
 
