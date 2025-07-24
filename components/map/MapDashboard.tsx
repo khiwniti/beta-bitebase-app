@@ -18,7 +18,7 @@ const MapDashboard: React.FC<MapDashboardProps> = ({ className = '' }) => {
   const user = {
     id: '1',
     name: 'Restaurant Manager',
-    email: 'manager@bitebase.app',
+    email: 'admin@bitebase.app',
     role: 'admin',
     subscription_tier: 'pro' as const
   };

@@ -18,7 +18,7 @@ export default function AppContent({
   const user = {
     restaurantName: 'BiteBase Intelligence',
     displayName: 'Restaurant Manager',
-    email: 'manager@bitebase.app'
+    email: 'admin@bitebase.app'
   };
   const loading = false;
   const [tourCompleted, setTourCompleted] = useState(false)

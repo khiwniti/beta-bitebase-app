@@ -51,7 +51,7 @@ export default function EnhancedDashboard({ className }: EnhancedDashboardProps)
   const user = {
     id: '1',
     name: 'Restaurant Manager',
-    email: 'manager@bitebase.app',
+    email: 'admin@bitebase.app',
     role: 'admin',
     subscription_tier: 'pro' as const
   };
