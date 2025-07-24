@@ -195,7 +195,7 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle className="text-lg font-semibold">{t("dashboard.downtownBangkok")}</CardTitle>
-                    <CardDescription className="text-sm text-gray-600">
+                    <CardDescription className="text-sm text-gray-600 dark:text-gray-400">
                       {t("dashboard.marketAnalysisResults")}
                     </CardDescription>
                   </div>
@@ -226,7 +226,7 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle className="text-lg font-semibold">{t("dashboard.sukhumvitRoad")}</CardTitle>
-                    <CardDescription className="text-sm text-gray-600">
+                    <CardDescription className="text-sm text-gray-600 dark:text-gray-400">
                       {t("dashboard.marketAnalysisResults")}
                     </CardDescription>
                   </div>
@@ -339,15 +339,15 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                   <div className="text-2xl font-bold text-green-600 mb-1">↗ 23%</div>
-                  <div className="text-sm text-gray-600">{t("dashboard.deliveryOrders")}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">{t("dashboard.deliveryOrders")}</div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                   <div className="text-2xl font-bold text-blue-600 mb-1">↗ 18%</div>
-                  <div className="text-sm text-gray-600">{t("dashboard.healthConscious")}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">{t("dashboard.healthConscious")}</div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                   <div className="text-2xl font-bold text-purple-600 mb-1">↗ 31%</div>
-                  <div className="text-sm text-gray-600">{t("dashboard.plantBasedOptions")}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">{t("dashboard.plantBasedOptions")}</div>
                 </div>
               </div>
             </CardContent>
@@ -371,7 +371,7 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                     <div>
                       <div className="font-medium">{t("dashboard.silomDistrictAnalysis")}</div>
-                      <div className="text-sm text-gray-600">{t("dashboard.generated2HoursAgo")}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">{t("dashboard.generated2HoursAgo")}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -385,7 +385,7 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                     <div>
                       <div className="font-medium">{t("dashboard.thonglorAreaAnalysis")}</div>
-                      <div className="text-sm text-gray-600">{t("dashboard.generated1DayAgo")}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">{t("dashboard.generated1DayAgo")}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -399,7 +399,7 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
                     <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                     <div>
                       <div className="font-medium">{t("dashboard.chatuchakMarketAnalysis")}</div>
-                      <div className="text-sm text-gray-600">{t("dashboard.generated3DaysAgo")}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">{t("dashboard.generated3DaysAgo")}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -548,19 +548,19 @@ export default function MarketAnalysisDashboard({ className }: MarketAnalysisDas
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                   <div className="text-2xl font-bold text-green-600 mb-1">8.5/10</div>
-                  <div className="text-sm text-gray-600">Location Score</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">Location Score</div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                   <div className="text-2xl font-bold text-blue-600 mb-1">2,400</div>
-                  <div className="text-sm text-gray-600">Daily Foot Traffic</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">Daily Foot Traffic</div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                   <div className="text-2xl font-bold text-purple-600 mb-1">85%</div>
-                  <div className="text-sm text-gray-600">Visibility Rating</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">Visibility Rating</div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                   <div className="text-2xl font-bold text-orange-600 mb-1">$45k</div>
-                  <div className="text-sm text-gray-600">Avg. Monthly Revenue</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">Avg. Monthly Revenue</div>
                 </div>
               </div>
             </CardContent>
