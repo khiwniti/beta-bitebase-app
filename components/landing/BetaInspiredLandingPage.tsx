@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import BiteBaseLogo from "../BiteBaseLogo";
+import { LanguageSwitcher } from "../LanguageSwitcher";
 
 // Animated particles component
 const AnimatedParticles = () => {
@@ -116,9 +117,7 @@ export default function BetaInspiredLandingPage() {
               </div>
               
               <div className="flex items-center gap-4">
-                <div className="px-3 py-1 bg-slate-700/50 rounded-full text-sm text-slate-300">
-                  EN
-                </div>
+                <LanguageSwitcher />
                 <Link href="/auth" className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full font-medium transition-colors">
                   Get Started
                 </Link>
