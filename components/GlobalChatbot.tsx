@@ -18,7 +18,7 @@ export function GlobalChatbot() {
             relative rounded-full w-16 h-16 shadow-2xl border-2 backdrop-blur-sm transform hover:scale-110 transition-all duration-300
             ${showChatbot 
               ? 'bg-gray-100 hover:bg-gray-200 text-gray-600 border-gray-300' 
-              : 'bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 text-white border-white/30'
+              : 'bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 hover:from-green-600 hover:via-emerald-600 hover:to-teal-600 text-white border-white/30'
             }
           `}
           size="lg"
@@ -38,7 +38,7 @@ export function GlobalChatbot() {
       {showChatbot && (
         <div className="fixed bottom-24 right-6 w-96 h-[500px] bg-white rounded-2xl shadow-2xl border border-gray-200/50 z-40 overflow-hidden animate-in slide-in-from-bottom-4 backdrop-blur-sm">
           {/* Chatbot Header */}
-          <div className="bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white p-4 flex items-center justify-between">
+          <div className="bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 text-white p-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="bg-white/20 rounded-full p-2 backdrop-blur-sm">
                 <MessageCircle className="h-5 w-5" />
@@ -67,8 +67,8 @@ export function GlobalChatbot() {
             <div className="flex justify-start">
               <div className="max-w-xs px-4 py-3 rounded-2xl bg-white border border-gray-200/50 text-gray-800 shadow-sm">
                 <div className="flex items-center space-x-2 mb-2">
-                  <MessageCircle className="h-3 w-3 text-indigo-600" />
-                  <span className="text-xs font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">BiteBase AI</span>
+                  <MessageCircle className="h-3 w-3 text-green-600" />
+                  <span className="text-xs font-medium bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">BiteBase AI</span>
                 </div>
                 <p className="text-sm">👋 Hello! I'm your BiteBase AI assistant. I can help you with:</p>
                 <ul className="text-xs mt-2 space-y-1 text-gray-600">
@@ -93,7 +93,7 @@ export function GlobalChatbot() {
                     window.location.href = '/reports';
                   }
                 }}
-                className="text-xs bg-gradient-to-r from-indigo-100 to-purple-100 hover:from-indigo-200 hover:to-purple-200 px-3 py-2 rounded-full text-indigo-700 transition-all duration-200 border border-indigo-200/50"
+                className="text-xs bg-gradient-to-r from-green-100 to-emerald-100 hover:from-green-200 hover:to-emerald-200 px-3 py-2 rounded-full text-green-700 transition-all duration-200 border border-green-200/50"
               >
                 📊 Create New Report
               </button>
@@ -102,7 +102,7 @@ export function GlobalChatbot() {
                   // Show template info
                   alert('We have 5 templates: Sales Analytics, Customer Insights, Inventory Management, Financial Performance, and Operational Performance.');
                 }}
-                className="text-xs bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 px-3 py-2 rounded-full text-purple-700 transition-all duration-200 border border-purple-200/50"
+                className="text-xs bg-gradient-to-r from-emerald-100 to-teal-100 hover:from-emerald-200 hover:to-teal-200 px-3 py-2 rounded-full text-emerald-700 transition-all duration-200 border border-emerald-200/50"
               >
                 📋 View Templates
               </button>
@@ -111,7 +111,7 @@ export function GlobalChatbot() {
                   // Show export info
                   alert('You can export any report to PDF by clicking the Export button on each report card.');
                 }}
-                className="text-xs bg-gradient-to-r from-pink-100 to-indigo-100 hover:from-pink-200 hover:to-indigo-200 px-3 py-2 rounded-full text-pink-700 transition-all duration-200 border border-pink-200/50"
+                className="text-xs bg-gradient-to-r from-teal-100 to-green-100 hover:from-teal-200 hover:to-green-200 px-3 py-2 rounded-full text-teal-700 transition-all duration-200 border border-teal-200/50"
               >
                 📤 Export Help
               </button>
@@ -123,17 +123,17 @@ export function GlobalChatbot() {
             <div className="flex items-center space-x-2">
               <Input
                 placeholder="Ask me about reports, analytics, or business insights..."
-                className="flex-1 border-gray-300/50 focus:border-indigo-500 rounded-xl bg-white/80 backdrop-blur-sm"
+                className="flex-1 border-gray-300/50 focus:border-green-500 rounded-xl bg-white/80 backdrop-blur-sm"
               />
               <Button
-                className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white rounded-xl shadow-lg"
+                className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white rounded-xl shadow-lg"
                 size="sm"
               >
                 <Send className="h-4 w-4" />
               </Button>
             </div>
             <div className="text-xs text-gray-500 mt-2 text-center">
-              Powered by <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-medium">BiteBase AI</span> • Enterprise Intelligence Platform
+              Powered by <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent font-medium">BiteBase AI</span> • Enterprise Intelligence Platform
             </div>
           </div>
         </div>

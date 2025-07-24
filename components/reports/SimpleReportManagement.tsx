@@ -105,7 +105,7 @@ const reportTemplates: ReportTemplate[] = [
       <Users className="h-6 w-6" />
       <Star className="h-3 w-3 absolute -top-1 -right-1 bg-white rounded-full p-0.5" />
     </div>,
-    color: 'bg-gradient-to-br from-indigo-500 to-purple-600',
+    color: 'bg-gradient-to-br from-green-500 to-emerald-600',
     fields: ['Customer Count', 'Demographics', 'Satisfaction Score', 'Retention Rate', 'Feedback'],
     charts: ['Customer Growth', 'Demographics Chart', 'Satisfaction Trends']
   },
@@ -424,7 +424,7 @@ export default function SimpleReportManagement() {
     <MainLayout>
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-xl shadow-2xl p-8 text-white relative overflow-hidden">
+        <div className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 rounded-xl shadow-2xl p-8 text-white relative overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-4 left-4">
@@ -486,7 +486,7 @@ export default function SimpleReportManagement() {
               <Button 
                 onClick={() => setShowCreateTemplates(!showCreateTemplates)}
                 data-testid="create-report-btn"
-                className="bg-white text-indigo-600 hover:bg-indigo-50 shadow-lg border-2 border-white/30"
+                className="bg-white text-green-600 hover:bg-green-50 shadow-lg border-2 border-white/30"
               >
                 <Plus className="h-4 w-4 mr-2" />
                 <Briefcase className="h-4 w-4 mr-2" />
@@ -499,7 +499,7 @@ export default function SimpleReportManagement() {
         {/* Create Report Templates */}
         {showCreateTemplates && (
           <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-            <div className="bg-gradient-to-r from-gray-50 to-purple-50 px-6 py-4 border-b border-gray-200">
+            <div className="bg-gradient-to-r from-gray-50 to-green-50 px-6 py-4 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-xl font-bold text-gray-900">Choose Report Template</h3>
@@ -538,7 +538,7 @@ export default function SimpleReportManagement() {
                         </div>
                         
                         {/* Hover overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
                       </div>
 
                       {/* Template Content */}
@@ -603,7 +603,7 @@ export default function SimpleReportManagement() {
 
         {/* Filters and Search */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-          <div className="bg-gradient-to-r from-gray-50 to-purple-50 px-6 py-4 border-b border-gray-200">
+          <div className="bg-gradient-to-r from-gray-50 to-green-50 px-6 py-4 border-b border-gray-200">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="bg-blue-100 p-2 rounded-lg">
@@ -637,7 +637,7 @@ export default function SimpleReportManagement() {
                     placeholder="Search reports by title, description, or tags..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-12 h-12 text-base border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm"
+                    className="pl-12 h-12 text-base border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg shadow-sm"
                   />
                   {searchTerm && (
                     <button
@@ -653,7 +653,7 @@ export default function SimpleReportManagement() {
               <div className="flex gap-3">
                 <div className="relative">
                   <Select value={filterStatus} onValueChange={setFilterStatus}>
-                    <SelectTrigger className="w-40 h-12 border-gray-300 focus:border-indigo-500 rounded-lg shadow-sm">
+                    <SelectTrigger className="w-40 h-12 border-gray-300 focus:border-green-500 rounded-lg shadow-sm">
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="h-4 w-4 text-gray-400" />
                         <SelectValue placeholder="Status" />
@@ -690,7 +690,7 @@ export default function SimpleReportManagement() {
                 
                 <div className="relative">
                   <Select value={filterTemplate} onValueChange={setFilterTemplate}>
-                    <SelectTrigger className="w-52 h-12 border-gray-300 focus:border-indigo-500 rounded-lg shadow-sm">
+                    <SelectTrigger className="w-52 h-12 border-gray-300 focus:border-green-500 rounded-lg shadow-sm">
                       <div className="flex items-center space-x-2">
                         <FileText className="h-4 w-4 text-gray-400" />
                         <SelectValue placeholder="Template" />
@@ -860,7 +860,7 @@ export default function SimpleReportManagement() {
                       Clear Filters
                     </Button>
                   )}
-                  <Button onClick={() => setShowCreateTemplates(true)} className="bg-indigo-600 hover:bg-indigo-700">
+                  <Button onClick={() => setShowCreateTemplates(true)} className="bg-green-600 hover:bg-green-700">
                     <Plus className="h-4 w-4 mr-2" />
                     Create Report
                   </Button>
