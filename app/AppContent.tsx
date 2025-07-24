@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 // import { useAuth } from '../contexts/AuthContext'
 import PageWrapper from '../components/layout/PageWrapper'
-import FloatingChatbot from '../components/ai/FloatingChatbot'
+
 import { useLanguage } from '../contexts/LanguageContext'
 
 export default function AppContent({
@@ -128,8 +128,7 @@ export default function AppContent({
         </PageWrapper>
       )}
       
-      {/* Floating Chatbot - Available on all pages except public pages */}
-      {!isPublicPage && <FloatingChatbot />}
+
     </>
   )
 } 

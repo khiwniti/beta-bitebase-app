@@ -250,10 +250,6 @@ export default function SimpleReportManagement() {
   const [selectedReport, setSelectedReport] = useState<Report | null>(null);
   const [showReportPreview, setShowReportPreview] = useState(false);
   const [showChatbot, setShowChatbot] = useState(false);
-  const [chatMessages, setChatMessages] = useState([
-    { id: 1, text: "Hi! I'm your BiteBase AI assistant. How can I help you with your reports today?", sender: 'bot' }
-  ]);
-  const [chatInput, setChatInput] = useState('');
 
   // Filter reports based on search and filters
   const filteredReports = reports.filter(report => {
@@ -319,43 +315,7 @@ export default function SimpleReportManagement() {
     setReports(reports.filter(r => r.id !== reportId));
   };
 
-  const handleSendMessage = () => {
-    if (!chatInput.trim()) return;
-    
-    const newMessage = {
-      id: chatMessages.length + 1,
-      text: chatInput,
-      sender: 'user'
-    };
-    
-    setChatMessages([...chatMessages, newMessage]);
-    setChatInput('');
-    
-    // Simulate bot response
-    setTimeout(() => {
-      const botResponse = {
-        id: chatMessages.length + 2,
-        text: getBotResponse(chatInput),
-        sender: 'bot'
-      };
-      setChatMessages(prev => [...prev, botResponse]);
-    }, 1000);
-  };
 
-  const getBotResponse = (userMessage: string) => {
-    const message = userMessage.toLowerCase();
-    if (message.includes('create') || message.includes('new')) {
-      return "I can help you create a new report! Click the 'Create Report' button and choose from our 5 templates: Sales, Customer, Inventory, Financial, or Performance reports.";
-    } else if (message.includes('template')) {
-      return "We have 5 report templates available: Sales Analytics, Customer Insights, Inventory Management, Financial Performance, and Operational Performance. Each template comes with pre-configured metrics and charts.";
-    } else if (message.includes('export') || message.includes('download')) {
-      return "You can export any report to PDF format by clicking the 'Export PDF' button in the report preview or from the report card actions.";
-    } else if (message.includes('filter') || message.includes('search')) {
-      return "Use the search bar to find reports by title, description, or tags. You can also filter by status (Published, Draft, Scheduled) or by template type.";
-    } else {
-      return "I'm here to help with your report management! You can ask me about creating reports, using templates, exporting data, or navigating the system.";
-    }
-  };
 
   const renderReportPreview = (report: Report) => {
     const template = getTemplateInfo(report.template);
@@ -919,111 +879,9 @@ export default function SimpleReportManagement() {
             className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full w-14 h-14 shadow-2xl border-2 border-white/20 backdrop-blur-sm"
             size="lg"
           >
-            {showChatbot ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <div className="relative">
-                <MessageCircle className="h-6 w-6" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-              </div>
-            )}
+            <MessageCircle className="h-6 w-6" />
           </Button>
         </div>
-
-        {/* Chatbot Window */}
-        {showChatbot && (
-          <div className="fixed bottom-24 right-6 w-96 h-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-40 overflow-hidden">
-            {/* Chatbot Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="bg-white/20 rounded-full p-2">
-                  <Bot className="h-5 w-5" />
-                </div>
-                <div>
-                  <h3 className="font-bold">BiteBase AI Assistant</h3>
-                  <p className="text-xs text-blue-100">Online • Ready to help</p>
-                </div>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowChatbot(false)}
-                className="text-white hover:bg-white/20"
-              >
-                <Minimize2 className="h-4 w-4" />
-              </Button>
-            </div>
-
-            {/* Chat Messages */}
-            <div className="flex-1 p-4 space-y-4 h-64 overflow-y-auto bg-gray-50">
-              {chatMessages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div
-                    className={`max-w-xs px-4 py-2 rounded-lg ${
-                      message.sender === 'user'
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-white border border-gray-200 text-gray-800'
-                    }`}
-                  >
-                    {message.sender === 'bot' && (
-                      <div className="flex items-center space-x-2 mb-1">
-                        <Bot className="h-3 w-3 text-blue-600" />
-                        <span className="text-xs font-medium text-blue-600">AI Assistant</span>
-                      </div>
-                    )}
-                    <p className="text-sm">{message.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Chat Input */}
-            <div className="p-4 border-t border-gray-200 bg-white">
-              <div className="flex items-center space-x-2">
-                <Input
-                  placeholder="Ask me about reports..."
-                  value={chatInput}
-                  onChange={(e) => setChatInput(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  className="flex-1 border-gray-300 focus:border-blue-500"
-                />
-                <Button
-                  onClick={handleSendMessage}
-                  disabled={!chatInput.trim()}
-                  className="bg-blue-600 hover:bg-blue-700 text-white"
-                  size="sm"
-                >
-                  <Send className="h-4 w-4" />
-                </Button>
-              </div>
-              <div className="flex items-center space-x-2 mt-2">
-                <div className="flex space-x-1">
-                  <button
-                    onClick={() => setChatInput('How do I create a new report?')}
-                    className="text-xs bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-full text-gray-600"
-                  >
-                    Create Report
-                  </button>
-                  <button
-                    onClick={() => setChatInput('What templates are available?')}
-                    className="text-xs bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-full text-gray-600"
-                  >
-                    Templates
-                  </button>
-                  <button
-                    onClick={() => setChatInput('How to export reports?')}
-                    className="text-xs bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-full text-gray-600"
-                  >
-                    Export
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </MainLayout>
   );
