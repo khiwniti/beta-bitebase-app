@@ -53,6 +53,7 @@ import { TourTrigger, WelcomeBanner } from '../tour/TourTrigger'
 import { LanguageSwitcher } from '../LanguageSwitcher'
 import { useTranslations } from '../../hooks/useTranslations'
 import { useLanguage } from '../../contexts/LanguageContext'
+import { GlobalChatbot } from '../GlobalChatbot'
 
 // Type definitions for navigation
 interface NavigationSubItem {
@@ -837,6 +838,9 @@ export function MainLayout({
               </div>
             </main>
           </div>
+
+          {/* Global Chatbot - Available on all pages */}
+          <GlobalChatbot />
     </div>
   )
 }
