@@ -10,6 +10,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   FileText,
   BarChart3,
@@ -283,7 +285,7 @@ export default function ReportManagementSystem() {
               <p className="text-sm font-medium text-gray-600 capitalize">{key.replace(/([A-Z])/g, ' $1')}</p>
               <p className="text-lg font-bold text-gray-900">
                 {typeof value === 'number' ? value.toLocaleString() : 
-                 Array.isArray(value) ? value.join(', ') : value}
+                 Array.isArray(value) ? value.join(', ') : String(value)}
               </p>
             </div>
           ))}

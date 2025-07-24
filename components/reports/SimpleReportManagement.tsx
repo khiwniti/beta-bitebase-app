@@ -339,7 +339,7 @@ export default function SimpleReportManagement() {
               </p>
               <p className="text-xl font-bold text-gray-900">
                 {typeof value === 'number' ? value.toLocaleString() : 
-                 Array.isArray(value) ? value.join(', ') : value}
+                 Array.isArray(value) ? value.join(', ') : String(value)}
               </p>
             </div>
           ))}
