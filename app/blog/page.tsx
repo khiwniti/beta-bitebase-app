@@ -98,6 +98,11 @@ function BlogPageContent() {
 
   const t = translations[language];
 
+  // Set document title dynamically
+  useEffect(() => {
+    document.title = "BiteBase Intelligence Blog - Restaurant Analytics & Business Intelligence";
+  }, []);
+
   const blogPosts: BlogPost[] = [
     {
       id: 1,
