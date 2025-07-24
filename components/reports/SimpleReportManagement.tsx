@@ -488,6 +488,7 @@ export default function SimpleReportManagement() {
               </Button>
               <Button 
                 onClick={() => setShowCreateTemplates(!showCreateTemplates)}
+                data-testid="create-report-btn"
                 className="bg-white text-blue-600 hover:bg-blue-50 shadow-lg border-2 border-white/30"
               >
                 <Plus className="h-4 w-4 mr-2" />
@@ -876,12 +877,115 @@ export default function SimpleReportManagement() {
         <div className="fixed bottom-6 right-6 z-50">
           <Button
             onClick={() => setShowChatbot(!showChatbot)}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full w-14 h-14 shadow-2xl border-2 border-white/20 backdrop-blur-sm"
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full w-14 h-14 shadow-2xl border-2 border-white/20 backdrop-blur-sm transform hover:scale-110 transition-all duration-300"
             size="lg"
           >
-            <MessageCircle className="h-6 w-6" />
+            {showChatbot ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <div className="relative">
+                <Bot className="h-6 w-6" />
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+              </div>
+            )}
           </Button>
         </div>
+
+        {/* Chatbot Window */}
+        {showChatbot && (
+          <div className="fixed bottom-24 right-6 w-96 h-[500px] bg-white rounded-xl shadow-2xl border border-gray-200 z-40 overflow-hidden animate-in slide-in-from-bottom-4">
+            {/* Chatbot Header */}
+            <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="bg-white/20 rounded-full p-2">
+                  <Bot className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold">BiteBase AI Assistant</h3>
+                  <p className="text-xs text-blue-100">Online • Ready to help with reports</p>
+                </div>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowChatbot(false)}
+                className="text-white hover:bg-white/20"
+              >
+                <Minimize2 className="h-4 w-4" />
+              </Button>
+            </div>
+
+            {/* Chat Messages */}
+            <div className="flex-1 p-4 space-y-4 h-80 overflow-y-auto bg-gray-50">
+              {/* Welcome Message */}
+              <div className="flex justify-start">
+                <div className="max-w-xs px-4 py-2 rounded-lg bg-white border border-gray-200 text-gray-800">
+                  <div className="flex items-center space-x-2 mb-1">
+                    <Bot className="h-3 w-3 text-blue-600" />
+                    <span className="text-xs font-medium text-blue-600">BiteBase AI</span>
+                  </div>
+                  <p className="text-sm">👋 Hello! I'm your BiteBase AI assistant. I can help you with:</p>
+                  <ul className="text-xs mt-2 space-y-1 text-gray-600">
+                    <li>• Creating and managing reports</li>
+                    <li>• Analyzing business data</li>
+                    <li>• Understanding report templates</li>
+                    <li>• Exporting and sharing reports</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Quick Action Buttons */}
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => {
+                    // Scroll to create report button
+                    document.querySelector('[data-testid="create-report-btn"]')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="text-xs bg-blue-100 hover:bg-blue-200 px-3 py-2 rounded-full text-blue-700 transition-colors"
+                >
+                  📊 Create New Report
+                </button>
+                <button
+                  onClick={() => {
+                    // Show template info
+                    alert('We have 5 templates: Sales Analytics, Customer Insights, Inventory Management, Financial Performance, and Operational Performance.');
+                  }}
+                  className="text-xs bg-purple-100 hover:bg-purple-200 px-3 py-2 rounded-full text-purple-700 transition-colors"
+                >
+                  📋 View Templates
+                </button>
+                <button
+                  onClick={() => {
+                    // Show export info
+                    alert('You can export any report to PDF by clicking the Export button on each report card.');
+                  }}
+                  className="text-xs bg-green-100 hover:bg-green-200 px-3 py-2 rounded-full text-green-700 transition-colors"
+                >
+                  📤 Export Help
+                </button>
+              </div>
+            </div>
+
+            {/* Chat Input */}
+            <div className="p-4 border-t border-gray-200 bg-white">
+              <div className="flex items-center space-x-2">
+                <Input
+                  placeholder="Ask me about reports, analytics, or business insights..."
+                  className="flex-1 border-gray-300 focus:border-blue-500"
+                />
+                <Button
+                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                  size="sm"
+                >
+                  <Send className="h-4 w-4" />
+                </Button>
+              </div>
+              <div className="text-xs text-gray-500 mt-2 text-center">
+                Powered by BiteBase AI • Enterprise Intelligence Platform
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </MainLayout>
   );
