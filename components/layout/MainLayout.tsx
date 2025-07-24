@@ -305,12 +305,16 @@ export function MainLayout({
             icon: MapPin,
             subitems: [
               {
-                name: language === 'th' ? 'ข้อมูลพื้นที่' : 'Area Insights',
-                href: '/place/insights'
+                name: language === 'th' ? 'การวิเคราะห์พื้นที่' : 'Area Analysis',
+                href: '/place/area-analysis'
               },
               {
-                name: language === 'th' ? 'การเปรียบเทียบ' : 'Comparison',
-                href: '/place/comparison'
+                name: language === 'th' ? 'การเดินทางของลูกค้า' : 'Foot Traffic',
+                href: '/place/foot-traffic'
+              },
+              {
+                name: language === 'th' ? 'แผนที่คู่แข่ง' : 'Competition Map',
+                href: '/place/competition'
               }
             ],
             tourId: 'location-analytics-nav'
