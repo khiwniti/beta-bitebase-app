@@ -6,6 +6,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import BiteBaseLogo from "../BiteBaseLogo";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useLanguage } from "../../contexts/LanguageContext";
+import enTranslations from '../../messages/en.json';
+import thTranslations from '../../messages/th.json';
 
 // Animated particles component
 const AnimatedParticles = () => {
@@ -77,7 +79,24 @@ const AnimatedParticles = () => {
 export default function BetaInspiredLandingPage() {
   const [scrollY, setScrollY] = useState(0);
   const { scrollYProgress } = useScroll();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  
+  // Helper function to get translation data including arrays
+  const getTranslationData = (key: string) => {
+    const translations = language === 'th' ? thTranslations : enTranslations;
+    const keys = key.split('.');
+    let value: any = translations;
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object' && k in value) {
+        value = value[k];
+      } else {
+        return null;
+      }
+    }
+    
+    return value;
+  };
   
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -256,7 +275,7 @@ export default function BetaInspiredLandingPage() {
               <div className="text-4xl mb-4">🗺️</div>
               <h3 className="text-2xl font-bold mb-4">{t('landing.features.geospatial.title')}</h3>
               <ul className="space-y-2 text-slate-300">
-                {t('landing.features.geospatial.items').map((item: string, index: number) => (
+                {(getTranslationData('landing.features.geospatial.items') as string[] || []).map((item: string, index: number) => (
                   <li key={index}>• {item}</li>
                 ))}
               </ul>
@@ -271,7 +290,7 @@ export default function BetaInspiredLandingPage() {
               <div className="text-4xl mb-4">🧠</div>
               <h3 className="text-2xl font-bold mb-4">{t('landing.features.ai.title')}</h3>
               <ul className="space-y-2 text-slate-300">
-                {t('landing.features.ai.items').map((item: string, index: number) => (
+                {(getTranslationData('landing.features.ai.items') as string[] || []).map((item: string, index: number) => (
                   <li key={index}>• {item}</li>
                 ))}
               </ul>
@@ -286,7 +305,7 @@ export default function BetaInspiredLandingPage() {
               <div className="text-4xl mb-4">📊</div>
               <h3 className="text-2xl font-bold mb-4">{t('landing.features.business.title')}</h3>
               <ul className="space-y-2 text-slate-300">
-                {t('landing.features.business.items').map((item: string, index: number) => (
+                {(getTranslationData('landing.features.business.items') as string[] || []).map((item: string, index: number) => (
                   <li key={index}>• {item}</li>
                 ))}
               </ul>
