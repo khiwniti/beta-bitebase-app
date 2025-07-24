@@ -14,18 +14,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <title>BiteBase Explorer - Intelligence Platform</title>
+        <title>BiteBase Intelligence - Restaurant Analytics Platform</title>
         {/* Force deployment: 2025-06-09 08:55 UTC */}
         <meta
           name="description"
-          content="BiteBase Explorer helps you discover and explore restaurants with real-time data, reviews, and comprehensive restaurant information for the best dining experiences."
+          content="BiteBase Intelligence provides AI-powered restaurant analytics, market insights, and business intelligence for data-driven restaurant success and optimization."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#74C365" />
         <meta name="robots" content="index, follow" />
         <meta
           property="og:title"
-          content="BiteBase Explorer - Intelligence Platform"
+          content="BiteBase Intelligence - Restaurant Analytics Platform"
         />
         <meta
           property="og:description"
@@ -40,7 +40,7 @@ export default function RootLayout({
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="BiteBase Explorer - Intelligence Platform"
+          content="BiteBase Intelligence - Restaurant Analytics Platform"
         />
         <meta
           name="twitter:description"

@@ -33,8 +33,8 @@ interface BlogPost {
 // Simple translation system
 const translations = {
   en: {
-    blogTitle: "BiteBase Explorer Blog",
-    blogSubtitle: "Discover insights, trends, and expert advice for restaurant discovery and dining experiences",
+    blogTitle: "BiteBase Intelligence Blog",
+    blogSubtitle: "Discover insights, trends, and expert advice for restaurant analytics and business intelligence",
     searchPlaceholder: "Search articles...",
     readMore: "Read More",
     categories: {
@@ -45,8 +45,8 @@ const translations = {
       sustainability: "Sustainability"
     },
     newsletter: {
-      title: "Stay Updated with BiteBase Explorer",
-      subtitle: "Subscribe to our newsletter for the latest restaurant discoveries, dining trends, and food insights.",
+      title: "Stay Updated with BiteBase Intelligence",
+      subtitle: "Subscribe to our newsletter for the latest restaurant analytics, business insights, and industry trends.",
       emailPlaceholder: "Enter your email",
       subscribe: "Subscribe",
       disclaimer: "We'll never share your email. You can unsubscribe at any time."
@@ -61,8 +61,8 @@ const translations = {
     }
   },
   th: {
-    blogTitle: "บล็อก BiteBase Explorer",
-    blogSubtitle: "ค้นพบข้อมูลเชิงลึก เทรนด์ และคำแนะนำจากผู้เชี่ยวชาญสำหรับการค้นหาร้านอาหารและประสบการณ์การรับประทานอาหาร",
+    blogTitle: "บล็อก BiteBase Intelligence",
+    blogSubtitle: "ค้นพบข้อมูลเชิงลึก เทรนด์ และคำแนะนำจากผู้เชี่ยวชาญสำหรับการวิเคราะห์ร้านอาหารและธุรกิจอัจฉริยะ",
     searchPlaceholder: "ค้นหาบทความ...",
     readMore: "อ่านเพิ่มเติม",
     categories: {
@@ -73,8 +73,8 @@ const translations = {
       sustainability: "ความยั่งยืน"
     },
     newsletter: {
-      title: "รับข้อมูลล่าสุดจาก BiteBase Explorer",
-      subtitle: "สมัครรับจดหมายข่าวของเราเพื่อรับข้อมูลการค้นหาร้านอาหาร เทรนด์การรับประทานอาหาร และข้อมูลเชิงลึกเกี่ยวกับอาหารล่าสุด",
+      title: "รับข้อมูลล่าสุดจาก BiteBase Intelligence",
+      subtitle: "สมัครรับจดหมายข่าวของเราเพื่อรับข้อมูลการวิเคราะห์ร้านอาหาร ข้อมูลเชิงลึกทางธุรกิจ และเทรนด์อุตสาหกรรมล่าสุด",
       emailPlaceholder: "กรอกอีเมลของคุณ",
       subscribe: "สมัครรับข้อมูล",
       disclaimer: "เราจะไม่แชร์อีเมลของคุณ คุณสามารถยกเลิกการสมัครได้ตลอดเวลา"

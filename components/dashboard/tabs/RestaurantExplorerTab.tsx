@@ -270,8 +270,8 @@ const RestaurantExplorerTab: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Restaurant Explorer</h2>
-          <p className="text-gray-600">Discover and analyze restaurants in your area</p>
+          <h2 className="text-2xl font-bold text-gray-900">Restaurant Intelligence</h2>
+          <p className="text-gray-600">Discover and analyze restaurants with AI-powered insights</p>
         </div>
         <div className="flex gap-2">
           <Button 
