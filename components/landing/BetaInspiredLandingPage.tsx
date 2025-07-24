@@ -6,8 +6,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import BiteBaseLogo from "../BiteBaseLogo";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useLanguage } from "../../contexts/LanguageContext";
-import enTranslations from '../../messages/en.json';
-import thTranslations from '../../messages/th.json';
 
 // Animated particles component
 const AnimatedParticles = () => {
@@ -80,23 +78,6 @@ export default function BetaInspiredLandingPage() {
   const [scrollY, setScrollY] = useState(0);
   const { scrollYProgress } = useScroll();
   const { t, language } = useLanguage();
-  
-  // Helper function to get translation data including arrays
-  const getTranslationData = (key: string) => {
-    const translations = language === 'th' ? thTranslations : enTranslations;
-    const keys = key.split('.');
-    let value: any = translations;
-    
-    for (const k of keys) {
-      if (value && typeof value === 'object' && k in value) {
-        value = value[k];
-      } else {
-        return null;
-      }
-    }
-    
-    return value;
-  };
   
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -275,9 +256,10 @@ export default function BetaInspiredLandingPage() {
               <div className="text-4xl mb-4">🗺️</div>
               <h3 className="text-2xl font-bold mb-4">{t('landing.features.geospatial.title')}</h3>
               <ul className="space-y-2 text-slate-300">
-                {(getTranslationData('landing.features.geospatial.items') as string[] || []).map((item: string, index: number) => (
-                  <li key={index}>• {item}</li>
-                ))}
+                <li>• {language === 'th' ? 'การทำแผนที่ข่าวกรองสถานที่' : 'Location intelligence mapping'}</li>
+                <li>• {language === 'th' ? 'การวิเคราะห์พื้นที่การค้า' : 'Trade area analysis'}</li>
+                <li>• {language === 'th' ? 'ข้อมูลเชิงลึกด้านประชากรศาสตร์' : 'Demographic insights'}</li>
+                <li>• {language === 'th' ? 'รูปแบบการเดินทางของผู้คน' : 'Foot traffic patterns'}</li>
               </ul>
             </motion.div>
 
@@ -290,9 +272,10 @@ export default function BetaInspiredLandingPage() {
               <div className="text-4xl mb-4">🧠</div>
               <h3 className="text-2xl font-bold mb-4">{t('landing.features.ai.title')}</h3>
               <ul className="space-y-2 text-slate-300">
-                {(getTranslationData('landing.features.ai.items') as string[] || []).map((item: string, index: number) => (
-                  <li key={index}>• {item}</li>
-                ))}
+                <li>• {language === 'th' ? 'การวิเคราะห์เชิงทำนาย' : 'Predictive analytics'}</li>
+                <li>• {language === 'th' ? 'การวิเคราะห์แนวโน้มตลาด' : 'Market trend analysis'}</li>
+                <li>• {language === 'th' ? 'การปรับปรุงรายได้' : 'Revenue optimization'}</li>
+                <li>• {language === 'th' ? 'คำแนะนำอัจฉริยะ' : 'Smart recommendations'}</li>
               </ul>
             </motion.div>
 
@@ -305,9 +288,10 @@ export default function BetaInspiredLandingPage() {
               <div className="text-4xl mb-4">📊</div>
               <h3 className="text-2xl font-bold mb-4">{t('landing.features.business.title')}</h3>
               <ul className="space-y-2 text-slate-300">
-                {(getTranslationData('landing.features.business.items') as string[] || []).map((item: string, index: number) => (
-                  <li key={index}>• {item}</li>
-                ))}
+                <li>• {language === 'th' ? 'แดชบอร์ดแบบเรียลไทม์' : 'Real-time dashboards'}</li>
+                <li>• {language === 'th' ? 'ตัวชี้วัดประสิทธิภาพ' : 'Performance metrics'}</li>
+                <li>• {language === 'th' ? 'การติดตามคู่แข่ง' : 'Competitor tracking'}</li>
+                <li>• {language === 'th' ? 'รายงานที่กำหนดเอง' : 'Custom reports'}</li>
               </ul>
             </motion.div>
           </div>
