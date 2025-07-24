@@ -256,10 +256,9 @@ export default function BetaInspiredLandingPage() {
               <div className="text-4xl mb-4">🗺️</div>
               <h3 className="text-2xl font-bold mb-4">{t('landing.features.geospatial.title')}</h3>
               <ul className="space-y-2 text-slate-300">
-                <li>• {t('landing.features.geospatial.feature1')}</li>
-                <li>• {t('landing.features.geospatial.feature2')}</li>
-                <li>• {t('landing.features.geospatial.feature3')}</li>
-                <li>• {t('landing.features.geospatial.feature4')}</li>
+                {t('landing.features.geospatial.items').map((item: string, index: number) => (
+                  <li key={index}>• {item}</li>
+                ))}
               </ul>
             </motion.div>
 
@@ -272,10 +271,9 @@ export default function BetaInspiredLandingPage() {
               <div className="text-4xl mb-4">🧠</div>
               <h3 className="text-2xl font-bold mb-4">{t('landing.features.ai.title')}</h3>
               <ul className="space-y-2 text-slate-300">
-                <li>• {t('landing.features.ai.feature1')}</li>
-                <li>• {t('landing.features.ai.feature2')}</li>
-                <li>• {t('landing.features.ai.feature3')}</li>
-                <li>• {t('landing.features.ai.feature4')}</li>
+                {t('landing.features.ai.items').map((item: string, index: number) => (
+                  <li key={index}>• {item}</li>
+                ))}
               </ul>
             </motion.div>
 
@@ -288,10 +286,9 @@ export default function BetaInspiredLandingPage() {
               <div className="text-4xl mb-4">📊</div>
               <h3 className="text-2xl font-bold mb-4">{t('landing.features.business.title')}</h3>
               <ul className="space-y-2 text-slate-300">
-                <li>• {t('landing.features.business.feature1')}</li>
-                <li>• {t('landing.features.business.feature2')}</li>
-                <li>• {t('landing.features.business.feature3')}</li>
-                <li>• {t('landing.features.business.feature4')}</li>
+                {t('landing.features.business.items').map((item: string, index: number) => (
+                  <li key={index}>• {item}</li>
+                ))}
               </ul>
             </motion.div>
           </div>
