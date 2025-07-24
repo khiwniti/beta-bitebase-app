@@ -30,7 +30,7 @@ export default function OfficialHomePage() {
                     fontWeight: '700',
                     color: 'var(--accent-color)'
                   }}>
-                    BiteBase Explorer
+                    BiteBase Intelligence
                   </span>
                 </div>
               </Link>
@@ -95,7 +95,7 @@ export default function OfficialHomePage() {
                   display: 'inline-block',
                   marginBottom: 'var(--spacing-md)'
                 }}>
-                  BiteBase Explorer
+                  BiteBase Intelligence
                 </span>
                 <h1 className="mb-sm" style={{ marginBottom: 'var(--spacing-sm)' }}>
                   AI-Powered Restaurant Analytics Platform
@@ -127,7 +127,7 @@ export default function OfficialHomePage() {
             <div className="container">
               <div className="text-center mb-xl">
                 <span className="badge badge-primary mb-sm">Features</span>
-                <h2 id="features-heading">Why Choose BiteBase Explorer</h2>
+                <h2 id="features-heading">Why Choose BiteBase Intelligence</h2>
                 <p className="text-lead mx-auto" style={{ maxWidth: '700px' }}>
                   Discover how our AI-powered platform helps restaurants optimize operations, 
                   understand markets, and increase profitability.
@@ -218,7 +218,7 @@ export default function OfficialHomePage() {
                   maxWidth: '600px',
                   margin: '0 auto var(--spacing-lg) auto'
                 }}>
-                  Join thousands of restaurants using BiteBase Explorer to optimize 
+                  Join thousands of restaurants using BiteBase Intelligence to optimize 
                   operations and increase profitability.
                 </p>
                 <div style={{ display: 'flex', gap: 'var(--spacing-md)', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -261,11 +261,11 @@ export default function OfficialHomePage() {
                 fontSize: '1.1rem', 
                 fontWeight: '600'
               }}>
-                BiteBase Explorer
+                BiteBase Intelligence
               </span>
             </div>
             <p style={{ color: '#ccc', fontSize: '14px' }}>
-              © 2024 BiteBase Explorer. All rights reserved.
+              © 2024 BiteBase Intelligence. All rights reserved.
             </p>
           </div>
         </footer>

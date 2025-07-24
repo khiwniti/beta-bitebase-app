@@ -33,8 +33,8 @@ interface BlogPost {
 // Simple translation system
 const translations = {
   en: {
-    blogTitle: "BiteBase Explorer Blog",
-    blogSubtitle: "Discover insights, trends, and expert advice for restaurant discovery and dining experiences",
+    blogTitle: "BiteBase Intelligence Blog",
+    blogSubtitle: "Discover insights, trends, and expert advice for restaurant analytics and business intelligence",
     searchPlaceholder: "Search articles...",
     readMore: "Read More",
     categories: {
@@ -45,7 +45,7 @@ const translations = {
       sustainability: "Sustainability"
     },
     newsletter: {
-      title: "Stay Updated with BiteBase Explorer",
+      title: "Stay Updated with BiteBase Intelligence",
       subtitle: "Subscribe to our newsletter for the latest restaurant discoveries, dining trends, and food insights.",
       emailPlaceholder: "Enter your email",
       subscribe: "Subscribe",
@@ -61,8 +61,8 @@ const translations = {
     }
   },
   th: {
-    blogTitle: "บล็อก BiteBase Explorer",
-    blogSubtitle: "ค้นพบข้อมูลเชิงลึก เทรนด์ และคำแนะนำจากผู้เชี่ยวชาญสำหรับการค้นหาร้านอาหารและประสบการณ์การรับประทานอาหาร",
+    blogTitle: "บล็อก BiteBase Intelligence",
+    blogSubtitle: "ค้นพบข้อมูลเชิงลึก เทรนด์ และคำแนะนำจากผู้เชี่ยวชาญสำหรับการวิเคราะห์ร้านอาหารและข่าวกรองธุรกิจ",
     searchPlaceholder: "ค้นหาบทความ...",
     readMore: "อ่านเพิ่มเติม",
     categories: {
@@ -73,7 +73,7 @@ const translations = {
       sustainability: "ความยั่งยืน"
     },
     newsletter: {
-      title: "รับข้อมูลล่าสุดจาก BiteBase Explorer",
+      title: "รับข้อมูลล่าสุดจาก BiteBase Intelligence",
       subtitle: "สมัครรับจดหมายข่าวของเราเพื่อรับข้อมูลการค้นหาร้านอาหาร เทรนด์การรับประทานอาหาร และข้อมูลเชิงลึกเกี่ยวกับอาหารล่าสุด",
       emailPlaceholder: "กรอกอีเมลของคุณ",
       subscribe: "สมัครรับข้อมูล",
@@ -504,7 +504,7 @@ function BlogPageContent() {
           
           <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col md:flex-row md:items-center md:justify-between">
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} BiteBase Explorer. All rights reserved.
+              © {new Date().getFullYear()} BiteBase Intelligence. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="#" className="text-gray-400 hover:text-gray-500">
