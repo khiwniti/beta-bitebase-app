@@ -254,12 +254,12 @@ export default function BetaInspiredLandingPage() {
               className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 hover:border-green-500/30 transition-all hover:scale-105"
             >
               <div className="text-4xl mb-4">🗺️</div>
-              <h3 className="text-2xl font-bold mb-4">Geospatial Analytics</h3>
+              <h3 className="text-2xl font-bold mb-4">{t('landing.features.geospatial.title')}</h3>
               <ul className="space-y-2 text-slate-300">
-                <li>• Location intelligence mapping</li>
-                <li>• Trade area analysis</li>
-                <li>• Demographic insights</li>
-                <li>• Foot traffic patterns</li>
+                <li>• {t('landing.features.geospatial.feature1')}</li>
+                <li>• {t('landing.features.geospatial.feature2')}</li>
+                <li>• {t('landing.features.geospatial.feature3')}</li>
+                <li>• {t('landing.features.geospatial.feature4')}</li>
               </ul>
             </motion.div>
 
@@ -270,12 +270,12 @@ export default function BetaInspiredLandingPage() {
               className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 hover:border-green-500/30 transition-all hover:scale-105"
             >
               <div className="text-4xl mb-4">🧠</div>
-              <h3 className="text-2xl font-bold mb-4">AI-Powered Insights</h3>
+              <h3 className="text-2xl font-bold mb-4">{t('landing.features.ai.title')}</h3>
               <ul className="space-y-2 text-slate-300">
-                <li>• Predictive analytics</li>
-                <li>• Market trend analysis</li>
-                <li>• Revenue optimization</li>
-                <li>• Smart recommendations</li>
+                <li>• {t('landing.features.ai.feature1')}</li>
+                <li>• {t('landing.features.ai.feature2')}</li>
+                <li>• {t('landing.features.ai.feature3')}</li>
+                <li>• {t('landing.features.ai.feature4')}</li>
               </ul>
             </motion.div>
 
@@ -286,12 +286,12 @@ export default function BetaInspiredLandingPage() {
               className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 hover:border-green-500/30 transition-all hover:scale-105"
             >
               <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-2xl font-bold mb-4">Business Intelligence</h3>
+              <h3 className="text-2xl font-bold mb-4">{t('landing.features.business.title')}</h3>
               <ul className="space-y-2 text-slate-300">
-                <li>• Real-time dashboards</li>
-                <li>• Performance metrics</li>
-                <li>• Competitor tracking</li>
-                <li>• Custom reports</li>
+                <li>• {t('landing.features.business.feature1')}</li>
+                <li>• {t('landing.features.business.feature2')}</li>
+                <li>• {t('landing.features.business.feature3')}</li>
+                <li>• {t('landing.features.business.feature4')}</li>
               </ul>
             </motion.div>
           </div>
@@ -303,28 +303,27 @@ export default function BetaInspiredLandingPage() {
         <div className="max-w-7xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/30 rounded-full px-4 py-2 mb-6">
             <span className="text-green-400">💬</span>
-            <span className="text-green-400 font-medium">Customer Stories</span>
+            <span className="text-green-400 font-medium">{t('landing.testimonials.badge')}</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Trusted by Restaurant Owners
+            {t('landing.testimonials.title')}
           </h2>
           <p className="text-xl text-slate-300 mb-16">
-            See how BiteBase is helping restaurants grow and succeed.
+            {t('landing.testimonials.subtitle')}
           </p>
           
           {/* Testimonial placeholder */}
           <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 max-w-4xl mx-auto">
             <p className="text-lg text-slate-300 mb-6 italic">
-              "BiteBase helped us identify the perfect location for our second restaurant. 
-              The AI insights were spot-on and we've seen a 30% increase in revenue since opening."
+              "{t('landing.testimonials.quote')}"
             </p>
             <div className="flex items-center justify-center gap-4">
               <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">
                 JD
               </div>
               <div>
-                <div className="font-semibold">John Doe</div>
-                <div className="text-slate-400">Owner, Bistro Central</div>
+                <div className="font-semibold">{t('landing.testimonials.author')}</div>
+                <div className="text-slate-400">{t('landing.testimonials.position')}</div>
               </div>
             </div>
           </div>
@@ -338,13 +337,13 @@ export default function BetaInspiredLandingPage() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/30 rounded-full px-4 py-2 mb-6">
               <span className="text-green-400">💰</span>
-              <span className="text-green-400 font-medium">Simple Pricing</span>
+              <span className="text-green-400 font-medium">{t('landing.pricing.badge')}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Choose Your Plan
+              {t('landing.pricing.title')}
             </h2>
             <p className="text-xl text-slate-300">
-              Start free and scale as you grow. No hidden fees, cancel anytime.
+              {t('landing.pricing.subtitle')}
             </p>
           </div>
 
@@ -484,14 +483,14 @@ export default function BetaInspiredLandingPage() {
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-slate-800/30">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Transform Your Restaurant?
+            {t('landing.cta.title')}
           </h2>
           <p className="text-xl text-slate-300 mb-8">
-            Join thousands of restaurants using BiteBase to optimize operations and increase profitability.
+            {t('landing.cta.subtitle')}
           </p>
           <Link href="/auth" className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-lg shadow-green-500/25">
             <span>🚀</span>
-            Start Your Free Trial Today
+            {t('landing.cta.button')}
           </Link>
         </div>
       </section>
