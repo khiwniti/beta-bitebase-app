@@ -31,7 +31,7 @@ export function MetricCard({
   
   return (
     <div className={cn(
-      "rounded-lg border bg-white shadow-sm hover:shadow-md transition-all duration-300",
+      "rounded-lg border bg-white dark:bg-gray-800 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-300",
       variant === 'ghost' && 'border-transparent bg-transparent shadow-none',
       variant === 'outline' && 'bg-transparent',
       className
@@ -39,19 +39,19 @@ export function MetricCard({
       <div className="p-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            {icon && <div className="text-gray-400">{icon}</div>}
-            <span className="text-sm font-medium text-gray-600">{title}</span>
+            {icon && <div className="text-gray-400 dark:text-gray-500">{icon}</div>}
+            <span className="text-sm font-medium text-gray-600 dark:text-gray-300">{title}</span>
           </div>
         </div>
         <div className="mt-4">
           {loading ? (
             <div className="space-y-2">
-              <div className="h-8 bg-gray-200 rounded-md animate-pulse w-2/3"></div>
-              <div className="h-4 bg-gray-100 rounded-md animate-pulse w-1/2"></div>
+              <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse w-2/3"></div>
+              <div className="h-4 bg-gray-100 dark:bg-gray-600 rounded-md animate-pulse w-1/2"></div>
             </div>
           ) : (
             <div className="space-y-2">
-              <div className="text-2xl font-bold">
+              <div className="text-2xl font-bold dark:text-white">
                 {formattedValue ?? '--'}
               </div>
               {(change !== undefined && change !== null) && (
@@ -67,13 +67,13 @@ export function MetricCard({
                       <span>-{Math.abs(change).toFixed(1)}%</span>
                     </div>
                   ) : (
-                    <div className="flex items-center text-gray-500">
+                    <div className="flex items-center text-gray-500 dark:text-gray-400">
                       <Minus className="w-4 h-4 mr-1" />
                       <span>0%</span>
                     </div>
                   )}
                   {period && (
-                    <span className="text-gray-500 ml-1">{period}</span>
+                    <span className="text-gray-500 dark:text-gray-400 ml-1">{period}</span>
                   )}
                 </div>
               )}
