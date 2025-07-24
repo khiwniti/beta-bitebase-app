@@ -67,7 +67,7 @@
   },
   "marketAnalysis": {
     "title": "Market Analysis",
-    "subtitle": "Explore market data and competition in your area",
+    "subtitle": "AI-powered market intelligence and competitive analysis",
     "configuration": "Analysis Configuration",
     "analysisConfiguration": "Analysis Configuration",
     "targetLocation": "Target Location",
@@ -108,12 +108,12 @@
   },
   "dashboard": {
     "title": "Dashboard",
-    "subtitle": "Your restaurant performance at a glance",
+    "subtitle": "AI-powered business intelligence for your restaurant",
     "overview": "Overview",
     "market": "Market",
     "location": "Location",
     "analytics": "Analytics",
-    "explorer": "Explorer",
+    "explorer": "Intelligence",
     "aiInsights": "AI Insights",
     "reports": "Reports",
     "generateMarketAnalysis": "Generate Market Analysis",
