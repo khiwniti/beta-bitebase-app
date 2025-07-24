@@ -504,7 +504,7 @@ function BlogPageContent() {
           
           <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col md:flex-row md:items-center md:justify-between">
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} BiteBase Explorer. All rights reserved.
+              © {new Date().getFullYear()} BiteBase Intelligence. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="#" className="text-gray-400 hover:text-gray-500">
