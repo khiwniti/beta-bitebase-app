@@ -302,17 +302,17 @@ class ApiClient {
     };
   }
 
-  // Foursquare integration endpoints
+  // Secure Foursquare integration via backend proxy
   async searchFoursquareRestaurants(params: {
     latitude: number;
     longitude: number;
     radius?: number;
     query?: string;
     limit?: number;
-  }): Promise<ApiResponse<Restaurant[]>> {
+  }): Promise<ApiResponse<any>> {
     const urlParams = new URLSearchParams();
-    urlParams.append("latitude", params.latitude.toString());
-    urlParams.append("longitude", params.longitude.toString());
+    urlParams.append("lat", params.latitude.toString());
+    urlParams.append("lng", params.longitude.toString());
     if (params.radius) {
       urlParams.append("radius", params.radius.toString());
     }
@@ -322,10 +322,64 @@ class ApiClient {
     if (params.limit) {
       urlParams.append("limit", params.limit.toString());
     }
-    const response = await this.request(`/api/restaurants/search?${urlParams.toString()}`, {
+    
+    const response = await this.request(`${ENDPOINTS.API_PROXY.FOURSQUARE_SEARCH}?${urlParams.toString()}`, {
       method: "GET",
     });
-    return response as ApiResponse<Restaurant[]>;
+    return response;
+  }
+
+  // Secure Google Places integration via backend proxy
+  async searchGooglePlaces(params: {
+    latitude: number;
+    longitude: number;
+    radius?: number;
+    query?: string;
+    type?: string;
+  }): Promise<ApiResponse<any>> {
+    const urlParams = new URLSearchParams();
+    urlParams.append("lat", params.latitude.toString());
+    urlParams.append("lng", params.longitude.toString());
+    if (params.radius) {
+      urlParams.append("radius", params.radius.toString());
+    }
+    if (params.query) {
+      urlParams.append("query", params.query);
+    }
+    if (params.type) {
+      urlParams.append("type", params.type);
+    }
+    
+    const response = await this.request(`${ENDPOINTS.API_PROXY.GOOGLE_PLACES_SEARCH}?${urlParams.toString()}`, {
+      method: "GET",
+    });
+    return response;
+  }
+
+  // Secure Mapbox geocoding via backend proxy
+  async geocodeWithMapbox(params: {
+    query: string;
+    proximity?: string;
+    limit?: number;
+  }): Promise<ApiResponse<any>> {
+    const urlParams = new URLSearchParams();
+    urlParams.append("q", params.query);
+    if (params.proximity) {
+      urlParams.append("proximity", params.proximity);
+    }
+    if (params.limit) {
+      urlParams.append("limit", params.limit.toString());
+    }
+    
+    const response = await this.request(`${ENDPOINTS.API_PROXY.MAPBOX_GEOCODING}?${urlParams.toString()}`, {
+      method: "GET",
+    });
+    return response;
+  }
+
+  // Check API proxy health
+  async checkApiProxyHealth(): Promise<ApiResponse<any>> {
+    return this.request(ENDPOINTS.API_PROXY.HEALTH);
   }
 
   // Wongnai integration endpoints

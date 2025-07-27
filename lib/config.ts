@@ -15,8 +15,8 @@ export const API_CONFIG = {
     process.env.NEXT_PUBLIC_API_URL ||
     (isDevelopment
       ? (typeof window !== "undefined"
-          ? `${window.location.protocol}//${window.location.hostname}:59000`
-          : "http://localhost:59000")
+          ? `${window.location.protocol}//${window.location.hostname}:56222`
+          : "http://localhost:56222")
       : "https://api.bitebase.app"),
   APP_URL: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:52580",
 
@@ -113,10 +113,12 @@ export const ENDPOINTS = {
     INIT: "/init-database",
   },
 
-  // Foursquare
-  FOURSQUARE: {
-    SEARCH: "/foursquare/search",
-    DETAILS: (id: string) => `/foursquare/venues/${id}`,
+  // External API Proxy (secure backend)
+  API_PROXY: {
+    FOURSQUARE_SEARCH: "/api/proxy/foursquare/search",
+    GOOGLE_PLACES_SEARCH: "/api/proxy/google-places/search", 
+    MAPBOX_GEOCODING: "/api/proxy/mapbox/geocoding",
+    HEALTH: "/api/proxy/health",
   },
 };
 
@@ -153,15 +155,14 @@ export const DEBUG = {
   LOG_MAP_EVENTS: isDevelopment,
 };
 
-// Foursquare API Configuration
+// Secure API Configuration - Removed exposed credentials
+// All external API calls now go through secure backend proxy
 export const FOURSQUARE_CONFIG = {
-  CLIENT_ID: "UFEXNGODOGBQRX35NGIP0ZU0XDT2GJMIV0LGNGBMLU5RBVAN",
-  CLIENT_SECRET: "W4LHPBI1PVAKU4BLVQJ1YA2XNPZGVNNV44LCBQNRKJZHYDNZ",
-  API_KEY: "fsq3Ciis2M5OLrAUQqL2V5z+bsUMKpCCdQe1ULDMN23ISSo=",
   VERSION: "20250617",
   RADIUS: 5000, // 5km in meters
   LIMIT: 20,
   CATEGORY_ID: "13000", // Food category
+  // Credentials removed - handled securely on backend
 };
 
 export default {

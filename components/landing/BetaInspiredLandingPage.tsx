@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useInView } from "framer-motion";
+import { useRef } from "react";
 import BiteBaseLogo from "../BiteBaseLogo";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useLanguage } from "../../contexts/LanguageContext";
+import { ChevronRight, Star, Users, TrendingUp, Shield, Zap, Globe } from "lucide-react";
 
 // Animated particles component
 const AnimatedParticles = () => {
@@ -94,47 +96,95 @@ export default function BetaInspiredLandingPage() {
       <AnimatedParticles />
       
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700/50">
+      <motion.nav 
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-xl border-b border-slate-700/50"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-3">
-              <BiteBaseLogo size="md" showText={false} variant="white" clickable={false} />
-            </Link>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link href="/" className="flex items-center gap-3">
+                <BiteBaseLogo size="md" showText={false} variant="white" clickable={false} />
+              </Link>
+            </motion.div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
               <div className="flex items-center gap-6">
-                <Link href="#features" className="text-slate-300 hover:text-green-400 transition-colors">
-                  Features
-                </Link>
-                <Link href="/blog" className="text-slate-300 hover:text-green-400 transition-colors">
-                  Blog
-                </Link>
-                <Link href="/changelog" className="text-slate-300 hover:text-green-400 transition-colors">
-                  Changelog
-                </Link>
-                <Link href="#pricing" className="text-slate-300 hover:text-green-400 transition-colors">
-                  Pricing
-                </Link>
+                {[
+                  { href: "#features", label: "Features" },
+                  { href: "/blog", label: "Blog" },
+                  { href: "/changelog", label: "Changelog" },
+                  { href: "#pricing", label: "Pricing" }
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.href}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 + 0.3 }}
+                  >
+                    <Link 
+                      href={item.href} 
+                      className="relative text-slate-300 hover:text-green-400 transition-colors duration-300 group"
+                    >
+                      {item.label}
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full"></span>
+                    </Link>
+                  </motion.div>
+                ))}
               </div>
               
               <div className="flex items-center gap-4">
-                <LanguageSwitcher />
-                <Link href="/auth" className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full font-medium transition-colors">
-                  {t('landing.hero.getStarted')}
-                </Link>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6 }}
+                >
+                  <LanguageSwitcher />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.7 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link 
+                    href="/auth" 
+                    className="relative bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 shadow-lg shadow-green-500/25 hover:shadow-green-500/40 overflow-hidden group"
+                  >
+                    <span className="relative z-10">{t('landing.hero.getStarted')}</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                  </Link>
+                </motion.div>
               </div>
             </div>
 
             {/* Mobile menu button */}
             <div className="md:hidden">
-              <Link href="/auth" className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
-                {t('landing.hero.getStarted')}
-              </Link>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link 
+                  href="/auth" 
+                  className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 shadow-lg shadow-green-500/25"
+                >
+                  {t('landing.hero.getStarted')}
+                </Link>
+              </motion.div>
             </div>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Hero Section */}
       <motion.section 

@@ -5,6 +5,7 @@ import "../styles/consolidated-theme.css";
 import ErrorBoundary from "../components/ErrorBoundary";
 import { TempoInit } from "./tempo-init";
 import Script from "next/script";
+import LanguageHtmlWrapper from "../components/LanguageHtmlWrapper";
 
 export default function RootLayout({
   children,
@@ -12,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <LanguageHtmlWrapper>
       <head>
         <title>BiteBase Intelligence - Restaurant Analytics Platform</title>
         {/* Force deployment: 2025-06-09 08:55 UTC */}
@@ -32,10 +33,10 @@ export default function RootLayout({
           content="AI-powered analytics for restaurant success"
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bitebase.com" />
+        <meta property="og:url" content="https://beta.bitebase.app" />
         <meta
           property="og:image"
-          content="https://bitebase.com/images/og-image.jpg"
+          content="https://beta.bitebase.app/images/og-image.jpg"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -48,7 +49,7 @@ export default function RootLayout({
         />
         <meta
           name="twitter:image"
-          content="https://bitebase.com/images/twitter-card.jpg"
+          content="https://beta.bitebase.app/images/twitter-card.jpg"
         />
 
         {/* Fonts */}
@@ -84,6 +85,6 @@ export default function RootLayout({
           </ErrorBoundary>
         </Providers>
       </body>
-    </html>
+    </LanguageHtmlWrapper>
   );
 }

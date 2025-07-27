@@ -65,6 +65,14 @@
     "saveAnalysis": "Save Analysis",
     "generateReport": "Generate Report"
   },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Restaurant analytics and business intelligence overview"
+  },
+  "product": {
+    "title": "Product Analytics",
+    "description": "Menu performance and product optimization insights"
+  },
   "marketAnalysis": {
     "title": "Market Analysis",
     "subtitle": "AI-powered market intelligence and competitive analysis",
